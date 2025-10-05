@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
+import IPhoneFrame from "@/components/ui/IPhoneFrame";
 
 export default function ClimateSection() {
   const containerRef = useRef<HTMLDivElement>(null);
