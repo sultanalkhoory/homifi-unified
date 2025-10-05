@@ -1,5 +1,8 @@
 'use client';
 
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
+
 export default function LightsSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [manualControl, setManualControl] = useState(false);
