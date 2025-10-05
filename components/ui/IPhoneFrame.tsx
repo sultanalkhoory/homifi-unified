@@ -1,5 +1,8 @@
 'use client';
 
+import { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+
 function IPhoneFrame({ children }: { children: React.ReactNode }) {
   const frameRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
