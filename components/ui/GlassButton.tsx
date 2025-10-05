@@ -1,5 +1,7 @@
 'use client';
 
+import { AnimatePresence, motion } from "framer-motion";
+
 function GlassButton({
   label,
   active = false,
