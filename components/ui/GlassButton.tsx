@@ -53,3 +53,5 @@ function GlassButton({
     </motion.button>
   );
 }
+
+export default GlassButton;
