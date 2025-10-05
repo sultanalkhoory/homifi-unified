@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useInView } from "framer-motion";
+import Image from "next/image";
 import IPhoneFrame from "@/components/ui/IPhoneFrame";
 
 export default function SecuritySection() {
