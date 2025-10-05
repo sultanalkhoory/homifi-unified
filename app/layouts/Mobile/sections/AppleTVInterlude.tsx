@@ -2,6 +2,7 @@
 
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import Image from "next/image";
 
 export default function AppleTVInterlude() {
   const containerRef = useRef<HTMLDivElement>(null);
