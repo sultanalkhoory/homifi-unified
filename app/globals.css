@@ -1,4 +1,4 @@
-@import "@fontsource/inter/variable.css";
+@import "./fonts/inter.css";
 
 @tailwind base;
 @tailwind components;
