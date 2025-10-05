@@ -1,5 +1,8 @@
 'use client';
 
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+
 export default function HeroSection() {
   const [scrollY, setScrollY] = useState(0);
 
