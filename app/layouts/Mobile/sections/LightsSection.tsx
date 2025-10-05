@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
+import IPhoneFrame from "@/components/ui/IPhoneFrame";
 
 export default function LightsSection() {
   const containerRef = useRef<HTMLDivElement>(null);
