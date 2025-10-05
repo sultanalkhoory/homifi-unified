@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import IPhoneFrame from "@/components/ui/IPhoneFrame";
 
 export default function HeroSection() {
   const [scrollY, setScrollY] = useState(0);
