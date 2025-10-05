@@ -1,5 +1,8 @@
 'use client';
 
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
+
 export default function ClimateSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [temperature, setTemperature] = useState(26);
