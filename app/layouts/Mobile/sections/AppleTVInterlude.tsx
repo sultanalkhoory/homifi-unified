@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 
 export default function AppleTVInterlude() {
