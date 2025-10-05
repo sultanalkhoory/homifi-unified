@@ -3,6 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
+/**
+ * IPhoneFrame Component
+ * Wraps children inside an Apple-style iPhone frame
+ * Adds subtle parallax scroll movement on mobile.
+ */
 function IPhoneFrame({ children }: { children: React.ReactNode }) {
   const frameRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -66,3 +71,5 @@ function IPhoneFrame({ children }: { children: React.ReactNode }) {
     </div>
   );
 }
+
+export default IPhoneFrame;
