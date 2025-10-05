@@ -1,4 +1,6 @@
 'use client';
+import { useRef, useState } from "react";
+import { useInView } from "framer-motion";
 
 export default function AppleTVInterlude() {
   const containerRef = useRef<HTMLDivElement>(null);
