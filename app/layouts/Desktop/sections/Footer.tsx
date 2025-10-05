@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import WorksWithFooter from './WorksWithFooter';
+import WorksWithFooter from '@/components/WorksWithFooter';
 
 /**
  * Footer Component
