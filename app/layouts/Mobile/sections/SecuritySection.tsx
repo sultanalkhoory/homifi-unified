@@ -1,5 +1,8 @@
 'use client';
 
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useInView } from "framer-motion";
+
 export default function SecuritySection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [doorbellRing, setDoorbellRing] = useState(false);
