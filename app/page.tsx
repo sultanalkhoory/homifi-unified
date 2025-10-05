@@ -7,13 +7,19 @@ const Mobile = dynamic(() => import('./layouts/Mobile/page'), { ssr: false });
 
 function useIsMobile(breakpoint = 1024) {
   const [isMobile, setIsMobile] = useState(false);
+
   useEffect(() => {
     const mql = window.matchMedia(`(max-width: ${breakpoint}px)`);
-    const handler = (e) => setIsMobile(e.matches);
+
+    // ✅ Typed handler for MediaQueryList events
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+
     setIsMobile(mql.matches);
     mql.addEventListener('change', handler);
+
     return () => mql.removeEventListener('change', handler);
   }, [breakpoint]);
+
   return isMobile;
 }
 
