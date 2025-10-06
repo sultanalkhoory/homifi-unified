@@ -1,7 +1,7 @@
 'use client';
 import Header from '@/app/layouts/Desktop/sections/Header';
 import Footer from '@/app/layouts/Desktop/sections/Footer';
-import PerfectBenefits from '@/app/layouts/Desktop/sections/PerfectBeneficts';
+import PerfectBenefits from '@/app/layouts/Desktop/sections/PerfectBenefits';
 import PerfectLight from '@/app/layouts/Desktop/sections/PerfectLight';
 import PerfectPrivacy from '@/app/layouts/Desktop/sections/PerfectPrivacy';
 import PerfectClimate from '@/app/layouts/Desktop/sections/PerfectClimate';
