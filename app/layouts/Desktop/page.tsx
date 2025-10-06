@@ -131,6 +131,9 @@ export default function Page() {
     </div>
   </div>
 </section>
+
+      {/* ========== PERFECT BENEFITS SECTION ========== */}
+      <PerfectBenefits />
       
       {/* 
         ========== PERFECT LIGHT SECTION ==========
