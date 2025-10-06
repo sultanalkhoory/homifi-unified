@@ -42,7 +42,7 @@ export default function BenefitsSection() {
         </svg>
       ),
       title: 'Instant Notifications',
-      description: 'Stay updated with real-time alerts on your phone, watch, or TV. Know exactly what's happening in your home.',
+      description: "Stay updated with real-time alerts on your phone, watch, or TV. Know exactly what's happening in your home.",
       color: 'from-purple-400 to-pink-500'
     },
     {
