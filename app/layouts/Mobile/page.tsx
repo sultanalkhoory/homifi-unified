@@ -1,6 +1,6 @@
 'use client';
 
-import HeroSection from "@/layouts/Desktop/sections/HeroSection";
+import HeroSection from "@/layouts/Mobile/sections/HeroSection";
 import LightsSection from './sections/LightsSection';
 import CurtainsSection from './sections/CurtainsSection';
 import ClimateSection from './sections/ClimateSection';
