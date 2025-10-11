@@ -31,3 +31,46 @@ html, body {
 :root{ --font-sans: "InterVariable", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; }
 body{ font-family: var(--font-sans);
     }
+/* === Apple Liquid Glass Utilities === */
+
+.glass-base {
+  /* Core Apple vibrancy effect */
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+
+.glass-glow {
+  /* Light diffusion overlay */
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
+}
+
+@layer utilities {
+  /* Thin translucent border like Apple glass edges */
+  .glass-border {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  /* Subtle floating shadow depth */
+  .glass-shadow {
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Optional dark-mode tint helper */
+  .glass-dark {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  /* Optional light-mode tint helper */
+  .glass-light {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
