@@ -130,7 +130,7 @@ export default function HeroSection() {
       </motion.p>
 
       {/* iPhone + Badges Container */}
-      <div className="relative mb-12" ref={iPhoneRef}>
+      <div className="relative mb-8" ref={iPhoneRef}>
         {/* Floating iPhone with parallax */}
         <motion.div
           style={isMobile ? { y } : {}}
