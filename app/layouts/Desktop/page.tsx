@@ -54,7 +54,7 @@ export default function Page() {
         {/* Enhanced Value Proposition */}
         <div className="space-y-3">
           <p className="text-gray-600 text-base sm:text-lg lg:text-xl leading-relaxed">
-            Set up automation in minutes. Control lighting, climate, and security, all without writing a single line of code.
+            Set up automation in minutes. Control lighting, climate, and security with simple taps.
           </p>
           
           {/* Platform logos */}
