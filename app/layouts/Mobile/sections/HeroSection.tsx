@@ -54,7 +54,7 @@ const badges: Badge[] = [
   {
     id: 'security',
     label: 'Security',
-    detail: 'See who's at your door instantly',
+    detail: "See who's at your door instantly",
     color: 'from-red-400 to-pink-500',
     position: { bottom: '15%', left: '-10%' },
     icon: (
