@@ -1,5 +1,3 @@
-* Desktop Layout - Main Page
-
 'use client';
 
 import Header from '@/app/layouts/Desktop/sections/Header';
