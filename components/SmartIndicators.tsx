@@ -197,7 +197,7 @@ export default function SmartIndicators() {
               style={{ backgroundColor: indicator.color }}
               animate={{ 
                 scale: isActive ? 1.35 : 1,
-                opacity: isActive ? 1 : 0.7,
+                opacity: isActive ? 1 : 0.85,
                 boxShadow: isActive
                   ? `0 0 10px ${indicator.color}`
                   : `0 0 0 transparent`,
