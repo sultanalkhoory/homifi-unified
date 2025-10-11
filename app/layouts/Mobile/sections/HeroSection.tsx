@@ -32,7 +32,7 @@ const badges: Badge[] = [
     label: 'Voice Control',
     detail: 'Just ask Siri, Alexa, or Google',
     color: 'from-blue-400 to-blue-500',
-    position: { top: '15%', left: '-10%' },
+    position: { top: '15%', left: '5%' },
     icon: (
       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
         <path fillRule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clipRule="evenodd"/>
@@ -44,7 +44,7 @@ const badges: Badge[] = [
     label: 'HomeKey',
     detail: 'Unlock with your iPhone or Watch',
     color: 'from-green-400 to-emerald-500',
-    position: { top: '15%', right: '-10%' },
+    position: { top: '15%', right: '5%' },
     icon: (
       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
         <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"/>
@@ -56,7 +56,7 @@ const badges: Badge[] = [
     label: 'Security',
     detail: "See who's at your door instantly",
     color: 'from-red-400 to-pink-500',
-    position: { bottom: '15%', left: '-10%' },
+    position: { bottom: '15%', left: '5%' },
     icon: (
       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
         <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
@@ -69,7 +69,7 @@ const badges: Badge[] = [
     label: 'Instant Alerts',
     detail: 'Real-time notifications everywhere',
     color: 'from-orange-400 to-amber-500',
-    position: { bottom: '15%', right: '-10%' },
+    position: { bottom: '15%', right: '5%' },
     icon: (
       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
         <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/>
@@ -82,7 +82,7 @@ export default function HeroSection() {
   const [activeBadge, setActiveBadge] = useState<string | null>(null);
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-32 pb-16 bg-gradient-to-b from-gray-50 to-white">
+    <section className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-32 pb-24 bg-gradient-to-b from-gray-50 to-white">
       
       {/* Headline */}
       <motion.h1
@@ -193,7 +193,7 @@ export default function HeroSection() {
                 />
               </motion.div>
 
-              {/* Detail Text - liquid glass style, smart positioning */}
+              {/* Detail Text - enhanced Apple liquid glass style */}
               <AnimatePresence>
                 {activeBadge === badge.id && (
                   <motion.div
@@ -208,25 +208,21 @@ export default function HeroSection() {
                     }}
                     className="absolute z-30 whitespace-nowrap"
                     style={{
-                      // Smart positioning based on badge location
+                      // Smart positioning
                       ...(badge.position.top ? { top: '100%', marginTop: '8px' } : { bottom: '100%', marginBottom: '8px' }),
-                      left: '50%',
-                      transform: 'translateX(-50%)',
+                      ...(badge.position.left ? { left: '0' } : { right: '0' }),
                     }}
                   >
                     <div 
-                      className="rounded-xl px-3.5 py-2.5 backdrop-blur-xl shadow-lg text-white"
+                      className="rounded-xl px-3.5 py-2.5 backdrop-blur-2xl shadow-xl text-white"
                       style={{
-                        background: 'linear-gradient(180deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.15) 100%)',
-                        boxShadow: '0 10px 25px -3px rgba(0,0,0,0.15), 0 4px 6px -2px rgba(0,0,0,0.1), 0 0 0 1px rgba(255,255,255,0.15)',
-                        borderTop: '0.5px solid rgba(255,255,255,0.5)',
-                        borderLeft: '0.5px solid rgba(255,255,255,0.3)',
-                        borderRight: '0.5px solid rgba(255,255,255,0.2)',
-                        borderBottom: '0.5px solid rgba(255,255,255,0.1)',
+                        background: 'linear-gradient(135deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0.20) 100%)',
+                        boxShadow: '0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.6)',
+                        border: '1px solid rgba(255,255,255,0.4)',
                       }}
                     >
-                      <p className="text-[13px] font-medium tracking-tight text-white mb-0.5">{badge.label}</p>
-                      <p className="text-[11px] font-normal text-white/90 tracking-tight">{badge.detail}</p>
+                      <p className="text-[13px] font-semibold tracking-tight text-white drop-shadow-sm mb-0.5">{badge.label}</p>
+                      <p className="text-[11px] font-medium text-white/95 tracking-tight drop-shadow-sm">{badge.detail}</p>
                     </div>
                   </motion.div>
                 )}
