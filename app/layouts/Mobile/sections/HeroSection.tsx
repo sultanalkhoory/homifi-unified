@@ -32,7 +32,7 @@ const badges: Badge[] = [
     label: 'Voice Control',
     detail: 'Just ask Siri, Alexa, or Google',
     color: 'from-blue-400 to-blue-500',
-    position: { top: '15%', left: '-10%' },
+    position: { top: '15%', left: '-12%' }, // Adjusted for larger phone
     icon: (
       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
         <path fillRule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clipRule="evenodd"/>
@@ -44,7 +44,7 @@ const badges: Badge[] = [
     label: 'HomeKey',
     detail: 'Unlock with your iPhone or Watch',
     color: 'from-green-400 to-emerald-500',
-    position: { top: '15%', right: '-10%' },
+    position: { top: '15%', right: '-12%' }, // Adjusted for larger phone
     icon: (
       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
         <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"/>
@@ -56,7 +56,7 @@ const badges: Badge[] = [
     label: 'Security',
     detail: "See who's at your door instantly",
     color: 'from-red-400 to-pink-500',
-    position: { bottom: '15%', left: '-10%' },
+    position: { bottom: '15%', left: '-12%' }, // Adjusted for larger phone
     icon: (
       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
         <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
@@ -69,7 +69,7 @@ const badges: Badge[] = [
     label: 'Instant Alerts',
     detail: 'Real-time notifications everywhere',
     color: 'from-orange-400 to-amber-500',
-    position: { bottom: '15%', right: '-10%' },
+    position: { bottom: '15%', right: '-12%' }, // Adjusted for larger phone
     icon: (
       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
         <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/>
@@ -278,16 +278,7 @@ export default function HeroSection() {
         ))}
       </div>
 
-      {/* CTA Button */}
-      <motion.a
-        href="#lights"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.5 }}
-        className="inline-block bg-black text-white px-8 py-3 rounded-full font-medium text-sm hover:bg-gray-900 active:scale-95 transition-all shadow-lg"
-      >
-        See How It Works
-      </motion.a>
+      {/* CTA Button - removed */}
     </section>
   );
 }
