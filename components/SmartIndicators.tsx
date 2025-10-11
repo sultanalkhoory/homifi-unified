@@ -107,10 +107,15 @@ export default function SmartIndicators() {
         const showTimeout = setTimeout(() => {
           setActiveIndex(index);
           
-          // Hide after 2.5 seconds (except the last one stays visible a bit longer)
+          // Hide after 2.5 seconds (except the last one)
           const hideDelay = index < indicators.length - 1 ? 2500 : 3000;
           const hideTimeout = setTimeout(() => {
             setActiveIndex(-1);
+            
+            // Mark as completed only after the last one finishes
+            if (index === indicators.length - 1) {
+              setHasAutoPlayed(true);
+            }
           }, hideDelay);
           
           timeoutsRef.current.push(hideTimeout);
@@ -118,9 +123,6 @@ export default function SmartIndicators() {
         
         timeoutsRef.current.push(showTimeout);
       });
-      
-      // Mark as played after all timeouts are set up
-      setHasAutoPlayed(true);
     }, 1000); // Start 1 second after page load
 
     timeoutsRef.current.push(startDelay);
@@ -193,7 +195,6 @@ export default function SmartIndicators() {
             <motion.div 
               className="absolute w-2 h-2 -translate-x-1/2 -translate-y-1/2 rounded-full"
               style={{ backgroundColor: indicator.color }}
-              initial={{ scale: 1, opacity: 0.7 }}
               animate={{ 
                 scale: isActive ? 1.35 : 1,
                 opacity: isActive ? 1 : 0.7,
@@ -206,22 +207,21 @@ export default function SmartIndicators() {
                 ease: [0.19, 1, 0.22, 1],
               }}
             >
-              {/* Pulse animation when active */}
-              {isActive && (
-                <motion.div 
-                  className="absolute inset-0 rounded-full"
-                  style={{ backgroundColor: indicator.color }}
-                  animate={{ 
-                    scale: [1, 1.8, 1],
-                    opacity: [0.7, 0.1, 0.7]
-                  }}
-                  transition={{
-                    duration: 2,
-                    ease: "easeInOut",
-                    repeat: Infinity,
-                  }}
-                />
-              )}
+              {/* Subtle pulse animation - always on */}
+              <motion.div 
+                className="absolute inset-0 rounded-full"
+                style={{ backgroundColor: indicator.color }}
+                animate={{ 
+                  scale: [1, 1.8, 1],
+                  opacity: [0.7, 0.1, 0.7]
+                }}
+                transition={{
+                  duration: 4,
+                  ease: "easeInOut",
+                  repeat: Infinity,
+                  repeatDelay: 1
+                }}
+              />
             </motion.div>
 
             {/* Popup card */}
