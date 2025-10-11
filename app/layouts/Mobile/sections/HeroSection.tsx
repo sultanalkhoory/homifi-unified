@@ -14,8 +14,8 @@
 
 'use client';
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 
 type Badge = {
   id: string;
@@ -80,6 +80,31 @@ const badges: Badge[] = [
 
 export default function HeroSection() {
   const [activeBadge, setActiveBadge] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const iPhoneRef = useRef<HTMLDivElement>(null);
+
+  // Detect mobile
+  useEffect(() => {
+    const mq = window.matchMedia('(pointer: coarse)');
+    const update = () =>
+      setIsMobile(mq.matches || navigator.maxTouchPoints > 0 || window.innerWidth < 768);
+    update();
+    try {
+      mq.addEventListener('change', update);
+      return () => mq.removeEventListener('change', update);
+    } catch {
+      mq.addListener(update);
+      return () => mq.removeListener(update);
+    }
+  }, []);
+
+  // Parallax effect (same as IPhoneFrame)
+  const { scrollYProgress } = useScroll({
+    target: iPhoneRef,
+    offset: ['start end', 'end start'],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ['-3%', '3%']);
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-32 pb-16 bg-gradient-to-b from-gray-50 to-white">
@@ -105,23 +130,18 @@ export default function HeroSection() {
       </motion.p>
 
       {/* iPhone + Badges Container */}
-      <div className="relative mb-12">
-        {/* Floating iPhone */}
+      <div className="relative mb-12" ref={iPhoneRef}>
+        {/* Floating iPhone with parallax */}
         <motion.div
+          style={isMobile ? { y } : {}}
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ 
             opacity: 1, 
             scale: 1,
-            y: [0, -10, 0],
           }}
           transition={{ 
             opacity: { duration: 0.6, delay: 0.2 },
             scale: { duration: 0.6, delay: 0.2 },
-            y: { 
-              duration: 4, 
-              repeat: Infinity, 
-              ease: "easeInOut" 
-            }
           }}
           className="relative z-10"
         >
@@ -170,31 +190,51 @@ export default function HeroSection() {
               {/* Badge Circle */}
               <motion.div
                 animate={{
-                  scale: activeBadge === badge.id ? 1.1 : [1, 1.05, 1],
+                  scale: activeBadge === badge.id ? 1.15 : [1, 1.08, 1],
                 }}
                 transition={{
                   scale: activeBadge === badge.id 
                     ? { duration: 0.2 }
-                    : { duration: 3, repeat: Infinity, ease: "easeInOut" }
+                    : { duration: 2.5, repeat: Infinity, ease: "easeInOut" }
                 }}
-                className={`w-14 h-14 rounded-full bg-gradient-to-br ${badge.color} shadow-lg flex items-center justify-center text-white relative overflow-hidden`}
+                className={`w-16 h-16 rounded-full bg-gradient-to-br ${badge.color} shadow-xl flex items-center justify-center text-white relative overflow-hidden cursor-pointer`}
               >
                 {badge.icon}
                 
-                {/* Breathing glow */}
+                {/* Stronger breathing glow */}
                 <motion.div
                   className="absolute inset-0 rounded-full"
                   style={{ 
-                    background: `radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%)` 
+                    background: `radial-gradient(circle, rgba(255,255,255,0.5) 0%, transparent 70%)` 
                   }}
                   animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.5, 0.8, 0.5],
+                    scale: [1, 1.4, 1],
+                    opacity: [0.7, 1, 0.7],
                   }}
                   transition={{
-                    duration: 2.5,
+                    duration: 2,
                     repeat: Infinity,
                     ease: "easeInOut",
+                  }}
+                />
+                
+                {/* Outer glow ring */}
+                <motion.div
+                  className="absolute inset-0 rounded-full"
+                  animate={{
+                    scale: [1, 1.3, 1],
+                    opacity: [0, 0.6, 0],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  style={{
+                    boxShadow: `0 0 20px 4px ${badge.color.includes('blue') ? 'rgba(59, 130, 246, 0.6)' : 
+                                                badge.color.includes('green') ? 'rgba(16, 185, 129, 0.6)' : 
+                                                badge.color.includes('red') ? 'rgba(239, 68, 68, 0.6)' : 
+                                                'rgba(251, 146, 60, 0.6)'}`
                   }}
                 />
               </motion.div>
