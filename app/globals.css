@@ -4,9 +4,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* =========================================================
+   Base Theme
+   ========================================================= */
 :root {
   --background: #ffffff;
   --foreground: #0a0a0a;
+  --font-sans: "InterVariable", "Inter", system-ui, -apple-system,
+    BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,61 +21,161 @@
   }
 }
 
-html, body {
+html,
+body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
+  font-family: var(--font-sans);
 }
 
-.hr-hairline { @apply border-t border-black/10 dark:border-white/10; }
-.frosted { @apply bg-white/10 backdrop-blur-md border border-white/20; }
-.hide-scrollbar::-webkit-scrollbar { display: none; }
-.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-
-:root{ --font-sans: "InterVariable", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; }
-body{ font-family: var(--font-sans);
-    }
-/* === Apple Liquid Glass Utilities === */
-
-.glass-base {
-  /* Core Apple vibrancy effect */
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
+/* Hairline separator, frosted helper, scrollbar hiding */
+.hr-hairline {
+  @apply border-t border-black/10 dark:border-white/10;
+}
+.frosted {
+  @apply bg-white/10 backdrop-blur-md border border-white/20;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-.glass-glow {
-  /* Light diffusion overlay */
+/* =========================================================
+   Apple Liquid-Glass Material System
+   ========================================================= */
+
+/* ---- Default material tokens (auto-updated by data-surface) ---- */
+:root {
+  --glass-fill: rgba(255, 255, 255, 0.10);
+  --glass-border: rgba(255, 255, 255, 0.22);
+  --glass-text: rgba(255, 255, 255, 0.92);
+  --glass-shadow: 0 6px 28px rgba(0, 0, 0, 0.10);
+  --glass-noise: 0.025;
+  --glass-blur: 20px;
+  --glass-sat: 180%;
+  --glass-contrast: 110%;
+}
+
+/* Dark-scheme fallback */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --glass-fill: rgba(0, 0, 0, 0.22);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --glass-text: rgba(255, 255, 255, 0.92);
+    --glass-shadow: 0 6px 28px rgba(0, 0, 0, 0.35);
+    --glass-noise: 0.03;
+  }
+}
+
+/* ---- Core glass container ---- */
+.glass {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--glass-fill);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  color: var(--glass-text);
+  isolation: isolate;
+}
+
+/* Backdrop vibrancy (real material layer) */
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: -10%;
+  border-radius: inherit;
+  backdrop-filter: saturate(var(--glass-sat))
+    contrast(var(--glass-contrast)) blur(var(--glass-blur));
+  -webkit-backdrop-filter: saturate(var(--glass-sat))
+    contrast(var(--glass-contrast)) blur(var(--glass-blur));
+  z-index: -1;
+}
+
+/* Specular highlight + rim light */
+.glass::after {
+  content: "";
   position: absolute;
   inset: 0;
-  pointer-events: none;
   border-radius: inherit;
+  pointer-events: none;
   background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.25),
-    rgba(255, 255, 255, 0.05),
-    transparent
-  );
+      to bottom,
+      rgba(255, 255, 255, 0.30),
+      rgba(255, 255, 255, 0.06) 22%,
+      transparent 60%
+    ),
+    radial-gradient(
+      100% 60% at 50% -20%,
+      rgba(255, 255, 255, 0.20),
+      transparent 60%
+    );
+  mix-blend-mode: screen;
 }
 
-@layer utilities {
-  /* Thin translucent border like Apple glass edges */
-  .glass-border {
-    border: 1px solid rgba(255, 255, 255, 0.2);
-  }
+/* Grain micro-texture */
+.glass .grain {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: var(--glass-noise);
+  mix-blend-mode: overlay;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP4zwAAAZ8B0b3l1lYAAAAASUVORK5CYII=");
+}
 
-  /* Subtle floating shadow depth */
-  .glass-shadow {
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
-  }
+/* Inner shadow for depth/refraction */
+.glass .inner {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.10),
+    inset 0 -2px 12px rgba(0, 0, 0, 0.06);
+}
 
-  /* Optional dark-mode tint helper */
-  .glass-dark {
-    background-color: rgba(0, 0, 0, 0.2);
-  }
+/* Slight “bending” refraction layer */
+.glass .bend {
+  position: absolute;
+  inset: -8%;
+  border-radius: inherit;
+  pointer-events: none;
+  backdrop-filter: blur(calc(var(--glass-blur) * 0.6)) saturate(160%);
+  -webkit-backdrop-filter: blur(calc(var(--glass-blur) * 0.6)) saturate(160%);
+  opacity: 0.18;
+  transform: translateY(-2px);
+  mix-blend-mode: screen;
+}
 
-  /* Optional light-mode tint helper */
-  .glass-light {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
+/* ---- Auto-contrast presets (set via data-surface) ---- */
+.glass[data-surface="light"] {
+  --glass-fill: rgba(255, 255, 255, 0.10);
+  --glass-border: rgba(0, 0, 0, 0.10);
+  --glass-text: rgba(17, 17, 17, 0.92);
+  --glass-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+}
+
+.glass[data-surface="dark"] {
+  --glass-fill: rgba(0, 0, 0, 0.22);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-text: rgba(255, 255, 255, 0.94);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+.glass[data-surface="vibrant"] {
+  --glass-fill: rgba(16, 16, 16, 0.18);
+  --glass-border: rgba(255, 255, 255, 0.16);
+  --glass-text: rgba(255, 255, 255, 0.98);
+  --glass-shadow: 0 10px 38px rgba(0, 0, 0, 0.40);
+  --glass-sat: 190%;
+  --glass-contrast: 115%;
+}
+
+/* Helper for layout containers using glass */
+.header-wrap {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
