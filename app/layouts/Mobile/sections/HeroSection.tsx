@@ -82,7 +82,7 @@ export default function HeroSection() {
   const [activeBadge, setActiveBadge] = useState<string | null>(null);
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center px-6 bg-gradient-to-b from-gray-50 to-white">
+    <section className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-32 pb-16 bg-gradient-to-b from-gray-50 to-white">
       
       {/* Headline */}
       <motion.h1
@@ -193,19 +193,40 @@ export default function HeroSection() {
                 />
               </motion.div>
 
-              {/* Detail Text - shows on tap */}
+              {/* Detail Text - liquid glass style, smart positioning */}
               <AnimatePresence>
                 {activeBadge === badge.id && (
                   <motion.div
-                    initial={{ opacity: 0, y: -5, scale: 0.9 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -5, scale: 0.9 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute top-full left-1/2 -translate-x-1/2 mt-2 whitespace-nowrap"
+                    initial={{ opacity: 0, scale: 0.94, filter: 'blur(2px)' }}
+                    animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                    exit={{ opacity: 0, scale: 0.94, transition: { duration: 0.15 } }}
+                    transition={{ 
+                      type: 'spring', 
+                      stiffness: 350,
+                      damping: 25,
+                      mass: 0.5,
+                    }}
+                    className="absolute z-30 whitespace-nowrap"
+                    style={{
+                      // Smart positioning based on badge location
+                      ...(badge.position.top ? { top: '100%', marginTop: '8px' } : { bottom: '100%', marginBottom: '8px' }),
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                    }}
                   >
-                    <div className="bg-white rounded-xl px-3 py-2 shadow-lg border border-gray-100">
-                      <p className="text-xs font-semibold text-gray-900">{badge.label}</p>
-                      <p className="text-[10px] text-gray-600 mt-0.5">{badge.detail}</p>
+                    <div 
+                      className="rounded-xl px-3.5 py-2.5 backdrop-blur-xl shadow-lg text-white"
+                      style={{
+                        background: 'linear-gradient(180deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.15) 100%)',
+                        boxShadow: '0 10px 25px -3px rgba(0,0,0,0.15), 0 4px 6px -2px rgba(0,0,0,0.1), 0 0 0 1px rgba(255,255,255,0.15)',
+                        borderTop: '0.5px solid rgba(255,255,255,0.5)',
+                        borderLeft: '0.5px solid rgba(255,255,255,0.3)',
+                        borderRight: '0.5px solid rgba(255,255,255,0.2)',
+                        borderBottom: '0.5px solid rgba(255,255,255,0.1)',
+                      }}
+                    >
+                      <p className="text-[13px] font-medium tracking-tight text-white mb-0.5">{badge.label}</p>
+                      <p className="text-[11px] font-normal text-white/90 tracking-tight">{badge.detail}</p>
                     </div>
                   </motion.div>
                 )}
@@ -221,23 +242,10 @@ export default function HeroSection() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.5 }}
-        className="inline-block bg-black text-white px-8 py-3 rounded-full font-medium text-sm hover:bg-gray-900 active:scale-95 transition-all shadow-lg mb-8"
+        className="inline-block bg-black text-white px-8 py-3 rounded-full font-medium text-sm hover:bg-gray-900 active:scale-95 transition-all shadow-lg"
       >
         See How It Works
       </motion.a>
-
-      {/* Scroll indicator */}
-      <motion.div
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-        className="text-gray-400 text-xs flex flex-col items-center cursor-pointer"
-        onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
-      >
-        <span>Explore Features</span>
-        <svg className="w-4 h-4 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-        </svg>
-      </motion.div>
     </section>
   );
 }
