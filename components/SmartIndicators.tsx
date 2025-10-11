@@ -14,7 +14,7 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 type SmartIndicator = {
@@ -79,6 +79,7 @@ export default function SmartIndicators() {
   const [activeIndex, setActiveIndex] = useState<number>(-1);
   const [hasAutoPlayed, setHasAutoPlayed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
 
   // Detect mobile
   useEffect(() => {
@@ -90,6 +91,12 @@ export default function SmartIndicators() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  // Clear all timeouts helper
+  const clearAllTimeouts = () => {
+    timeoutsRef.current.forEach(timeout => clearTimeout(timeout));
+    timeoutsRef.current = [];
+  };
+
   // Auto-play sequence: starts 1 second after mount
   useEffect(() => {
     if (hasAutoPlayed) return;
@@ -99,25 +106,31 @@ export default function SmartIndicators() {
       
       // Sequential reveal: each indicator shows for 2.5 seconds
       indicators.forEach((_, index) => {
-        setTimeout(() => {
+        const showTimeout = setTimeout(() => {
           setActiveIndex(index);
           
           // Hide after 2.5 seconds (except the last one stays visible a bit longer)
           if (index < indicators.length - 1) {
-            setTimeout(() => {
+            const hideTimeout = setTimeout(() => {
               setActiveIndex(-1);
             }, 2500);
+            timeoutsRef.current.push(hideTimeout);
           } else {
             // Last indicator stays for 3 seconds then fades
-            setTimeout(() => {
+            const hideTimeout = setTimeout(() => {
               setActiveIndex(-1);
             }, 3000);
+            timeoutsRef.current.push(hideTimeout);
           }
         }, index * 2700); // 2.7 seconds between each (2.5s display + 0.2s gap)
+        
+        timeoutsRef.current.push(showTimeout);
       });
     }, 1000); // Start 1 second after page load
 
-    return () => clearTimeout(startDelay);
+    timeoutsRef.current.push(startDelay);
+
+    return () => clearAllTimeouts();
   }, [hasAutoPlayed]);
 
   // Get popup position
@@ -139,9 +152,12 @@ export default function SmartIndicators() {
 
   // Manual click handler - stops auto-play and gives user control
   const handleIndicatorClick = (index: number) => {
-    // Stop auto-play immediately when user clicks
+    // Clear all running timeouts immediately
+    clearAllTimeouts();
+    
+    // Stop auto-play
     if (!hasAutoPlayed) {
-      setHasAutoPlayed(true); // This stops the auto-play effect
+      setHasAutoPlayed(true);
     }
     
     // Toggle the clicked indicator
