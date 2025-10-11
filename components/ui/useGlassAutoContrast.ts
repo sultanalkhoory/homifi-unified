@@ -18,7 +18,7 @@ function parseRGB(color: string): number[] | null {
  * Sets data-surface on the glass node based on what's behind it.
  * Fallback order: vibrant (images/videos/gradients) > light/dark by luminance.
  */
-export function useGlassAutoContrast(glassRef: React.RefObject<HTMLElement>) {
+export function useGlassAutoContrast(glassRef: React.RefObject<HTMLElement | null>) {
   useEffect(() => {
     if (!glassRef.current) return;
 
