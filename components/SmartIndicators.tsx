@@ -1,20 +1,21 @@
 /**
- * SmartIndicators - Enhanced with Sequential Scroll Reveal
+ * SmartIndicators - Auto Sequential Reveal
  * 
  * File: components/SmartIndicators.tsx
  * 
- * NEW BEHAVIOR:
- * - As user scrolls, indicators appear one by one
- * - Each indicator shows for ~3 seconds with its popup
- * - Previous indicator fades away as next one appears
- * - Creates an elegant "guided tour" effect
- * - Only happens once per page load
+ * BEHAVIOR:
+ * - Starts automatically 1 second after page load
+ * - Shows each indicator for 2.5 seconds with popup
+ * - Previous indicator fades as next appears
+ * - Creates elegant "guided tour" effect
+ * - Users can click any indicator to explore manually
+ * - Only auto-plays once per page load
  */
 
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 type SmartIndicator = {
   id: string;
@@ -76,15 +77,8 @@ const indicators: SmartIndicator[] = [
 
 export default function SmartIndicators() {
   const [activeIndex, setActiveIndex] = useState<number>(-1);
-  const [hasStarted, setHasStarted] = useState(false);
+  const [hasAutoPlayed, setHasAutoPlayed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-
-  // Track scroll progress of the hero section
-  const { scrollYProgress } = useScroll();
-  
-  // Map scroll progress to indicator reveals
-  // 0% scroll = no indicators, 100% scroll = all revealed
-  const revealProgress = useTransform(scrollYProgress, [0, 0.15], [0, 1]);
 
   // Detect mobile
   useEffect(() => {
@@ -96,33 +90,35 @@ export default function SmartIndicators() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Sequential reveal based on scroll
+  // Auto-play sequence: starts 1 second after mount
   useEffect(() => {
-    const unsubscribe = revealProgress.on('change', (latest) => {
-      if (latest > 0.1 && !hasStarted) {
-        setHasStarted(true);
-        startSequentialReveal();
-      }
-    });
+    if (hasAutoPlayed) return;
 
-    return () => unsubscribe();
-  }, [revealProgress, hasStarted]);
+    const startDelay = setTimeout(() => {
+      setHasAutoPlayed(true);
+      
+      // Sequential reveal: each indicator shows for 2.5 seconds
+      indicators.forEach((_, index) => {
+        setTimeout(() => {
+          setActiveIndex(index);
+          
+          // Hide after 2.5 seconds (except the last one stays visible a bit longer)
+          if (index < indicators.length - 1) {
+            setTimeout(() => {
+              setActiveIndex(-1);
+            }, 2500);
+          } else {
+            // Last indicator stays for 3 seconds then fades
+            setTimeout(() => {
+              setActiveIndex(-1);
+            }, 3000);
+          }
+        }, index * 2700); // 2.7 seconds between each (2.5s display + 0.2s gap)
+      });
+    }, 1000); // Start 1 second after page load
 
-  // Sequential reveal: show one indicator at a time
-  const startSequentialReveal = () => {
-    indicators.forEach((_, index) => {
-      setTimeout(() => {
-        setActiveIndex(index);
-        
-        // Hide after 3 seconds (unless it's the last one)
-        if (index < indicators.length - 1) {
-          setTimeout(() => {
-            setActiveIndex(-1);
-          }, 3000);
-        }
-      }, index * 3500); // 3.5 seconds between each reveal
-    });
-  };
+    return () => clearTimeout(startDelay);
+  }, [hasAutoPlayed]);
 
   // Get popup position
   const getPopupPosition = (direction: string, indicatorId: string) => {
@@ -141,7 +137,7 @@ export default function SmartIndicators() {
     }
   };
 
-  // Manual click handler (allows users to explore on their own)
+  // Manual click handler - allows users to explore on their own
   const handleIndicatorClick = (index: number) => {
     setActiveIndex(activeIndex === index ? -1 : index);
   };
