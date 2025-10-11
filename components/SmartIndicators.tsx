@@ -137,8 +137,14 @@ export default function SmartIndicators() {
     }
   };
 
-  // Manual click handler - allows users to explore on their own
+  // Manual click handler - stops auto-play and gives user control
   const handleIndicatorClick = (index: number) => {
+    // Stop auto-play immediately when user clicks
+    if (!hasAutoPlayed) {
+      setHasAutoPlayed(true); // This stops the auto-play effect
+    }
+    
+    // Toggle the clicked indicator
     setActiveIndex(activeIndex === index ? -1 : index);
   };
   
