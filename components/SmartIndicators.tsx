@@ -198,7 +198,7 @@ export default function SmartIndicators() {
             <motion.div 
               className="absolute w-2 h-2 -translate-x-1/2 -translate-y-1/2 rounded-full"
               style={{ backgroundColor: indicator.color }}
-              initial={{ scale: 0, opacity: 0 }}
+              initial={{ scale: 1, opacity: 0.7 }}
               animate={{ 
                 scale: isActive ? 1.35 : 1,
                 opacity: isActive ? 1 : 0.7,
