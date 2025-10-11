@@ -126,7 +126,13 @@ export default function HeroSection() {
           className="relative z-10"
         >
           {/* iPhone Frame */}
-          <div className="relative w-[200px] h-[400px] bg-black rounded-[40px] p-2 shadow-2xl" style={{ transform: 'translate3d(0,0,0)' }}>
+          <div 
+            className="relative w-[200px] h-[400px] bg-black rounded-[40px] p-2" 
+            style={{ 
+              transform: 'translate3d(0,0,0)',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.12), 0 16px 48px rgba(0, 0, 0, 0.16)'
+            }}
+          >
             <div className="relative w-full h-full bg-white rounded-[32px] overflow-hidden" style={{ transform: 'translate3d(0,0,0)' }}>
               <img
                 src="/Curtains-Open-Lights-On.png"
