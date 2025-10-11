@@ -1,7 +1,7 @@
 'use client';
 import Link from "next/link";
 import { useRef, useState } from "react";
-import { useGlassAutoContrast } from "@/app/hooks/useGlassAutoContrast";
+import { useGlassAutoContrast } from "@/components/ui/useGlassAutoContrast";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
