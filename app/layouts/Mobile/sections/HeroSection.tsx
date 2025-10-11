@@ -126,13 +126,13 @@ export default function HeroSection() {
           className="relative z-10"
         >
           {/* iPhone Frame */}
-          <div className="relative w-[200px] h-[400px] bg-black rounded-[40px] p-2 shadow-2xl">
-            <div className="relative w-full h-full bg-white rounded-[32px] overflow-hidden">
+          <div className="relative w-[200px] h-[400px] bg-black rounded-[40px] p-2 shadow-2xl" style={{ transform: 'translate3d(0,0,0)' }}>
+            <div className="relative w-full h-full bg-white rounded-[32px] overflow-hidden" style={{ transform: 'translate3d(0,0,0)' }}>
               <img
                 src="/Curtains-Open-Lights-On.png"
                 alt="HomiFi App"
                 className="w-full h-full object-cover"
-                style={{ objectPosition: '45% center' }}
+                style={{ objectPosition: '45% center', transform: 'translate3d(0,0,0)' }}
               />
               
               {/* Dynamic Island */}
