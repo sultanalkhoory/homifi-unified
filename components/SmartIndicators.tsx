@@ -102,30 +102,25 @@ export default function SmartIndicators() {
     if (hasAutoPlayed) return;
 
     const startDelay = setTimeout(() => {
-      setHasAutoPlayed(true);
-      
       // Sequential reveal: each indicator shows for 2.5 seconds
       indicators.forEach((_, index) => {
         const showTimeout = setTimeout(() => {
           setActiveIndex(index);
           
           // Hide after 2.5 seconds (except the last one stays visible a bit longer)
-          if (index < indicators.length - 1) {
-            const hideTimeout = setTimeout(() => {
-              setActiveIndex(-1);
-            }, 2500);
-            timeoutsRef.current.push(hideTimeout);
-          } else {
-            // Last indicator stays for 3 seconds then fades
-            const hideTimeout = setTimeout(() => {
-              setActiveIndex(-1);
-            }, 3000);
-            timeoutsRef.current.push(hideTimeout);
-          }
-        }, index * 2700); // 2.7 seconds between each (2.5s display + 0.2s gap)
+          const hideDelay = index < indicators.length - 1 ? 2500 : 3000;
+          const hideTimeout = setTimeout(() => {
+            setActiveIndex(-1);
+          }, hideDelay);
+          
+          timeoutsRef.current.push(hideTimeout);
+        }, index * 2700); // 2.7 seconds between each
         
         timeoutsRef.current.push(showTimeout);
       });
+      
+      // Mark as played after all timeouts are set up
+      setHasAutoPlayed(true);
     }, 1000); // Start 1 second after page load
 
     timeoutsRef.current.push(startDelay);
