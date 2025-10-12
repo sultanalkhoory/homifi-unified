@@ -8,6 +8,7 @@ import IPhoneFrame from "@/components/ui/IPhoneFrame";
 export default function ClimateSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [temperature, setTemperature] = useState(26);
+  const [targetTemperature, setTargetTemperature] = useState(26);
   const [manual, setManual] = useState(false);
   const [started, setStarted] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -26,6 +27,9 @@ export default function ClimateSection() {
 
   // Gradual temperature animation - step through each degree
   const animateToTemperature = (targetTemp: number) => {
+    // Set target immediately for UI indicator
+    setTargetTemperature(targetTemp);
+    
     // Clear any existing animation
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
@@ -61,7 +65,7 @@ export default function ClimateSection() {
 
   // Temperature change handler
   const handleTempChange = (t: number) => {
-    if (t === temperature || isAnimating) return;
+    if (t === targetTemperature || isAnimating) return;
     setManual(true);
     animateToTemperature(t);
   };
@@ -329,11 +333,11 @@ export default function ClimateSection() {
                       }}
                     >
                       <div className="relative grid grid-cols-3 gap-1">
-                        {/* Fluid sliding indicator */}
+                        {/* Fluid sliding indicator - based on target temperature */}
                         <motion.div
                           className="absolute top-1 bottom-1 rounded-xl pointer-events-none"
                           animate={{
-                            left: temperature === 18 ? '4px' : temperature === 22 ? 'calc(33.333% + 2px)' : 'calc(66.666%)',
+                            left: targetTemperature === 18 ? '4px' : targetTemperature === 22 ? 'calc(33.333% + 2px)' : 'calc(66.666%)',
                             width: 'calc(33.333% - 4px)',
                             scale: [1, 1.05, 1], // Subtle bounce
                           }}
@@ -355,14 +359,14 @@ export default function ClimateSection() {
                             }
                           }}
                           style={{
-                            background: temperature === 18 
+                            background: targetTemperature === 18 
                               ? 'linear-gradient(135deg, #60A5FA 0%, #22D3EE 100%)'
-                              : temperature === 22
+                              : targetTemperature === 22
                               ? 'linear-gradient(135deg, #6B7280 0%, #4B5563 100%)' // Gray gradient for comfort
                               : 'linear-gradient(135deg, #FB923C 0%, #F59E0B 100%)',
-                            boxShadow: temperature === 18
+                            boxShadow: targetTemperature === 18
                               ? '0 4px 12px rgba(96, 165, 250, 0.5), 0 2px 4px rgba(96, 165, 250, 0.3)'
-                              : temperature === 22
+                              : targetTemperature === 22
                               ? '0 4px 12px rgba(107, 114, 128, 0.5), 0 2px 4px rgba(107, 114, 128, 0.3)' // Gray shadow
                               : '0 4px 12px rgba(251, 146, 60, 0.5), 0 2px 4px rgba(251, 146, 60, 0.3)'
                           }}
@@ -391,9 +395,9 @@ export default function ClimateSection() {
                         >
                           <motion.div 
                             animate={{
-                              color: temperature === 18 ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.65)',
-                              scale: temperature === 18 ? 1 : 0.96,
-                              y: temperature === 18 ? 0 : 1
+                              color: targetTemperature === 18 ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.65)',
+                              scale: targetTemperature === 18 ? 1 : 0.96,
+                              y: targetTemperature === 18 ? 0 : 1
                             }}
                             transition={{ 
                               duration: 0.4,
@@ -401,15 +405,15 @@ export default function ClimateSection() {
                             }}
                             className="text-xs font-semibold"
                             style={{
-                              textShadow: temperature === 18 ? '0 1px 2px rgba(0,0,0,0.2)' : 'none'
+                              textShadow: targetTemperature === 18 ? '0 1px 2px rgba(0,0,0,0.2)' : 'none'
                             }}
                           >
                             Cool
                           </motion.div>
                           <motion.div 
                             animate={{
-                              color: temperature === 18 ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.5)',
-                              opacity: temperature === 18 ? 1 : 0.7
+                              color: targetTemperature === 18 ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.5)',
+                              opacity: targetTemperature === 18 ? 1 : 0.7
                             }}
                             transition={{ 
                               duration: 0.4,
@@ -428,9 +432,9 @@ export default function ClimateSection() {
                         >
                           <motion.div 
                             animate={{
-                              color: temperature === 22 ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.65)',
-                              scale: temperature === 22 ? 1 : 0.96,
-                              y: temperature === 22 ? 0 : 1
+                              color: targetTemperature === 22 ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.65)',
+                              scale: targetTemperature === 22 ? 1 : 0.96,
+                              y: targetTemperature === 22 ? 0 : 1
                             }}
                             transition={{ 
                               duration: 0.4,
@@ -438,15 +442,15 @@ export default function ClimateSection() {
                             }}
                             className="text-xs font-semibold whitespace-nowrap"
                             style={{
-                              textShadow: temperature === 22 ? '0 1px 2px rgba(0,0,0,0.2)' : 'none'
+                              textShadow: targetTemperature === 22 ? '0 1px 2px rgba(0,0,0,0.2)' : 'none'
                             }}
                           >
                             Comfort
                           </motion.div>
                           <motion.div 
                             animate={{
-                              color: temperature === 22 ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.5)',
-                              opacity: temperature === 22 ? 1 : 0.7
+                              color: targetTemperature === 22 ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.5)',
+                              opacity: targetTemperature === 22 ? 1 : 0.7
                             }}
                             transition={{ 
                               duration: 0.4,
@@ -465,9 +469,9 @@ export default function ClimateSection() {
                         >
                           <motion.div 
                             animate={{
-                              color: temperature === 26 ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.65)',
-                              scale: temperature === 26 ? 1 : 0.96,
-                              y: temperature === 26 ? 0 : 1
+                              color: targetTemperature === 26 ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.65)',
+                              scale: targetTemperature === 26 ? 1 : 0.96,
+                              y: targetTemperature === 26 ? 0 : 1
                             }}
                             transition={{ 
                               duration: 0.4,
@@ -475,15 +479,15 @@ export default function ClimateSection() {
                             }}
                             className="text-xs font-semibold"
                             style={{
-                              textShadow: temperature === 26 ? '0 1px 2px rgba(0,0,0,0.2)' : 'none'
+                              textShadow: targetTemperature === 26 ? '0 1px 2px rgba(0,0,0,0.2)' : 'none'
                             }}
                           >
                             Warm
                           </motion.div>
                           <motion.div 
                             animate={{
-                              color: temperature === 26 ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.5)',
-                              opacity: temperature === 26 ? 1 : 0.7
+                              color: targetTemperature === 26 ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.5)',
+                              opacity: targetTemperature === 26 ? 1 : 0.7
                             }}
                             transition={{ 
                               duration: 0.4,
