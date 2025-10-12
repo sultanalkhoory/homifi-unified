@@ -289,12 +289,24 @@ export default function ClimateSection() {
                           animate={{
                             left: temperature === 18 ? '4px' : temperature === 22 ? 'calc(33.333% + 2px)' : 'calc(66.666%)',
                             width: 'calc(33.333% - 4px)',
+                            scale: [1, 1.05, 1], // Subtle bounce
                           }}
                           transition={{ 
-                            type: 'spring', 
-                            stiffness: 300, 
-                            damping: 25,
-                            mass: 0.6,
+                            left: {
+                              type: 'spring', 
+                              stiffness: 180, 
+                              damping: 20,
+                              mass: 0.8,
+                            },
+                            width: {
+                              type: 'spring', 
+                              stiffness: 180, 
+                              damping: 20,
+                            },
+                            scale: {
+                              duration: 0.3,
+                              ease: [0.34, 1.56, 0.64, 1] // Bounce ease
+                            }
                           }}
                           style={{
                             background: temperature === 18 
@@ -309,11 +321,19 @@ export default function ClimateSection() {
                               : '0 4px 12px rgba(251, 146, 60, 0.5), 0 2px 4px rgba(251, 146, 60, 0.3)'
                           }}
                         >
-                          {/* Inner shine */}
-                          <div
+                          {/* Inner shine with smooth fade */}
+                          <motion.div
                             className="absolute inset-0 rounded-xl"
+                            animate={{
+                              opacity: [0.3, 0.6, 0.3]
+                            }}
+                            transition={{
+                              duration: 1.5,
+                              repeat: Infinity,
+                              ease: 'easeInOut'
+                            }}
                             style={{
-                              background: 'linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 50%, transparent 100%)'
+                              background: 'linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.15) 50%, transparent 100%)'
                             }}
                           />
                         </motion.div>
@@ -326,9 +346,13 @@ export default function ClimateSection() {
                           <motion.div 
                             animate={{
                               color: temperature === 18 ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.65)',
-                              scale: temperature === 18 ? 1 : 0.95
+                              scale: temperature === 18 ? 1 : 0.96,
+                              y: temperature === 18 ? 0 : 1
                             }}
-                            transition={{ duration: 0.2 }}
+                            transition={{ 
+                              duration: 0.4,
+                              ease: [0.22, 1, 0.36, 1]
+                            }}
                             className="text-xs font-semibold"
                             style={{
                               textShadow: temperature === 18 ? '0 1px 2px rgba(0,0,0,0.2)' : 'none'
@@ -338,9 +362,13 @@ export default function ClimateSection() {
                           </motion.div>
                           <motion.div 
                             animate={{
-                              color: temperature === 18 ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.5)'
+                              color: temperature === 18 ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.5)',
+                              opacity: temperature === 18 ? 1 : 0.7
                             }}
-                            transition={{ duration: 0.2 }}
+                            transition={{ 
+                              duration: 0.4,
+                              ease: [0.22, 1, 0.36, 1]
+                            }}
                             className="text-[10px] mt-0.5"
                           >
                             18°
@@ -355,9 +383,13 @@ export default function ClimateSection() {
                           <motion.div 
                             animate={{
                               color: temperature === 22 ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.65)',
-                              scale: temperature === 22 ? 1 : 0.95
+                              scale: temperature === 22 ? 1 : 0.96,
+                              y: temperature === 22 ? 0 : 1
                             }}
-                            transition={{ duration: 0.2 }}
+                            transition={{ 
+                              duration: 0.4,
+                              ease: [0.22, 1, 0.36, 1]
+                            }}
                             className="text-xs font-semibold"
                             style={{
                               textShadow: temperature === 22 ? '0 1px 2px rgba(0,0,0,0.2)' : 'none'
@@ -367,9 +399,13 @@ export default function ClimateSection() {
                           </motion.div>
                           <motion.div 
                             animate={{
-                              color: temperature === 22 ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.5)'
+                              color: temperature === 22 ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.5)',
+                              opacity: temperature === 22 ? 1 : 0.7
                             }}
-                            transition={{ duration: 0.2 }}
+                            transition={{ 
+                              duration: 0.4,
+                              ease: [0.22, 1, 0.36, 1]
+                            }}
                             className="text-[10px] mt-0.5"
                           >
                             22°
@@ -384,9 +420,13 @@ export default function ClimateSection() {
                           <motion.div 
                             animate={{
                               color: temperature === 26 ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.65)',
-                              scale: temperature === 26 ? 1 : 0.95
+                              scale: temperature === 26 ? 1 : 0.96,
+                              y: temperature === 26 ? 0 : 1
                             }}
-                            transition={{ duration: 0.2 }}
+                            transition={{ 
+                              duration: 0.4,
+                              ease: [0.22, 1, 0.36, 1]
+                            }}
                             className="text-xs font-semibold"
                             style={{
                               textShadow: temperature === 26 ? '0 1px 2px rgba(0,0,0,0.2)' : 'none'
@@ -396,9 +436,13 @@ export default function ClimateSection() {
                           </motion.div>
                           <motion.div 
                             animate={{
-                              color: temperature === 26 ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.5)'
+                              color: temperature === 26 ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.5)',
+                              opacity: temperature === 26 ? 1 : 0.7
                             }}
-                            transition={{ duration: 0.2 }}
+                            transition={{ 
+                              duration: 0.4,
+                              ease: [0.22, 1, 0.36, 1]
+                            }}
                             className="text-[10px] mt-0.5"
                           >
                             26°
