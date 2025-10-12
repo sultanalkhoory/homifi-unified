@@ -3,11 +3,11 @@
 import Header from '@/app/layouts/Desktop/sections/Header';
 import Footer from '@/app/layouts/Desktop/sections/Footer';
 import HeroSection from '@/app/layouts/Desktop/sections/HeroSection';
-import PerfectBenefits from '@/app/layouts/Desktop/sections/PerfectBenefits';
+import PerfectBenefits from '@/components/sharedsections/PerfectBenefits';
 import PerfectLight from '@/app/layouts/Desktop/sections/PerfectLight';
 import PerfectPrivacy from '@/app/layouts/Desktop/sections/PerfectPrivacy';
 import PerfectClimate from '@/app/layouts/Desktop/sections/PerfectClimate';
-import PerfectSecurity from '@/app/layouts/Desktop/sections/PerfectSecurity';
+import PerfectSecurity from '@/components/sharedsections/PerfectSecurity';
 import PerfectHomeKey from '@/app/layouts/Desktop/sections/PerfectHomeKey';
 
 export default function Page() {
