@@ -358,12 +358,12 @@ export default function ClimateSection() {
                             background: temperature === 18 
                               ? 'linear-gradient(135deg, #60A5FA 0%, #22D3EE 100%)'
                               : temperature === 22
-                              ? 'linear-gradient(135deg, #10B981 0%, #059669 100%)'
+                              ? 'linear-gradient(135deg, #6B7280 0%, #4B5563 100%)' // Gray gradient for comfort
                               : 'linear-gradient(135deg, #FB923C 0%, #F59E0B 100%)',
                             boxShadow: temperature === 18
                               ? '0 4px 12px rgba(96, 165, 250, 0.5), 0 2px 4px rgba(96, 165, 250, 0.3)'
                               : temperature === 22
-                              ? '0 4px 12px rgba(16, 185, 129, 0.5), 0 2px 4px rgba(16, 185, 129, 0.3)'
+                              ? '0 4px 12px rgba(107, 114, 128, 0.5), 0 2px 4px rgba(107, 114, 128, 0.3)' // Gray shadow
                               : '0 4px 12px rgba(251, 146, 60, 0.5), 0 2px 4px rgba(251, 146, 60, 0.3)'
                           }}
                         >
@@ -421,10 +421,10 @@ export default function ClimateSection() {
                           </motion.div>
                         </button>
 
-                        {/* Comfort Button */}
+                        {/* Comfort Button - Fixed centering */}
                         <button
                           onClick={() => handleTempChange(22)}
-                          className="relative z-10 py-3 px-4 text-center rounded-xl transition-all"
+                          className="relative z-10 py-3 px-3 text-center rounded-xl transition-all"
                         >
                           <motion.div 
                             animate={{
@@ -436,7 +436,7 @@ export default function ClimateSection() {
                               duration: 0.4,
                               ease: [0.22, 1, 0.36, 1]
                             }}
-                            className="text-xs font-semibold"
+                            className="text-xs font-semibold whitespace-nowrap"
                             style={{
                               textShadow: temperature === 22 ? '0 1px 2px rgba(0,0,0,0.2)' : 'none'
                             }}
