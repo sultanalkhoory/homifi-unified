@@ -301,23 +301,27 @@ export default function PerfectHomeKey() {
                         }}
                       />
 
-                      {/* Dynamic Island - ONLY UI element - fixed desktop sizing */}
+                      {/* Dynamic Island - ONLY UI element - separate mobile/desktop sizes */}
                       <div className="absolute top-1 sm:top-1.5 md:top-2 left-1/2 -translate-x-1/2 z-40">
                         <motion.div
                           animate={{
+                            // Mobile & Tablet: original sizes, Desktop (md+): larger sizes
                             width: lockState === 'locked' ? '35px' 
-                              : lockState === 'unlocking' ? '105px' 
-                              : '95px',
+                              : lockState === 'unlocking' ? '60px' 
+                              : '75px',
                             height: lockState === 'locked' ? '10px' 
-                              : lockState === 'unlocking' ? '20px'
-                              : '22px'
+                              : lockState === 'unlocking' ? '16px'
+                              : '20px'
                           }}
                           transition={{ 
                             duration: 0.4, 
                             ease: [0.22, 1, 0.36, 1],
                             delay: lockState === 'unlocking' ? 0.1 : 0
                           }}
-                          className="bg-black rounded-full flex items-center justify-center overflow-hidden relative"
+                          className={`bg-black rounded-full flex items-center justify-center overflow-hidden relative
+                            ${lockState === 'unlocking' ? 'md:!w-[105px] md:!h-[20px]' : ''}
+                            ${lockState === 'unlocked' ? 'md:!w-[95px] md:!h-[22px]' : ''}
+                          `}
                         >
                           {/* Idle state - pill with camera/sensors */}
                           {lockState === 'locked' && (
