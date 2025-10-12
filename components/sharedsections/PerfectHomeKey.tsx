@@ -275,13 +275,23 @@ export default function PerfectHomeKey() {
                     {/* Screen area - WITH overflow hidden */}
                     <div className="relative w-full h-full bg-black rounded-[22px] sm:rounded-[30px] md:rounded-[37px] overflow-hidden">
                       
-                      {/* Lock Screen Background - no position adjustment needed now */}
+                      {/* Lock Screen Background - pushed down 2% with color-matched filler at top */}
                       <div className="absolute inset-0">
+                        {/* Color-matched filler for top gap - matches wallpaper's blue/teal tones */}
+                        <div 
+                          className="absolute top-0 left-0 right-0 h-[2%]"
+                          style={{
+                            background: 'linear-gradient(to bottom, #4a6b7c 0%, #5a7b8c 100%)'
+                          }}
+                        />
+                        
+                        {/* Wallpaper image - shifted down 2% */}
                         <img 
                           src="/iphone-homekey-screen.png" 
                           alt="iPhone Lock Screen"
-                          className="absolute inset-0 w-full h-full object-cover"
+                          className="absolute w-full h-full object-cover"
                           style={{ 
+                            top: '2%',
                             imageRendering: 'crisp-edges',
                             transform: 'translateZ(0)',
                             backfaceVisibility: 'hidden'
