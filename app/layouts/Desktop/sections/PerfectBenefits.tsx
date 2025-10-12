@@ -111,13 +111,13 @@ export default function BenefitsSection() {
           ))}
         </motion.div>
 
-        {/* Bottom CTA */}
+        {/* Bottom CTA - hidden on mobile, visible on desktop */}
         <motion.div
           variants={fadeRise}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
-          className="text-center mt-16"
+          className="text-center mt-12 md:mt-16 hidden md:block"
         >
           <a 
             href="#perfect-light"
