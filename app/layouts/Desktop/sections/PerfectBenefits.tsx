@@ -63,7 +63,7 @@ export default function BenefitsSection() {
             Smart home, simplified.
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Everything you need to transform your home—without the complexity, without the cost of professional installation.
+            Everything you need to transform your home—effortless automation, seamless control, and intelligent design.
           </p>
         </motion.div>
 
