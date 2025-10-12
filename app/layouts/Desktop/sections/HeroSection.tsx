@@ -48,11 +48,11 @@ export default function HeroSection() {
               </div>
             </div>
             
-            {/* CTA with voice control hint */}
+            {/* CTA — visible only on desktop (hidden on mobile) */}
             <div className="pt-2 space-y-3">
               <a 
                 href="#perfect-light" 
-                className="inline-flex items-center rounded-full bg-black text-white 
+                className="hidden md:inline-flex items-center rounded-full bg-black text-white 
                   px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-medium
                   hover:bg-gray-900 hover:scale-[1.02] hover:shadow-lg
                   active:scale-[0.98]
