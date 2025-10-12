@@ -72,13 +72,15 @@ export default function HowItWorksPage() {
     }
   ];
 
-  // Track scroll position for active step
+  // Track scroll position for active step (accounting for hero section)
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
-      const step = Math.floor(scrollY / windowHeight);
-      setActiveStep(Math.min(step, steps.length - 1));
+      // Subtract 1 to account for hero section
+      const step = Math.floor(scrollY / windowHeight) - 1;
+      // Clamp between 0 and steps.length - 1
+      setActiveStep(Math.max(0, Math.min(step, steps.length - 1)));
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -325,9 +327,9 @@ function StepScreen({
       // STEP 1: Full-screen isometric 3D floor plan (no iPhone)
       return (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isActive ? 1 : 0.3 }}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0.3 }}
+          animate={{ opacity: isActive ? 1 : 0.5 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className={`${fullScreen ? 'rounded-3xl shadow-2xl' : 'absolute inset-0'} bg-gradient-to-br from-slate-50 to-blue-50 p-6 md:p-12 overflow-hidden`}
         >
           {/* Blueprint grid background */}
@@ -614,9 +616,9 @@ function StepScreen({
       // STEP 2: Full-screen UniFi-style network dashboard (no iPhone)
       return (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isActive ? 1 : 0.3 }}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0.3 }}
+          animate={{ opacity: isActive ? 1 : 0.5 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className={`${fullScreen ? 'rounded-3xl shadow-2xl' : 'absolute inset-0'} bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-6 md:p-12 overflow-hidden`}
         >
           {/* Dark grid pattern */}
@@ -899,9 +901,9 @@ function StepScreen({
       // STEP 3: Full-screen installation dashboard (no iPhone)
       return (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isActive ? 1 : 0.3 }}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0.3 }}
+          animate={{ opacity: isActive ? 1 : 0.5 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className={`${fullScreen ? 'rounded-3xl shadow-2xl' : 'absolute inset-0'} bg-gradient-to-br from-orange-50 via-amber-50 to-orange-50 p-6 md:p-12 overflow-hidden`}
         >
           {/* Subtle pattern overlay */}
