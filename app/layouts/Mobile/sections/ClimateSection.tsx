@@ -15,12 +15,12 @@ export default function ClimateSection() {
   const isInView = useInView(containerRef, { once: true, amount: 0.4 });
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Auto trigger to 22° when section enters view
+  // Auto trigger to 18° (cool) when section enters view
   useEffect(() => {
     if (isInView && !manual && !started) {
       setStarted(true);
       setTimeout(() => {
-        animateToTemperature(22);
+        animateToTemperature(18);
       }, 500);
     }
   }, [isInView, manual, started]);
@@ -362,12 +362,12 @@ export default function ClimateSection() {
                             background: targetTemperature === 18 
                               ? 'linear-gradient(135deg, #60A5FA 0%, #22D3EE 100%)'
                               : targetTemperature === 22
-                              ? 'linear-gradient(135deg, #6B7280 0%, #4B5563 100%)' // Gray gradient for comfort
+                              ? 'linear-gradient(135deg, #2DD4BF 0%, #10B981 100%)' // Teal/green gradient for comfort
                               : 'linear-gradient(135deg, #FB923C 0%, #F59E0B 100%)',
                             boxShadow: targetTemperature === 18
                               ? '0 4px 12px rgba(96, 165, 250, 0.5), 0 2px 4px rgba(96, 165, 250, 0.3)'
                               : targetTemperature === 22
-                              ? '0 4px 12px rgba(107, 114, 128, 0.5), 0 2px 4px rgba(107, 114, 128, 0.3)' // Gray shadow
+                              ? '0 4px 12px rgba(45, 212, 191, 0.5), 0 2px 4px rgba(45, 212, 191, 0.3)' // Teal shadow
                               : '0 4px 12px rgba(251, 146, 60, 0.5), 0 2px 4px rgba(251, 146, 60, 0.3)'
                           }}
                         >
@@ -388,7 +388,7 @@ export default function ClimateSection() {
                           />
                         </motion.div>
 
-                        {/* Cool Button */}
+                        {/* Cool Button - shifted right for centering */}
                         <button
                           onClick={() => handleTempChange(18)}
                           className="relative z-10 py-3 px-4 text-center rounded-xl transition-all"
@@ -403,7 +403,7 @@ export default function ClimateSection() {
                               duration: 0.4,
                               ease: [0.22, 1, 0.36, 1]
                             }}
-                            className="text-xs font-semibold"
+                            className="text-xs font-semibold ml-1"
                             style={{
                               textShadow: targetTemperature === 18 ? '0 1px 2px rgba(0,0,0,0.2)' : 'none'
                             }}
@@ -419,13 +419,13 @@ export default function ClimateSection() {
                               duration: 0.4,
                               ease: [0.22, 1, 0.36, 1]
                             }}
-                            className="text-[10px] mt-0.5"
+                            className="text-[10px] mt-0.5 ml-1"
                           >
                             18°
                           </motion.div>
                         </button>
 
-                        {/* Comfort Button - Fixed centering */}
+                        {/* Comfort Button - shifted left for centering */}
                         <button
                           onClick={() => handleTempChange(22)}
                           className="relative z-10 py-3 px-3 text-center rounded-xl transition-all"
@@ -440,7 +440,7 @@ export default function ClimateSection() {
                               duration: 0.4,
                               ease: [0.22, 1, 0.36, 1]
                             }}
-                            className="text-xs font-semibold whitespace-nowrap"
+                            className="text-xs font-semibold whitespace-nowrap -ml-1"
                             style={{
                               textShadow: targetTemperature === 22 ? '0 1px 2px rgba(0,0,0,0.2)' : 'none'
                             }}
@@ -456,7 +456,7 @@ export default function ClimateSection() {
                               duration: 0.4,
                               ease: [0.22, 1, 0.36, 1]
                             }}
-                            className="text-[10px] mt-0.5"
+                            className="text-[10px] mt-0.5 -ml-1"
                           >
                             22°
                           </motion.div>
