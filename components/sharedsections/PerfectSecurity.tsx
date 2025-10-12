@@ -247,7 +247,7 @@ export default function PerfectSecurity() {
                   )}
                 </AnimatePresence>
 
-                {/* Success Notification - "Front Door Unlocked" */}
+                {/* Success Notification - "Front Door Unlocked" - Apple frosted glass style */}
                 <AnimatePresence>
                   {securityState === 'unlocked' && (
                     <motion.div
@@ -273,10 +273,17 @@ export default function PerfectSecurity() {
                       }}
                       className="absolute top-3 right-3 md:top-6 md:right-6 z-50"
                     >
-                      {/* Compact success card */}
-                      <div className="backdrop-blur-2xl bg-green-500/90 rounded-2xl px-4 py-3 border border-white/30 shadow-2xl">
-                        <div className="flex items-center gap-3">
-                          {/* Animated lock icon */}
+                      {/* Compact success card - smaller on mobile */}
+                      <div 
+                        className="backdrop-blur-2xl rounded-2xl px-3 py-2.5 md:px-4 md:py-3 shadow-2xl"
+                        style={{
+                          background: 'linear-gradient(135deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.25) 100%)',
+                          border: '1px solid rgba(16, 185, 129, 0.3)', // Subtle green border
+                          boxShadow: '0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.5), 0 0 20px rgba(16, 185, 129, 0.15)' // Subtle green glow
+                        }}
+                      >
+                        <div className="flex items-center gap-2 md:gap-3">
+                          {/* Animated lock icon with green tint */}
                           <motion.div
                             initial={{ rotate: -10, scale: 0.8 }}
                             animate={{ 
@@ -289,8 +296,8 @@ export default function PerfectSecurity() {
                               }
                             }}
                           >
-                            <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/20 flex items-center justify-center">
-                              <svg className="w-5 h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                            <div className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-gradient-to-br from-green-400/20 to-emerald-500/20 flex items-center justify-center">
+                              <svg className="w-4 h-4 md:w-5 md:h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
                               </svg>
                             </div>
@@ -302,7 +309,7 @@ export default function PerfectSecurity() {
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: 0.1, duration: 0.3 }}
-                              className="text-white font-semibold text-sm md:text-base"
+                              className="text-white font-semibold text-xs md:text-sm drop-shadow-sm"
                             >
                               Front Door
                             </motion.p>
@@ -310,13 +317,13 @@ export default function PerfectSecurity() {
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: 0.15, duration: 0.3 }}
-                              className="text-white/90 text-xs md:text-sm"
+                              className="text-white/90 text-[10px] md:text-xs drop-shadow-sm"
                             >
                               Unlocked
                             </motion.p>
                           </div>
 
-                          {/* Checkmark */}
+                          {/* Checkmark with green tint */}
                           <motion.div
                             initial={{ scale: 0, rotate: -45 }}
                             animate={{ 
@@ -330,7 +337,7 @@ export default function PerfectSecurity() {
                               }
                             }}
                           >
-                            <svg className="w-5 h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
+                            <svg className="w-4 h-4 md:w-5 md:h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
                               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                             </svg>
                           </motion.div>
