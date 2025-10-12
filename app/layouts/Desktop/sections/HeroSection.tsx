@@ -50,17 +50,7 @@ export default function HeroSection() {
             
             {/* CTA — visible only on desktop (hidden on mobile) */}
             <div className="pt-2 space-y-3">
-              <a 
-                href="#perfect-light" 
-                className="hidden md:inline-flex items-center rounded-full bg-black text-white 
-                  px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-medium
-                  hover:bg-gray-900 hover:scale-[1.02] hover:shadow-lg
-                  active:scale-[0.98]
-                  transition-all duration-200 ease-out
-                  shadow-md"
-              >
-                See How It Works
-              </a>
+
               
               {/* Voice control hint */}
               <p className="text-xs text-gray-500 flex items-center gap-2">
