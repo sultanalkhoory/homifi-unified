@@ -7,33 +7,18 @@ import { fadeRise } from '@/lib/animations';
 type LockState = 'locked' | 'unlocking' | 'unlocked';
 
 /**
- * PerfectHomeKey Section Component - Cinematic Approach Scene
+ * PerfectHomeKey Section - Quick Fixes Applied
  * 
- * Shows iPhone 17 Pro approaching a smart lock with Dynamic Island unlock animation.
- * Features:
- * - Partial door edge with modern circular smart lock
- * - iPhone 17 Pro with Dynamic Island pill at top
- * - iPhone moves closer to lock when unlocking
- * - Dynamic Island expands showing house icon + "Front Door Unlocked"
- * - White checkmark on success
- * - Synchronized Control Center card below
- * - Auto-triggers when section enters viewport
- * 
- * Layout:
- * - Centered hero layout
- * - Heading and description centered above
- * - Large scene (door + iPhone) as focal point
- * - Control Center card centered below
+ * FIXES:
+ * - iPhone now shows HomeKey card (not lock screen)
+ * - Dynamic Island much smaller and realistic
  */
 export default function PerfectHomeKey() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [lockState, setLockState] = useState<LockState>('locked');
   const [hasAutoTriggered, setHasAutoTriggered] = useState(false);
 
-  /**
-   * Auto-trigger Effect
-   * Unlocks when section enters viewport
-   */
+  // Auto-trigger when section enters viewport
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -59,9 +44,7 @@ export default function PerfectHomeKey() {
     return () => observer.disconnect();
   }, [hasAutoTriggered]);
 
-  /**
-   * Trigger unlock sequence
-   */
+  // Trigger unlock sequence
   const triggerUnlock = () => {
     if (lockState !== 'locked') return;
     
@@ -76,27 +59,21 @@ export default function PerfectHomeKey() {
     }, 1200);
   };
 
-  /**
-   * Handle Control Center card click
-   */
+  // Handle Control Center card click
   const handleCardClick = () => {
     if (lockState === 'locked') {
       triggerUnlock();
     }
   };
 
-  /**
-   * Get status text for Control Center card
-   */
+  // Get status text
   const getStatusText = () => {
     if (lockState === 'unlocking') return 'Unlocking...';
     if (lockState === 'unlocked') return 'Unlocked';
     return 'Locked';
   };
 
-  /**
-   * Get Control Center card colors
-   */
+  // Get card colors
   const getCardColors = () => {
     if (lockState === 'unlocking') {
       return 'bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 shadow-xl shadow-blue-500/15';
@@ -148,11 +125,10 @@ export default function PerfectHomeKey() {
               
               {/* Door Edge (left 35%) */}
               <div className="absolute left-0 top-0 bottom-0 w-[35%] bg-gradient-to-r from-gray-100 to-gray-50 border-r-2 border-gray-200">
-                {/* Door texture/grain subtle effect */}
                 <div className="absolute inset-0 opacity-20 bg-gradient-to-b from-transparent via-gray-300 to-transparent" />
               </div>
 
-              {/* Smart Lock (circular, modern, Level Lock style) */}
+              {/* Smart Lock (circular) */}
               <div className="absolute left-[28%] top-1/2 -translate-y-1/2 z-20">
                 <div className={`
                   w-20 h-20 md:w-24 md:h-24 rounded-full transition-all duration-500
@@ -195,7 +171,7 @@ export default function PerfectHomeKey() {
                     </div>
                   </div>
 
-                  {/* Subtle glow ring when unlocking/unlocked */}
+                  {/* Glow ring when unlocking */}
                   {lockState !== 'locked' && (
                     <motion.div
                       initial={{ opacity: 0, scale: 0.9 }}
@@ -219,7 +195,7 @@ export default function PerfectHomeKey() {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 className="absolute right-[10%] top-1/2 -translate-y-1/2 z-30"
               >
-                {/* iPhone 17 Pro Frame */}
+                {/* iPhone Frame */}
                 <div className="relative w-32 md:w-40 lg:w-44">
                   {/* Titanium frame */}
                   <div className="relative bg-gradient-to-br from-gray-800 via-gray-700 to-gray-800 rounded-[2.5rem] md:rounded-[3rem] p-1.5 shadow-2xl">
@@ -227,57 +203,53 @@ export default function PerfectHomeKey() {
                     {/* Screen */}
                     <div className="relative aspect-[9/19.5] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden bg-black">
                       
-                      {/* Lock screen wallpaper */}
-                      <div className="absolute inset-0 bg-gradient-to-b from-blue-400 via-purple-400 to-pink-300">
+                      {/* FIX 1: HomeKey Card Interface (replaces lock screen) */}
+                      <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-black">
                         {/* Status bar */}
-                        <div className="absolute top-12 left-0 right-0 flex justify-between px-6 text-white text-xs font-semibold">
+                        <div className="absolute top-8 left-0 right-0 flex justify-between px-4 text-white text-[8px] font-semibold">
                           <span>9:41</span>
                           <div className="flex gap-1 items-center">
-                            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                            <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20">
                               <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
                             </svg>
-                            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
-                            </svg>
                           </div>
                         </div>
 
-                        {/* Time - larger and centered */}
-                        <div className="absolute top-[28%] left-1/2 -translate-x-1/2 text-center">
-                          <p className="text-white text-5xl md:text-6xl font-light tracking-tight mb-1">10:05</p>
-                          <p className="text-white/90 text-sm font-medium">Tuesday, January 17</p>
-                        </div>
+                        {/* HomeKey Card - Centered */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%]">
+                          <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-3 border border-white/20">
+                            {/* House icon */}
+                            <div className="flex justify-center mb-2">
+                              <div className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center">
+                                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                                </svg>
+                              </div>
+                            </div>
+                            
+                            {/* Text */}
+                            <div className="text-center">
+                              <p className="text-white text-[10px] font-semibold mb-0.5">Front Door</p>
+                              <p className="text-white/70 text-[8px]">Hold Near Reader</p>
+                            </div>
 
-                        {/* Bottom actions */}
-                        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-16">
-                          {/* Flashlight */}
-                          <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/15 backdrop-blur-xl border border-white/20 flex items-center justify-center">
-                            <svg className="w-5 h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                            </svg>
+                            {/* NFC waves indicator */}
+                            <div className="flex justify-center mt-2">
+                              <svg className="w-8 h-3 text-white/50" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" opacity="0.3"/>
+                                <path d="M4 12c0-2.2.9-4.2 2.3-5.7l1.4 1.4C6.6 8.8 6 10.3 6 12s.6 3.2 1.7 4.3l-1.4 1.4C4.9 16.2 4 14.2 4 12zm14 0c0-2.2-.9-4.2-2.3-5.7l-1.4 1.4c1.1 1.1 1.7 2.6 1.7 4.3s-.6 3.2-1.7 4.3l1.4 1.4c1.4-1.5 2.3-3.5 2.3-5.7z"/>
+                              </svg>
+                            </div>
                           </div>
-                          
-                          {/* Camera */}
-                          <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/15 backdrop-blur-xl border border-white/20 flex items-center justify-center">
-                            <svg className="w-5 h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                          </div>
-                        </div>
-
-                        {/* Swipe up indicator */}
-                        <div className="absolute bottom-2 left-1/2 -translate-x-1/2">
-                          <div className="w-32 h-1 bg-white/60 rounded-full" />
                         </div>
                       </div>
 
-                      {/* Dynamic Island at top - MUCH SMALLER */}
+                      {/* FIX 2: Much Smaller Dynamic Island */}
                       <div className="absolute top-2 left-1/2 -translate-x-1/2 z-40">
                         <motion.div
                           animate={{
-                            width: lockState === 'locked' ? '50px' : '120px',
-                            height: lockState === 'locked' ? '18px' : '36px'
+                            width: lockState === 'locked' ? '35px' : '90px',
+                            height: lockState === 'locked' ? '12px' : '28px'
                           }}
                           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                           className="bg-black rounded-full flex items-center justify-center overflow-hidden relative"
@@ -287,7 +259,7 @@ export default function PerfectHomeKey() {
                             <div className="w-full h-full" />
                           )}
 
-                          {/* Expanded state - show unlock notification */}
+                          {/* Expanded state - unlock notification */}
                           <AnimatePresence>
                             {lockState !== 'locked' && (
                               <motion.div
@@ -295,11 +267,11 @@ export default function PerfectHomeKey() {
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.8 }}
                                 transition={{ duration: 0.3 }}
-                                className="flex items-center gap-1.5 px-2"
+                                className="flex items-center gap-1 px-1.5"
                               >
                                 {/* House icon or checkmark */}
                                 {lockState === 'unlocking' ? (
-                                  <svg className="w-3 h-3 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                                  <svg className="w-2.5 h-2.5 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                                   </svg>
                                 ) : (
@@ -308,7 +280,7 @@ export default function PerfectHomeKey() {
                                     animate={{ scale: 1 }}
                                     transition={{ type: 'spring', stiffness: 400, damping: 20 }}
                                   >
-                                    <svg className="w-3 h-3 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
+                                    <svg className="w-2.5 h-2.5 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
                                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                                     </svg>
                                   </motion.div>
@@ -319,7 +291,7 @@ export default function PerfectHomeKey() {
                                   initial={{ opacity: 0, x: -10 }}
                                   animate={{ opacity: 1, x: 0 }}
                                   transition={{ delay: 0.1 }}
-                                  className="text-white text-[9px] md:text-[10px] font-medium whitespace-nowrap"
+                                  className="text-white text-[7px] font-medium whitespace-nowrap"
                                 >
                                   {lockState === 'unlocking' ? 'Unlocking...' : 'Unlocked'}
                                 </motion.span>
