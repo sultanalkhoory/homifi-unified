@@ -48,7 +48,7 @@ export default function ClimateSection() {
     animateToTemperature(t);
   };
 
-  // Mode + dynamic colors
+  // Mode + dynamic colors (keep original logic)
   const getEffectColors = (t: number) => {
     if (t >= 24) {
       return {
@@ -79,6 +79,7 @@ export default function ClimateSection() {
 
   return (
     <>
+      {/* Keep original keyframe animations */}
       <style jsx global>{`
         @keyframes airFlow {
           0% {
@@ -160,6 +161,7 @@ export default function ClimateSection() {
           >
             <IPhoneFrame>
               <div className="relative w-full h-full overflow-hidden">
+                {/* Room photo background */}
                 <Image
                   src="/Curtains-Open-Lights-On.png"
                   alt="Climate room"
@@ -168,7 +170,7 @@ export default function ClimateSection() {
                   style={{ objectPosition: '45% center' }}
                 />
 
-                {/* Dynamic Effects */}
+                {/* Keep all original dynamic effects */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -233,7 +235,7 @@ export default function ClimateSection() {
                   ))}
                 </motion.div>
 
-                {/* Wall-mounted Smart Thermostat */}
+                {/* Keep wall-mounted thermostat indicator */}
                 <div className="absolute top-[40%] left-14 z-30">
                   <div className="relative">
                     <div className="w-8 h-8 backdrop-blur-xl bg-white/20 rounded-full shadow-lg border border-white/30">
@@ -271,77 +273,135 @@ export default function ClimateSection() {
                   </div>
                 </div>
 
-                {/* Mode Buttons */}
-                <div className="absolute inset-x-0 bottom-0 z-30">
-                  <div className="flex justify-center pb-8 px-4">
-                    <div className="flex gap-2">
-                      <motion.button
-                        onClick={() => handleTempChange(18)}
-                        whileHover={{ scale: 1.05, y: -2 }}
-                        whileTap={{ scale: 0.92 }}
-                        transition={{ duration: 0.1, ease: 'easeOut' }}
-                        className={`
-                          relative px-4 py-2 rounded-full text-sm font-medium
-                          backdrop-blur-xl border border-white/20 text-white shadow-lg
-                          transition-all duration-200 cursor-pointer
-                          ${temperature === 18 ? 'bg-white/18 text-gray-900 ring-1 ring-white/25' : 'bg-white/12'}
-                        `}
-                      >
-                        Cool
-                        <div
-                          className="absolute inset-0 rounded-full pointer-events-none"
-                          style={{
-                            background:
-                              'linear-gradient(135deg, rgba(255,255,255,0.25) 0%, transparent 50%)',
-                          }}
-                        />
-                      </motion.button>
+                {/* NEW: Center-floating VisionOS glass card with segmented control */}
+                <div className="absolute inset-0 flex items-center justify-center px-8 pointer-events-none">
+                  <motion.div
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    className="w-full max-w-[200px] pointer-events-auto"
+                  >
+                    <div
+                      className="relative rounded-3xl overflow-hidden"
+                      style={{
+                        background: 'linear-gradient(135deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0.2) 100%)',
+                        backdropFilter: 'blur(40px) saturate(180%)',
+                        WebkitBackdropFilter: 'blur(40px) saturate(180%)',
+                        boxShadow: '0 20px 60px rgba(0,0,0,0.25), 0 8px 20px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.5), inset 0 -1px 0 rgba(0,0,0,0.1)',
+                        border: '1px solid rgba(255,255,255,0.4)',
+                      }}
+                    >
+                      <div className="p-5">
+                        {/* Room label */}
+                        <div className="text-center mb-1">
+                          <p className="text-[10px] font-semibold text-white/90 uppercase tracking-wider">
+                            Living Room
+                          </p>
+                        </div>
 
-                      <motion.button
-                        onClick={() => handleTempChange(22)}
-                        whileHover={{ scale: 1.05, y: -2 }}
-                        whileTap={{ scale: 0.92 }}
-                        transition={{ duration: 0.1, ease: 'easeOut' }}
-                        className={`
-                          relative px-4 py-2 rounded-full text-sm font-medium
-                          backdrop-blur-xl border border-white/20 text-white shadow-lg
-                          transition-all duration-200 cursor-pointer
-                          ${temperature === 22 ? 'bg-white/18 text-gray-900 ring-1 ring-white/25' : 'bg-white/12'}
-                        `}
-                      >
-                        Comfort
-                        <div
-                          className="absolute inset-0 rounded-full pointer-events-none"
-                          style={{
-                            background:
-                              'linear-gradient(135deg, rgba(255,255,255,0.25) 0%, transparent 50%)',
-                          }}
-                        />
-                      </motion.button>
+                        {/* Large temperature display */}
+                        <div className="text-center mb-4">
+                          <motion.div
+                            key={temperature}
+                            initial={{ scale: 1.1, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                          >
+                            <div className="text-6xl font-light text-white tracking-tight" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.2)' }}>
+                              {temperature}°
+                            </div>
+                          </motion.div>
+                        </div>
 
-                      <motion.button
-                        onClick={() => handleTempChange(26)}
-                        whileHover={{ scale: 1.05, y: -2 }}
-                        whileTap={{ scale: 0.92 }}
-                        transition={{ duration: 0.1, ease: 'easeOut' }}
-                        className={`
-                          relative px-4 py-2 rounded-full text-sm font-medium
-                          backdrop-blur-xl border border-white/20 text-white shadow-lg
-                          transition-all duration-200 cursor-pointer
-                          ${temperature === 26 ? 'bg-white/18 text-gray-900 ring-1 ring-white/25' : 'bg-white/12'}
-                        `}
-                      >
-                        Warm
-                        <div
-                          className="absolute inset-0 rounded-full pointer-events-none"
+                        {/* iOS Segmented Control */}
+                        <div 
+                          className="relative rounded-xl p-0.5"
                           style={{
-                            background:
-                              'linear-gradient(135deg, rgba(255,255,255,0.25) 0%, transparent 50%)',
+                            background: 'rgba(0,0,0,0.15)',
+                            backdropFilter: 'blur(10px)',
+                            boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.1)',
                           }}
-                        />
-                      </motion.button>
+                        >
+                          <div className="relative grid grid-cols-3 gap-0.5">
+                            {/* Sliding indicator */}
+                            <motion.div
+                              className="absolute top-0.5 bottom-0.5 rounded-lg"
+                              animate={{
+                                left: temperature === 18 ? '2px' : temperature === 22 ? 'calc(33.333% + 1px)' : 'calc(66.666%)',
+                                width: 'calc(33.333% - 2px)',
+                                background: temperature === 18 
+                                  ? 'linear-gradient(135deg, #60A5FA 0%, #22D3EE 100%)'
+                                  : temperature === 22
+                                  ? 'linear-gradient(135deg, #10B981 0%, #059669 100%)'
+                                  : 'linear-gradient(135deg, #FB923C 0%, #F59E0B 100%)'
+                              }}
+                              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                              style={{
+                                boxShadow: '0 2px 8px rgba(0,0,0,0.15), 0 1px 2px rgba(0,0,0,0.1)'
+                              }}
+                            />
+
+                            {/* Buttons */}
+                            <button
+                              onClick={() => handleTempChange(18)}
+                              className="relative z-10 py-2 px-2 text-center transition-all duration-200"
+                            >
+                              <div className={`text-[10px] font-semibold transition-colors duration-200 ${
+                                temperature === 18 ? 'text-white drop-shadow-sm' : 'text-white/70'
+                              }`}>
+                                Cool
+                              </div>
+                              <div className={`text-[8px] transition-colors duration-200 ${
+                                temperature === 18 ? 'text-white/90' : 'text-white/50'
+                              }`}>
+                                18°
+                              </div>
+                            </button>
+
+                            <button
+                              onClick={() => handleTempChange(22)}
+                              className="relative z-10 py-2 px-2 text-center transition-all duration-200"
+                            >
+                              <div className={`text-[10px] font-semibold transition-colors duration-200 ${
+                                temperature === 22 ? 'text-white drop-shadow-sm' : 'text-white/70'
+                              }`}>
+                                Comfort
+                              </div>
+                              <div className={`text-[8px] transition-colors duration-200 ${
+                                temperature === 22 ? 'text-white/90' : 'text-white/50'
+                              }`}>
+                                22°
+                              </div>
+                            </button>
+
+                            <button
+                              onClick={() => handleTempChange(26)}
+                              className="relative z-10 py-2 px-2 text-center transition-all duration-200"
+                            >
+                              <div className={`text-[10px] font-semibold transition-colors duration-200 ${
+                                temperature === 26 ? 'text-white drop-shadow-sm' : 'text-white/70'
+                              }`}>
+                                Warm
+                              </div>
+                              <div className={`text-[8px] transition-colors duration-200 ${
+                                temperature === 26 ? 'text-white/90' : 'text-white/50'
+                              }`}>
+                                26°
+                              </div>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Top shine for depth */}
+                      <div
+                        className="absolute inset-0 pointer-events-none"
+                        style={{
+                          background: 'linear-gradient(180deg, rgba(255,255,255,0.3) 0%, transparent 40%)',
+                        }}
+                      />
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
               </div>
             </IPhoneFrame>
