@@ -306,10 +306,10 @@ export default function PerfectHomeKey() {
                         <motion.div
                           animate={{
                             width: lockState === 'locked' ? '35px' 
-                              : lockState === 'unlocking' ? '80px' 
+                              : lockState === 'unlocking' ? '105px' 
                               : '95px',
                             height: lockState === 'locked' ? '10px' 
-                              : lockState === 'unlocking' ? '18px'
+                              : lockState === 'unlocking' ? '20px'
                               : '22px'
                           }}
                           transition={{ 
