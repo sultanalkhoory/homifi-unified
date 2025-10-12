@@ -845,43 +845,300 @@ function StepScreen({ screenType, isActive }: { screenType: string; isActive: bo
           initial={{ opacity: 0 }}
           animate={{ opacity: isActive ? 1 : 0.3 }}
           transition={{ duration: 0.5 }}
-          className="absolute inset-0 bg-gradient-to-br from-orange-50 to-amber-50 p-6"
+          className="absolute inset-0 bg-gradient-to-br from-orange-50 via-amber-50 to-orange-50 p-6 overflow-hidden"
         >
-          {/* Device list */}
-          <div className="h-full flex flex-col">
-            <div className="text-center pt-12 mb-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Connected Devices</h3>
-              <p className="text-xs text-gray-600">Apple Home ready</p>
-            </div>
-            
-            <div className="flex-1 space-y-3 overflow-hidden">
-              {[
-                { name: 'Living Room Lights', icon: '💡', status: 'Connected' },
-                { name: 'Smart Curtains', icon: '🪟', status: 'Connected' },
-                { name: 'Thermostat', icon: '🌡️', status: 'Connected' },
-                { name: 'Door Lock', icon: '🔒', status: 'Connected' },
-                { name: 'Security Camera', icon: '📹', status: 'Connected' }
-              ].map((device, i) => (
+          {/* Subtle pattern overlay */}
+          <div 
+            className="absolute inset-0 opacity-5"
+            style={{
+              backgroundImage: `radial-gradient(circle at 2px 2px, rgba(0,0,0,0.15) 1px, transparent 0)`,
+              backgroundSize: '24px 24px'
+            }}
+          />
+
+          {/* Content */}
+          <div className="relative h-full flex flex-col">
+            {/* Header */}
+            <motion.div
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="text-center pt-6 pb-2"
+            >
+              <h3 className="text-lg font-semibold text-gray-900 mb-1">Device Installation</h3>
+              <p className="text-xs text-orange-600">Expert setup, zero complexity</p>
+            </motion.div>
+
+            {/* Installation Progress */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="mb-3"
+            >
+              {/* Progress bar */}
+              <div className="bg-white/60 rounded-full h-2 overflow-hidden backdrop-blur-sm border border-orange-200">
                 <motion.div
-                  key={device.name}
-                  initial={{ x: -20, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: i * 0.1 }}
-                  className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-sm border border-gray-200"
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl">{device.icon}</span>
-                    <div className="flex-1">
-                      <p className="text-sm font-medium text-gray-900">{device.name}</p>
-                      <p className="text-xs text-green-600">{device.status}</p>
+                  initial={{ width: '0%' }}
+                  animate={{ width: '100%' }}
+                  transition={{ delay: 0.6, duration: 2, ease: 'easeInOut' }}
+                  className="h-full bg-gradient-to-r from-orange-400 to-amber-500"
+                />
+              </div>
+              
+              {/* Progress text */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 2.8 }}
+                className="flex items-center justify-center gap-1.5 mt-2"
+              >
+                <svg className="w-3 h-3 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span className="text-[10px] text-green-600 font-medium">Installation Complete</span>
+              </motion.div>
+            </motion.div>
+
+            {/* Device List - Sequential Installation */}
+            <div className="flex-1 space-y-2 overflow-hidden">
+              
+              {/* Living Room Lights */}
+              <motion.div
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.8, type: 'spring', stiffness: 100 }}
+                className="bg-white/80 backdrop-blur-sm rounded-2xl p-3 shadow-sm border border-orange-100 relative overflow-hidden"
+              >
+                {/* Success flash */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: [0, 0.3, 0] }}
+                  transition={{ delay: 1.0, duration: 0.5 }}
+                  className="absolute inset-0 bg-green-400"
+                />
+                
+                <div className="relative flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-xl shadow-md">
+                    💡
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold text-gray-900">Living Room Lights</p>
+                    <div className="flex items-center gap-1.5 mt-0.5">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: 'auto' }}
+                        transition={{ delay: 0.9 }}
+                        className="flex items-center gap-1"
+                      >
+                        <div className="w-1 h-1 rounded-full bg-green-500" />
+                        <span className="text-[9px] text-green-600 font-medium">Connected</span>
+                      </motion.div>
                     </div>
+                  </div>
+                  <motion.div
+                    initial={{ scale: 0, rotate: -180 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ delay: 1.0, type: 'spring', stiffness: 200 }}
+                  >
                     <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
+                  </motion.div>
+                </div>
+              </motion.div>
+
+              {/* Smart Curtains */}
+              <motion.div
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 1.2, type: 'spring', stiffness: 100 }}
+                className="bg-white/80 backdrop-blur-sm rounded-2xl p-3 shadow-sm border border-orange-100 relative overflow-hidden"
+              >
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: [0, 0.3, 0] }}
+                  transition={{ delay: 1.4, duration: 0.5 }}
+                  className="absolute inset-0 bg-green-400"
+                />
+                
+                <div className="relative flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-xl shadow-md">
+                    🪟
                   </div>
-                </motion.div>
-              ))}
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold text-gray-900">Smart Curtains</p>
+                    <div className="flex items-center gap-1.5 mt-0.5">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: 'auto' }}
+                        transition={{ delay: 1.3 }}
+                        className="flex items-center gap-1"
+                      >
+                        <div className="w-1 h-1 rounded-full bg-green-500" />
+                        <span className="text-[9px] text-green-600 font-medium">Connected</span>
+                      </motion.div>
+                    </div>
+                  </div>
+                  <motion.div
+                    initial={{ scale: 0, rotate: -180 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ delay: 1.4, type: 'spring', stiffness: 200 }}
+                  >
+                    <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                  </motion.div>
+                </div>
+              </motion.div>
+
+              {/* Thermostat */}
+              <motion.div
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 1.6, type: 'spring', stiffness: 100 }}
+                className="bg-white/80 backdrop-blur-sm rounded-2xl p-3 shadow-sm border border-orange-100 relative overflow-hidden"
+              >
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: [0, 0.3, 0] }}
+                  transition={{ delay: 1.8, duration: 0.5 }}
+                  className="absolute inset-0 bg-green-400"
+                />
+                
+                <div className="relative flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-400 to-emerald-500 flex items-center justify-center text-xl shadow-md">
+                    🌡️
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold text-gray-900">Thermostat</p>
+                    <div className="flex items-center gap-1.5 mt-0.5">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: 'auto' }}
+                        transition={{ delay: 1.7 }}
+                        className="flex items-center gap-1"
+                      >
+                        <div className="w-1 h-1 rounded-full bg-green-500" />
+                        <span className="text-[9px] text-green-600 font-medium">Connected</span>
+                      </motion.div>
+                    </div>
+                  </div>
+                  <motion.div
+                    initial={{ scale: 0, rotate: -180 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ delay: 1.8, type: 'spring', stiffness: 200 }}
+                  >
+                    <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                  </motion.div>
+                </div>
+              </motion.div>
+
+              {/* Door Lock */}
+              <motion.div
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 2.0, type: 'spring', stiffness: 100 }}
+                className="bg-white/80 backdrop-blur-sm rounded-2xl p-3 shadow-sm border border-orange-100 relative overflow-hidden"
+              >
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: [0, 0.3, 0] }}
+                  transition={{ delay: 2.2, duration: 0.5 }}
+                  className="absolute inset-0 bg-green-400"
+                />
+                
+                <div className="relative flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-gray-600 to-gray-800 flex items-center justify-center text-xl shadow-md">
+                    🔒
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold text-gray-900">Smart Lock</p>
+                    <div className="flex items-center gap-1.5 mt-0.5">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: 'auto' }}
+                        transition={{ delay: 2.1 }}
+                        className="flex items-center gap-1"
+                      >
+                        <div className="w-1 h-1 rounded-full bg-green-500" />
+                        <span className="text-[9px] text-green-600 font-medium">Connected</span>
+                      </motion.div>
+                    </div>
+                  </div>
+                  <motion.div
+                    initial={{ scale: 0, rotate: -180 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ delay: 2.2, type: 'spring', stiffness: 200 }}
+                  >
+                    <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                  </motion.div>
+                </div>
+              </motion.div>
+
+              {/* Security Camera */}
+              <motion.div
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 2.4, type: 'spring', stiffness: 100 }}
+                className="bg-white/80 backdrop-blur-sm rounded-2xl p-3 shadow-sm border border-orange-100 relative overflow-hidden"
+              >
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: [0, 0.3, 0] }}
+                  transition={{ delay: 2.6, duration: 0.5 }}
+                  className="absolute inset-0 bg-green-400"
+                />
+                
+                <div className="relative flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-red-400 to-pink-500 flex items-center justify-center text-xl shadow-md">
+                    📹
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold text-gray-900">Security Camera</p>
+                    <div className="flex items-center gap-1.5 mt-0.5">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: 'auto' }}
+                        transition={{ delay: 2.5 }}
+                        className="flex items-center gap-1"
+                      >
+                        <div className="w-1 h-1 rounded-full bg-green-500" />
+                        <span className="text-[9px] text-green-600 font-medium">Connected</span>
+                      </motion.div>
+                    </div>
+                  </div>
+                  <motion.div
+                    initial={{ scale: 0, rotate: -180 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ delay: 2.6, type: 'spring', stiffness: 200 }}
+                  >
+                    <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                  </motion.div>
+                </div>
+              </motion.div>
             </div>
+
+            {/* Platform Badges */}
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 2.9 }}
+              className="mt-3 flex items-center justify-center gap-2 bg-white/60 backdrop-blur-sm rounded-2xl p-2.5 border border-orange-100"
+            >
+              <span className="text-[9px] text-gray-600 font-medium">Works with:</span>
+              <div className="flex items-center gap-1.5">
+                <div className="w-4 h-4 rounded bg-white flex items-center justify-center text-[8px]">🍎</div>
+                <div className="w-4 h-4 rounded bg-white flex items-center justify-center text-[8px]">G</div>
+                <div className="w-4 h-4 rounded bg-white flex items-center justify-center text-[8px]">A</div>
+              </div>
+            </motion.div>
           </div>
         </motion.div>
       );
