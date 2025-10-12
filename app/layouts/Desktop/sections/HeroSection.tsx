@@ -36,14 +36,14 @@ export default function HeroSection() {
                 Set up automation in minutes. Control lighting, climate, and security with simple taps.
               </p>
               
-              {/* Platform logos */}
+              {/* Platform logos - Alexa badge increased to h-7 */}
               <div className="pt-2">
                 <div className="flex items-center gap-3">
                   <img src="/badges/works-with-apple-home.webp" alt="Apple Home" className="h-6 opacity-80 hover:opacity-100 transition-opacity" />
                   <span className="text-gray-300">or</span>
                   <img src="/badges/works-with-google-home.webp" alt="Google Home" className="h-6 opacity-80 hover:opacity-100 transition-opacity" />
                   <span className="text-gray-300">or</span>
-                  <img src="/badges/works-with-alexa.webp" alt="Alexa" className="h-6 opacity-80 hover:opacity-100 transition-opacity" />
+                  <img src="/badges/works-with-alexa.webp" alt="Alexa" className="h-7 opacity-80 hover:opacity-100 transition-opacity" />
                 </div>
               </div>
             </div>
