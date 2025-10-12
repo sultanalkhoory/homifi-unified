@@ -1,14 +1,14 @@
 'use client';
 
 import HeroSection from "./sections/HeroSection";
+import PerfectBenefits from '@/components/sharedsections/PerfectBenefits';
 import LightsSection from './sections/LightsSection';
 import CurtainsSection from './sections/CurtainsSection';
 import ClimateSection from './sections/ClimateSection';
-import SecuritySection from './sections/SecuritySection';
+import SecuritySection from '@/components/sharedsections/PerfectSecurity';
 import AppleTVInterlude from './sections/AppleTVInterlude';
 import Header from '@/app/layouts/Desktop/sections/Header';
 import Footer from '@/app/layouts/Desktop/sections/Footer';
-import PerfectBenefits from '@/app/layouts/Desktop/sections/PerfectBenefits';
 
 export default function Page() {
   return (
