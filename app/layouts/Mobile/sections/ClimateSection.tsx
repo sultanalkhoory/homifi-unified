@@ -215,13 +215,13 @@ export default function ClimateSection() {
                   transition={{ duration: 1.5 }}
                   className="absolute inset-0"
                 >
-                  {/* Air streams */}
+                  {/* Air streams - concentrated in upper portion like desktop */}
                   {[...Array(4)].map((_, i) => (
                     <div
                       key={`airstream-${i}`}
                       className="absolute pointer-events-none"
                       style={{
-                        top: `${15 + i * 18}%`,
+                        top: `${10 + i * 11.67}%`, // Upper 45%: 10%, 21.67%, 33.34%, 45%
                         left: mode === 'cool' ? '-20%' : undefined,
                         right: mode === 'warm' ? '-20%' : undefined,
                         width: '300px',
@@ -240,14 +240,14 @@ export default function ClimateSection() {
                     />
                   ))}
 
-                  {/* Vignette */}
+                  {/* Vignette - positioned in upper portion */}
                   <div
                     className="absolute inset-0 pointer-events-none"
                     style={{
                       background: `
                         radial-gradient(ellipse 300px 200px at ${
                           mode === 'cool' ? '40%' : '60%'
-                        } 40%,
+                        } 30%,
                           ${colors.vignette.split(',')[0]} 0%,
                           ${colors.vignette.split(',')[1]} 40%,
                           transparent 70%
@@ -257,14 +257,14 @@ export default function ClimateSection() {
                     }}
                   />
 
-                  {/* Particles */}
+                  {/* Particles - in upper portion only */}
                   {[...Array(3)].map((_, i) => (
                     <div
                       key={`particle-${i}`}
                       className={`absolute w-1 h-1 ${colors.particle} rounded-full opacity-40`}
                       style={{
                         left: `${20 + (i % 3) * 25}%`,
-                        top: `${25 + (i % 2) * 20}%`,
+                        top: `${15 + (i % 2) * 15}%`, // Keep particles in upper area
                         animation: `particleFloat ${
                           4 + i * 0.4
                         }s ease-in-out infinite ${i * 0.7}s`,
