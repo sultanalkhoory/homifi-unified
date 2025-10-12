@@ -156,8 +156,7 @@ export default function HowItWorksPage() {
                     <span 
                       className="text-[120px] md:text-[160px] lg:text-[200px] font-thin leading-none text-gray-100 select-none"
                       style={{ 
-                        WebkitTextStroke: '1px rgba(0,0,0,0.05)',
-                        textStroke: '1px rgba(0,0,0,0.05)'
+                        WebkitTextStroke: '1px rgba(0,0,0,0.05)'
                       }}
                     >
                       {step.number}
