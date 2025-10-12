@@ -6,7 +6,7 @@ import LightsSection from './sections/LightsSection';
 import CurtainsSection from './sections/CurtainsSection';
 import ClimateSection from './sections/ClimateSection';
 import SecuritySection from '@/components/sharedsections/PerfectSecurity';
-import AppleTVInterlude from './sections/AppleTVInterlude';
+import PerfectHomeKey from '@/components/sharedsections/PerfectHomeKey';
 import Header from '@/app/layouts/Desktop/sections/Header';
 import Footer from '@/app/layouts/Desktop/sections/Footer';
 
