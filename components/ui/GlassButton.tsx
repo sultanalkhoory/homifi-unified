@@ -66,12 +66,12 @@ function GlassButton({
           backgroundPosition: ['0% 0%', '100% 100%'],
         }}
         transition={{
-          duration: 3,
+          duration: 4,
           repeat: Infinity,
           ease: 'linear',
         }}
         style={{
-          background: 'linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 45%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.1) 55%, transparent 100%)',
+          background: 'linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.05) 45%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.05) 55%, transparent 100%)',
           backgroundSize: '200% 200%',
         }}
       />
