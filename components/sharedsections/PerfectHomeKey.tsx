@@ -175,12 +175,12 @@ export default function PerfectHomeKey() {
                     )}
                   </div>
 
-                  {/* Door Handle Lever - rotates down when unlocking */}
+                  {/* Door Handle Lever - rotates DOWN when unlocking */}
                   <motion.div
                     className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-6 md:w-24 md:h-7"
                     style={{ originX: 0.2, originY: 0.5 }} // Pivot point on left side
                     animate={{
-                      rotate: lockState === 'unlocked' ? -35 : 0
+                      rotate: lockState === 'unlocked' ? 35 : 0  // Positive = clockwise/down
                     }}
                     transition={{ 
                       duration: 0.5, 
@@ -254,7 +254,7 @@ export default function PerfectHomeKey() {
                 </div>
               </div>
 
-              {/* FIX 2: Proper iPhone Frame Component */}
+              {/* FIX 2: Proper iPhone Frame Component - VERTICAL */}
               <motion.div
                 animate={{
                   x: lockState === 'locked' ? 0 : lockState === 'unlocking' ? -60 : -60,
@@ -271,10 +271,10 @@ export default function PerfectHomeKey() {
                 className="absolute right-[8%] top-1/2 -translate-y-1/2 z-30"
                 style={{ perspective: '1000px', transformStyle: 'preserve-3d' }}
               >
-                {/* Use the proper IPhoneFrame structure */}
-                <div className="relative w-[280px] h-[560px] md:w-[320px] md:h-[640px]">
-                  <div className="relative bg-black rounded-[45px] md:rounded-[50px] p-2 shadow-[0_0_0_2px_#1a1a1a,0_0_60px_rgba(0,0,0,0.4)]">
-                    <div className="relative w-full h-full bg-white rounded-[37px] md:rounded-[42px] overflow-hidden">
+                {/* Use the proper IPhoneFrame structure - VERTICAL orientation */}
+                <div className="relative" style={{ width: '240px', height: '480px' }}>
+                  <div className="relative w-full h-full bg-black rounded-[45px] p-2 shadow-[0_0_0_2px_#1a1a1a,0_0_60px_rgba(0,0,0,0.4)]">
+                    <div className="relative w-full h-full bg-white rounded-[37px] overflow-hidden">
                       
                       {/* HomeKey Card Content */}
                       <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-black">
@@ -283,12 +283,12 @@ export default function PerfectHomeKey() {
                         <div className="absolute top-2 left-1/2 -translate-x-1/2 z-40">
                           <motion.div
                             animate={{
-                              width: lockState === 'locked' ? '85px' 
-                                : lockState === 'unlocking' ? '140px' 
-                                : '180px',
-                              height: lockState === 'locked' ? '22px' 
-                                : lockState === 'unlocking' ? '32px'
-                                : '40px'
+                              width: lockState === 'locked' ? '75px' 
+                                : lockState === 'unlocking' ? '120px' 
+                                : '150px',
+                              height: lockState === 'locked' ? '20px' 
+                                : lockState === 'unlocking' ? '28px'
+                                : '36px'
                             }}
                             transition={{ 
                               duration: 0.4, 
@@ -319,7 +319,7 @@ export default function PerfectHomeKey() {
                                   {/* Icon */}
                                   {lockState === 'unlocking' ? (
                                     <motion.svg 
-                                      className="w-4 h-4 md:w-5 md:h-5 text-white flex-shrink-0" 
+                                      className="w-4 h-4 text-white flex-shrink-0" 
                                       fill="none" 
                                       stroke="currentColor" 
                                       viewBox="0 0 24 24" 
@@ -346,7 +346,7 @@ export default function PerfectHomeKey() {
                                       }}
                                     >
                                       <motion.svg 
-                                        className="w-4 h-4 md:w-5 md:h-5 text-white flex-shrink-0" 
+                                        className="w-4 h-4 text-white flex-shrink-0" 
                                         fill="none" 
                                         stroke="currentColor" 
                                         viewBox="0 0 24 24" 
@@ -369,7 +369,7 @@ export default function PerfectHomeKey() {
                                     initial={{ opacity: 0, x: -5 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: 0.15, duration: 0.3 }}
-                                    className="text-white text-xs md:text-sm font-medium whitespace-nowrap"
+                                    className="text-white text-xs font-medium whitespace-nowrap"
                                   >
                                     {lockState === 'unlocking' ? 'Unlocking...' : 'Unlocked'}
                                   </motion.span>
@@ -386,24 +386,24 @@ export default function PerfectHomeKey() {
 
                         {/* HomeKey Card - Centered */}
                         <motion.div 
-                          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%]"
+                          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%]"
                           animate={{
                             scale: lockState === 'unlocking' ? 1.05 : 1
                           }}
                           transition={{ duration: 0.3 }}
                         >
-                          <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-6 border border-white/20">
+                          <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-5 border border-white/20">
                             {/* House icon with glow */}
-                            <div className="flex justify-center mb-4">
+                            <div className="flex justify-center mb-3">
                               <motion.div 
-                                className="w-16 h-16 rounded-full bg-orange-500 flex items-center justify-center relative"
+                                className="w-14 h-14 rounded-full bg-orange-500 flex items-center justify-center relative"
                                 animate={{
                                   boxShadow: lockState === 'unlocking' 
                                     ? '0 0 30px rgba(249, 115, 22, 0.6)'
                                     : '0 0 0 rgba(249, 115, 22, 0)'
                                 }}
                               >
-                                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                                 </svg>
                               </motion.div>
@@ -411,16 +411,16 @@ export default function PerfectHomeKey() {
                             
                             {/* Text */}
                             <div className="text-center">
-                              <p className="text-white text-base font-semibold mb-1">Front Door</p>
-                              <p className="text-white/70 text-sm">
+                              <p className="text-white text-sm font-semibold mb-1">Front Door</p>
+                              <p className="text-white/70 text-xs">
                                 {lockState === 'unlocking' ? 'Unlocking...' : 'Hold Near Reader'}
                               </p>
                             </div>
 
                             {/* NFC waves - animated */}
-                            <div className="flex justify-center mt-4 relative h-6">
+                            <div className="flex justify-center mt-3 relative h-5">
                               {/* NFC icon base */}
-                              <svg className="w-12 h-6 text-white/50" fill="currentColor" viewBox="0 0 24 24">
+                              <svg className="w-10 h-5 text-white/50" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M4 12c0-2.2.9-4.2 2.3-5.7l1.4 1.4C6.6 8.8 6 10.3 6 12s.6 3.2 1.7 4.3l-1.4 1.4C4.9 16.2 4 14.2 4 12zm14 0c0-2.2-.9-4.2-2.3-5.7l-1.4 1.4c1.1 1.1 1.7 2.6 1.7 4.3s-.6 3.2-1.7 4.3l1.4 1.4c1.4-1.5 2.3-3.5 2.3-5.7z"/>
                               </svg>
 
@@ -433,7 +433,7 @@ export default function PerfectHomeKey() {
                                     animate={{ scale: [0.8, 1.5, 1.5], opacity: [0, 0.6, 0] }}
                                     transition={{ duration: 1, repeat: Infinity }}
                                   >
-                                    <div className="w-10 h-10 border-2 border-blue-400 rounded-full" />
+                                    <div className="w-8 h-8 border-2 border-blue-400 rounded-full" />
                                   </motion.div>
                                   <motion.div
                                     className="absolute inset-0 flex items-center justify-center"
@@ -441,7 +441,7 @@ export default function PerfectHomeKey() {
                                     animate={{ scale: [0.8, 1.5, 1.5], opacity: [0, 0.4, 0] }}
                                     transition={{ duration: 1, repeat: Infinity, delay: 0.3 }}
                                   >
-                                    <div className="w-14 h-14 border-2 border-blue-400 rounded-full" />
+                                    <div className="w-12 h-12 border-2 border-blue-400 rounded-full" />
                                   </motion.div>
                                 </>
                               )}
@@ -452,7 +452,7 @@ export default function PerfectHomeKey() {
 
                       {/* Subtle screen glare */}
                       <div
-                        className="absolute inset-0 pointer-events-none rounded-[37px] md:rounded-[42px]"
+                        className="absolute inset-0 pointer-events-none rounded-[37px]"
                         style={{
                           background:
                             'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 25%, transparent 50%, transparent 75%, rgba(255,255,255,0.02) 100%)',
@@ -463,14 +463,14 @@ export default function PerfectHomeKey() {
 
                   {/* Soft shadow from iPhone onto door */}
                   <motion.div
-                    className="absolute -left-6 top-0 bottom-0 w-12"
+                    className="absolute -left-5 top-0 bottom-0 w-10"
                     animate={{
                       opacity: lockState === 'locked' ? 0.1 : 0.2,
-                      x: lockState === 'locked' ? 0 : -20
+                      x: lockState === 'locked' ? 0 : -15
                     }}
                     style={{
                       background: 'radial-gradient(ellipse at right, rgba(0,0,0,0.2) 0%, transparent 70%)',
-                      filter: 'blur(15px)'
+                      filter: 'blur(12px)'
                     }}
                   />
                 </div>
