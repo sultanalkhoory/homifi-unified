@@ -59,7 +59,7 @@ export default function HeroSection() {
                   transition-all duration-200 ease-out
                   shadow-md"
               >
-                See How It Works
+                Test
               </a>
               
               {/* Voice control hint */}
