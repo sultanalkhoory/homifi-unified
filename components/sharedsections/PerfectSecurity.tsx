@@ -322,25 +322,6 @@ export default function PerfectSecurity() {
                               Unlocked
                             </motion.p>
                           </div>
-
-                          {/* Checkmark with green tint */}
-                          <motion.div
-                            initial={{ scale: 0, rotate: -45 }}
-                            animate={{ 
-                              scale: 1, 
-                              rotate: 0,
-                              transition: {
-                                type: 'spring',
-                                stiffness: 400,
-                                damping: 15,
-                                delay: 0.2
-                              }
-                            }}
-                          >
-                            <svg className="w-4 h-4 md:w-5 md:h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                          </motion.div>
                         </div>
                       </div>
                     </motion.div>
