@@ -103,11 +103,12 @@ export default function ClimateSection() {
         vignette: 'rgba(59, 130, 246, 0.05), rgba(96, 165, 250, 0.03)',
       };
     } else {
+      // Comfort mode - teal/green colors
       return {
-        primary: 'rgba(156, 163, 175, 0.15)',
-        secondary: 'rgba(209, 213, 219, 0.2)',
-        particle: 'bg-gray-200',
-        vignette: 'rgba(156, 163, 175, 0.04), rgba(209, 213, 219, 0.02)',
+        primary: 'rgba(45, 212, 191, 0.15)',
+        secondary: 'rgba(16, 185, 129, 0.2)',
+        particle: 'bg-teal-200',
+        vignette: 'rgba(45, 212, 191, 0.05), rgba(16, 185, 129, 0.03)',
       };
     }
   };
