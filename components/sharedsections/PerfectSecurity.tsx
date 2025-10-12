@@ -14,7 +14,7 @@ type SecurityState = 'clear' | 'alert' | 'notification' | 'unlocked';
  * - Doorbell notification slides from top-right
  * - Unlock button triggers success notification
  * - Dismiss button closes notification
- * - No control card (removed as requested)
+ * - Apple-style disclaimer at bottom
  * - Smooth, fluid Apple-like animations
  */
 export default function PerfectSecurity() {
@@ -247,7 +247,7 @@ export default function PerfectSecurity() {
                   )}
                 </AnimatePresence>
 
-                {/* Success Notification - "Front Door Unlocked" - Apple frosted glass style */}
+                {/* Success Notification - "Front Door Unlocked" */}
                 <AnimatePresence>
                   {securityState === 'unlocked' && (
                     <motion.div
@@ -273,17 +273,17 @@ export default function PerfectSecurity() {
                       }}
                       className="absolute top-3 right-3 md:top-6 md:right-6 z-50"
                     >
-                      {/* Compact success card - smaller on mobile */}
+                      {/* Compact success card */}
                       <div 
                         className="backdrop-blur-2xl rounded-2xl px-3 py-2.5 md:px-4 md:py-3 shadow-2xl"
                         style={{
                           background: 'linear-gradient(135deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.25) 100%)',
-                          border: '1px solid rgba(16, 185, 129, 0.3)', // Subtle green border
-                          boxShadow: '0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.5), 0 0 20px rgba(16, 185, 129, 0.15)' // Subtle green glow
+                          border: '1px solid rgba(16, 185, 129, 0.3)',
+                          boxShadow: '0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.5), 0 0 20px rgba(16, 185, 129, 0.15)'
                         }}
                       >
                         <div className="flex items-center gap-2 md:gap-3">
-                          {/* Animated lock icon with green tint */}
+                          {/* Animated lock icon */}
                           <motion.div
                             initial={{ rotate: -10, scale: 0.8 }}
                             animate={{ 
@@ -330,6 +330,19 @@ export default function PerfectSecurity() {
               </div>
             </div>
           </div>
+        </motion.div>
+
+        {/* Apple-style Disclaimer */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-center mt-8"
+        >
+          <p className="text-xs text-gray-400">
+            *Available only with supported Apple Home enabled video doorbells.
+          </p>
         </motion.div>
       </div>
     </section>
