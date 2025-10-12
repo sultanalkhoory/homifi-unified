@@ -1,3 +1,12 @@
+/**
+ * NEW SECTION: Benefits Overview
+ * 
+ * Add this after the Hero section and before PerfectLight
+ * to clearly communicate the 6 key value propositions.
+ * 
+ * Insert in app/layouts/Desktop/page.tsx after hero section
+ */
+
 'use client';
 import { motion } from 'framer-motion';
 import { fadeRise, staggerUp, childUp } from '@/lib/animations';
@@ -42,7 +51,7 @@ export default function BenefitsSection() {
         </svg>
       ),
       title: 'Instant Notifications',
-      description: "Stay updated with real-time alerts on your phone, watch, or TV. Know exactly what's happening in your home.",
+      description: 'Stay updated with real-time alerts on your phone, watch, or TV. Know exactly what's happening in your home.',
       color: 'from-purple-400 to-pink-500'
     },
     {
@@ -83,7 +92,7 @@ export default function BenefitsSection() {
             Smart home, simplified.
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Everything you need to transform your home—without the complexity, without the cost of professional installation.
+            Everything you need to transform your home without the complexity, without the cost of professional installation.
           </p>
         </motion.div>
 
@@ -93,7 +102,7 @@ export default function BenefitsSection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+          className="grid md:grid-cols-2 gap-6 md:gap-8"
         >
           {benefits.map((benefit, index) => (
             <motion.div
