@@ -270,8 +270,8 @@ export default function PerfectHomeKey() {
               >
                 {/* iPhone Frame - Responsive: 120px mobile, 180px tablet, 240px desktop */}
                 <div className="relative w-[120px] h-[240px] sm:w-[180px] sm:h-[360px] md:w-[240px] md:h-[480px]">
-                  {/* Black bezel - asymmetric padding (less at top) */}
-                  <div className="relative w-full h-full bg-black rounded-[28px] sm:rounded-[38px] md:rounded-[45px] pt-0.5 px-1 pb-1 sm:pt-0.5 sm:px-1.5 sm:pb-1.5 md:pt-0.5 md:px-2 md:pb-2 shadow-[0_0_0_2px_#1a1a1a,0_0_60px_rgba(0,0,0,0.4)]">
+                  {/* Black bezel - MUCH THINNER */}
+                  <div className="relative w-full h-full bg-black rounded-[28px] sm:rounded-[38px] md:rounded-[45px] p-[2px] sm:p-[3px] md:p-[4px] shadow-[0_0_0_2px_#1a1a1a,0_0_60px_rgba(0,0,0,0.4)]">
                     {/* Screen area - WITH overflow hidden */}
                     <div className="relative w-full h-full bg-black rounded-[22px] sm:rounded-[30px] md:rounded-[37px] overflow-hidden">
                       
