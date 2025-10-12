@@ -286,13 +286,13 @@ export default function ClimateSection() {
                               ? 'rgba(59, 130, 246, 0.6)'
                               : mode === 'warm'
                               ? 'rgba(245, 158, 11, 0.6)'
-                              : 'rgba(107, 114, 128, 0.6)',
+                              : 'rgba(45, 212, 191, 0.6)', // Teal for comfort
                           boxShadow:
                             mode === 'cool'
                               ? '0 0 8px rgba(59, 130, 246, 0.3)'
                               : mode === 'warm'
                               ? '0 0 8px rgba(245, 158, 11, 0.3)'
-                              : '0 0 8px rgba(107, 114, 128, 0.2)',
+                              : '0 0 8px rgba(45, 212, 191, 0.3)', // Teal glow for comfort
                         }}
                       />
                       <div className="absolute inset-0 flex items-center justify-center">
