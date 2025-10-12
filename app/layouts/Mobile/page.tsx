@@ -20,7 +20,7 @@ export default function Page() {
       <CurtainsSection />
       <ClimateSection />
       <SecuritySection />
-      <AppleTVInterlude />
+      <PerfectHomeKey />
       <Footer />
     </main>
   );
