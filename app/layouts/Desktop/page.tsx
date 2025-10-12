@@ -8,7 +8,7 @@ import PerfectLight from '@/app/layouts/Desktop/sections/PerfectLight';
 import PerfectPrivacy from '@/app/layouts/Desktop/sections/PerfectPrivacy';
 import PerfectClimate from '@/app/layouts/Desktop/sections/PerfectClimate';
 import PerfectSecurity from '@/components/sharedsections/PerfectSecurity';
-import PerfectHomeKey from '@/app/layouts/Desktop/sections/PerfectHomeKey';
+import PerfectHomeKey from '@/components/sharedsections/PerfectHomeKey';
 
 export default function Page() {
   return (
