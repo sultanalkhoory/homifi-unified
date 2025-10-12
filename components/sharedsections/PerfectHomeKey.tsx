@@ -275,8 +275,8 @@ export default function PerfectHomeKey() {
                 <div className="relative w-[120px] h-[240px] sm:w-[180px] sm:h-[360px] md:w-[240px] md:h-[480px]">
                   {/* Black bezel */}
                   <div className="relative w-full h-full bg-black rounded-[28px] sm:rounded-[38px] md:rounded-[45px] p-1 sm:p-1.5 md:p-2 shadow-[0_0_0_2px_#1a1a1a,0_0_60px_rgba(0,0,0,0.4)]">
-                    {/* Screen area - NO overflow hidden, proper positioning context */}
-                    <div className="relative w-full h-full bg-black rounded-[22px] sm:rounded-[30px] md:rounded-[37px]">
+                    {/* Screen area - WITH overflow hidden to contain content */}
+                    <div className="relative w-full h-full bg-black rounded-[22px] sm:rounded-[30px] md:rounded-[37px] overflow-hidden">
                       
                       {/* HomeKey Card Content - properly contained */}
                       <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-black">
