@@ -312,31 +312,251 @@ function StepScreen({ screenType, isActive }: { screenType: string; isActive: bo
           initial={{ opacity: 0 }}
           animate={{ opacity: isActive ? 1 : 0.3 }}
           transition={{ duration: 0.5 }}
-          className="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 p-6"
+          className="absolute inset-0 bg-gradient-to-br from-slate-50 to-blue-50 p-6 overflow-hidden"
         >
-          {/* Floor plan visualization */}
-          <div className="h-full flex flex-col gap-4">
-            <div className="text-center pt-12">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Your Home Layout</h3>
+          {/* Blueprint grid background */}
+          <div 
+            className="absolute inset-0 opacity-30"
+            style={{
+              backgroundImage: `
+                linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
+              `,
+              backgroundSize: '20px 20px'
+            }}
+          />
+
+          {/* Content */}
+          <div className="relative h-full flex flex-col">
+            {/* Header */}
+            <motion.div
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="text-center pt-8 pb-4"
+            >
+              <h3 className="text-lg font-semibold text-gray-900 mb-1">Your Home Layout</h3>
               <p className="text-xs text-gray-600">Custom zone mapping</p>
-            </div>
-            
-            {/* Simple zone grid */}
-            <div className="flex-1 grid grid-cols-2 gap-3 p-4">
-              {['Living Room', 'Kitchen', 'Bedroom', 'Office'].map((zone, i) => (
+            </motion.div>
+
+            {/* Isometric Floor Plan Container */}
+            <div className="flex-1 flex items-center justify-center perspective-1000 relative">
+              
+              {/* Heat map overlay - animated flow */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ 
+                  opacity: [0.3, 0.5, 0.3],
+                  scale: [0.8, 1, 0.8]
+                }}
+                transition={{ 
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: `
+                    radial-gradient(circle at 30% 40%, rgba(59, 130, 246, 0.2) 0%, transparent 50%),
+                    radial-gradient(circle at 70% 60%, rgba(99, 102, 241, 0.15) 0%, transparent 50%)
+                  `,
+                  filter: 'blur(30px)'
+                }}
+              />
+
+              {/* Floor plan - isometric grid */}
+              <div 
+                className="relative w-64 h-64"
+                style={{
+                  transform: 'rotateX(60deg) rotateZ(-45deg)',
+                  transformStyle: 'preserve-3d'
+                }}
+              >
+                {/* Living Room */}
                 <motion.div
-                  key={zone}
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: i * 0.1 }}
-                  className="rounded-2xl bg-white/80 backdrop-blur-sm p-4 shadow-sm border border-gray-200"
+                  initial={{ opacity: 0, z: -50 }}
+                  animate={{ opacity: 1, z: 0 }}
+                  transition={{ delay: 0.4, duration: 0.6 }}
+                  className="absolute top-0 left-0 w-28 h-28"
+                  style={{ transformStyle: 'preserve-3d' }}
                 >
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 mb-2" />
-                  <p className="text-xs font-medium text-gray-900">{zone}</p>
-                  <p className="text-[10px] text-gray-500">3 devices</p>
+                  {/* Room box */}
+                  <div className="absolute inset-0 bg-white/90 backdrop-blur-sm border-2 border-blue-300 rounded-lg shadow-lg">
+                    {/* Room label */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center p-2">
+                      <span className="text-[10px] font-semibold text-gray-900 mb-1">Living Room</span>
+                      
+                      {/* Devices - pop in sequentially */}
+                      <div className="flex gap-1">
+                        {['💡', '🌡️', '🪟'].map((icon, i) => (
+                          <motion.span
+                            key={i}
+                            initial={{ scale: 0, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            transition={{ delay: 0.8 + i * 0.15 }}
+                            className="text-xs"
+                          >
+                            {icon}
+                          </motion.span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
                 </motion.div>
-              ))}
+
+                {/* Kitchen */}
+                <motion.div
+                  initial={{ opacity: 0, z: -50 }}
+                  animate={{ opacity: 1, z: 0 }}
+                  transition={{ delay: 0.5, duration: 0.6 }}
+                  className="absolute top-0 right-0 w-28 h-28"
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  <div className="absolute inset-0 bg-white/90 backdrop-blur-sm border-2 border-indigo-300 rounded-lg shadow-lg">
+                    <div className="absolute inset-0 flex flex-col items-center justify-center p-2">
+                      <span className="text-[10px] font-semibold text-gray-900 mb-1">Kitchen</span>
+                      <div className="flex gap-1">
+                        {['💡', '🔌'].map((icon, i) => (
+                          <motion.span
+                            key={i}
+                            initial={{ scale: 0, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            transition={{ delay: 1.0 + i * 0.15 }}
+                            className="text-xs"
+                          >
+                            {icon}
+                          </motion.span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Bedroom */}
+                <motion.div
+                  initial={{ opacity: 0, z: -50 }}
+                  animate={{ opacity: 1, z: 0 }}
+                  transition={{ delay: 0.6, duration: 0.6 }}
+                  className="absolute bottom-0 left-0 w-28 h-28"
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  <div className="absolute inset-0 bg-white/90 backdrop-blur-sm border-2 border-purple-300 rounded-lg shadow-lg">
+                    <div className="absolute inset-0 flex flex-col items-center justify-center p-2">
+                      <span className="text-[10px] font-semibold text-gray-900 mb-1">Bedroom</span>
+                      <div className="flex gap-1">
+                        {['💡', '🌡️', '🔒'].map((icon, i) => (
+                          <motion.span
+                            key={i}
+                            initial={{ scale: 0, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            transition={{ delay: 1.2 + i * 0.15 }}
+                            className="text-xs"
+                          >
+                            {icon}
+                          </motion.span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Office */}
+                <motion.div
+                  initial={{ opacity: 0, z: -50 }}
+                  animate={{ opacity: 1, z: 0 }}
+                  transition={{ delay: 0.7, duration: 0.6 }}
+                  className="absolute bottom-0 right-0 w-28 h-28"
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  <div className="absolute inset-0 bg-white/90 backdrop-blur-sm border-2 border-cyan-300 rounded-lg shadow-lg">
+                    <div className="absolute inset-0 flex flex-col items-center justify-center p-2">
+                      <span className="text-[10px] font-semibold text-gray-900 mb-1">Office</span>
+                      <div className="flex gap-1">
+                        {['💡', '🔌'].map((icon, i) => (
+                          <motion.span
+                            key={i}
+                            initial={{ scale: 0, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            transition={{ delay: 1.4 + i * 0.15 }}
+                            className="text-xs"
+                          >
+                            {icon}
+                          </motion.span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Connecting lines - draw between rooms */}
+                <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ transform: 'translateZ(10px)' }}>
+                  {/* Living to Kitchen */}
+                  <motion.line
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{ pathLength: 1, opacity: 0.3 }}
+                    transition={{ delay: 1.6, duration: 0.5 }}
+                    x1="28%" y1="50%" x2="72%" y2="50%"
+                    stroke="rgb(59, 130, 246)"
+                    strokeWidth="2"
+                    strokeDasharray="4 4"
+                  />
+                  {/* Living to Bedroom */}
+                  <motion.line
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{ pathLength: 1, opacity: 0.3 }}
+                    transition={{ delay: 1.7, duration: 0.5 }}
+                    x1="50%" y1="28%" x2="50%" y2="72%"
+                    stroke="rgb(59, 130, 246)"
+                    strokeWidth="2"
+                    strokeDasharray="4 4"
+                  />
+                </svg>
+              </div>
             </div>
+
+            {/* Stats footer - animated counter */}
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 1.8 }}
+              className="flex justify-around items-center py-3 px-4 bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200"
+            >
+              <div className="text-center">
+                <motion.p
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 1.9, type: 'spring' }}
+                  className="text-lg font-bold text-blue-600"
+                >
+                  12
+                </motion.p>
+                <p className="text-[9px] text-gray-600">Devices</p>
+              </div>
+              <div className="w-px h-6 bg-gray-300" />
+              <div className="text-center">
+                <motion.p
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 2.0, type: 'spring' }}
+                  className="text-lg font-bold text-indigo-600"
+                >
+                  4
+                </motion.p>
+                <p className="text-[9px] text-gray-600">Zones</p>
+              </div>
+              <div className="w-px h-6 bg-gray-300" />
+              <div className="text-center">
+                <motion.p
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 2.1, type: 'spring' }}
+                  className="text-lg font-bold text-green-600"
+                >
+                  100%
+                </motion.p>
+                <p className="text-[9px] text-gray-600">Coverage</p>
+              </div>
+            </motion.div>
           </div>
         </motion.div>
       );
