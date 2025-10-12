@@ -67,13 +67,13 @@ export default function BenefitsSection() {
           </p>
         </motion.div>
 
-        {/* Benefits Grid */}
+        {/* Benefits Grid - adjusted gap for mobile */}
         <motion.div
           variants={staggerUp}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8"
         >
           {benefits.map((benefit, index) => (
             <motion.div
@@ -81,21 +81,21 @@ export default function BenefitsSection() {
               variants={childUp}
               className="group relative"
             >
-              {/* Card */}
-              <div className="relative h-full bg-white rounded-2xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100">
+              {/* Card - smaller padding on mobile */}
+              <div className="relative h-full bg-white rounded-2xl p-4 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100">
                 
-                {/* Icon with gradient background */}
-                <div className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br ${benefit.color} text-white mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                {/* Icon with gradient background - smaller on mobile */}
+                <div className={`inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br ${benefit.color} text-white mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300`}>
                   {benefit.icon}
                 </div>
 
-                {/* Title */}
-                <h3 className="text-xl font-semibold text-black mb-3">
+                {/* Title - smaller on mobile */}
+                <h3 className="text-lg md:text-xl font-semibold text-black mb-2 md:mb-3">
                   {benefit.title}
                 </h3>
 
-                {/* Description */}
-                <p className="text-gray-600 leading-relaxed">
+                {/* Description - smaller text on mobile */}
+                <p className="text-sm md:text-base text-gray-600 leading-relaxed">
                   {benefit.description}
                 </p>
 
