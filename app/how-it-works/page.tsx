@@ -25,6 +25,7 @@ type Step = {
 export default function HowItWorksPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeStep, setActiveStep] = useState(0);
+  const { scrollYProgress } = useScroll();
 
   const steps: Step[] = [
     {
@@ -83,12 +84,33 @@ export default function HowItWorksPage() {
   }, [steps.length]);
 
   return (
-    <main className="bg-white">
+    <main className="min-h-screen bg-white relative" style={{ scrollBehavior: 'smooth' }}>
       <Header />
       
+      {/* Scroll Progress Bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 origin-left z-50"
+        style={{
+          scaleX: scrollYProgress
+        }}
+      />
+      
       {/* Hero Intro */}
-      <section className="min-h-screen flex items-center justify-center px-4 pt-32 pb-20">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="min-h-screen flex items-center justify-center px-4 pt-32 pb-20 relative overflow-hidden">
+        {/* Animated background gradient */}
+        <motion.div
+          animate={{
+            background: [
+              'radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)',
+              'radial-gradient(circle at 80% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%)',
+              'radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)',
+            ]
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute inset-0 pointer-events-none"
+        />
+
+        <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -134,11 +156,25 @@ export default function HowItWorksPage() {
         className="relative"
         style={{ scrollSnapType: 'y mandatory' }}
       >
+        {/* Mobile step counter */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="md:hidden fixed bottom-8 left-1/2 -translate-x-1/2 z-40"
+        >
+          <div className="bg-black text-white px-4 py-2 rounded-full text-xs font-medium shadow-lg">
+            Step {activeStep + 1} of {steps.length}
+          </div>
+        </motion.div>
+
         {steps.map((step, index) => (
           <section
             key={index}
-            className="min-h-screen flex items-center px-4 md:px-8 lg:px-12 relative"
-            style={{ scrollSnapAlign: 'start' }}
+            className="min-h-screen flex items-center px-4 md:px-8 lg:px-12 relative transition-all duration-500"
+            style={{ 
+              scrollSnapAlign: 'start',
+              opacity: Math.abs(activeStep - index) <= 1 ? 1 : 0.3
+            }}
           >
             <div className="max-w-7xl mx-auto w-full">
               <div className="grid md:grid-cols-12 gap-8 md:gap-16 items-center">
@@ -198,9 +234,26 @@ export default function HowItWorksPage() {
                   transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                   className="md:col-span-7 flex justify-center md:justify-end"
                 >
-                  <div className="relative">
+                  <motion.div 
+                    className="relative"
+                    style={{
+                      position: index === activeStep ? 'sticky' : 'relative',
+                      top: index === activeStep ? '50%' : 'auto',
+                      transform: index === activeStep ? 'translateY(-50%)' : 'none'
+                    }}
+                  >
                     {/* iPhone Frame */}
-                    <div className="relative w-[280px] h-[560px] md:w-[320px] md:h-[640px] bg-black rounded-[45px] md:rounded-[50px] p-2 shadow-2xl">
+                    <motion.div 
+                      className="relative w-[280px] h-[560px] md:w-[320px] md:h-[640px] bg-black rounded-[45px] md:rounded-[50px] p-2 shadow-2xl"
+                      animate={{
+                        y: index === activeStep ? [0, -5, 0] : 0
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: index === activeStep ? Infinity : 0,
+                        ease: "easeInOut"
+                      }}
+                    >
                       <div className="relative w-full h-full bg-white rounded-[37px] md:rounded-[42px] overflow-hidden">
                         
                         {/* Dynamic screen content based on step */}
@@ -227,33 +280,71 @@ export default function HowItWorksPage() {
                           9:41
                         </div>
                       </div>
-                    </div>
-                  </div>
+                    </motion.div>
+                  </motion.div>
                 </motion.div>
               </div>
             </div>
 
-            {/* Vertical progress indicator */}
+            {/* Vertical progress indicator - Enhanced */}
             <div className="hidden md:block fixed left-8 top-1/2 -translate-y-1/2 z-40">
-              <div className="flex flex-col items-center gap-3">
-                {steps.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => {
-                      const element = document.querySelectorAll('section')[i + 1];
-                      element?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className="group relative"
-                  >
-                    <div
-                      className={`w-1.5 h-8 rounded-full transition-all duration-300 ${
-                        i === activeStep
-                          ? 'bg-black h-12'
-                          : 'bg-gray-300 group-hover:bg-gray-400'
-                      }`}
-                    />
-                  </button>
-                ))}
+              <div className="relative">
+                {/* Progress line background */}
+                <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gray-200 rounded-full" />
+                
+                {/* Active progress line */}
+                <motion.div
+                  className="absolute left-1/2 -translate-x-1/2 top-0 w-0.5 bg-black rounded-full"
+                  style={{
+                    height: `${((activeStep + 1) / steps.length) * 100}%`
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+
+                {/* Step dots */}
+                <div className="relative flex flex-col items-center gap-8">
+                  {steps.map((step, i) => (
+                    <button
+                      key={i}
+                      onClick={() => {
+                        const element = document.querySelectorAll('section')[i + 1];
+                        element?.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                      className="group relative"
+                    >
+                      {/* Dot */}
+                      <motion.div
+                        animate={{
+                          scale: i === activeStep ? 1.4 : 1,
+                          backgroundColor: i <= activeStep ? '#000000' : '#D1D5DB'
+                        }}
+                        transition={{ duration: 0.3 }}
+                        className="w-2 h-2 rounded-full relative z-10"
+                      />
+                      
+                      {/* Hover label */}
+                      <motion.div
+                        initial={{ opacity: 0, x: -10 }}
+                        whileHover={{ opacity: 1, x: 0 }}
+                        className="absolute left-6 top-1/2 -translate-y-1/2 whitespace-nowrap pointer-events-none"
+                      >
+                        <div className="bg-black text-white text-xs px-3 py-1.5 rounded-lg shadow-lg">
+                          {step.number}. {step.title}
+                        </div>
+                      </motion.div>
+
+                      {/* Active pulse */}
+                      {i === activeStep && (
+                        <motion.div
+                          initial={{ scale: 1, opacity: 0.5 }}
+                          animate={{ scale: 2, opacity: 0 }}
+                          transition={{ duration: 1.5, repeat: Infinity }}
+                          className="absolute inset-0 rounded-full bg-black"
+                        />
+                      )}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </section>
