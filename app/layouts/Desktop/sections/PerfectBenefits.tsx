@@ -85,21 +85,21 @@ export default function BenefitsSection() {
               variants={childUp}
               className="group relative"
             >
-              {/* Card - more compact on mobile for 2x2 grid */}
-              <div className="relative h-full bg-white rounded-2xl p-3 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100">
+              {/* Card - comfortable padding, naturally taller */}
+              <div className="relative h-full bg-white rounded-2xl p-4 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100">
                 
-                {/* Icon with gradient background - more compact on mobile */}
-                <div className={`inline-flex items-center justify-center w-10 h-10 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br ${benefit.color} text-white mb-2 md:mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                {/* Icon with gradient background - comfortable size */}
+                <div className={`inline-flex items-center justify-center w-11 h-11 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br ${benefit.color} text-white mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300`}>
                   {benefit.icon}
                 </div>
 
-                {/* Title - more compact on mobile */}
-                <h3 className="text-base md:text-xl font-semibold text-black mb-1.5 md:mb-3">
+                {/* Title - comfortable reading size */}
+                <h3 className="text-base md:text-xl font-semibold text-black mb-2 md:mb-3 leading-snug">
                   {benefit.title}
                 </h3>
 
-                {/* Description - smaller text on mobile, hide on very small screens */}
-                <p className="text-xs md:text-base text-gray-600 leading-relaxed hidden sm:block">
+                {/* Description - comfortable reading size with mobile text */}
+                <p className="text-sm md:text-base text-gray-600 leading-relaxed">
                   <span className="md:hidden">{benefit.mobileDescription}</span>
                   <span className="hidden md:inline">{benefit.description}</span>
                 </p>
