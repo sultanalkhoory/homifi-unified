@@ -278,8 +278,15 @@ export default function PerfectHomeKey() {
                     {/* Screen area - WITH overflow hidden to contain content */}
                     <div className="relative w-full h-full bg-black rounded-[22px] sm:rounded-[30px] md:rounded-[37px] overflow-hidden">
                       
-                      {/* HomeKey Card Content - properly contained */}
-                      <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-black">
+                      {/* HomeKey Card Content - Just background image + Dynamic Island */}
+                      <div className="absolute inset-0">
+                        
+                        {/* Background Image - your HomeKey screen */}
+                        <img 
+                          src="/iphone-homekey-screen.png" 
+                          alt="HomeKey Screen"
+                          className="absolute inset-0 w-full h-full object-cover"
+                        />
                         
                         {/* Dynamic Island at top - scaled for all sizes */}
                         <div className="absolute top-1 sm:top-1.5 md:top-2 left-1/2 -translate-x-1/2 z-40">
