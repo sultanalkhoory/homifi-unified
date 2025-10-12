@@ -13,6 +13,7 @@ export default function BenefitsSection() {
       ),
       title: 'Automate Your Routines',
       description: 'Set up automation for lighting, climate, and security with simple tap-and-go controls. No coding, no complexity.',
+      mobileDescription: 'Simple automation for lights, climate, and security. No coding needed.',
       color: 'from-amber-400 to-orange-500'
     },
     {
@@ -23,6 +24,7 @@ export default function BenefitsSection() {
       ),
       title: 'Seamless Integrations',
       description: 'Works with Apple Home, Google Home, and Amazon Alexa. Connect your favorite smart devices—all in one place.',
+      mobileDescription: 'Works with Apple Home, Google Home, and Alexa.',
       color: 'from-blue-400 to-indigo-500'
     },
     {
@@ -33,6 +35,7 @@ export default function BenefitsSection() {
       ),
       title: 'Voice Control Everything',
       description: '"Hey Siri, good night." Works with Siri, Alexa, and Google Assistant for effortless hands-free control.',
+      mobileDescription: 'Control with Siri, Alexa, or Google Assistant.',
       color: 'from-cyan-400 to-teal-500'
     },
     {
@@ -43,12 +46,13 @@ export default function BenefitsSection() {
       ),
       title: 'Built for Apple',
       description: 'Deep integration with Apple Home, HomeKey, and Apple TV. Your iPhone becomes your key, your TV your security monitor.',
+      mobileDescription: 'Apple Home, HomeKey, and Apple TV integration.',
       color: 'from-gray-400 to-gray-600'
     }
   ];
 
   return (
-    <section className="py-20 md:py-32 bg-gradient-to-b from-white to-gray-50">
+    <section className="py-12 md:py-20 lg:py-32 bg-gradient-to-b from-white to-gray-50">
       <div className="mx-auto max-w-7xl px-4">
         
         {/* Section Header */}
@@ -57,12 +61,12 @@ export default function BenefitsSection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
-          className="text-center mb-16 md:mb-20"
+          className="text-center mb-8 md:mb-16 lg:mb-20"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-black mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold tracking-tight text-black mb-3 md:mb-4">
             Smart home, simplified.
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base md:text-xl text-gray-600 max-w-3xl mx-auto">
             Everything you need to transform your home—effortless automation, seamless control, and intelligent design.
           </p>
         </motion.div>
@@ -94,9 +98,10 @@ export default function BenefitsSection() {
                   {benefit.title}
                 </h3>
 
-                {/* Description - smaller text on mobile */}
+                {/* Description - shorter text on mobile, full on desktop */}
                 <p className="text-sm md:text-base text-gray-600 leading-relaxed">
-                  {benefit.description}
+                  <span className="md:hidden">{benefit.mobileDescription}</span>
+                  <span className="hidden md:inline">{benefit.description}</span>
                 </p>
 
                 {/* Hover effect */}
