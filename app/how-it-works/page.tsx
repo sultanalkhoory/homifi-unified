@@ -933,47 +933,195 @@ function StepScreen({ screenType, isActive }: { screenType: string; isActive: bo
           initial={{ opacity: 0 }}
           animate={{ opacity: isActive ? 1 : 0.3 }}
           transition={{ duration: 0.5 }}
-          className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 p-6"
+          className="absolute inset-0 bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 p-6 overflow-hidden"
         >
-          {/* Control center style */}
-          <div className="h-full flex flex-col">
-            <div className="text-center pt-12 mb-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Control Center</h3>
-              <p className="text-xs text-gray-600">Voice, touch, or watch</p>
-            </div>
-            
-            <div className="flex-1 grid grid-cols-2 gap-3">
+          {/* Ambient glow */}
+          <div className="absolute inset-0 bg-gradient-radial from-emerald-500/10 via-transparent to-transparent opacity-50" />
+
+          {/* Content */}
+          <div className="relative h-full flex flex-col">
+            {/* Header */}
+            <motion.div
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="text-center pt-6 pb-3"
+            >
+              <h3 className="text-lg font-semibold text-white mb-1">Your Home, Anywhere</h3>
+              <p className="text-xs text-emerald-400">Complete Apple ecosystem</p>
+            </motion.div>
+
+            {/* Main Control Center Card */}
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.4, type: 'spring', stiffness: 200 }}
+              className="mb-4"
+            >
+              <div className="rounded-3xl p-5 bg-gradient-to-br from-emerald-400 via-green-500 to-emerald-600 shadow-xl relative overflow-hidden">
+                {/* Subtle shine effect */}
+                <div className="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent" />
+                
+                <div className="relative">
+                  {/* Top row: Icon + Status */}
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                      </svg>
+                    </div>
+                    <motion.div
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                      className="w-2 h-2 rounded-full bg-white shadow-lg"
+                    />
+                  </div>
+
+                  {/* Room info */}
+                  <div className="mb-2">
+                    <h4 className="text-white font-semibold text-base">Living Room</h4>
+                    <p className="text-white/90 text-xs">All systems active</p>
+                  </div>
+
+                  {/* Quick stats */}
+                  <div className="flex gap-3 text-white/90 text-[10px]">
+                    <span>💡 Lights On</span>
+                    <span>🌡️ 22°C</span>
+                    <span>🪟 Open</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Apple Ecosystem Grid */}
+            <div className="flex-1 grid grid-cols-2 gap-2">
+              
+              {/* Voice Control - Siri */}
               <motion.div
-                initial={{ scale: 0.9 }}
-                animate={{ scale: 1 }}
-                className="col-span-2 rounded-3xl p-6 bg-gradient-to-br from-green-400 to-emerald-500 text-white shadow-xl"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.6, type: 'spring' }}
+                className="bg-white/5 backdrop-blur-xl rounded-2xl p-3 border border-white/10 relative overflow-hidden"
               >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                {/* Siri wave animation */}
+                <motion.div
+                  animate={{
+                    scaleX: [1, 1.2, 1],
+                    opacity: [0.2, 0.4, 0.2]
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-orange-500/20 blur-xl"
+                />
+                
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-2 shadow-lg">
+                    <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clipRule="evenodd"/>
                     </svg>
                   </div>
-                  <div className="flex-1">
-                    <p className="font-semibold">Living Room</p>
-                    <p className="text-sm text-white/90">All systems active</p>
-                  </div>
+                  <p className="text-white text-xs font-semibold mb-0.5">Siri</p>
+                  <p className="text-white/60 text-[9px]">"Good night"</p>
                 </div>
               </motion.div>
 
-              {['Siri', 'HomeKey', 'Apple TV'].map((feature, i) => (
+              {/* HomeKey */}
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.7, type: 'spring' }}
+                className="bg-white/5 backdrop-blur-xl rounded-2xl p-3 border border-white/10 relative overflow-hidden"
+              >
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center mb-2 shadow-lg">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                    </svg>
+                  </div>
+                  <p className="text-white text-xs font-semibold mb-0.5">HomeKey</p>
+                  <p className="text-white/60 text-[9px]">Tap to unlock</p>
+                </div>
+
+                {/* NFC waves */}
                 <motion.div
-                  key={feature}
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: i * 0.1 }}
-                  className="aspect-square rounded-2xl bg-white/80 backdrop-blur-sm p-4 shadow-sm border border-gray-200 flex flex-col items-center justify-center"
+                  animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0, 0.3] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="absolute top-3 right-3 w-8 h-8 rounded-full border-2 border-orange-400"
+                />
+              </motion.div>
+
+              {/* Apple Watch */}
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.8, type: 'spring' }}
+                className="bg-white/5 backdrop-blur-xl rounded-2xl p-3 border border-white/10"
+              >
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center mb-2 shadow-lg border-2 border-gray-600">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <p className="text-white text-xs font-semibold mb-0.5">Watch</p>
+                <p className="text-white/60 text-[9px]">Quick access</p>
+              </motion.div>
+
+              {/* Apple TV */}
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.9, type: 'spring' }}
+                className="bg-white/5 backdrop-blur-xl rounded-2xl p-3 border border-white/10 relative overflow-hidden"
+              >
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gray-800 to-black flex items-center justify-center mb-2 shadow-lg">
+                    <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
+                    </svg>
+                  </div>
+                  <p className="text-white text-xs font-semibold mb-0.5">Apple TV</p>
+                  <p className="text-white/60 text-[9px]">Live camera</p>
+                </div>
+
+                {/* Recording indicator */}
+                <motion.div
+                  animate={{ opacity: [1, 0.3, 1] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                  className="absolute top-2 right-2 flex items-center gap-1"
                 >
-                  <div className="w-10 h-10 rounded-full bg-gray-200 mb-2" />
-                  <p className="text-xs font-medium text-gray-900">{feature}</p>
+                  <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
                 </motion.div>
-              ))}
+              </motion.div>
             </div>
+
+            {/* Voice Command Example */}
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 1.0 }}
+              className="mt-4 flex items-center justify-center gap-2 bg-white/5 backdrop-blur-xl rounded-full px-4 py-2.5 border border-white/10"
+            >
+              <motion.div
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+                className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-400 to-pink-400"
+              />
+              <span className="text-white/90 text-xs font-medium">"Hey Siri, I'm home"</span>
+            </motion.div>
+
+            {/* Support Badge */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2 }}
+              className="mt-3 text-center"
+            >
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                <svg className="w-3 h-3 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span className="text-emerald-400 text-[10px] font-medium">3 months support included</span>
+              </div>
+            </motion.div>
           </div>
         </motion.div>
       );
