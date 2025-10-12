@@ -1149,37 +1149,256 @@ function StepScreen({ screenType, isActive }: { screenType: string; isActive: bo
           initial={{ opacity: 0 }}
           animate={{ opacity: isActive ? 1 : 0.3 }}
           transition={{ duration: 0.5 }}
-          className="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 p-6"
+          className="absolute inset-0 bg-gradient-to-br from-purple-50 via-pink-50 to-purple-50 p-6 overflow-hidden"
         >
-          {/* Automation scenes */}
-          <div className="h-full flex flex-col">
-            <div className="text-center pt-12 mb-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Your Scenes</h3>
-              <p className="text-xs text-gray-600">Tap to activate</p>
-            </div>
-            
-            <div className="flex-1 grid grid-cols-2 gap-3">
-              {[
-                { name: 'Good Morning', icon: '☀️', time: '7:00 AM', color: 'from-amber-400 to-orange-500' },
-                { name: 'Movie Time', icon: '🎬', time: 'Manual', color: 'from-purple-400 to-pink-500' },
-                { name: 'Good Night', icon: '🌙', time: '10:30 PM', color: 'from-indigo-400 to-blue-500' },
-                { name: "I'm Home", icon: '🏠', time: 'Location', color: 'from-green-400 to-emerald-500' }
-              ].map((scene, i) => (
-                <motion.div
-                  key={scene.name}
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: i * 0.1 }}
-                  className="aspect-square rounded-2xl bg-white/80 backdrop-blur-sm p-4 shadow-sm border border-gray-200 flex flex-col items-center justify-center text-center"
-                >
-                  <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${scene.color} flex items-center justify-center text-2xl mb-2`}>
-                    {scene.icon}
+          {/* Ambient glow */}
+          <div className="absolute inset-0 bg-gradient-radial from-purple-400/10 via-transparent to-transparent" />
+
+          {/* Content */}
+          <div className="relative h-full flex flex-col">
+            {/* Header */}
+            <motion.div
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="text-center pt-6 pb-3"
+            >
+              <h3 className="text-lg font-semibold text-gray-900 mb-1">Smart Automations</h3>
+              <p className="text-xs text-purple-600">No coding required</p>
+            </motion.div>
+
+            {/* Active Scene Demo - "Good Morning" */}
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.4, type: 'spring', stiffness: 200 }}
+              className="mb-3"
+            >
+              <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-4 border border-purple-200 shadow-lg relative overflow-hidden">
+                {/* Scene Header */}
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-2xl shadow-md">
+                    ☀️
                   </div>
-                  <p className="text-xs font-semibold text-gray-900">{scene.name}</p>
-                  <p className="text-[10px] text-gray-500">{scene.time}</p>
+                  <div className="flex-1">
+                    <h4 className="text-base font-semibold text-gray-900">Good Morning</h4>
+                    <div className="flex items-center gap-1.5">
+                      <svg className="w-3 h-3 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span className="text-[10px] text-gray-600">Weekdays at 7:00 AM</span>
+                    </div>
+                  </div>
+                  
+                  {/* Active indicator */}
+                  <motion.div
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="w-2 h-2 rounded-full bg-green-500"
+                  />
+                </div>
+
+                {/* Actions - Cascading sequence */}
+                <div className="space-y-2">
+                  {/* Action 1: Open Curtains */}
+                  <motion.div
+                    initial={{ x: -10, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.8 }}
+                    className="flex items-center gap-2 bg-gradient-to-r from-cyan-50 to-blue-50 rounded-xl p-2 border border-cyan-200"
+                  >
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: 0.9, type: 'spring' }}
+                      className="w-6 h-6 rounded-lg bg-cyan-500 flex items-center justify-center text-xs"
+                    >
+                      1
+                    </motion.div>
+                    <span className="text-xs text-gray-700">Open curtains</span>
+                    <motion.span
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 1.0 }}
+                      className="ml-auto text-[10px] text-cyan-600"
+                    >
+                      🪟 →
+                    </motion.span>
+                  </motion.div>
+
+                  {/* Action 2: Adjust Temperature */}
+                  <motion.div
+                    initial={{ x: -10, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 1.2 }}
+                    className="flex items-center gap-2 bg-gradient-to-r from-orange-50 to-amber-50 rounded-xl p-2 border border-orange-200"
+                  >
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: 1.3, type: 'spring' }}
+                      className="w-6 h-6 rounded-lg bg-orange-500 flex items-center justify-center text-xs"
+                    >
+                      2
+                    </motion.div>
+                    <span className="text-xs text-gray-700">Set temperature to 22°C</span>
+                    <motion.span
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 1.4 }}
+                      className="ml-auto text-[10px] text-orange-600"
+                    >
+                      🌡️ ↑
+                    </motion.span>
+                  </motion.div>
+
+                  {/* Action 3: Turn on Lights */}
+                  <motion.div
+                    initial={{ x: -10, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 1.6 }}
+                    className="flex items-center gap-2 bg-gradient-to-r from-yellow-50 to-amber-50 rounded-xl p-2 border border-yellow-200"
+                  >
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: 1.7, type: 'spring' }}
+                      className="w-6 h-6 rounded-lg bg-yellow-500 flex items-center justify-center text-xs"
+                    >
+                      3
+                    </motion.div>
+                    <span className="text-xs text-gray-700">Lights to 60%</span>
+                    <motion.span
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 1.8 }}
+                      className="ml-auto text-[10px] text-yellow-600"
+                    >
+                      💡 ↑
+                    </motion.span>
+                  </motion.div>
+                </div>
+
+                {/* Executing indicator */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 2.0 }}
+                  className="flex items-center justify-center gap-1.5 mt-3 pt-3 border-t border-purple-100"
+                >
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                    className="w-3 h-3 border-2 border-purple-500 border-t-transparent rounded-full"
+                  />
+                  <span className="text-[9px] text-purple-600 font-medium">Executing automation...</span>
                 </motion.div>
-              ))}
+              </div>
+            </motion.div>
+
+            {/* Other Scene Cards - Compact Grid */}
+            <div className="flex-1 grid grid-cols-2 gap-2">
+              
+              {/* Movie Time */}
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 2.2, type: 'spring' }}
+                className="bg-white/60 backdrop-blur-sm rounded-2xl p-3 border border-purple-100 shadow-sm"
+              >
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center text-xl mb-2 shadow-md">
+                  🎬
+                </div>
+                <p className="text-xs font-semibold text-gray-900 mb-0.5">Movie Time</p>
+                <p className="text-[9px] text-gray-500">3 actions • Manual</p>
+                
+                {/* Mini action icons */}
+                <div className="flex gap-1 mt-2">
+                  <div className="w-1 h-1 rounded-full bg-indigo-400" />
+                  <div className="w-1 h-1 rounded-full bg-purple-400" />
+                  <div className="w-1 h-1 rounded-full bg-pink-400" />
+                </div>
+              </motion.div>
+
+              {/* Good Night */}
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 2.3, type: 'spring' }}
+                className="bg-white/60 backdrop-blur-sm rounded-2xl p-3 border border-purple-100 shadow-sm"
+              >
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center text-xl mb-2 shadow-md">
+                  🌙
+                </div>
+                <p className="text-xs font-semibold text-gray-900 mb-0.5">Good Night</p>
+                <p className="text-[9px] text-gray-500">5 actions • 10:30 PM</p>
+                
+                <div className="flex gap-1 mt-2">
+                  <div className="w-1 h-1 rounded-full bg-indigo-400" />
+                  <div className="w-1 h-1 rounded-full bg-blue-400" />
+                  <div className="w-1 h-1 rounded-full bg-cyan-400" />
+                  <div className="w-1 h-1 rounded-full bg-teal-400" />
+                  <div className="w-1 h-1 rounded-full bg-green-400" />
+                </div>
+              </motion.div>
+
+              {/* I'm Home */}
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 2.4, type: 'spring' }}
+                className="bg-white/60 backdrop-blur-sm rounded-2xl p-3 border border-purple-100 shadow-sm"
+              >
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center text-xl mb-2 shadow-md">
+                  🏠
+                </div>
+                <p className="text-xs font-semibold text-gray-900 mb-0.5">I'm Home</p>
+                <p className="text-[9px] text-gray-500">4 actions • Location</p>
+                
+                <div className="flex gap-1 mt-2">
+                  <div className="w-1 h-1 rounded-full bg-green-400" />
+                  <div className="w-1 h-1 rounded-full bg-emerald-400" />
+                  <div className="w-1 h-1 rounded-full bg-teal-400" />
+                  <div className="w-1 h-1 rounded-full bg-cyan-400" />
+                </div>
+              </motion.div>
+
+              {/* Leaving Home */}
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 2.5, type: 'spring' }}
+                className="bg-white/60 backdrop-blur-sm rounded-2xl p-3 border border-purple-100 shadow-sm"
+              >
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-red-400 to-pink-500 flex items-center justify-center text-xl mb-2 shadow-md">
+                  🚗
+                </div>
+                <p className="text-xs font-semibold text-gray-900 mb-0.5">Leaving Home</p>
+                <p className="text-[9px] text-gray-500">6 actions • Location</p>
+                
+                <div className="flex gap-1 mt-2">
+                  <div className="w-1 h-1 rounded-full bg-red-400" />
+                  <div className="w-1 h-1 rounded-full bg-pink-400" />
+                  <div className="w-1 h-1 rounded-full bg-rose-400" />
+                  <div className="w-1 h-1 rounded-full bg-orange-400" />
+                  <div className="w-1 h-1 rounded-full bg-amber-400" />
+                  <div className="w-1 h-1 rounded-full bg-yellow-400" />
+                </div>
+              </motion.div>
             </div>
+
+            {/* Voice Control Badge */}
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 2.6 }}
+              className="mt-3 flex items-center justify-center gap-2 bg-white/60 backdrop-blur-sm rounded-full px-4 py-2 border border-purple-100"
+            >
+              <svg className="w-3 h-3 text-purple-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clipRule="evenodd"/>
+              </svg>
+              <span className="text-[10px] text-gray-700 font-medium">Activate with voice or tap</span>
+            </motion.div>
           </div>
         </motion.div>
       );
