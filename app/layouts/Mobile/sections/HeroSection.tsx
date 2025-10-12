@@ -31,7 +31,7 @@ const badges: Badge[] = [
     label: 'Voice Control',
     detail: 'Just ask Siri, Alexa, or Google',
     color: 'from-blue-400 to-blue-500',
-    position: { top: '15%', left: '-12%' },
+    position: { top: '15%', left: '-11%' }, // Adjusted for 230px phone
     icon: (
       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
         <path fillRule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clipRule="evenodd"/>
@@ -43,7 +43,7 @@ const badges: Badge[] = [
     label: 'HomeKey',
     detail: 'Unlock with your iPhone or Watch',
     color: 'from-green-400 to-emerald-500',
-    position: { top: '15%', right: '-12%' },
+    position: { top: '15%', right: '-11%' }, // Adjusted for 230px phone
     icon: (
       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
         <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"/>
@@ -55,7 +55,7 @@ const badges: Badge[] = [
     label: 'Security',
     detail: "See who's at your door instantly",
     color: 'from-red-400 to-pink-500',
-    position: { bottom: '15%', left: '-12%' },
+    position: { bottom: '15%', left: '-11%' }, // Adjusted for 230px phone
     icon: (
       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
         <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
@@ -68,7 +68,7 @@ const badges: Badge[] = [
     label: 'Instant Alerts',
     detail: 'Real-time notifications everywhere',
     color: 'from-orange-400 to-amber-500',
-    position: { bottom: '15%', right: '-12%' },
+    position: { bottom: '15%', right: '-11%' }, // Adjusted for 230px phone
     icon: (
       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
         <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/>
@@ -144,15 +144,15 @@ export default function HeroSection() {
           }}
           className="relative z-10"
         >
-          {/* iPhone Frame - 20% larger (240x480) */}
+          {/* iPhone Frame - 15% larger (230x460) */}
           <div 
-            className="relative w-[240px] h-[480px] bg-black rounded-[48px] p-2.5" 
+            className="relative w-[230px] h-[460px] bg-black rounded-[46px] p-2.5" 
             style={{ 
               transform: 'translate3d(0,0,0)',
               boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.12), 0 16px 48px rgba(0, 0, 0, 0.16)'
             }}
           >
-            <div className="relative w-full h-full bg-white rounded-[38px] overflow-hidden" style={{ transform: 'translate3d(0,0,0)' }}>
+            <div className="relative w-full h-full bg-white rounded-[37px] overflow-hidden" style={{ transform: 'translate3d(0,0,0)' }}>
               <img
                 src="/Curtains-Open-Lights-On.png"
                 alt="HomiFi App"
@@ -161,7 +161,7 @@ export default function HeroSection() {
               />
               
               {/* Dynamic Island - scaled proportionally */}
-              <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-[84px] h-[22px] bg-black rounded-full z-30" />
+              <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-[80px] h-[21px] bg-black rounded-full z-30" />
             </div>
           </div>
         </motion.div>
