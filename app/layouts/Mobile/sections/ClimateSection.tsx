@@ -273,13 +273,13 @@ export default function ClimateSection() {
                   </div>
                 </div>
 
-                {/* NEW: Center-floating VisionOS glass card with segmented control */}
-                <div className="absolute inset-0 flex items-center justify-center px-8 pointer-events-none">
+                {/* NEW: Bottom-anchored VisionOS glass card with segmented control */}
+                <div className="absolute inset-x-0 bottom-0 flex justify-center px-6 pb-6 pointer-events-none">
                   <motion.div
-                    initial={{ scale: 0.9, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.6, delay: 0.3 }}
-                    className="w-full max-w-[200px] pointer-events-auto"
+                    className="w-full max-w-[220px] pointer-events-auto"
                   >
                     <div
                       className="relative rounded-3xl overflow-hidden"
