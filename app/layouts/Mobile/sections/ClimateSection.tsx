@@ -11,6 +11,8 @@ export default function ClimateSection() {
   const [manual, setManual] = useState(false);
   const [started, setStarted] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragX, setDragX] = useState(0);
   const isInView = useInView(containerRef, { once: true, amount: 0.4 });
 
   // Auto trigger once in view (26 -> 18)
@@ -46,6 +48,46 @@ export default function ClimateSection() {
     if (t === temperature || isAnimating) return;
     setManual(true);
     animateToTemperature(t);
+  };
+
+  // Get segment index from temperature
+  const getSegmentIndex = () => {
+    if (temperature === 18) return 0;
+    if (temperature === 22) return 1;
+    return 2;
+  };
+
+  // Get temperature from segment index
+  const getTempFromIndex = (index: number) => {
+    if (index === 0) return 18;
+    if (index === 1) return 22;
+    return 26;
+  };
+
+  // Handle drag interactions
+  const handleDragStart = () => {
+    setIsDragging(true);
+  };
+
+  const handleDrag = (event: any, info: any) => {
+    if (!isDragging) return;
+    setDragX(info.offset.x);
+  };
+
+  const handleDragEnd = (event: any, info: any) => {
+    setIsDragging(false);
+    
+    // Calculate which segment we're closest to
+    const segmentWidth = 80; // approximate width of each segment
+    const totalOffset = (getSegmentIndex() * segmentWidth) + info.offset.x;
+    const targetIndex = Math.max(0, Math.min(2, Math.round(totalOffset / segmentWidth)));
+    
+    const targetTemp = getTempFromIndex(targetIndex);
+    if (targetTemp !== temperature) {
+      handleTempChange(targetTemp);
+    }
+    
+    setDragX(0);
   };
 
   // Mode + dynamic colors (keep original logic)
@@ -293,12 +335,24 @@ export default function ClimateSection() {
                       }}
                     >
                       <div className="relative grid grid-cols-3 gap-1">
-                        {/* Liquid sliding indicator with elastic morphing */}
+                        {/* Draggable liquid sliding indicator with elastic morphing */}
                         <motion.div
-                          className="absolute top-1 bottom-1 rounded-xl"
+                          className="absolute top-1 bottom-1 rounded-xl cursor-grab active:cursor-grabbing"
+                          drag="x"
+                          dragConstraints={{ left: 0, right: 0 }}
+                          dragElastic={0.2}
+                          onDragStart={handleDragStart}
+                          onDrag={handleDrag}
+                          onDragEnd={handleDragEnd}
                           animate={{
-                            left: temperature === 18 ? '4px' : temperature === 22 ? 'calc(33.333% + 2px)' : 'calc(66.666%)',
-                            width: 'calc(33.333% - 4px)',
+                            left: isDragging 
+                              ? undefined 
+                              : (temperature === 18 ? '4px' : temperature === 22 ? 'calc(33.333% + 2px)' : 'calc(66.666%)'),
+                            x: isDragging ? dragX : 0,
+                            width: isDragging 
+                              ? `calc(33.333% + ${Math.abs(dragX) * 0.1}px)` // Stretch effect
+                              : 'calc(33.333% - 4px)',
+                            scaleX: isDragging ? 1 + Math.abs(dragX) * 0.002 : 1, // Subtle squish
                             background: temperature === 18 
                               ? 'linear-gradient(135deg, #60A5FA 0%, #22D3EE 100%)'
                               : temperature === 22
@@ -311,20 +365,34 @@ export default function ClimateSection() {
                               : '0 4px 12px rgba(251, 146, 60, 0.4), 0 2px 4px rgba(251, 146, 60, 0.2)'
                           }}
                           transition={{ 
-                            type: 'spring', 
+                            type: isDragging ? 'tween' : 'spring',
                             stiffness: 280, 
-                            damping: 22,
+                            damping: isDragging ? 40 : 22,
                             mass: 0.8,
-                            // Elastic overshoot for liquid feel
                           }}
                         >
                           {/* Inner glow for depth */}
+                          <div
+                            className="absolute inset-0 rounded-xl"
+                            style={{
+                              background: 'linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 50%, transparent 100%)'
+                            }}
+                          />
+                          
+                          {/* Iridescent shimmer edge effect (Apple Home style) */}
                           <motion.div
                             className="absolute inset-0 rounded-xl"
                             animate={{
-                              background: 'linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 50%, transparent 100%)'
+                              background: isDragging
+                                ? 'linear-gradient(90deg, rgba(255,255,255,0.4) 0%, transparent 20%, transparent 80%, rgba(255,255,255,0.4) 100%)'
+                                : 'linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%)',
+                              opacity: isDragging ? [0.5, 1, 0.5] : 0.3
                             }}
-                            transition={{ duration: 0.4 }}
+                            transition={{
+                              duration: isDragging ? 1.5 : 0.3,
+                              repeat: isDragging ? Infinity : 0,
+                              ease: 'easeInOut'
+                            }}
                           />
                         </motion.div>
 
