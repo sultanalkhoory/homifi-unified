@@ -43,7 +43,7 @@ export default function HeroSection() {
                   <span className="text-gray-300">or</span>
                   <img src="/badges/works-with-google-home.webp" alt="Google Home" className="h-6 opacity-80 hover:opacity-100 transition-opacity" />
                   <span className="text-gray-300">or</span>
-                  <img src="/badges/works-with-alexa.webp" alt="Alexa" className="h-7 opacity-80 hover:opacity-100 transition-opacity" />
+                  <img src="/badges/works-with-alexa.webp" alt="Alexa" className="h-6 opacity-80 hover:opacity-100 transition-opacity" />
                 </div>
               </div>
             </div>
