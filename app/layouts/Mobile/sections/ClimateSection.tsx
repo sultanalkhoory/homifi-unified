@@ -10,42 +10,88 @@ export default function ClimateSection() {
   const [temperature, setTemperature] = useState(26);
   const [manual, setManual] = useState(false);
   const [started, setStarted] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
   const isInView = useInView(containerRef, { once: true, amount: 0.4 });
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // Auto trigger to 22° when section enters view
   useEffect(() => {
     if (isInView && !manual && !started) {
       setStarted(true);
       setTimeout(() => {
-        setTemperature(22);
+        animateToTemperature(22);
       }, 500);
     }
   }, [isInView, manual, started]);
 
-  // Direct temperature change (no stepping through)
-  const handleTempChange = (t: number) => {
-    if (t === temperature) return;
-    setManual(true);
-    setTemperature(t);
+  // Gradual temperature animation - step through each degree
+  const animateToTemperature = (targetTemp: number) => {
+    // Clear any existing animation
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+    
+    if (isAnimating) {
+      setIsAnimating(false);
+    }
+    
+    setIsAnimating(true);
+
+    const current = temperature;
+    const steps = Math.abs(targetTemp - current);
+    const direction = targetTemp > current ? 1 : -1;
+
+    let step = 0;
+    intervalRef.current = setInterval(() => {
+      step++;
+      const newTemp = current + direction * step;
+      setTemperature(newTemp);
+
+      // Stop when target reached
+      if (step >= steps) {
+        if (intervalRef.current) {
+          clearInterval(intervalRef.current);
+          intervalRef.current = null;
+        }
+        setIsAnimating(false);
+      }
+    }, 400); // 400ms per degree
   };
 
-  // Mode based on exact temperature
+  // Temperature change handler
+  const handleTempChange = (t: number) => {
+    if (t === temperature || isAnimating) return;
+    setManual(true);
+    animateToTemperature(t);
+  };
+
+  // Cleanup interval on unmount
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, []);
+
+  // Mode based on temperature ranges (gradual transition)
   const getMode = () => {
-    if (temperature === 18) return 'cool';
-    if (temperature === 26) return 'warm';
+    if (temperature <= 20) return 'cool';
+    if (temperature >= 24) return 'warm';
     return 'comfort';
   };
 
-  // Dynamic colors
+  // Dynamic colors based on temperature (smooth transitions)
   const getEffectColors = (t: number) => {
-    if (t === 26) {
+    if (t >= 24) {
       return {
         primary: 'rgba(255, 193, 7, 0.1)',
         secondary: 'rgba(255, 152, 0, 0.15)',
         particle: 'bg-orange-200',
         vignette: 'rgba(255, 193, 7, 0.05), rgba(255, 152, 0, 0.03)',
       };
-    } else if (t === 18) {
+    } else if (t <= 20) {
       return {
         primary: 'rgba(59, 130, 246, 0.18)',
         secondary: 'rgba(96, 165, 250, 0.25)',
