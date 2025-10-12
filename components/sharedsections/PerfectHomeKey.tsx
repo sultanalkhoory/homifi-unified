@@ -301,16 +301,16 @@ export default function PerfectHomeKey() {
                         }}
                       />
 
-                      {/* Dynamic Island - ONLY UI element */}
+                      {/* Dynamic Island - ONLY UI element - fixed desktop sizing */}
                       <div className="absolute top-1 sm:top-1.5 md:top-2 left-1/2 -translate-x-1/2 z-40">
                         <motion.div
                           animate={{
                             width: lockState === 'locked' ? '35px' 
-                              : lockState === 'unlocking' ? '60px' 
-                              : '75px',
+                              : lockState === 'unlocking' ? '80px' 
+                              : '95px',
                             height: lockState === 'locked' ? '10px' 
-                              : lockState === 'unlocking' ? '16px'
-                              : '20px'
+                              : lockState === 'unlocking' ? '18px'
+                              : '22px'
                           }}
                           transition={{ 
                             duration: 0.4, 
