@@ -50,7 +50,7 @@ export default function Footer() {
               <ul className="space-y-2">
                 <li><Link href="#contact" className="text-gray-500 text-sm hover:text-black">Get in Touch</Link></li>
                 <li><Link href="#support" className="text-gray-500 text-sm hover:text-black">Support</Link></li>
-                <li><a href="mailto:info@homifi.com" className="text-gray-500 text-sm hover:text-black">info@homifi.com</a></li>
+                <li><a href="mailto:info@homifi.com" className="text-gray-500 text-sm hover:text-black">info@homifi.ae</a></li>
               </ul>
             </div>
           </div>
