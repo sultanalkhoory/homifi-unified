@@ -8,12 +8,14 @@ import SecuritySection from './sections/SecuritySection';
 import AppleTVInterlude from './sections/AppleTVInterlude';
 import Header from '@/app/layouts/Desktop/sections/Header';
 import Footer from '@/app/layouts/Desktop/sections/Footer';
+import PerfectBenefits from '@/app/layouts/Desktop/sections/PerfectBenefits';
 
 export default function Page() {
   return (
     <main className="overflow-x-hidden">
       <Header />
       <HeroSection />
+      <PerfectBenefits />
       <LightsSection />
       <CurtainsSection />
       <ClimateSection />
