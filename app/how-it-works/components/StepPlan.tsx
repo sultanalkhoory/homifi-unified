@@ -51,18 +51,18 @@ export default function StepPlan({
             Your Home Layout
           </h3>
           <p className={`${fullScreen ? 'text-base' : 'text-xs'} text-gray-600`}>
-            Custom zone mapping • No programming required
+            Custom zone mapping • No programming knowledge required
           </p>
         </motion.div>
 
-        {/* Realistic Floor Plan */}
-        <div className="flex-1 flex items-center justify-center relative">
+        {/* Isometric 3D Floor Plan - Apple Style */}
+        <div className="flex-1 flex items-center justify-center perspective-1000 relative">
           
           {/* Subtle heat map overlay */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ 
-              opacity: [0.2, 0.35, 0.2],
+              opacity: [0.25, 0.4, 0.25],
               scale: [0.8, 1, 0.8]
             }}
             transition={{ 
@@ -73,301 +73,190 @@ export default function StepPlan({
             className="absolute inset-0 pointer-events-none"
             style={{
               background: `
-                radial-gradient(circle at 25% 35%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 75% 65%, rgba(99, 102, 241, 0.12) 0%, transparent 50%)
+                radial-gradient(circle at 30% 40%, rgba(59, 130, 246, 0.18) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(99, 102, 241, 0.15) 0%, transparent 50%)
               `,
               filter: 'blur(40px)'
             }}
           />
 
-          {/* House Container - Realistic proportions */}
-          <div className={`relative ${fullScreen ? 'w-[500px] h-[420px]' : 'w-[380px] h-[320px]'}`}>
+          {/* House Container - Isometric 3D View */}
+          <div 
+            className={`relative ${fullScreen ? 'w-[420px] h-[420px]' : 'w-[320px] h-[320px]'}`}
+            style={{
+              transform: 'rotateX(60deg) rotateZ(-45deg)',
+              transformStyle: 'preserve-3d'
+            }}
+          >
             
-            {/* Outer house boundary */}
-            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 500 420">
-              {/* Main house outline with architectural detail */}
-              <motion.path
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 0.5 }}
-                transition={{ delay: 0.3, duration: 1.2 }}
-                d="M 40 60 L 40 380 L 460 380 L 460 60 Z"
-                fill="none"
-                stroke="rgba(59, 130, 246, 0.6)"
-                strokeWidth="3"
-                strokeDasharray="8,4"
-              />
-              
-              {/* Interior walls - creating realistic layout */}
-              
-              {/* Vertical hallway (center) */}
-              <motion.line
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ delay: 0.5, duration: 0.7 }}
-                x1="250" y1="60" x2="250" y2="280"
-                stroke="rgba(59, 130, 246, 0.4)"
-                strokeWidth="2"
-              />
-              
-              {/* Horizontal division (living area vs bedrooms) */}
-              <motion.line
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ delay: 0.6, duration: 0.7 }}
-                x1="40" y1="280" x2="460" y2="280"
-                stroke="rgba(59, 130, 246, 0.4)"
-                strokeWidth="2"
-              />
-              
-              {/* Kitchen wall */}
-              <motion.line
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ delay: 0.65, duration: 0.6 }}
-                x1="250" y1="280" x2="250" y2="380"
-                stroke="rgba(59, 130, 246, 0.4)"
-                strokeWidth="2"
-              />
-              
-              {/* Office wall separator */}
-              <motion.line
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ delay: 0.7, duration: 0.5 }}
-                x1="355" y1="60" x2="355" y2="280"
-                stroke="rgba(59, 130, 246, 0.4)"
-                strokeWidth="2"
-              />
-
-              {/* Entry foyer indicator */}
+            {/* House outline - isometric blueprint */}
+            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 200">
+              {/* Main house outline */}
               <motion.rect
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.15 }}
-                transition={{ delay: 0.8, duration: 0.5 }}
-                x="215" y="55" width="70" height="40"
-                fill="rgba(59, 130, 246, 0.3)"
-                rx="4"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 0.4 }}
+                transition={{ delay: 0.3, duration: 1 }}
+                x="20" y="40" width="160" height="140"
+                fill="none"
+                stroke="rgba(59, 130, 246, 0.5)"
+                strokeWidth="2"
+                strokeDasharray="5,5"
+              />
+              
+              {/* Interior walls - realistic layout */}
+              <motion.line
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ delay: 0.5, duration: 0.6 }}
+                x1="100" y1="40" x2="100" y2="180"
+                stroke="rgba(59, 130, 246, 0.3)"
+                strokeWidth="1"
+                strokeDasharray="3,3"
+              />
+              <motion.line
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ delay: 0.6, duration: 0.6 }}
+                x1="20" y1="110" x2="180" y2="110"
+                stroke="rgba(59, 130, 246, 0.3)"
+                strokeWidth="1"
+                strokeDasharray="3,3"
               />
             </svg>
 
-            {/* LIVING ROOM - Large, left side */}
+            {/* LIVING ROOM - Clean isometric card */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.5, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute"
-              style={{ 
-                top: '18%', 
-                left: '10%', 
-                width: '36%', 
-                height: '46%' 
-              }}
+              initial={{ opacity: 0, z: -50 }}
+              animate={{ opacity: 1, z: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="absolute top-0 left-0 w-36 h-32"
+              style={{ transformStyle: 'preserve-3d' }}
             >
-              <div className="relative w-full h-full bg-white/95 backdrop-blur-sm border-2 border-blue-400 rounded-xl shadow-lg overflow-hidden">
-                {/* Room label */}
-                <div className="absolute top-3 left-3 right-3">
-                  <p className="text-sm font-bold text-gray-900">Living Room</p>
-                  <p className="text-xs text-gray-500 mt-0.5">Main entertainment area</p>
+              <div className="absolute inset-0 bg-white/90 backdrop-blur-sm border-2 border-blue-300 rounded-lg shadow-lg">
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-2">
+                  <span className="text-sm font-semibold text-gray-900 mb-2">Living Room</span>
+                  
+                  {/* Device icons - clean and simple */}
+                  <div className="flex gap-1.5">
+                    {['💡', '🌡️', '🪟'].map((icon, i) => (
+                      <motion.span
+                        key={i}
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: 0.8 + i * 0.15, type: 'spring', stiffness: 300 }}
+                        className="text-lg"
+                      >
+                        {icon}
+                      </motion.span>
+                    ))}
+                  </div>
                 </div>
-                
-                {/* Device icons - sequential pop-in */}
-                <div className="absolute bottom-3 left-3 right-3 flex gap-2 flex-wrap">
-                  {[
-                    { icon: '💡', label: 'Lights', delay: 0.9 },
-                    { icon: '🌡️', label: 'Climate', delay: 1.05 },
-                    { icon: '🪟', label: 'Curtains', delay: 1.2 }
-                  ].map((device, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{ 
-                        delay: device.delay, 
-                        type: 'spring',
-                        stiffness: 300,
-                        damping: 15
-                      }}
-                      className="flex items-center gap-1.5 bg-blue-50 px-2 py-1 rounded-lg"
-                    >
-                      <span className="text-sm">{device.icon}</span>
-                      <span className="text-xs font-medium text-blue-700">{device.label}</span>
-                    </motion.div>
-                  ))}
-                </div>
-
-                {/* Subtle gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-400/5 to-indigo-400/5 pointer-events-none" />
               </div>
             </motion.div>
 
-            {/* OFFICE - Top right */}
+            {/* KITCHEN - Clean card */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.6, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute"
-              style={{ 
-                top: '18%', 
-                right: '8%', 
-                width: '24%', 
-                height: '46%' 
-              }}
+              initial={{ opacity: 0, z: -50 }}
+              animate={{ opacity: 1, z: 0 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+              className="absolute top-0 right-0 w-36 h-32"
+              style={{ transformStyle: 'preserve-3d' }}
             >
-              <div className="relative w-full h-full bg-white/95 backdrop-blur-sm border-2 border-indigo-400 rounded-xl shadow-lg overflow-hidden">
-                <div className="absolute top-3 left-3 right-3">
-                  <p className="text-sm font-bold text-gray-900">Office</p>
-                  <p className="text-xs text-gray-500 mt-0.5">Work from home</p>
+              <div className="absolute inset-0 bg-white/90 backdrop-blur-sm border-2 border-indigo-300 rounded-lg shadow-lg">
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-2">
+                  <span className="text-sm font-semibold text-gray-900 mb-2">Kitchen</span>
+                  
+                  <div className="flex gap-1.5">
+                    {['💡', '🔌'].map((icon, i) => (
+                      <motion.span
+                        key={i}
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: 1.0 + i * 0.15, type: 'spring', stiffness: 300 }}
+                        className="text-lg"
+                      >
+                        {icon}
+                      </motion.span>
+                    ))}
+                  </div>
                 </div>
-                
-                <div className="absolute bottom-3 left-3 right-3 flex flex-col gap-2">
-                  {[
-                    { icon: '💡', label: 'Lights', delay: 1.35 },
-                    { icon: '🔌', label: 'Outlets', delay: 1.5 }
-                  ].map((device, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{ 
-                        delay: device.delay, 
-                        type: 'spring',
-                        stiffness: 300,
-                        damping: 15
-                      }}
-                      className="flex items-center gap-1.5 bg-indigo-50 px-2 py-1 rounded-lg"
-                    >
-                      <span className="text-sm">{device.icon}</span>
-                      <span className="text-xs font-medium text-indigo-700">{device.label}</span>
-                    </motion.div>
-                  ))}
-                </div>
-
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-400/5 to-purple-400/5 pointer-events-none" />
               </div>
             </motion.div>
 
-            {/* KITCHEN - Bottom left */}
+            {/* BEDROOM - Clean card */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.7, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute"
-              style={{ 
-                bottom: '8%', 
-                left: '10%', 
-                width: '36%', 
-                height: '28%' 
-              }}
+              initial={{ opacity: 0, z: -50 }}
+              animate={{ opacity: 1, z: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="absolute bottom-0 left-0 w-36 h-32"
+              style={{ transformStyle: 'preserve-3d' }}
             >
-              <div className="relative w-full h-full bg-white/95 backdrop-blur-sm border-2 border-cyan-400 rounded-xl shadow-lg overflow-hidden">
-                <div className="absolute top-2 left-3 right-3">
-                  <p className="text-sm font-bold text-gray-900">Kitchen</p>
-                  <p className="text-xs text-gray-500 mt-0.5">Smart appliances</p>
+              <div className="absolute inset-0 bg-white/90 backdrop-blur-sm border-2 border-purple-300 rounded-lg shadow-lg">
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-2">
+                  <span className="text-sm font-semibold text-gray-900 mb-2">Bedroom</span>
+                  
+                  <div className="flex gap-1.5">
+                    {['💡', '🌡️', '🔒'].map((icon, i) => (
+                      <motion.span
+                        key={i}
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: 1.2 + i * 0.15, type: 'spring', stiffness: 300 }}
+                        className="text-lg"
+                      >
+                        {icon}
+                      </motion.span>
+                    ))}
+                  </div>
                 </div>
-                
-                <div className="absolute bottom-2 left-3 right-3 flex gap-2">
-                  {[
-                    { icon: '💡', label: 'Lights', delay: 1.65 },
-                    { icon: '🔌', label: 'Outlets', delay: 1.8 }
-                  ].map((device, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{ 
-                        delay: device.delay, 
-                        type: 'spring',
-                        stiffness: 300,
-                        damping: 15
-                      }}
-                      className="flex items-center gap-1.5 bg-cyan-50 px-2 py-1 rounded-lg"
-                    >
-                      <span className="text-sm">{device.icon}</span>
-                      <span className="text-xs font-medium text-cyan-700">{device.label}</span>
-                    </motion.div>
-                  ))}
-                </div>
-
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/5 to-blue-400/5 pointer-events-none" />
               </div>
             </motion.div>
 
-            {/* BEDROOM - Bottom right */}
+            {/* OFFICE - Clean card */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.8, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute"
-              style={{ 
-                bottom: '8%', 
-                right: '8%', 
-                width: '36%', 
-                height: '28%' 
-              }}
+              initial={{ opacity: 0, z: -50 }}
+              animate={{ opacity: 1, z: 0 }}
+              transition={{ delay: 0.7, duration: 0.6 }}
+              className="absolute bottom-0 right-0 w-36 h-32"
+              style={{ transformStyle: 'preserve-3d' }}
             >
-              <div className="relative w-full h-full bg-white/95 backdrop-blur-sm border-2 border-purple-400 rounded-xl shadow-lg overflow-hidden">
-                <div className="absolute top-2 left-3 right-3">
-                  <p className="text-sm font-bold text-gray-900">Bedroom</p>
-                  <p className="text-xs text-gray-500 mt-0.5">Rest & relaxation</p>
+              <div className="absolute inset-0 bg-white/90 backdrop-blur-sm border-2 border-cyan-300 rounded-lg shadow-lg">
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-2">
+                  <span className="text-sm font-semibold text-gray-900 mb-2">Office</span>
+                  
+                  <div className="flex gap-1.5">
+                    {['💡', '🔌'].map((icon, i) => (
+                      <motion.span
+                        key={i}
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: 1.4 + i * 0.15, type: 'spring', stiffness: 300 }}
+                        className="text-lg"
+                      >
+                        {icon}
+                      </motion.span>
+                    ))}
+                  </div>
                 </div>
-                
-                <div className="absolute bottom-2 left-3 right-3 flex gap-2">
-                  {[
-                    { icon: '💡', label: 'Lights', delay: 1.95 },
-                    { icon: '🌡️', label: 'Climate', delay: 2.1 },
-                    { icon: '🔒', label: 'Lock', delay: 2.25 }
-                  ].map((device, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{ 
-                        delay: device.delay, 
-                        type: 'spring',
-                        stiffness: 300,
-                        damping: 15
-                      }}
-                      className="flex items-center gap-1.5 bg-purple-50 px-2 py-1 rounded-lg"
-                    >
-                      <span className="text-sm">{device.icon}</span>
-                      <span className="text-xs font-medium text-purple-700">{device.label}</span>
-                    </motion.div>
-                  ))}
-                </div>
-
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-400/5 to-indigo-400/5 pointer-events-none" />
               </div>
             </motion.div>
 
-            {/* Hallway label */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.0 }}
-              className="absolute top-[12%] left-1/2 -translate-x-1/2"
-            >
-              <div className="bg-blue-500/10 backdrop-blur-sm px-3 py-1 rounded-full border border-blue-300/30">
-                <p className="text-xs font-medium text-blue-600">Entry & Hallway</p>
-              </div>
-            </motion.div>
-
-            {/* Connectivity indicators */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 5 }}>
-              {/* Connection lines between rooms */}
+            {/* Connecting lines - subtle */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ transform: 'translateZ(10px)' }}>
               <motion.line
                 initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 0.2 }}
-                transition={{ delay: 2.4, duration: 0.6 }}
-                x1="46%" y1="40%" x2="54%" y2="40%"
+                animate={{ pathLength: 1, opacity: 0.3 }}
+                transition={{ delay: 1.6, duration: 0.5 }}
+                x1="28%" y1="50%" x2="72%" y2="50%"
                 stroke="rgb(59, 130, 246)"
                 strokeWidth="2"
                 strokeDasharray="4 4"
               />
               <motion.line
                 initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 0.2 }}
-                transition={{ delay: 2.5, duration: 0.6 }}
-                x1="50%" y1="60%" x2="50%" y2="72%"
+                animate={{ pathLength: 1, opacity: 0.3 }}
+                transition={{ delay: 1.7, duration: 0.5 }}
+                x1="50%" y1="28%" x2="50%" y2="72%"
                 stroke="rgb(59, 130, 246)"
                 strokeWidth="2"
                 strokeDasharray="4 4"
@@ -380,19 +269,19 @@ export default function StepPlan({
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 2.6 }}
+          transition={{ delay: 1.8 }}
           className="flex justify-around items-center py-4 px-6 bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200"
         >
           <div className="text-center">
             <motion.p
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
-              transition={{ delay: 2.7, type: 'spring', stiffness: 200 }}
+              transition={{ delay: 1.9, type: 'spring', stiffness: 200 }}
               className={`${fullScreen ? 'text-2xl' : 'text-lg'} font-bold text-blue-600`}
             >
               12
             </motion.p>
-            <p className={`${fullScreen ? 'text-xs' : 'text-[9px]'} text-gray-600`}>Smart Devices</p>
+            <p className={`${fullScreen ? 'text-xs' : 'text-[9px]'} text-gray-600`}>Devices</p>
           </div>
           
           <div className="w-px h-8 bg-gray-300" />
@@ -401,12 +290,12 @@ export default function StepPlan({
             <motion.p
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
-              transition={{ delay: 2.8, type: 'spring', stiffness: 200 }}
+              transition={{ delay: 2.0, type: 'spring', stiffness: 200 }}
               className={`${fullScreen ? 'text-2xl' : 'text-lg'} font-bold text-indigo-600`}
             >
               4
             </motion.p>
-            <p className={`${fullScreen ? 'text-xs' : 'text-[9px]'} text-gray-600`}>Connected Zones</p>
+            <p className={`${fullScreen ? 'text-xs' : 'text-[9px]'} text-gray-600`}>Zones</p>
           </div>
           
           <div className="w-px h-8 bg-gray-300" />
@@ -415,12 +304,12 @@ export default function StepPlan({
             <motion.p
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
-              transition={{ delay: 2.9, type: 'spring', stiffness: 200 }}
+              transition={{ delay: 2.1, type: 'spring', stiffness: 200 }}
               className={`${fullScreen ? 'text-2xl' : 'text-lg'} font-bold text-cyan-600`}
             >
               100%
             </motion.p>
-            <p className={`${fullScreen ? 'text-xs' : 'text-[9px]'} text-gray-600`}>Full Coverage</p>
+            <p className={`${fullScreen ? 'text-xs' : 'text-[9px]'} text-gray-600`}>Coverage</p>
           </div>
         </motion.div>
       </div>
