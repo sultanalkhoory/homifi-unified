@@ -118,13 +118,34 @@ export default function StepWifi({
                 </motion.div>
               ))}
 
-              {/* Ubiquiti UniFi AP - Iconic clean design */}
-              <div className={`relative ${fullScreen ? 'w-16 h-16' : 'w-12 h-12'} rounded-full bg-white shadow-2xl flex items-center justify-center border border-gray-100`}>
+              {/* Ubiquiti UniFi AP - 3D design with depth */}
+              <div className={`relative ${fullScreen ? 'w-16 h-16' : 'w-12 h-12'} rounded-full bg-gradient-to-br from-gray-50 to-white flex items-center justify-center`}
+                style={{
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'
+                }}
+              >
+                {/* Outer rim - adds depth */}
+                <div className="absolute inset-0 rounded-full border border-gray-200" 
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(200,200,200,0.3) 100%)'
+                  }}
+                />
                 
-                {/* Blue LED ring - UniFi signature */}
-                <div className={`${fullScreen ? 'w-7 h-7' : 'w-5 h-5'} rounded-full border-[3px] border-cyan-500`} />
+                {/* Blue LED ring - UniFi signature with glow */}
+                <div className={`relative ${fullScreen ? 'w-7 h-7' : 'w-5 h-5'} rounded-full border-[3px] border-cyan-500`}
+                  style={{
+                    boxShadow: '0 0 8px rgba(6, 182, 212, 0.5), inset 0 1px 2px rgba(6, 182, 212, 0.3)'
+                  }}
+                />
 
-                {/* Status LED - top right corner */}
+                {/* Top highlight - creates 3D dome effect */}
+                <div className="absolute inset-0 rounded-full pointer-events-none"
+                  style={{
+                    background: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8) 0%, transparent 50%)'
+                  }}
+                />
+
+                {/* Status LED with 3D effect */}
                 <motion.div
                   animate={{ 
                     opacity: [1, 0.6, 1],
@@ -135,7 +156,10 @@ export default function StepWifi({
                     repeat: Infinity,
                     ease: [0.45, 0, 0.55, 1]
                   }}
-                  className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-green-400 shadow-md shadow-green-400/60"
+                  className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-green-400"
+                  style={{
+                    boxShadow: '0 0 6px rgba(74, 222, 128, 0.8), 0 1px 2px rgba(0, 0, 0, 0.2)'
+                  }}
                 />
               </div>
 
@@ -187,20 +211,38 @@ export default function StepWifi({
                 </motion.div>
               ))}
 
-              {/* Ubiquiti AP - Clean white design */}
-              <div className={`relative ${fullScreen ? 'w-16 h-16' : 'w-12 h-12'} rounded-full bg-white shadow-2xl flex items-center justify-center`}>
-                <div className="absolute inset-0 rounded-full border-2 border-gray-100" />
+              {/* Ubiquiti UniFi AP - 3D design with depth */}
+              <div className={`relative ${fullScreen ? 'w-16 h-16' : 'w-12 h-12'} rounded-full bg-gradient-to-br from-gray-50 to-white flex items-center justify-center`}
+                style={{
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'
+                }}
+              >
+                {/* Outer rim - adds depth */}
+                <div className="absolute inset-0 rounded-full border border-gray-200" 
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(200,200,200,0.3) 100%)'
+                  }}
+                />
                 
-                <div className="relative w-full h-full flex items-center justify-center">
-                  <div className="absolute w-10 h-10 rounded-full border border-gray-200" />
-                  <div className="absolute w-6 h-6 rounded-full border border-gray-300" />
-                  <div className="absolute w-3 h-3 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500" />
-                </div>
+                {/* Blue LED ring - UniFi signature with glow */}
+                <div className={`relative ${fullScreen ? 'w-7 h-7' : 'w-5 h-5'} rounded-full border-[3px] border-blue-500`}
+                  style={{
+                    boxShadow: '0 0 8px rgba(59, 130, 246, 0.5), inset 0 1px 2px rgba(59, 130, 246, 0.3)'
+                  }}
+                />
 
+                {/* Top highlight - creates 3D dome effect */}
+                <div className="absolute inset-0 rounded-full pointer-events-none"
+                  style={{
+                    background: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8) 0%, transparent 50%)'
+                  }}
+                />
+
+                {/* Status LED with 3D effect */}
                 <motion.div
                   animate={{ 
-                    opacity: [1, 0.5, 1],
-                    scale: [1, 0.95, 1]
+                    opacity: [1, 0.6, 1],
+                    scale: [1, 0.9, 1]
                   }}
                   transition={{ 
                     duration: 2.5,
@@ -208,7 +250,10 @@ export default function StepWifi({
                     delay: 0.7,
                     ease: [0.45, 0, 0.55, 1]
                   }}
-                  className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-green-400 shadow-lg shadow-green-400/60"
+                  className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-green-400"
+                  style={{
+                    boxShadow: '0 0 6px rgba(74, 222, 128, 0.8), 0 1px 2px rgba(0, 0, 0, 0.2)'
+                  }}
                 />
               </div>
 
