@@ -91,63 +91,137 @@ export default function HeroFloating() {
 
           {/* Right: Floating Ecosystem */}
           <div className="relative h-[600px] lg:h-[700px]">
-            {/* Central house */}
-            <motion.div 
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            {/* Connection lines - MUST be first to render behind everything */}
+            <svg 
+              className="absolute inset-0 w-full h-full pointer-events-none" 
+              style={{ zIndex: 1 }}
+              preserveAspectRatio="none"
             >
-              <div className="relative">
-                {/* Pulsing glow */}
-                <div className="absolute inset-0 bg-blue-500/20 rounded-3xl blur-3xl animate-pulse" />
-                
-                {/* House card */}
-                <div className="relative bg-gradient-to-br from-blue-500 to-blue-600 p-8 rounded-3xl shadow-2xl text-white">
-                  <HomeIcon />
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Connection lines */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none z-10" style={{ overflow: 'visible' }}>
               <defs>
-                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.3" />
-                  <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.7" />
-                  <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.3" />
+                <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.4" />
+                  <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.4" />
                 </linearGradient>
               </defs>
-              {devices.map((device, i) => {
-                // Calculate center and device positions in pixels
-                const svgRect = { width: 600, height: 700 }; // Match container size
-                const centerX = '50%';
-                const centerY = '50%';
-                const deviceX = `calc(50% + ${device.x}px)`;
-                const deviceY = `calc(50% + ${device.y}px)`;
-                
-                return (
-                  <motion.line
-                    key={i}
-                    x1={centerX}
-                    y1={centerY}
-                    x2={deviceX}
-                    y2={deviceY}
-                    stroke="url(#gradient)"
-                    strokeWidth="2"
-                    strokeDasharray="8 4"
-                    strokeLinecap="round"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ 
-                      duration: 0.8, 
-                      delay: device.delay + 0.3,
-                      ease: [0.22, 1, 0.36, 1]
-                    }}
-                  />
-                );
-              })}
+              
+              {/* Draw ALL 6 lines explicitly */}
+              {/* Line 1: Lights */}
+              <motion.line
+                x1="50%"
+                y1="50%"
+                x2="calc(50% - 180px)"
+                y2="calc(50% - 120px)"
+                stroke="url(#lineGradient)"
+                strokeWidth="2"
+                strokeDasharray="8 4"
+                strokeLinecap="round"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              />
+              
+              {/* Line 2: Climate */}
+              <motion.line
+                x1="50%"
+                y1="50%"
+                x2="calc(50% + 180px)"
+                y2="calc(50% - 100px)"
+                stroke="url(#lineGradient)"
+                strokeWidth="2"
+                strokeDasharray="8 4"
+                strokeLinecap="round"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              />
+              
+              {/* Line 3: Security */}
+              <motion.line
+                x1="50%"
+                y1="50%"
+                x2="calc(50% - 200px)"
+                y2="calc(50% + 80px)"
+                stroke="url(#lineGradient)"
+                strokeWidth="2"
+                strokeDasharray="8 4"
+                strokeLinecap="round"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              />
+              
+              {/* Line 4: Locks */}
+              <motion.line
+                x1="50%"
+                y1="50%"
+                x2="calc(50% + 160px)"
+                y2="calc(50% + 120px)"
+                stroke="url(#lineGradient)"
+                strokeWidth="2"
+                strokeDasharray="8 4"
+                strokeLinecap="round"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              />
+              
+              {/* Line 5: Curtains (TOP) */}
+              <motion.line
+                x1="50%"
+                y1="50%"
+                x2="50%"
+                y2="calc(50% - 180px)"
+                stroke="url(#lineGradient)"
+                strokeWidth="2"
+                strokeDasharray="8 4"
+                strokeLinecap="round"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
+              />
+              
+              {/* Line 6: Network (BOTTOM) */}
+              <motion.line
+                x1="50%"
+                y1="50%"
+                x2="50%"
+                y2="calc(50% + 160px)"
+                stroke="url(#lineGradient)"
+                strokeWidth="2"
+                strokeDasharray="8 4"
+                strokeLinecap="round"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 1.3, ease: [0.22, 1, 0.36, 1] }}
+              />
             </svg>
+
+            {/* Central house - perfectly centered */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style={{ zIndex: 20 }}>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              >
+            {/* Central house - perfectly centered */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style={{ zIndex: 20 }}>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <div className="relative">
+                  {/* Pulsing glow */}
+                  <div className="absolute inset-0 bg-blue-500/20 rounded-3xl blur-3xl animate-pulse" />
+                  
+                  {/* House card */}
+                  <div className="relative bg-gradient-to-br from-blue-500 to-blue-600 p-8 rounded-3xl shadow-2xl text-white">
+                    <HomeIcon />
+                  </div>
+                </div>
+              </motion.div>
+            </div>
 
             {/* Floating device cards */}
             {devices.map((device, i) => {
@@ -155,7 +229,12 @@ export default function HeroFloating() {
               return (
                 <motion.div
                   key={i}
-                  className="absolute z-30"
+                  className="absolute"
+                  style={{
+                    left: '50%',
+                    top: '50%',
+                    zIndex: 30
+                  }}
                   initial={{ 
                     opacity: 0, 
                     scale: 0.5,
@@ -172,10 +251,6 @@ export default function HeroFloating() {
                     duration: 0.6,
                     delay: device.delay,
                     ease: [0.22, 1, 0.36, 1]
-                  }}
-                  style={{
-                    left: '50%',
-                    top: '50%',
                   }}
                 >
                   <motion.div 
