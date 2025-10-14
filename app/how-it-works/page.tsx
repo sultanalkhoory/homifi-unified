@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import Header from '@/app/layouts/Desktop/sections/Header';
+import Footer from '@/app/layouts/Desktop/sections/Footer';
 import StepPlan from './components/StepPlan';
 import StepWifi from './components/StepWifi';
 import StepDevices from './components/StepDevices';
@@ -93,7 +95,11 @@ export default function HowItWorksPage() {
   }, [steps.length]);
 
   return (
-    <main className="bg-white">
+    <>
+      {/* Fixed header navigation */}
+      <Header />
+      
+      <main className="bg-white">
       
       {/* Hero Intro - ENHANCED */}
       <section className="relative min-h-screen flex items-center justify-center px-4 pt-32 pb-20 overflow-hidden">
@@ -444,5 +450,9 @@ export default function HowItWorksPage() {
         </div>
       </section>
     </main>
+    
+    {/* Footer */}
+    <Footer />
+  </>
   );
 }
