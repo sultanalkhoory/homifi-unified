@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Header from '@/app/layouts/Desktop/sections/Header';
 import Footer from '@/app/layouts/Desktop/sections/Footer';
+import HeroFloating from './components/HeroFloating';
 import StepDesign from './components/StepDesign';
 import StepInstall from './components/StepInstall';
 import StepCustomize from './components/StepCustomize';
@@ -109,44 +110,8 @@ export default function HowItWorksPage() {
         </div>
       </div>
 
-      {/* Hero Section - Apple-style gradient background */}
-      <section className="min-h-screen flex items-center justify-center px-4 pt-20 bg-gradient-to-b from-white via-slate-50 to-blue-100/40">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold text-gray-900 mb-6 tracking-tight">
-              We install. You enjoy.
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              Professional setup, effortless living.
-            </p>
-
-            {/* Scroll hint */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1, duration: 0.8 }}
-              className="flex flex-col items-center gap-2 text-gray-400 mt-16"
-            >
-              <span className="text-sm">Scroll to explore</span>
-              <motion.svg
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </motion.svg>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
+      {/* NEW: Floating Hero Section */}
+      <HeroFloating />
 
       {/* Scrolling Steps Container */}
       <div ref={containerRef}>
