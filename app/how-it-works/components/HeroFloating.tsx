@@ -97,7 +97,6 @@ export default function HeroFloating() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              style={{ transform: `translate(-50%, calc(-50% + ${scrollY * 0.1}px))` }}
             >
               <div className="relative">
                 {/* Pulsing glow */}
@@ -111,33 +110,43 @@ export default function HeroFloating() {
             </motion.div>
 
             {/* Connection lines */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none z-10">
+            <svg className="absolute inset-0 w-full h-full pointer-events-none z-10" style={{ overflow: 'visible' }}>
               <defs>
-                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.2" />
-                  <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.6" />
-                  <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.2" />
+                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.3" />
+                  <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.7" />
+                  <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.3" />
                 </linearGradient>
               </defs>
-              {devices.map((device, i) => (
-                <motion.line
-                  key={i}
-                  x1="50%"
-                  y1="50%"
-                  x2={`calc(50% + ${device.x}px)`}
-                  y2={`calc(50% + ${device.y}px)`}
-                  stroke="url(#gradient)"
-                  strokeWidth="2"
-                  strokeDasharray="4 4"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: 1, opacity: 1 }}
-                  transition={{ 
-                    duration: 0.8, 
-                    delay: device.delay + 0.3,
-                    ease: [0.22, 1, 0.36, 1]
-                  }}
-                />
-              ))}
+              {devices.map((device, i) => {
+                // Calculate center and device positions in pixels
+                const svgRect = { width: 600, height: 700 }; // Match container size
+                const centerX = '50%';
+                const centerY = '50%';
+                const deviceX = `calc(50% + ${device.x}px)`;
+                const deviceY = `calc(50% + ${device.y}px)`;
+                
+                return (
+                  <motion.line
+                    key={i}
+                    x1={centerX}
+                    y1={centerY}
+                    x2={deviceX}
+                    y2={deviceY}
+                    stroke="url(#gradient)"
+                    strokeWidth="2"
+                    strokeDasharray="8 4"
+                    strokeLinecap="round"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ 
+                      duration: 0.8, 
+                      delay: device.delay + 0.3,
+                      ease: [0.22, 1, 0.36, 1]
+                    }}
+                  />
+                );
+              })}
             </svg>
 
             {/* Floating device cards */}
