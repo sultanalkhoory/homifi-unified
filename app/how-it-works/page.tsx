@@ -1,14 +1,13 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Header from '@/app/layouts/Desktop/sections/Header';
 import Footer from '@/app/layouts/Desktop/sections/Footer';
-import StepPlan from './components/StepPlan';
-import StepWifi from './components/StepWifi';
-import StepDevices from './components/StepDevices';
-import StepAutomation from './components/StepAutomation';
-import StepControl from './components/StepControl';
+import StepDesign from './components/StepDesign';
+import StepInstall from './components/StepInstall';
+import StepCustomize from './components/StepCustomize';
+import StepSupport from './components/StepSupport';
 
 export default function HowItWorksPage() {
   const [activeStep, setActiveStep] = useState(0);
@@ -19,25 +18,25 @@ export default function HowItWorksPage() {
       id: 0, 
       title: 'We Design Your Home', 
       subtitle: 'We assess your space and create a custom plan',
-      component: StepPlan 
+      component: StepDesign 
     },
     { 
       id: 1, 
       title: 'We Install Everything', 
       subtitle: 'Everything installed, connected, and ready to use',
-      component: StepWifi 
+      component: StepInstall 
     },
     { 
       id: 2, 
       title: 'You Customize More', 
       subtitle: 'Simple taps to create scenes and automation—no coding needed',
-      component: StepAutomation 
+      component: StepCustomize 
     },
     { 
       id: 3, 
       title: 'We Support You', 
       subtitle: 'Ongoing help, maintenance, and updates whenever needed',
-      component: StepControl 
+      component: StepSupport 
     }
   ];
 
