@@ -13,11 +13,11 @@ import { motion } from 'framer-motion';
 interface SceneCard {
   id: string;
   name: string;
-  icon: JSX.Element;
+  icon: React.ReactNode;
   color: string;
   devices: {
     name: string;
-    icon: JSX.Element;
+    icon: React.ReactNode;
     enabled: boolean;
   }[];
 }
