@@ -105,7 +105,6 @@ export default function HeroFloating() {
                 </linearGradient>
               </defs>
               
-              {/* Draw ALL 6 lines explicitly */}
               {/* Line 1: Lights */}
               <motion.line
                 x1="50%"
@@ -197,13 +196,6 @@ export default function HeroFloating() {
               />
             </svg>
 
-            {/* Central house - perfectly centered */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style={{ zIndex: 20 }}>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              >
             {/* Central house - perfectly centered */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style={{ zIndex: 20 }}>
               <motion.div
