@@ -111,7 +111,7 @@ export default function HowItWorksPage() {
       </div>
 
       {/* Hero Section - Apple-style gradient background */}
-      <section className="min-h-screen flex items-center justify-center px-4 pt-20 bg-gradient-to-b from-white via-gray-50 to-blue-50/30">
+      <section className="min-h-screen flex items-center justify-center px-4 pt-20 bg-gradient-to-b from-white via-slate-50 to-blue-100/40">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
