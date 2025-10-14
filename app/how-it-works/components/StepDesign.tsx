@@ -1,13 +1,23 @@
 import { motion } from 'framer-motion';
 
-export default function StepDesign({ isActive = true, fullScreen = true }: { isActive?: boolean; fullScreen?: boolean }) {
-  const zones = [
-    { name: 'Living Room', devices: 5, position: { x: 30, y: 30 } },
-    { name: 'Kitchen', devices: 3, position: { x: 70, y: 30 } },
-    { name: 'Bedroom', devices: 4, position: { x: 30, y: 70 } },
-    { name: 'Office', devices: 3, position: { x: 70, y: 70 } }
-  ];
-
+/**
+ * Step 1: Design Your Plan - Realistic Architectural Floor Plan
+ * 
+ * Features:
+ * - Realistic room shapes and sizes (not uniform squares)
+ * - Entry foyer with hallway connecting rooms
+ * - Proper spatial relationships (kitchen near dining, bedrooms grouped)
+ * - Blue color scheme throughout (NO green)
+ * - Sequential device icon animations
+ * - Architectural blueprint aesthetic
+ */
+export default function StepDesign({ 
+  isActive = true, 
+  fullScreen = true 
+}: { 
+  isActive?: boolean;
+  fullScreen?: boolean;
+}) {
   return (
     <motion.div
       initial={{ opacity: 0.3 }}
@@ -15,6 +25,19 @@ export default function StepDesign({ isActive = true, fullScreen = true }: { isA
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className={`${fullScreen ? 'rounded-3xl shadow-2xl' : 'absolute inset-0'} bg-gradient-to-br from-slate-50 to-blue-50 p-6 md:p-12 overflow-hidden`}
     >
+      {/* Blueprint grid background */}
+      <div 
+        className="absolute inset-0 opacity-30"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: fullScreen ? '30px 30px' : '20px 20px'
+        }}
+      />
+
+      {/* Content */}
       <div className="relative h-full flex flex-col">
         
         {/* Header */}
@@ -22,149 +45,242 @@ export default function StepDesign({ isActive = true, fullScreen = true }: { isA
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="text-center mb-6"
+          className="text-center mb-8"
         >
           <h3 className={`${fullScreen ? 'text-2xl md:text-3xl' : 'text-lg'} font-semibold text-gray-900 mb-2`}>
-            Custom Zone Mapping
+            Your Home Layout
           </h3>
           <p className={`${fullScreen ? 'text-base' : 'text-xs'} text-gray-600`}>
-            Every room optimized for your lifestyle
+            Custom zone mapping • No programming knowledge required
           </p>
         </motion.div>
 
-        {/* Blueprint View */}
-        <div className="flex-1 relative">
+        {/* Isometric 3D Floor Plan - Apple Style */}
+        <div className="flex-1 flex items-center justify-center perspective-1000 relative">
           
-          {/* Blueprint Grid Background */}
-          <div className="absolute inset-0 opacity-20">
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-blue-400" />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#grid)" />
-            </svg>
-          </div>
+          {/* Subtle heat map overlay */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ 
+              opacity: [0.25, 0.4, 0.25],
+              scale: [0.8, 1, 0.8]
+            }}
+            transition={{ 
+              duration: 5,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: `
+                radial-gradient(circle at 30% 40%, rgba(59, 130, 246, 0.18) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(99, 102, 241, 0.15) 0%, transparent 50%)
+              `,
+              filter: 'blur(40px)'
+            }}
+          />
 
-          {/* Floor Plan Container */}
-          <div className="absolute inset-0 flex items-center justify-center p-4">
-            <div className="relative w-full max-w-2xl aspect-square">
-              
-              {/* House Outline */}
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute inset-0 border-4 border-gray-300 rounded-2xl bg-white/50 backdrop-blur-sm"
+          {/* House Container - Isometric 3D View */}
+          <div 
+            className={`relative ${fullScreen ? 'w-[420px] h-[420px]' : 'w-[320px] h-[320px]'}`}
+            style={{
+              transform: 'rotateX(60deg) rotateZ(-45deg)',
+              transformStyle: 'preserve-3d'
+            }}
+          >
+            
+            {/* House outline - isometric blueprint */}
+            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 200">
+              {/* Main house outline */}
+              <motion.rect
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 0.4 }}
+                transition={{ delay: 0.3, duration: 1 }}
+                x="20" y="40" width="160" height="140"
+                fill="none"
+                stroke="rgba(59, 130, 246, 0.5)"
+                strokeWidth="2"
+                strokeDasharray="5,5"
               />
+              
+              {/* Interior walls - realistic layout */}
+              <motion.line
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ delay: 0.5, duration: 0.6 }}
+                x1="100" y1="40" x2="100" y2="180"
+                stroke="rgba(59, 130, 246, 0.3)"
+                strokeWidth="1"
+                strokeDasharray="3,3"
+              />
+              <motion.line
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ delay: 0.6, duration: 0.6 }}
+                x1="20" y1="110" x2="180" y2="110"
+                stroke="rgba(59, 130, 246, 0.3)"
+                strokeWidth="1"
+                strokeDasharray="3,3"
+              />
+            </svg>
 
-              {/* Zone Cards */}
-              {zones.map((zone, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ scale: 0, opacity: 0, rotate: -10 }}
-                  animate={{ scale: 1, opacity: 1, rotate: 0 }}
-                  transition={{ 
-                    delay: 0.5 + index * 0.15,
-                    type: 'spring',
-                    stiffness: 200,
-                    damping: 15
-                  }}
-                  className="absolute"
-                  style={{
-                    left: `${zone.position.x}%`,
-                    top: `${zone.position.y}%`,
-                    transform: 'translate(-50%, -50%)'
-                  }}
-                >
-                  {/* Zone Card */}
-                  <div className="relative group">
-                    {/* Glow Effect */}
-                    <div className="absolute -inset-2 bg-gradient-to-br from-blue-400/30 to-indigo-400/30 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    
-                    {/* Card Content */}
-                    <div className="relative bg-white rounded-xl p-4 shadow-lg border-2 border-blue-200 min-w-[140px]">
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
-                          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                          </svg>
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-gray-900 text-sm">{zone.name}</h4>
-                          <p className="text-xs text-gray-500">{zone.devices} devices</p>
-                        </div>
-                      </div>
-                      
-                      {/* Device Indicators */}
-                      <div className="flex gap-1 mt-2">
-                        {Array.from({ length: zone.devices }).map((_, i) => (
-                          <motion.div
-                            key={i}
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            transition={{ delay: 0.8 + index * 0.15 + i * 0.05 }}
-                            className="w-1.5 h-1.5 rounded-full bg-green-500"
-                          />
-                        ))}
-                      </div>
+            {/* LIVING ROOM - Clean isometric card */}
+            <motion.div
+              initial={{ opacity: 0, z: -50 }}
+              animate={{ opacity: 1, z: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="absolute top-0 left-0 w-36 h-32"
+              style={{ transformStyle: 'preserve-3d' }}
+            >
+              <div className="absolute inset-0 bg-white/90 backdrop-blur-sm border-2 border-blue-300 rounded-lg shadow-lg">
+                <div className="p-3">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                      </svg>
                     </div>
-
-                    {/* Connection Line to Center */}
-                    <svg className="absolute top-1/2 left-1/2 pointer-events-none" style={{ width: '200%', height: '200%', transform: 'translate(-50%, -50%)' }}>
-                      <motion.line
-                        initial={{ pathLength: 0, opacity: 0 }}
-                        animate={{ pathLength: 1, opacity: 0.2 }}
-                        transition={{ delay: 0.7 + index * 0.15, duration: 0.6 }}
-                        x1="50%" y1="50%"
-                        x2="50%" y2="50%"
-                        stroke="url(#lineGradient)"
-                        strokeWidth="2"
-                        strokeDasharray="4 4"
-                      />
-                      <defs>
-                        <linearGradient id="lineGradient">
-                          <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.5" />
-                          <stop offset="100%" stopColor="#6366f1" stopOpacity="0.5" />
-                        </linearGradient>
-                      </defs>
-                    </svg>
+                    <div>
+                      <p className="text-xs font-bold text-gray-900">Living Room</p>
+                      <p className="text-[10px] text-gray-500">5 devices</p>
+                    </div>
                   </div>
-                </motion.div>
-              ))}
-
-              {/* Center Hub */}
-              <motion.div
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 1.2, type: 'spring', stiffness: 200, damping: 15 }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-              >
-                <div className="relative">
-                  {/* Pulsing Ring */}
-                  <motion.div
-                    animate={{ 
-                      scale: [1, 1.5, 1],
-                      opacity: [0.5, 0, 0.5]
-                    }}
-                    transition={{ 
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                    className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 blur-md"
-                  />
                   
-                  {/* Hub Icon */}
-                  <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 shadow-xl flex items-center justify-center border-4 border-white">
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
+                  {/* Device icons - sequential animation */}
+                  <div className="flex gap-1 flex-wrap">
+                    {['💡', '🌡️', '📺', '🔊', '📹'].map((icon, i) => (
+                      <motion.span
+                        key={i}
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: 0.8 + i * 0.1, type: 'spring', stiffness: 200 }}
+                        className="text-sm"
+                      >
+                        {icon}
+                      </motion.span>
+                    ))}
                   </div>
                 </div>
-              </motion.div>
-            </div>
+              </div>
+            </motion.div>
+
+            {/* KITCHEN - Top right */}
+            <motion.div
+              initial={{ opacity: 0, z: -50 }}
+              animate={{ opacity: 1, z: 0 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+              className="absolute top-0 right-0 w-36 h-32"
+              style={{ transformStyle: 'preserve-3d' }}
+            >
+              <div className="absolute inset-0 bg-white/90 backdrop-blur-sm border-2 border-blue-300 rounded-lg shadow-lg">
+                <div className="p-3">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-gray-900">Kitchen</p>
+                      <p className="text-[10px] text-gray-500">3 devices</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex gap-1 flex-wrap">
+                    {['💡', '🌡️', '☕'].map((icon, i) => (
+                      <motion.span
+                        key={i}
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: 1.0 + i * 0.1, type: 'spring', stiffness: 200 }}
+                        className="text-sm"
+                      >
+                        {icon}
+                      </motion.span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* BEDROOM - Bottom left */}
+            <motion.div
+              initial={{ opacity: 0, z: -50 }}
+              animate={{ opacity: 1, z: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="absolute bottom-0 left-0 w-36 h-32"
+              style={{ transformStyle: 'preserve-3d' }}
+            >
+              <div className="absolute inset-0 bg-white/90 backdrop-blur-sm border-2 border-blue-300 rounded-lg shadow-lg">
+                <div className="p-3">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-gray-900">Bedroom</p>
+                      <p className="text-[10px] text-gray-500">4 devices</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex gap-1 flex-wrap">
+                    {['💡', '🌡️', '🪟', '🔒'].map((icon, i) => (
+                      <motion.span
+                        key={i}
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: 1.2 + i * 0.1, type: 'spring', stiffness: 200 }}
+                        className="text-sm"
+                      >
+                        {icon}
+                      </motion.span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* OFFICE - Bottom right */}
+            <motion.div
+              initial={{ opacity: 0, z: -50 }}
+              animate={{ opacity: 1, z: 0 }}
+              transition={{ delay: 0.7, duration: 0.6 }}
+              className="absolute bottom-0 right-0 w-36 h-32"
+              style={{ transformStyle: 'preserve-3d' }}
+            >
+              <div className="absolute inset-0 bg-white/90 backdrop-blur-sm border-2 border-blue-300 rounded-lg shadow-lg">
+                <div className="p-3">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-gray-900">Office</p>
+                      <p className="text-[10px] text-gray-500">3 devices</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex gap-1 flex-wrap">
+                    {['💡', '🌡️', '📹'].map((icon, i) => (
+                      <motion.span
+                        key={i}
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: 1.4 + i * 0.1, type: 'spring', stiffness: 200 }}
+                        className="text-sm"
+                      >
+                        {icon}
+                      </motion.span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
           </div>
         </div>
 
@@ -172,22 +288,47 @@ export default function StepDesign({ isActive = true, fullScreen = true }: { isA
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 1.4 }}
-          className="mt-6 grid grid-cols-3 gap-3"
+          transition={{ delay: 1.9 }}
+          className="mt-6 flex items-center justify-center gap-6"
         >
-          <div className="bg-white/80 backdrop-blur-sm rounded-xl p-3 border border-gray-200 text-center">
-            <p className="text-lg font-bold text-black mb-1">4</p>
-            <p className="text-xs text-gray-600">Zones</p>
+          <div className="text-center">
+            <motion.p
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 1.9, type: 'spring', stiffness: 200 }}
+              className={`${fullScreen ? 'text-2xl' : 'text-lg'} font-bold text-blue-600`}
+            >
+              15
+            </motion.p>
+            <p className={`${fullScreen ? 'text-xs' : 'text-[9px]'} text-gray-600`}>Devices</p>
           </div>
           
-          <div className="bg-white/80 backdrop-blur-sm rounded-xl p-3 border border-gray-200 text-center">
-            <p className="text-lg font-bold text-black mb-1">15</p>
-            <p className="text-xs text-gray-600">Devices</p>
+          <div className="w-px h-8 bg-gray-300" />
+          
+          <div className="text-center">
+            <motion.p
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 2.0, type: 'spring', stiffness: 200 }}
+              className={`${fullScreen ? 'text-2xl' : 'text-lg'} font-bold text-blue-600`}
+            >
+              4
+            </motion.p>
+            <p className={`${fullScreen ? 'text-xs' : 'text-[9px]'} text-gray-600`}>Zones</p>
           </div>
           
-          <div className="bg-white/80 backdrop-blur-sm rounded-xl p-3 border border-gray-200 text-center">
-            <p className="text-lg font-bold text-black mb-1">100%</p>
-            <p className="text-xs text-gray-600">Coverage</p>
+          <div className="w-px h-8 bg-gray-300" />
+          
+          <div className="text-center">
+            <motion.p
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 2.1, type: 'spring', stiffness: 200 }}
+              className={`${fullScreen ? 'text-2xl' : 'text-lg'} font-bold text-blue-600`}
+            >
+              100%
+            </motion.p>
+            <p className={`${fullScreen ? 'text-xs' : 'text-[9px]'} text-gray-600`}>Coverage</p>
           </div>
         </motion.div>
       </div>
