@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion';
 
 /**
- * Step 3: Seamless Integration - All Platforms Working Together
+ * Step 3: Seamless Integration
  * 
- * Shows the ecosystem integration - one home, multiple voice assistants
- * Emphasizes professional setup and platform flexibility
+ * Showcases ecosystem integration across all major platforms:
+ * - Apple Home, Google Home, Amazon Alexa
+ * - One unified system controlling multiple platforms
+ * - No programming knowledge required
  */
-
 export default function StepDevices({ 
   isActive = true, 
   fullScreen = true 
@@ -14,6 +15,7 @@ export default function StepDevices({
   isActive?: boolean;
   fullScreen?: boolean;
 }) {
+  // Platform data - showcase all major integrations
   const platforms = [
     { 
       name: 'Apple Home', 
@@ -51,6 +53,7 @@ export default function StepDevices({
     }
   ];
 
+  // Devices that work across all platforms
   const devices = [
     { icon: '💡', name: 'Lights', angle: 0 },
     { icon: '🪟', name: 'Curtains', angle: 72 },
@@ -68,7 +71,7 @@ export default function StepDevices({
     >
       <div className="relative h-full flex flex-col">
         
-        {/* Header */}
+        {/* Header - emphasize simplicity */}
         <motion.div
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -79,14 +82,14 @@ export default function StepDevices({
             Works with Everything
           </h3>
           <p className={`${fullScreen ? 'text-base' : 'text-xs'} text-gray-600`}>
-            One home • All your favorite assistants • Simple setup
+            Choose your favorite • No programming needed • One simple system
           </p>
         </motion.div>
 
-        {/* Central Integration Visualization */}
+        {/* Central Integration Hub */}
         <div className="flex-1 relative flex items-center justify-center">
           
-          {/* Subtle glow background */}
+          {/* Ambient glow effect */}
           <motion.div
             animate={{ 
               opacity: [0.2, 0.4, 0.2],
@@ -102,7 +105,7 @@ export default function StepDevices({
             <div className="w-64 h-64 bg-gradient-to-br from-blue-200 to-indigo-200 rounded-full blur-3xl opacity-30" />
           </motion.div>
 
-          {/* Central Hub - Smart Home */}
+          {/* Central Hub - Your Smart Home */}
           <motion.div
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -117,7 +120,7 @@ export default function StepDevices({
               </div>
             </div>
 
-            {/* Animated connection rings */}
+            {/* Pulsing connection rings */}
             <motion.div
               animate={{ 
                 scale: [1, 1.3, 1],
@@ -192,7 +195,7 @@ export default function StepDevices({
             </motion.div>
           ))}
 
-          {/* Device orbit - small icons around center */}
+          {/* Device orbit - small icons circling the center */}
           {devices.map((device, index) => {
             const radius = 110;
             const angleRad = (device.angle * Math.PI) / 180;
@@ -220,7 +223,7 @@ export default function StepDevices({
           })}
         </div>
 
-        {/* Key Benefits Footer */}
+        {/* Key Stats */}
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -243,7 +246,7 @@ export default function StepDevices({
           </div>
         </motion.div>
 
-        {/* Integration message */}
+        {/* Value proposition */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -254,7 +257,7 @@ export default function StepDevices({
             <span className="font-semibold text-gray-900">Use Siri, Alexa, or Google Assistant.</span> We handle the setup.
           </p>
           <p className="text-xs text-gray-500 mt-1">
-            Works with everything you already own
+            No programming knowledge required
           </p>
         </motion.div>
       </div>
