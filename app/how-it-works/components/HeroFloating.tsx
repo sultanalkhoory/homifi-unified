@@ -107,23 +107,36 @@ export default function HeroFloating() {
               </div>
             </div>
 
-            {/* Connection lines */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ transform: `translateY(${scrollY * 0.05}px)` }}>
-              {devices.map((device, i) => (
-                <line
-                  key={i}
-                  x1="50%"
-                  y1="50%"
-                  x2={`calc(50% + ${device.x}px)`}
-                  y2={`calc(50% + ${device.y}px)`}
-                  stroke="url(#gradient)"
-                  strokeWidth="1"
-                  strokeDasharray="4 4"
-                  opacity="0.3"
-                  className="animate-pulse"
-                  style={{ animationDelay: `${device.delay}s` }}
-                />
-              ))}
+            {/* Connection lines - drawn from center to each device */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none z-10" style={{ transform: `translateY(${scrollY * 0.05}px)` }}>
+              {devices.map((device, i) => {
+                const centerX = '50%';
+                const centerY = '50%';
+                const deviceX = `calc(50% + ${device.x}px)`;
+                const deviceY = `calc(50% + ${device.y}px)`;
+                
+                return (
+                  <motion.line
+                    key={i}
+                    x1={centerX}
+                    y1={centerY}
+                    x2={deviceX}
+                    y2={deviceY}
+                    stroke="url(#gradient)"
+                    strokeWidth="2"
+                    strokeDasharray="4 4"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 0.4 }}
+                    transition={{ 
+                      duration: 0.6, 
+                      delay: device.delay + 0.3,
+                      ease: [0.22, 1, 0.36, 1]
+                    }}
+                    className="animate-pulse"
+                    style={{ animationDelay: `${device.delay}s` }}
+                  />
+                );
+              })}
               <defs>
                 <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="#3b82f6" stopOpacity="0" />
@@ -137,16 +150,28 @@ export default function HeroFloating() {
             {devices.map((device, i) => {
               const Icon = device.icon;
               return (
-                <div
+                <motion.div
                   key={i}
                   className="absolute animate-float"
+                  initial={{ 
+                    opacity: 0, 
+                    scale: 0.8
+                  }}
+                  animate={{ 
+                    opacity: 1, 
+                    scale: 1
+                  }}
+                  transition={{
+                    duration: 0.6,
+                    delay: device.delay,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
                   style={{
                     left: '50%',
                     top: '50%',
                     '--device-x': `${device.x}px`,
                     '--device-y': `${device.y}px`,
-                    animationDelay: `${device.delay}s`,
-                    animationDuration: '6s'
+                    animationDelay: `${device.delay + 0.6}s`,
                   } as React.CSSProperties}
                 >
                   <div className="group relative">
@@ -159,7 +184,7 @@ export default function HeroFloating() {
                       <p className="text-xs font-medium text-slate-600 mt-2">{device.label}</p>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
@@ -189,10 +214,10 @@ export default function HeroFloating() {
       <style jsx>{`
         @keyframes float {
           0%, 100% { 
-            transform: translate(calc(-50% + var(--device-x)), calc(-50% + var(--device-y))) translateY(0px); 
+            transform: translate(calc(-50% + var(--device-x)), calc(-50% + var(--device-y))); 
           }
           50% { 
-            transform: translate(calc(-50% + var(--device-x)), calc(-50% + var(--device-y))) translateY(-20px); 
+            transform: translate(calc(-50% + var(--device-x)), calc(-50% + var(--device-y) - 15px)); 
           }
         }
         .animate-float {
