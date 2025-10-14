@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
  * Features:
  * - Complex realistic floor plan (L-shaped, multiple rooms)
  * - Ubiquiti-style AP icons (white circular with LED)
- * - Waves emanating from CENTER of APs outward
+ * - Smooth waves emanating from CENTER of APs outward (Apple-style easing)
  * - Room-named access points
  * - Professional network stats
  */
@@ -96,52 +96,52 @@ export default function StepWifi({
               className="absolute"
               style={{ left: '22%', top: '35%', transform: 'translate(-50%, -50%)', zIndex: 20 }}
             >
-              {/* Waves emanating FROM CENTER outward */}
-              {[1, 2, 3, 4].map((ring, i) => (
+              {/* Smooth waves emanating FROM CENTER - Apple-style easing */}
+              {[1, 2, 3].map((ring, i) => (
                 <motion.div
                   key={ring}
                   className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  initial={{ width: 0, height: 0, opacity: 0 }}
                   animate={{
-                    width: ['0px', '160px'],
-                    height: ['0px', '160px'],
-                    opacity: [0.5, 0.15, 0]
+                    width: ['0px', '180px'],
+                    height: ['0px', '180px'],
+                    opacity: [0.6, 0.3, 0]
                   }}
                   transition={{
-                    duration: 4,
+                    duration: 3,
                     repeat: Infinity,
                     delay: i * 1.0,
-                    ease: [0.22, 1, 0.36, 1]
+                    ease: [0.22, 1, 0.36, 1] // Apple's signature easing
                   }}
                 >
-                  <div className="w-full h-full rounded-full border-2 border-cyan-400/60" />
+                  <div className="w-full h-full rounded-full border-2 border-cyan-400" />
                 </motion.div>
               ))}
 
-              {/* Ubiquiti-style AP Icon */}
-              <div className={`relative ${fullScreen ? 'w-14 h-14' : 'w-11 h-11'} rounded-full bg-white shadow-2xl flex items-center justify-center`}>
+              {/* Ubiquiti-style AP Icon - Clean white circular design */}
+              <div className={`relative ${fullScreen ? 'w-16 h-16' : 'w-12 h-12'} rounded-full bg-white shadow-2xl flex items-center justify-center`}>
                 {/* Outer ring */}
-                <div className="absolute inset-0 rounded-full border-2 border-gray-200" />
+                <div className="absolute inset-0 rounded-full border-2 border-gray-100" />
                 
-                {/* Inner design - Ubiquiti style */}
+                {/* Inner concentric circles - Ubiquiti style */}
                 <div className="relative w-full h-full flex items-center justify-center">
-                  {/* WiFi symbol */}
-                  <svg className="w-6 h-6 text-cyan-600" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 18c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0-6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4z"/>
-                  </svg>
+                  <div className="absolute w-10 h-10 rounded-full border border-gray-200" />
+                  <div className="absolute w-6 h-6 rounded-full border border-gray-300" />
+                  <div className="absolute w-3 h-3 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500" />
                 </div>
 
-                {/* Status LED - pulsing */}
+                {/* Status LED - smooth pulsing */}
                 <motion.div
                   animate={{ 
-                    opacity: [1, 0.4, 1],
-                    scale: [1, 0.9, 1]
+                    opacity: [1, 0.5, 1],
+                    scale: [1, 0.95, 1]
                   }}
                   transition={{ 
-                    duration: 2,
+                    duration: 2.5,
                     repeat: Infinity,
-                    ease: "easeInOut"
+                    ease: [0.45, 0, 0.55, 1]
                   }}
-                  className="absolute top-1 right-1 w-2 h-2 rounded-full bg-green-400 shadow-lg shadow-green-400/50"
+                  className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-green-400 shadow-lg shadow-green-400/60"
                 />
               </div>
 
@@ -171,49 +171,50 @@ export default function StepWifi({
               className="absolute"
               style={{ right: '18%', top: '28%', transform: 'translate(50%, -50%)', zIndex: 20 }}
             >
-              {/* Waves FROM CENTER outward */}
-              {[1, 2, 3, 4].map((ring, i) => (
+              {/* Smooth waves FROM CENTER - Apple-style */}
+              {[1, 2, 3].map((ring, i) => (
                 <motion.div
                   key={ring}
                   className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  initial={{ width: 0, height: 0, opacity: 0 }}
                   animate={{
-                    width: ['0px', '160px'],
-                    height: ['0px', '160px'],
-                    opacity: [0.5, 0.15, 0]
+                    width: ['0px', '180px'],
+                    height: ['0px', '180px'],
+                    opacity: [0.6, 0.3, 0]
                   }}
                   transition={{
-                    duration: 4,
+                    duration: 3,
                     repeat: Infinity,
                     delay: 0.5 + i * 1.0,
-                    ease: [0.22, 1, 0.36, 1]
+                    ease: [0.22, 1, 0.36, 1] // Apple's signature easing
                   }}
                 >
-                  <div className="w-full h-full rounded-full border-2 border-blue-400/60" />
+                  <div className="w-full h-full rounded-full border-2 border-blue-400" />
                 </motion.div>
               ))}
 
-              {/* Ubiquiti AP */}
-              <div className={`relative ${fullScreen ? 'w-14 h-14' : 'w-11 h-11'} rounded-full bg-white shadow-2xl flex items-center justify-center`}>
-                <div className="absolute inset-0 rounded-full border-2 border-gray-200" />
+              {/* Ubiquiti AP - Clean white design */}
+              <div className={`relative ${fullScreen ? 'w-16 h-16' : 'w-12 h-12'} rounded-full bg-white shadow-2xl flex items-center justify-center`}>
+                <div className="absolute inset-0 rounded-full border-2 border-gray-100" />
                 
                 <div className="relative w-full h-full flex items-center justify-center">
-                  <svg className="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 18c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0-6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4z"/>
-                  </svg>
+                  <div className="absolute w-10 h-10 rounded-full border border-gray-200" />
+                  <div className="absolute w-6 h-6 rounded-full border border-gray-300" />
+                  <div className="absolute w-3 h-3 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500" />
                 </div>
 
                 <motion.div
                   animate={{ 
-                    opacity: [1, 0.4, 1],
-                    scale: [1, 0.9, 1]
+                    opacity: [1, 0.5, 1],
+                    scale: [1, 0.95, 1]
                   }}
                   transition={{ 
-                    duration: 2,
+                    duration: 2.5,
                     repeat: Infinity,
                     delay: 0.7,
-                    ease: "easeInOut"
+                    ease: [0.45, 0, 0.55, 1]
                   }}
-                  className="absolute top-1 right-1 w-2 h-2 rounded-full bg-green-400 shadow-lg shadow-green-400/50"
+                  className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-green-400 shadow-lg shadow-green-400/60"
                 />
               </div>
 
@@ -235,18 +236,18 @@ export default function StepWifi({
               </motion.div>
             </motion.div>
 
-            {/* Coverage heat map - SMOOTHER */}
+            {/* Coverage heat map - SMOOTHER gradient */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.3 }}
-              transition={{ delay: 1.5, duration: 1.2 }}
+              transition={{ delay: 1.5, duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
               className="absolute inset-0 pointer-events-none"
               style={{
                 background: `
-                  radial-gradient(circle at 22% 35%, rgba(6, 182, 212, 0.4) 0%, transparent 40%),
-                  radial-gradient(circle at 82% 28%, rgba(59, 130, 246, 0.4) 0%, transparent 40%)
+                  radial-gradient(circle at 22% 35%, rgba(6, 182, 212, 0.35) 0%, transparent 45%),
+                  radial-gradient(circle at 82% 28%, rgba(59, 130, 246, 0.35) 0%, transparent 45%)
                 `,
-                filter: 'blur(40px)',
+                filter: 'blur(50px)',
                 mixBlendMode: 'screen'
               }}
             />
