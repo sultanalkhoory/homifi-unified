@@ -1,7 +1,12 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
+import StepPlan from './components/StepPlan';
+import StepWifi from './components/StepWifi';
+import StepDevices from './components/StepDevices';
+import StepAutomation from './components/StepAutomation';
+import StepControl from './components/StepControl';
 
 /**
  * How It Works - Premium Apple-Style Page
@@ -17,7 +22,7 @@ type Step = {
   descriptionMobile: string;
   features?: string[];
   screenType: 'plan' | 'wifi' | 'devices' | 'automation' | 'control';
-  showPhone: boolean; // NEW: Controls iPhone frame visibility
+  showPhone: boolean;
 };
 
 export default function HowItWorksPage() {
@@ -32,7 +37,7 @@ export default function HowItWorksPage() {
       descriptionMobile: 'Understanding your space and lifestyle. Your automation reflects how you live.',
       features: ['Custom zone mapping', 'Routine analysis', 'Priority setting'],
       screenType: 'plan',
-      showPhone: false // Full-screen 3D floor plan
+      showPhone: false
     },
     {
       number: '02',
@@ -41,7 +46,7 @@ export default function HowItWorksPage() {
       descriptionMobile: 'Enterprise Wi-Fi covers every corner. No dead zones.',
       features: ['Full coverage', 'Secure network', 'Fast connectivity'],
       screenType: 'wifi',
-      showPhone: false // Full-screen network dashboard
+      showPhone: false
     },
     {
       number: '03',
@@ -50,7 +55,7 @@ export default function HowItWorksPage() {
       descriptionMobile: 'We handle everything. No programming knowledge required.',
       features: ['No coding', 'Apple Home ready', 'Expert installation'],
       screenType: 'devices',
-      showPhone: false // Full-screen installation dashboard
+      showPhone: false
     },
     {
       number: '04',
@@ -59,7 +64,7 @@ export default function HowItWorksPage() {
       descriptionMobile: 'Scenes respond automatically. No coding needed.',
       features: ['Voice scenes', 'Time triggers', 'Auto routines'],
       screenType: 'automation',
-      showPhone: true // iPhone appears - user interaction begins
+      showPhone: true
     },
     {
       number: '05',
@@ -68,7 +73,7 @@ export default function HowItWorksPage() {
       descriptionMobile: 'Voice control, HomeKey, Apple TV. Support included.',
       features: ['Voice control', 'HomeKey', 'Apple TV', '3-month support'],
       screenType: 'control',
-      showPhone: true // iPhone showcase - final product
+      showPhone: true
     }
   ];
 
@@ -208,12 +213,13 @@ export default function HowItWorksPage() {
                       <div className="relative w-[280px] h-[560px] md:w-[320px] md:h-[640px] bg-black rounded-[45px] md:rounded-[50px] p-2 shadow-2xl">
                         <div className="relative w-full h-full bg-white rounded-[37px] md:rounded-[42px] overflow-hidden">
                           
-                          {/* Screen content */}
-                          <StepScreen screenType={step.screenType} isActive={activeStep === index} />
+                          {/* Screen content - render appropriate step component */}
+                          {step.screenType === 'automation' && <StepAutomation />}
+                          {step.screenType === 'control' && <StepControl />}
 
                           {/* Screen glare */}
                           <div
-                            className="absolute inset-0 pointer-events-none rounded-[37px] md:rounded-[42px]"
+                            className="absolute inset-0 pointer-events-none rounded-[37px] md:rounded-[42px] z-10"
                             style={{
                               background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 25%, transparent 50%)'
                             }}
@@ -237,7 +243,9 @@ export default function HowItWorksPage() {
                   ) : (
                     // Steps 1-3: Full-screen visualization (no iPhone frame)
                     <div className="w-full max-w-2xl">
-                      <StepScreen screenType={step.screenType} isActive={activeStep === index} fullScreen />
+                      {step.screenType === 'plan' && <StepPlan isActive={activeStep === index} fullScreen />}
+                      {step.screenType === 'wifi' && <StepWifi isActive={activeStep === index} fullScreen />}
+                      {step.screenType === 'devices' && <StepDevices isActive={activeStep === index} fullScreen />}
                     </div>
                   )}
                 </motion.div>
