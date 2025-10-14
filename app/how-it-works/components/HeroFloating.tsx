@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import React from 'react';
 
-// SVG icon components - no external dependencies needed
+// SVG icon components
 const LightbulbIcon = () => (
   <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
@@ -60,11 +60,11 @@ export default function HeroFloating() {
   // Device cards with positions
   const devices = [
     { icon: LightbulbIcon, label: 'Lights', x: -180, y: -120, delay: 0 },
-    { icon: ThermometerIcon, label: 'Climate', x: 180, y: -100, delay: 0.5 },
-    { icon: CameraIcon, label: 'Security', x: -200, y: 80, delay: 1 },
-    { icon: LockIcon, label: 'Locks', x: 160, y: 120, delay: 1.5 },
-    { icon: CurtainsIcon, label: 'Curtains', x: 0, y: -180, delay: 2 },
-    { icon: WifiIcon, label: 'Network', x: 0, y: 160, delay: 2.5 }
+    { icon: ThermometerIcon, label: 'Climate', x: 180, y: -100, delay: 0.2 },
+    { icon: CameraIcon, label: 'Security', x: -200, y: 80, delay: 0.4 },
+    { icon: LockIcon, label: 'Locks', x: 160, y: 120, delay: 0.6 },
+    { icon: CurtainsIcon, label: 'Curtains', x: 0, y: -180, delay: 0.8 },
+    { icon: WifiIcon, label: 'Network', x: 0, y: 160, delay: 1 }
   ];
 
   return (
@@ -92,8 +92,11 @@ export default function HeroFloating() {
           {/* Right: Floating Ecosystem */}
           <div className="relative h-[600px] lg:h-[700px]">
             {/* Central house */}
-            <div 
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            <motion.div 
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               style={{ transform: `translate(-50%, calc(-50% + ${scrollY * 0.1}px))` }}
             >
               <div className="relative">
@@ -105,45 +108,36 @@ export default function HeroFloating() {
                   <HomeIcon />
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Connection lines - drawn from center to each device */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none z-10" style={{ transform: `translateY(${scrollY * 0.05}px)` }}>
-              {devices.map((device, i) => {
-                const centerX = '50%';
-                const centerY = '50%';
-                const deviceX = `calc(50% + ${device.x}px)`;
-                const deviceY = `calc(50% + ${device.y}px)`;
-                
-                return (
-                  <motion.line
-                    key={i}
-                    x1={centerX}
-                    y1={centerY}
-                    x2={deviceX}
-                    y2={deviceY}
-                    stroke="url(#gradient)"
-                    strokeWidth="2"
-                    strokeDasharray="4 4"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 0.4 }}
-                    transition={{ 
-                      duration: 0.6, 
-                      delay: device.delay + 0.3,
-                      ease: [0.22, 1, 0.36, 1]
-                    }}
-                    className="animate-pulse"
-                    style={{ animationDelay: `${device.delay}s` }}
-                  />
-                );
-              })}
+            {/* Connection lines */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none z-10">
               <defs>
                 <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#3b82f6" stopOpacity="0" />
-                  <stop offset="50%" stopColor="#3b82f6" stopOpacity="1" />
-                  <stop offset="100%" stopColor="#3b82f6" stopOpacity="0" />
+                  <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.2" />
+                  <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.6" />
+                  <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.2" />
                 </linearGradient>
               </defs>
+              {devices.map((device, i) => (
+                <motion.line
+                  key={i}
+                  x1="50%"
+                  y1="50%"
+                  x2={`calc(50% + ${device.x}px)`}
+                  y2={`calc(50% + ${device.y}px)`}
+                  stroke="url(#gradient)"
+                  strokeWidth="2"
+                  strokeDasharray="4 4"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: 1, opacity: 1 }}
+                  transition={{ 
+                    duration: 0.8, 
+                    delay: device.delay + 0.3,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
+                />
+              ))}
             </svg>
 
             {/* Floating device cards */}
@@ -152,14 +146,18 @@ export default function HeroFloating() {
               return (
                 <motion.div
                   key={i}
-                  className="absolute animate-float"
+                  className="absolute z-30"
                   initial={{ 
                     opacity: 0, 
-                    scale: 0.8
+                    scale: 0.5,
+                    x: `calc(-50% + ${device.x}px)`,
+                    y: `calc(-50% + ${device.y}px)`
                   }}
                   animate={{ 
                     opacity: 1, 
-                    scale: 1
+                    scale: 1,
+                    x: `calc(-50% + ${device.x}px)`,
+                    y: `calc(-50% + ${device.y}px)`
                   }}
                   transition={{
                     duration: 0.6,
@@ -169,12 +167,18 @@ export default function HeroFloating() {
                   style={{
                     left: '50%',
                     top: '50%',
-                    '--device-x': `${device.x}px`,
-                    '--device-y': `${device.y}px`,
-                    animationDelay: `${device.delay + 0.6}s`,
-                  } as React.CSSProperties}
+                  }}
                 >
-                  <div className="group relative">
+                  <motion.div 
+                    className="group relative"
+                    animate={{ y: [0, -15, 0] }}
+                    transition={{
+                      duration: 6,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: device.delay + 1
+                    }}
+                  >
                     {/* Soft glow */}
                     <div className="absolute inset-0 bg-blue-400/30 rounded-2xl blur-xl group-hover:bg-blue-400/50 transition-all duration-500" />
                     
@@ -183,7 +187,7 @@ export default function HeroFloating() {
                       <Icon />
                       <p className="text-xs font-medium text-slate-600 mt-2">{device.label}</p>
                     </div>
-                  </div>
+                  </motion.div>
                 </motion.div>
               );
             })}
@@ -195,7 +199,7 @@ export default function HeroFloating() {
           className="absolute bottom-12 left-1/2 -translate-x-1/2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 0.8 }}
+          transition={{ delay: 1.5, duration: 0.8 }}
         >
           <motion.div
             animate={{ y: [0, 8, 0] }}
@@ -209,21 +213,6 @@ export default function HeroFloating() {
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Custom animations */}
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { 
-            transform: translate(calc(-50% + var(--device-x)), calc(-50% + var(--device-y))); 
-          }
-          50% { 
-            transform: translate(calc(-50% + var(--device-x)), calc(-50% + var(--device-y) - 15px)); 
-          }
-        }
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-      `}</style>
     </section>
   );
 };
