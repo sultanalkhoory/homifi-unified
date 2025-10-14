@@ -118,30 +118,24 @@ export default function StepWifi({
                 </motion.div>
               ))}
 
-              {/* Ubiquiti-style AP Icon - Clean white circular design */}
-              <div className={`relative ${fullScreen ? 'w-16 h-16' : 'w-12 h-12'} rounded-full bg-white shadow-2xl flex items-center justify-center`}>
-                {/* Outer ring */}
-                <div className="absolute inset-0 rounded-full border-2 border-gray-100" />
+              {/* Ubiquiti UniFi AP - Iconic clean design */}
+              <div className={`relative ${fullScreen ? 'w-16 h-16' : 'w-12 h-12'} rounded-full bg-white shadow-2xl flex items-center justify-center border border-gray-100`}>
                 
-                {/* Inner concentric circles - Ubiquiti style */}
-                <div className="relative w-full h-full flex items-center justify-center">
-                  <div className="absolute w-10 h-10 rounded-full border border-gray-200" />
-                  <div className="absolute w-6 h-6 rounded-full border border-gray-300" />
-                  <div className="absolute w-3 h-3 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500" />
-                </div>
+                {/* Blue LED ring - UniFi signature */}
+                <div className={`${fullScreen ? 'w-7 h-7' : 'w-5 h-5'} rounded-full border-[3px] border-cyan-500`} />
 
-                {/* Status LED - smooth pulsing */}
+                {/* Status LED - top right corner */}
                 <motion.div
                   animate={{ 
-                    opacity: [1, 0.5, 1],
-                    scale: [1, 0.95, 1]
+                    opacity: [1, 0.6, 1],
+                    scale: [1, 0.9, 1]
                   }}
                   transition={{ 
                     duration: 2.5,
                     repeat: Infinity,
                     ease: [0.45, 0, 0.55, 1]
                   }}
-                  className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-green-400 shadow-lg shadow-green-400/60"
+                  className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-green-400 shadow-md shadow-green-400/60"
                 />
               </div>
 
