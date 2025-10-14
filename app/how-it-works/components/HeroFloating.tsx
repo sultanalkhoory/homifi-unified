@@ -182,12 +182,15 @@ export default function HeroFloating() {
               return (
                 <div
                   key={i}
-                  className="absolute top-1/2 left-1/2 animate-float"
+                  className="absolute animate-float"
                   style={{
-                    transform: `translate(calc(-50% + ${device.x}px), calc(-50% + ${device.y}px + ${scrollY * 0.15}px))`,
+                    left: '50%',
+                    top: '50%',
+                    '--device-x': `${device.x}px`,
+                    '--device-y': `${device.y}px`,
                     animationDelay: `${device.delay}s`,
                     animationDuration: '6s'
-                  }}
+                  } as React.CSSProperties}
                 >
                   <div className="group relative">
                     {/* Soft glow */}
@@ -233,8 +236,12 @@ export default function HeroFloating() {
       {/* Custom animations */}
       <style jsx>{`
         @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-20px); }
+          0%, 100% { 
+            transform: translate(calc(-50% + var(--device-x)), calc(-50% + var(--device-y))) translateY(0px); 
+          }
+          50% { 
+            transform: translate(calc(-50% + var(--device-x)), calc(-50% + var(--device-y))) translateY(-20px); 
+          }
         }
         .animate-float {
           animation: float 6s ease-in-out infinite;
