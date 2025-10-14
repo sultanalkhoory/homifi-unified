@@ -277,7 +277,7 @@ export default function StepPlan({
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 1.9, type: 'spring', stiffness: 200 }}
-              className={`${fullScreen ? 'text-2xl' : 'text-lg'} font-bold text-black`}
+              className={`${fullScreen ? 'text-2xl' : 'text-lg'} font-bold text-blue-600`}
             >
               12
             </motion.p>
@@ -291,7 +291,7 @@ export default function StepPlan({
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 2.0, type: 'spring', stiffness: 200 }}
-              className={`${fullScreen ? 'text-2xl' : 'text-lg'} font-bold text-black`}
+              className={`${fullScreen ? 'text-2xl' : 'text-lg'} font-bold text-indigo-600`}
             >
               4
             </motion.p>
@@ -305,7 +305,7 @@ export default function StepPlan({
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 2.1, type: 'spring', stiffness: 200 }}
-              className={`${fullScreen ? 'text-2xl' : 'text-lg'} font-bold text-black`}
+              className={`${fullScreen ? 'text-2xl' : 'text-lg'} font-bold text-cyan-600`}
             >
               100%
             </motion.p>
