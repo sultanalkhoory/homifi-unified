@@ -18,14 +18,14 @@ export default function HowItWorksPage() {
     { 
       id: 0, 
       title: 'We Design Your Home', 
-      subtitle: 'Free consultation, custom zone mapping, and approval',
+      subtitle: 'We assess your space and create a custom plan',
       component: StepPlan 
     },
     { 
       id: 1, 
       title: 'We Install Everything', 
-      subtitle: 'Fast, reliable Wi-Fi + devices + Apple/Google/Alexa integration',
-      component: StepDevices 
+      subtitle: 'Everything installed, connected, and ready to use',
+      component: StepWifi 
     },
     { 
       id: 2, 
