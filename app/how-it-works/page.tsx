@@ -110,8 +110,8 @@ export default function HowItWorksPage() {
         </div>
       </div>
 
-      {/* Hero Section - Above the steps */}
-      <section className="min-h-screen flex items-center justify-center px-4 pt-20">
+      {/* Hero Section - Apple-style gradient background */}
+      <section className="min-h-screen flex items-center justify-center px-4 pt-20 bg-gradient-to-b from-white via-gray-50 to-blue-50/30">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -119,12 +119,11 @@ export default function HowItWorksPage() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold text-gray-900 mb-6 tracking-tight">
-              How It Works
+              We install. You enjoy.
             </h1>
             
             <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              Professional setup in 4 simple steps.<br/>
-              No programming knowledge required.
+              Professional setup, effortless living.
             </p>
 
             {/* Scroll hint */}
