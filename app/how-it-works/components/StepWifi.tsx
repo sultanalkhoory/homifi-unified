@@ -101,17 +101,17 @@ export default function StepWifi({
                 <motion.div
                   key={ring}
                   className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                  initial={{ width: 0, height: 0, opacity: 0 }}
                   animate={{
-                    width: ['0px', '180px'],
-                    height: ['0px', '180px'],
-                    opacity: [0.6, 0.3, 0]
+                    width: ['0px', '180px', '180px'],
+                    height: ['0px', '180px', '180px'],
+                    opacity: [0, 0.6, 0]
                   }}
                   transition={{
                     duration: 3,
                     repeat: Infinity,
                     delay: i * 1.0,
-                    ease: [0.22, 1, 0.36, 1] // Apple's signature easing
+                    ease: [0.22, 1, 0.36, 1],
+                    repeatDelay: 0
                   }}
                 >
                   <div className="w-full h-full rounded-full border-2 border-cyan-400" />
@@ -176,17 +176,17 @@ export default function StepWifi({
                 <motion.div
                   key={ring}
                   className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                  initial={{ width: 0, height: 0, opacity: 0 }}
                   animate={{
-                    width: ['0px', '180px'],
-                    height: ['0px', '180px'],
-                    opacity: [0.6, 0.3, 0]
+                    width: ['0px', '180px', '180px'],
+                    height: ['0px', '180px', '180px'],
+                    opacity: [0, 0.6, 0]
                   }}
                   transition={{
                     duration: 3,
                     repeat: Infinity,
                     delay: 0.5 + i * 1.0,
-                    ease: [0.22, 1, 0.36, 1] // Apple's signature easing
+                    ease: [0.22, 1, 0.36, 1],
+                    repeatDelay: 0
                   }}
                 >
                   <div className="w-full h-full rounded-full border-2 border-blue-400" />
