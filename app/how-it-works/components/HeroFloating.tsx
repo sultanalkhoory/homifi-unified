@@ -30,9 +30,9 @@ const LockIcon = () => (
   </svg>
 );
 
-const SpeakerIcon = () => (
+const CurtainsIcon = () => (
   <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15.414a2 2 0 002.828 0L12 11.828l3.586 3.586a2 2 0 002.828 0l3.172-3.172a2 2 0 000-2.828L18 6.828a2 2 0 00-2.828 0L12 10.414 8.414 6.828a2 2 0 00-2.828 0L2.414 9.656a2 2 0 000 2.828l3.172 3.172z" />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 3h18M3 21h18M5 3v18M10 3v18M14 3v18M19 3v18M7 7h2M7 12h2M7 17h2M15 7h2M15 12h2M15 17h2" />
   </svg>
 );
 
@@ -57,34 +57,14 @@ export default function HeroFloating() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Platform logos object with proper typing
-  const platformLogos: Record<string, React.ReactElement> = {
-    apple: (
-      <svg className="w-3 h-3 opacity-60" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
-      </svg>
-    ),
-    google: (
-      <svg className="w-3 h-3 opacity-60" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-      </svg>
-    ),
-    alexa: (
-      <svg className="w-3 h-3 opacity-60" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6.177 17.514c-.253.365-.708.479-1.074.253-2.906-1.771-6.552-2.176-10.853-1.191-.416.099-.831-.166-.929-.582-.099-.416.166-.831.582-.929 4.715-1.079 8.746-.615 11.944 1.377.365.227.479.708.253 1.072h.077z"/>
-      </svg>
-    )
-  };
-
-  // Device cards with positions and platform logos
+  // Device cards with positions
   const devices = [
-    { icon: LightbulbIcon, label: 'Lights', x: -180, y: -120, delay: 0, platform: 'apple' },
-    { icon: ThermometerIcon, label: 'Climate', x: 180, y: -100, delay: 0.5, platform: 'google' },
-    { icon: CameraIcon, label: 'Security', x: -200, y: 80, delay: 1, platform: 'alexa' },
-    { icon: LockIcon, label: 'Locks', x: 160, y: 120, delay: 1.5, platform: 'apple' },
-    { icon: SpeakerIcon, label: 'Audio', x: 0, y: -180, delay: 2, platform: 'google' },
-    { icon: WifiIcon, label: 'Network', x: 0, y: 160, delay: 2.5, platform: 'alexa' }
+    { icon: LightbulbIcon, label: 'Lights', x: -180, y: -120, delay: 0 },
+    { icon: ThermometerIcon, label: 'Climate', x: 180, y: -100, delay: 0.5 },
+    { icon: CameraIcon, label: 'Security', x: -200, y: 80, delay: 1 },
+    { icon: LockIcon, label: 'Locks', x: 160, y: 120, delay: 1.5 },
+    { icon: CurtainsIcon, label: 'Curtains', x: 0, y: -180, delay: 2 },
+    { icon: WifiIcon, label: 'Network', x: 0, y: 160, delay: 2.5 }
   ];
 
   return (
@@ -107,29 +87,6 @@ export default function HeroFloating() {
             <p className="text-xl lg:text-2xl text-slate-600 max-w-lg mx-auto lg:mx-0">
               Professional setup, effortless living.
             </p>
-            
-            {/* Platform badges - Apple priority */}
-            <div className="flex items-center gap-3 justify-center lg:justify-start pt-4 flex-wrap">
-              <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm border border-slate-200">
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
-                </svg>
-                <span className="text-sm font-medium text-slate-700">Apple Home</span>
-              </div>
-              <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm border border-slate-200">
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                </svg>
-                <span className="text-sm font-medium text-slate-700">Google</span>
-              </div>
-              <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm border border-slate-200">
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6.177 17.514c-.253.365-.708.479-1.074.253-2.906-1.771-6.552-2.176-10.853-1.191-.416.099-.831-.166-.929-.582-.099-.416.166-.831.582-.929 4.715-1.079 8.746-.615 11.944 1.377.365.227.479.708.253 1.072h.077z"/>
-                </svg>
-                <span className="text-sm font-medium text-slate-700">Alexa</span>
-              </div>
-            </div>
           </motion.div>
 
           {/* Right: Floating Ecosystem */}
@@ -200,11 +157,6 @@ export default function HeroFloating() {
                     <div className="relative bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-slate-200/50 hover:shadow-xl hover:scale-110 transition-all duration-500 text-slate-700">
                       <Icon />
                       <p className="text-xs font-medium text-slate-600 mt-2">{device.label}</p>
-                      
-                      {/* Platform indicator */}
-                      <div className="absolute -top-2 -right-2 bg-white rounded-full p-1.5 shadow-md border border-slate-200">
-                        {platformLogos[device.platform]}
-                      </div>
                     </div>
                   </div>
                 </div>
