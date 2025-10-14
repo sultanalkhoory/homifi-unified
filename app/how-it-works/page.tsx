@@ -17,32 +17,26 @@ export default function HowItWorksPage() {
   const steps = [
     { 
       id: 0, 
-      title: 'Design Your Plan', 
-      subtitle: 'We map your home into smart zones',
+      title: 'We Design Your Home', 
+      subtitle: 'Free consultation, custom zone mapping, and approval',
       component: StepPlan 
     },
     { 
       id: 1, 
-      title: 'Enterprise Wi-Fi', 
-      subtitle: 'Fast, secure mesh coverage everywhere',
-      component: StepWifi 
-    },
-    { 
-      id: 2, 
-      title: 'Connect Everything', 
-      subtitle: 'Apple Home, Google Home, or Alexa',
+      title: 'We Install Everything', 
+      subtitle: 'Fast, reliable Wi-Fi + devices + Apple/Google/Alexa integration',
       component: StepDevices 
     },
     { 
-      id: 3, 
-      title: 'Automate Your Life', 
-      subtitle: 'Voice control and tap-to-automate',
+      id: 2, 
+      title: 'You Customize More', 
+      subtitle: 'Simple taps to create scenes and automation—no coding needed',
       component: StepAutomation 
     },
     { 
-      id: 4, 
-      title: 'Enjoy & Support', 
-      subtitle: 'Full Apple ecosystem integration',
+      id: 3, 
+      title: 'We Support You', 
+      subtitle: 'Ongoing help, maintenance, and updates whenever needed',
       component: StepControl 
     }
   ];
@@ -129,7 +123,7 @@ export default function HowItWorksPage() {
             </h1>
             
             <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              Professional setup in 5 simple steps.<br/>
+              Professional setup in 4 simple steps.<br/>
               No programming knowledge required.
             </p>
 
