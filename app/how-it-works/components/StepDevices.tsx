@@ -269,14 +269,39 @@ function OptionB({ isActive, fullScreen }: { isActive: boolean; fullScreen: bool
   );
 }
 
-// OPTION C: Installation Timeline
+// OPTION C: Expert Installation Journey
 function OptionC({ isActive, fullScreen }: { isActive: boolean; fullScreen: boolean }) {
-  const devices = [
-    { name: 'Smart Lights', time: '10:15 AM', color: 'from-amber-400 to-orange-500', delay: 0.8 },
-    { name: 'Smart Curtains', time: '10:32 AM', color: 'from-cyan-400 to-blue-500', delay: 1.2 },
-    { name: 'Thermostat', time: '10:48 AM', color: 'from-teal-400 to-emerald-500', delay: 1.6 },
-    { name: 'Smart Lock', time: '11:05 AM', color: 'from-gray-600 to-gray-800', delay: 2.0 },
-    { name: 'Security Camera', time: '11:22 AM', color: 'from-red-400 to-pink-500', delay: 2.4 }
+  const phases = [
+    { 
+      name: 'Site Assessment', 
+      description: 'Understanding your space and needs',
+      color: 'from-blue-400 to-indigo-500', 
+      delay: 0.8 
+    },
+    { 
+      name: 'Professional Installation', 
+      description: 'Carefully mounted and positioned',
+      color: 'from-amber-400 to-orange-500', 
+      delay: 1.2 
+    },
+    { 
+      name: 'Network Integration', 
+      description: 'Secure connectivity throughout',
+      color: 'from-cyan-400 to-blue-500', 
+      delay: 1.6 
+    },
+    { 
+      name: 'System Configuration', 
+      description: 'Custom setup for your lifestyle',
+      color: 'from-teal-400 to-emerald-500', 
+      delay: 2.0 
+    },
+    { 
+      name: 'Testing & Handover', 
+      description: 'Everything verified and working',
+      color: 'from-purple-400 to-pink-500', 
+      delay: 2.4 
+    }
   ];
 
   return (
@@ -296,42 +321,42 @@ function OptionC({ isActive, fullScreen }: { isActive: boolean; fullScreen: bool
           className="text-center mb-8"
         >
           <h3 className={`${fullScreen ? 'text-2xl md:text-3xl' : 'text-lg'} font-semibold text-gray-900 mb-2`}>
-            Installation Timeline
+            Expert Installation Journey
           </h3>
           <p className={`${fullScreen ? 'text-base' : 'text-xs'} text-gray-600`}>
-            Complete setup in under 2 hours • No technical knowledge needed
+            White-glove service • Done right, every time
           </p>
         </motion.div>
 
-        {/* Timeline */}
+        {/* Professional Journey */}
         <div className="flex-1 space-y-6 relative">
           {/* Vertical line */}
-          <div className="absolute left-8 top-6 bottom-6 w-0.5 bg-gradient-to-b from-blue-200 via-blue-300 to-blue-200" />
+          <div className="absolute left-8 top-6 bottom-6 w-0.5 bg-gradient-to-b from-blue-200 via-indigo-300 to-purple-200" />
 
-          {devices.map((device, index) => (
+          {phases.map((phase, index) => (
             <motion.div
               key={index}
               initial={{ x: -30, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: device.delay, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ delay: phase.delay, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="relative flex items-start gap-6"
             >
-              {/* Timeline dot */}
+              {/* Progress indicator */}
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                transition={{ delay: device.delay + 0.2, type: 'spring', stiffness: 300 }}
+                transition={{ delay: phase.delay + 0.2, type: 'spring', stiffness: 300 }}
                 className="relative flex-shrink-0"
               >
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200 flex items-center justify-center shadow-lg">
-                  <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${device.color}`} />
+                <div className="w-16 h-16 rounded-full bg-white border-2 border-gray-200 flex items-center justify-center shadow-lg">
+                  <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${phase.color} shadow-md`} />
                 </div>
                 
                 {/* Connection line to card */}
                 <motion.div
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
-                  transition={{ delay: device.delay + 0.3, duration: 0.4 }}
+                  transition={{ delay: phase.delay + 0.3, duration: 0.4 }}
                   className="absolute top-8 left-16 w-6 h-0.5 bg-gray-200 origin-left"
                 />
               </motion.div>
@@ -340,38 +365,44 @@ function OptionC({ isActive, fullScreen }: { isActive: boolean; fullScreen: bool
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: device.delay + 0.4 }}
-                className="flex-1 bg-white rounded-xl p-4 shadow-sm border border-gray-100"
+                transition={{ delay: phase.delay + 0.4 }}
+                className="flex-1 bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300"
               >
-                <div className="flex items-start justify-between mb-2">
-                  <p className="font-semibold text-gray-900">{device.name}</p>
-                  <span className="text-xs text-gray-500">{device.time}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-green-400" />
-                  <span className="text-xs text-green-600 font-medium">Installed & Connected</span>
+                <p className="font-semibold text-gray-900 mb-1">{phase.name}</p>
+                <p className="text-sm text-gray-600">{phase.description}</p>
+                
+                {/* Professional badge */}
+                <div className="mt-3 inline-flex items-center gap-1.5 px-2 py-1 bg-gray-50 rounded-lg">
+                  <svg className="w-3 h-3 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span className="text-xs text-gray-600 font-medium">Certified Expert</span>
                 </div>
               </motion.div>
             </motion.div>
           ))}
         </div>
 
-        {/* Summary */}
+        {/* Quality Assurance Footer */}
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 2.9 }}
-          className="mt-6 flex items-center justify-between bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 border border-green-200"
+          className="mt-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-200"
         >
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center">
+          <div className="flex items-start gap-3">
+            <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
               <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
             </div>
-            <div>
-              <p className="text-sm font-semibold text-gray-900">All Devices Connected</p>
-              <p className="text-xs text-gray-600">Ready to use with Apple Home, Google, or Alexa</p>
+            <div className="flex-1">
+              <p className="text-sm font-semibold text-gray-900 mb-1">
+                Professional Installation Guarantee
+              </p>
+              <p className="text-xs text-gray-600 leading-relaxed">
+                Every device expertly installed, configured, and tested. No programming knowledge required from you.
+              </p>
             </div>
           </div>
         </motion.div>
