@@ -269,39 +269,20 @@ function OptionB({ isActive, fullScreen }: { isActive: boolean; fullScreen: bool
   );
 }
 
-// OPTION C: Expert Installation Journey
+// OPTION C: Integration Complete - Ecosystem Magic
 function OptionC({ isActive, fullScreen }: { isActive: boolean; fullScreen: boolean }) {
-  const phases = [
-    { 
-      name: 'Site Assessment', 
-      description: 'Understanding your space and needs',
-      color: 'from-blue-400 to-indigo-500', 
-      delay: 0.8 
-    },
-    { 
-      name: 'Professional Installation', 
-      description: 'Carefully mounted and positioned',
-      color: 'from-amber-400 to-orange-500', 
-      delay: 1.2 
-    },
-    { 
-      name: 'Network Integration', 
-      description: 'Secure connectivity throughout',
-      color: 'from-cyan-400 to-blue-500', 
-      delay: 1.6 
-    },
-    { 
-      name: 'System Configuration', 
-      description: 'Custom setup for your lifestyle',
-      color: 'from-teal-400 to-emerald-500', 
-      delay: 2.0 
-    },
-    { 
-      name: 'Testing & Handover', 
-      description: 'Everything verified and working',
-      color: 'from-purple-400 to-pink-500', 
-      delay: 2.4 
-    }
+  const platforms = [
+    { name: 'Apple Home', icon: '🍎', color: 'from-gray-700 to-gray-900', delay: 0.8, position: { top: '15%', left: '10%' } },
+    { name: 'Google Home', icon: 'G', color: 'from-blue-500 to-blue-600', delay: 1.2, position: { top: '15%', right: '10%' } },
+    { name: 'Alexa', icon: 'A', color: 'from-cyan-500 to-blue-500', delay: 1.6, position: { bottom: '20%', left: '50%', transform: '-translate-x-1/2' } }
+  ];
+
+  const devices = [
+    { icon: '💡', name: 'Lights', angle: 0 },
+    { icon: '🪟', name: 'Curtains', angle: 72 },
+    { icon: '🌡️', name: 'Climate', angle: 144 },
+    { icon: '🔒', name: 'Lock', angle: 216 },
+    { icon: '📹', name: 'Camera', angle: 288 }
   ];
 
   return (
@@ -309,7 +290,7 @@ function OptionC({ isActive, fullScreen }: { isActive: boolean; fullScreen: bool
       initial={{ opacity: 0.3 }}
       animate={{ opacity: isActive ? 1 : 0.5 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`${fullScreen ? 'rounded-3xl shadow-2xl' : 'absolute inset-0'} bg-gradient-to-br from-gray-50 to-white p-6 md:p-12 overflow-hidden`}
+      className={`${fullScreen ? 'rounded-3xl shadow-2xl' : 'absolute inset-0'} bg-gradient-to-br from-slate-50 to-blue-50 p-6 md:p-12 overflow-hidden`}
     >
       <div className="relative h-full flex flex-col">
         
@@ -318,93 +299,189 @@ function OptionC({ isActive, fullScreen }: { isActive: boolean; fullScreen: bool
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="text-center mb-8"
+          className="text-center mb-6"
         >
           <h3 className={`${fullScreen ? 'text-2xl md:text-3xl' : 'text-lg'} font-semibold text-gray-900 mb-2`}>
-            Expert Installation Journey
+            Seamless Integration
           </h3>
           <p className={`${fullScreen ? 'text-base' : 'text-xs'} text-gray-600`}>
-            White-glove service • Done right, every time
+            One home • All platforms • Zero complexity
           </p>
         </motion.div>
 
-        {/* Professional Journey */}
-        <div className="flex-1 space-y-6 relative">
-          {/* Vertical line */}
-          <div className="absolute left-8 top-6 bottom-6 w-0.5 bg-gradient-to-b from-blue-200 via-indigo-300 to-purple-200" />
+        {/* Central Integration Visualization */}
+        <div className="flex-1 relative flex items-center justify-center">
+          
+          {/* Subtle glow background */}
+          <motion.div
+            animate={{ 
+              opacity: [0.2, 0.4, 0.2],
+              scale: [0.95, 1.05, 0.95]
+            }}
+            transition={{ 
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="absolute inset-0 flex items-center justify-center"
+          >
+            <div className="w-64 h-64 bg-gradient-to-br from-blue-200 to-indigo-200 rounded-full blur-3xl opacity-30" />
+          </motion.div>
 
-          {phases.map((phase, index) => (
+          {/* Central Hub - Smart Home */}
+          <motion.div
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.5, type: 'spring', stiffness: 200, damping: 15 }}
+            className="relative z-20"
+          >
+            <div className="w-32 h-32 rounded-3xl bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200 shadow-2xl flex items-center justify-center">
+              <div className="text-center">
+                <div className="text-4xl mb-1">🏠</div>
+                <p className="text-xs font-semibold text-gray-900">Your Home</p>
+                <p className="text-[10px] text-gray-500 mt-0.5">12 devices</p>
+              </div>
+            </div>
+
+            {/* Animated connection rings */}
+            <motion.div
+              animate={{ 
+                scale: [1, 1.3, 1],
+                opacity: [0.3, 0, 0.3]
+              }}
+              transition={{ 
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeOut"
+              }}
+              className="absolute inset-0 rounded-3xl border-2 border-blue-300"
+            />
+            <motion.div
+              animate={{ 
+                scale: [1, 1.5, 1],
+                opacity: [0.2, 0, 0.2]
+              }}
+              transition={{ 
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeOut",
+                delay: 1
+              }}
+              className="absolute inset-0 rounded-3xl border-2 border-indigo-300"
+            />
+          </motion.div>
+
+          {/* Platform Cards - positioned around center */}
+          {platforms.map((platform, index) => (
             <motion.div
               key={index}
-              initial={{ x: -30, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: phase.delay, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="relative flex items-start gap-6"
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: platform.delay, type: 'spring', stiffness: 200, damping: 15 }}
+              className="absolute z-10"
+              style={{ 
+                top: platform.position.top,
+                left: platform.position.left,
+                right: platform.position.right,
+                bottom: platform.position.bottom,
+                transform: platform.position.transform
+              }}
             >
-              {/* Progress indicator */}
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: phase.delay + 0.2, type: 'spring', stiffness: 300 }}
-                className="relative flex-shrink-0"
-              >
-                <div className="w-16 h-16 rounded-full bg-white border-2 border-gray-200 flex items-center justify-center shadow-lg">
-                  <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${phase.color} shadow-md`} />
+              <div className={`relative w-24 h-24 rounded-2xl bg-gradient-to-br ${platform.color} shadow-xl`}>
+                {/* Platform icon */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="text-3xl mb-1">{platform.icon}</div>
+                    <p className="text-[10px] text-white/90 font-medium">{platform.name}</p>
+                  </div>
                 </div>
-                
-                {/* Connection line to card */}
-                <motion.div
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ delay: phase.delay + 0.3, duration: 0.4 }}
-                  className="absolute top-8 left-16 w-6 h-0.5 bg-gray-200 origin-left"
-                />
-              </motion.div>
 
-              {/* Card */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: phase.delay + 0.4 }}
-                className="flex-1 bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300"
-              >
-                <p className="font-semibold text-gray-900 mb-1">{phase.name}</p>
-                <p className="text-sm text-gray-600">{phase.description}</p>
-                
-                {/* Professional badge */}
-                <div className="mt-3 inline-flex items-center gap-1.5 px-2 py-1 bg-gray-50 rounded-lg">
-                  <svg className="w-3 h-3 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <span className="text-xs text-gray-600 font-medium">Certified Expert</span>
-                </div>
-              </motion.div>
+                {/* Glass reflection */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl" />
+
+                {/* Animated connection line to center */}
+                <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ overflow: 'visible' }}>
+                  <motion.line
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{ pathLength: 1, opacity: 0.3 }}
+                    transition={{ delay: platform.delay + 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                    x1="50%"
+                    y1="50%"
+                    x2={platform.position.left ? '200%' : platform.position.right ? '-100%' : '50%'}
+                    y2={platform.position.bottom ? '-150%' : '200%'}
+                    stroke="rgba(59, 130, 246, 0.4)"
+                    strokeWidth="2"
+                    strokeDasharray="4 4"
+                  />
+                </svg>
+              </div>
             </motion.div>
           ))}
+
+          {/* Device orbit - small icons around center */}
+          {devices.map((device, index) => {
+            const radius = 110; // Distance from center
+            const angleRad = (device.angle * Math.PI) / 180;
+            const x = Math.cos(angleRad) * radius;
+            const y = Math.sin(angleRad) * radius;
+
+            return (
+              <motion.div
+                key={index}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 2.0 + index * 0.1, type: 'spring', stiffness: 300 }}
+                className="absolute z-15"
+                style={{
+                  left: '50%',
+                  top: '50%',
+                  transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`
+                }}
+              >
+                <div className="w-10 h-10 rounded-xl bg-white shadow-lg border border-gray-200 flex items-center justify-center">
+                  <span className="text-lg">{device.icon}</span>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
-        {/* Quality Assurance Footer */}
+        {/* Key Benefits Footer */}
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 2.9 }}
-          className="mt-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-200"
+          transition={{ delay: 2.5 }}
+          className="mt-6 grid grid-cols-3 gap-3"
         >
-          <div className="flex items-start gap-3">
-            <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
-              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <div className="flex-1">
-              <p className="text-sm font-semibold text-gray-900 mb-1">
-                Professional Installation Guarantee
-              </p>
-              <p className="text-xs text-gray-600 leading-relaxed">
-                Every device expertly installed, configured, and tested. No programming knowledge required from you.
-              </p>
-            </div>
+          <div className="bg-white/80 backdrop-blur-sm rounded-xl p-3 border border-gray-200 text-center">
+            <p className="text-lg font-bold text-black mb-1">3</p>
+            <p className="text-xs text-gray-600">Platforms</p>
           </div>
+          
+          <div className="bg-white/80 backdrop-blur-sm rounded-xl p-3 border border-gray-200 text-center">
+            <p className="text-lg font-bold text-black mb-1">12</p>
+            <p className="text-xs text-gray-600">Devices</p>
+          </div>
+          
+          <div className="bg-white/80 backdrop-blur-sm rounded-xl p-3 border border-gray-200 text-center">
+            <p className="text-lg font-bold text-black mb-1">1</p>
+            <p className="text-xs text-gray-600">System</p>
+          </div>
+        </motion.div>
+
+        {/* Integration message */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2.8 }}
+          className="mt-4 text-center"
+        >
+          <p className="text-sm text-gray-600">
+            <span className="font-semibold text-gray-900">Choose your voice assistant.</span> We handle all the integration.
+          </p>
+          <p className="text-xs text-gray-500 mt-1">
+            No programming knowledge required
+          </p>
         </motion.div>
       </div>
     </motion.div>
