@@ -1,16 +1,14 @@
 import { motion } from 'framer-motion';
 
 /**
- * Step 2: Wi-Fi Foundation - Smooth Apple-Style Network Visualization
+ * Step 2: Wi-Fi Foundation - Enterprise Network with Ubiquiti Style
  * 
  * Features:
- * - Room-named access points (not "AP1/AP2")
- * - Slower, more confident animations (4s pulses)
- * - Gentler opacity transitions (peak 0.4 instead of 0.6)
- * - Professional UniFi-meets-Apple aesthetic
- * - Smooth wave propagation with increased stagger
- * - Coverage heat map visualization
- * - Real-time network stats
+ * - Complex realistic floor plan (L-shaped, multiple rooms)
+ * - Ubiquiti-style AP icons (white circular with LED)
+ * - Waves emanating from CENTER of APs outward
+ * - Room-named access points
+ * - Professional network stats
  */
 export default function StepWifi({ 
   isActive = true, 
@@ -26,7 +24,7 @@ export default function StepWifi({
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className={`${fullScreen ? 'rounded-3xl shadow-2xl' : 'absolute inset-0'} bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-6 md:p-12 overflow-hidden`}
     >
-      {/* Dark grid pattern - subtle */}
+      {/* Dark grid pattern */}
       <div 
         className="absolute inset-0 opacity-15"
         style={{
@@ -38,7 +36,6 @@ export default function StepWifi({
         }}
       />
 
-      {/* Content */}
       <div className="relative h-full flex flex-col">
         
         {/* Header */}
@@ -52,243 +49,217 @@ export default function StepWifi({
             Enterprise Wi-Fi Coverage
           </h3>
           <p className={`${fullScreen ? 'text-base' : 'text-xs'} text-cyan-400`}>
-            Fast, secure, and reliable in every room
+            Fast, secure, everywhere
           </p>
         </motion.div>
 
         {/* Coverage Map */}
         <div className="flex-1 relative flex items-center justify-center">
           
-          {/* Floor outline - same as Step 1 */}
-          <div className={`relative ${fullScreen ? 'w-96 h-96' : 'w-56 h-56'}`}>
+          <div className={`relative ${fullScreen ? 'w-[420px] h-[380px]' : 'w-[320px] h-[280px]'}`}>
             
-            {/* House outline */}
-            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 200">
-              <motion.rect
+            {/* Complex Floor Plan - L-shaped house */}
+            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 420 380">
+              {/* Main house outline - L-shaped */}
+              <motion.path
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 0.35 }}
                 transition={{ delay: 0.3, duration: 1 }}
-                x="20" y="40" width="160" height="140"
+                d="M 40 60 L 40 340 L 240 340 L 240 240 L 380 240 L 380 60 Z"
                 fill="none"
                 stroke="rgba(59, 130, 246, 0.5)"
                 strokeWidth="2"
                 strokeDasharray="5,5"
               />
               
-              {/* Room dividers */}
-              <motion.line
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ delay: 0.5, duration: 0.6 }}
-                x1="100" y1="40" x2="100" y2="180"
-                stroke="rgba(59, 130, 246, 0.3)"
-                strokeWidth="1"
-                strokeDasharray="3,3"
-              />
-              <motion.line
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ delay: 0.6, duration: 0.6 }}
-                x1="20" y1="110" x2="180" y2="110"
-                stroke="rgba(59, 130, 246, 0.3)"
-                strokeWidth="1"
-                strokeDasharray="3,3"
-              />
+              {/* Interior walls - complex layout */}
+              {/* Vertical walls */}
+              <motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.5, duration: 0.6 }}
+                x1="140" y1="60" x2="140" y2="240" stroke="rgba(59, 130, 246, 0.3)" strokeWidth="1" strokeDasharray="3,3" />
+              <motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.55, duration: 0.6 }}
+                x1="240" y1="60" x2="240" y2="180" stroke="rgba(59, 130, 246, 0.3)" strokeWidth="1" strokeDasharray="3,3" />
+              <motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.6, duration: 0.6 }}
+                x1="320" y1="60" x2="320" y2="240" stroke="rgba(59, 130, 246, 0.3)" strokeWidth="1" strokeDasharray="3,3" />
+              
+              {/* Horizontal walls */}
+              <motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.65, duration: 0.6 }}
+                x1="40" y1="180" x2="380" y2="180" stroke="rgba(59, 130, 246, 0.3)" strokeWidth="1" strokeDasharray="3,3" />
+              <motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.7, duration: 0.6 }}
+                x1="40" y1="260" x2="240" y2="260" stroke="rgba(59, 130, 246, 0.3)" strokeWidth="1" strokeDasharray="3,3" />
             </svg>
 
-            {/* ACCESS POINT 1 - Living Room (Left side) */}
+            {/* ACCESS POINT 1 - Living Room (Center-left area) */}
             <motion.div
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.8, type: 'spring', stiffness: 200, damping: 20 }}
-              className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2"
-              style={{ zIndex: 20 }}
+              className="absolute"
+              style={{ left: '22%', top: '35%', transform: 'translate(-50%, -50%)', zIndex: 20 }}
             >
-              {/* Signal rings - SLOWER, SMOOTHER */}
-              {[1, 2, 3].map((ring, i) => (
+              {/* Waves emanating FROM CENTER outward */}
+              {[1, 2, 3, 4].map((ring, i) => (
                 <motion.div
                   key={ring}
-                  className="absolute inset-0 -m-6"
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                   animate={{
-                    scale: [1, 2.8, 2.8],
-                    opacity: [0.4, 0.15, 0] // Gentler peak (was 0.6)
+                    width: ['0px', '160px'],
+                    height: ['0px', '160px'],
+                    opacity: [0.5, 0.15, 0]
                   }}
                   transition={{
-                    duration: 4, // Slower (was 2.5s)
+                    duration: 4,
                     repeat: Infinity,
-                    delay: i * 1.2, // More stagger (was 0.8s)
-                    ease: [0.22, 1, 0.36, 1] // Apple easing
+                    delay: i * 1.0,
+                    ease: [0.22, 1, 0.36, 1]
                   }}
                 >
-                  <div className={`${fullScreen ? 'w-16 h-16' : 'w-12 h-12'} rounded-full border-2 border-cyan-400/80`} />
+                  <div className="w-full h-full rounded-full border-2 border-cyan-400/60" />
                 </motion.div>
               ))}
 
-              {/* AP Icon */}
-              <div className={`relative ${fullScreen ? 'w-16 h-16' : 'w-12 h-12'} rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center shadow-2xl shadow-cyan-500/40`}>
-                <svg className={`${fullScreen ? 'w-8 h-8' : 'w-6 h-6'} text-white`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
-                </svg>
+              {/* Ubiquiti-style AP Icon */}
+              <div className={`relative ${fullScreen ? 'w-14 h-14' : 'w-11 h-11'} rounded-full bg-white shadow-2xl flex items-center justify-center`}>
+                {/* Outer ring */}
+                <div className="absolute inset-0 rounded-full border-2 border-gray-200" />
                 
-                {/* Status pulse - slower, more confident */}
+                {/* Inner design - Ubiquiti style */}
+                <div className="relative w-full h-full flex items-center justify-center">
+                  {/* WiFi symbol */}
+                  <svg className="w-6 h-6 text-cyan-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 18c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0-6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4z"/>
+                  </svg>
+                </div>
+
+                {/* Status LED - pulsing */}
                 <motion.div
                   animate={{ 
-                    scale: [1, 1.15, 1], 
-                    opacity: [1, 0.6, 1] 
+                    opacity: [1, 0.4, 1],
+                    scale: [1, 0.9, 1]
                   }}
                   transition={{ 
-                    duration: 2.5, // Slower pulse
+                    duration: 2,
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
-                  className={`absolute top-1 right-1 ${fullScreen ? 'w-3 h-3' : 'w-2 h-2'} rounded-full bg-green-400 shadow-lg shadow-green-400/50`}
+                  className="absolute top-1 right-1 w-2 h-2 rounded-full bg-green-400 shadow-lg shadow-green-400/50"
                 />
               </div>
 
-              {/* Label - Room name instead of "AP1" */}
+              {/* Label */}
               <motion.div
                 initial={{ opacity: 0, y: 5 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.2, duration: 0.5 }}
-                className={`absolute ${fullScreen ? '-bottom-10' : '-bottom-8'} left-1/2 -translate-x-1/2 whitespace-nowrap`}
+                className={`absolute ${fullScreen ? '-bottom-12' : '-bottom-10'} left-1/2 -translate-x-1/2 whitespace-nowrap`}
               >
                 <div className="bg-cyan-500/20 backdrop-blur-md px-3 py-1.5 rounded-lg border border-cyan-400/30">
                   <p className={`${fullScreen ? 'text-xs' : 'text-[9px]'} font-semibold text-cyan-300`}>
                     Living Room
                   </p>
                   <p className={`${fullScreen ? 'text-[10px]' : 'text-[8px]'} text-cyan-400/70 mt-0.5`}>
-                    2.4 & 5 GHz
+                    Wi-Fi 6
                   </p>
                 </div>
               </motion.div>
             </motion.div>
 
-            {/* ACCESS POINT 2 - Bedroom (Right side) */}
+            {/* ACCESS POINT 2 - Bedroom (Top-right area) */}
             <motion.div
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 1.0, type: 'spring', stiffness: 200, damping: 20 }}
-              className="absolute top-1/4 right-1/4 -translate-x-1/2 -translate-y-1/2"
-              style={{ zIndex: 20 }}
+              className="absolute"
+              style={{ right: '18%', top: '28%', transform: 'translate(50%, -50%)', zIndex: 20 }}
             >
-              {/* Signal rings - SLOWER, SMOOTHER */}
-              {[1, 2, 3].map((ring, i) => (
+              {/* Waves FROM CENTER outward */}
+              {[1, 2, 3, 4].map((ring, i) => (
                 <motion.div
                   key={ring}
-                  className="absolute inset-0 -m-6"
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                   animate={{
-                    scale: [1, 2.8, 2.8],
-                    opacity: [0.4, 0.15, 0] // Gentler peak
+                    width: ['0px', '160px'],
+                    height: ['0px', '160px'],
+                    opacity: [0.5, 0.15, 0]
                   }}
                   transition={{
-                    duration: 4, // Slower
+                    duration: 4,
                     repeat: Infinity,
-                    delay: 0.6 + i * 1.2, // Offset from AP1
+                    delay: 0.5 + i * 1.0,
                     ease: [0.22, 1, 0.36, 1]
                   }}
                 >
-                  <div className={`${fullScreen ? 'w-16 h-16' : 'w-12 h-12'} rounded-full border-2 border-blue-400/80`} />
+                  <div className="w-full h-full rounded-full border-2 border-blue-400/60" />
                 </motion.div>
               ))}
 
-              {/* AP Icon */}
-              <div className={`relative ${fullScreen ? 'w-16 h-16' : 'w-12 h-12'} rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center shadow-2xl shadow-blue-500/40`}>
-                <svg className={`${fullScreen ? 'w-8 h-8' : 'w-6 h-6'} text-white`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
-                </svg>
+              {/* Ubiquiti AP */}
+              <div className={`relative ${fullScreen ? 'w-14 h-14' : 'w-11 h-11'} rounded-full bg-white shadow-2xl flex items-center justify-center`}>
+                <div className="absolute inset-0 rounded-full border-2 border-gray-200" />
                 
-                {/* Status pulse */}
+                <div className="relative w-full h-full flex items-center justify-center">
+                  <svg className="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 18c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0-6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4z"/>
+                  </svg>
+                </div>
+
                 <motion.div
                   animate={{ 
-                    scale: [1, 1.15, 1], 
-                    opacity: [1, 0.6, 1] 
+                    opacity: [1, 0.4, 1],
+                    scale: [1, 0.9, 1]
                   }}
                   transition={{ 
-                    duration: 2.5,
+                    duration: 2,
                     repeat: Infinity,
-                    delay: 0.8, // Offset from AP1
+                    delay: 0.7,
                     ease: "easeInOut"
                   }}
-                  className={`absolute top-1 right-1 ${fullScreen ? 'w-3 h-3' : 'w-2 h-2'} rounded-full bg-green-400 shadow-lg shadow-green-400/50`}
+                  className="absolute top-1 right-1 w-2 h-2 rounded-full bg-green-400 shadow-lg shadow-green-400/50"
                 />
               </div>
 
-              {/* Label - Room name */}
+              {/* Label */}
               <motion.div
                 initial={{ opacity: 0, y: 5 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.4, duration: 0.5 }}
-                className={`absolute ${fullScreen ? '-bottom-10' : '-bottom-8'} left-1/2 -translate-x-1/2 whitespace-nowrap`}
+                className={`absolute ${fullScreen ? '-bottom-12' : '-bottom-10'} left-1/2 -translate-x-1/2 whitespace-nowrap`}
               >
                 <div className="bg-blue-500/20 backdrop-blur-md px-3 py-1.5 rounded-lg border border-blue-400/30">
                   <p className={`${fullScreen ? 'text-xs' : 'text-[9px]'} font-semibold text-blue-300`}>
                     Bedroom
                   </p>
                   <p className={`${fullScreen ? 'text-[10px]' : 'text-[8px]'} text-blue-400/70 mt-0.5`}>
-                    2.4 & 5 GHz
+                    Wi-Fi 6
                   </p>
                 </div>
               </motion.div>
             </motion.div>
 
-            {/* Coverage heat map overlay - SMOOTHER */}
+            {/* Coverage heat map - SMOOTHER */}
             <motion.div
               initial={{ opacity: 0 }}
-              animate={{ opacity: 0.35 }} // Subtler (was 0.4)
+              animate={{ opacity: 0.3 }}
               transition={{ delay: 1.5, duration: 1.2 }}
               className="absolute inset-0 pointer-events-none"
               style={{
                 background: `
-                  radial-gradient(circle at 25% 50%, rgba(6, 182, 212, 0.35) 0%, transparent 45%),
-                  radial-gradient(circle at 75% 25%, rgba(59, 130, 246, 0.35) 0%, transparent 45%)
+                  radial-gradient(circle at 22% 35%, rgba(6, 182, 212, 0.4) 0%, transparent 40%),
+                  radial-gradient(circle at 82% 28%, rgba(59, 130, 246, 0.4) 0%, transparent 40%)
                 `,
-                filter: 'blur(35px)',
+                filter: 'blur(40px)',
                 mixBlendMode: 'screen'
               }}
             />
-
-            {/* Smooth breathing overlay - VERY SUBTLE */}
-            <motion.div
-              animate={{
-                opacity: [0.15, 0.25, 0.15]
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background: `
-                  radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.2) 0%, transparent 60%)
-                `,
-                filter: 'blur(40px)'
-              }}
-            />
-
-            {/* Connection line - smooth fade in */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 10 }}>
-              <motion.line
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 0.25 }} // More subtle (was 0.3)
-                transition={{ delay: 1.6, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                x1="25%" y1="50%" x2="75%" y2="25%"
-                stroke="rgba(6, 182, 212, 0.6)"
-                strokeWidth="1.5"
-                strokeDasharray="4 4"
-              />
-            </svg>
           </div>
         </div>
 
-        {/* Stats Grid - Professional styling */}
+        {/* Stats Grid */}
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 1.8 }}
           className="grid grid-cols-3 gap-3 px-2"
         >
-          {/* Speed */}
           <div className={`bg-white/5 backdrop-blur-sm rounded-xl ${fullScreen ? 'p-4' : 'p-2.5'} border border-white/10 hover:border-green-400/30 transition-colors duration-500`}>
             <div className="flex items-center gap-1.5 mb-1.5">
               <motion.div 
@@ -308,12 +279,8 @@ export default function StepWifi({
             >
               1 Gbps
             </motion.p>
-            <p className={`${fullScreen ? 'text-[10px]' : 'text-[8px]'} text-gray-500 mt-1`}>
-              Full bandwidth
-            </p>
           </div>
 
-          {/* Devices */}
           <div className={`bg-white/5 backdrop-blur-sm rounded-xl ${fullScreen ? 'p-4' : 'p-2.5'} border border-white/10 hover:border-cyan-400/30 transition-colors duration-500`}>
             <div className="flex items-center gap-1.5 mb-1.5">
               <motion.div 
@@ -333,12 +300,8 @@ export default function StepWifi({
             >
               12
             </motion.p>
-            <p className={`${fullScreen ? 'text-[10px]' : 'text-[8px]'} text-gray-500 mt-1`}>
-              Connected now
-            </p>
           </div>
 
-          {/* Coverage */}
           <div className={`bg-white/5 backdrop-blur-sm rounded-xl ${fullScreen ? 'p-4' : 'p-2.5'} border border-white/10 hover:border-blue-400/30 transition-colors duration-500`}>
             <div className="flex items-center gap-1.5 mb-1.5">
               <motion.div 
@@ -358,13 +321,10 @@ export default function StepWifi({
             >
               100%
             </motion.p>
-            <p className={`${fullScreen ? 'text-[10px]' : 'text-[8px]'} text-gray-500 mt-1`}>
-              Every corner
-            </p>
           </div>
         </motion.div>
 
-        {/* Status indicator - confident and subtle */}
+        {/* Status */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -377,7 +337,7 @@ export default function StepWifi({
               opacity: [0.8, 1, 0.8]
             }}
             transition={{ 
-              duration: 2.5, // Slower, more confident
+              duration: 2.5,
               repeat: Infinity,
               ease: "easeInOut"
             }}
