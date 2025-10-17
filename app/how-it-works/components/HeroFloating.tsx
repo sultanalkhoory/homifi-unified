@@ -95,6 +95,8 @@ export default function HeroFloating() {
             <svg 
               className="absolute inset-0 w-full h-full pointer-events-none md:hidden" 
               style={{ zIndex: 1 }}
+              viewBox="0 0 400 500"
+              preserveAspectRatio="xMidYMid meet"
             >
               <defs>
                 <linearGradient id="lineGradientMobile" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -104,12 +106,14 @@ export default function HeroFloating() {
                 </linearGradient>
               </defs>
               
+              {/* Center point: 200, 250 */}
+              
               {/* Mobile Line 1: Lights (top-left) */}
               <motion.line
-                x1="50%"
-                y1="50%"
-                x2="calc(50% - 100px)"
-                y2="calc(50% - 80px)"
+                x1="200"
+                y1="250"
+                x2="100"
+                y2="170"
                 stroke="url(#lineGradientMobile)"
                 strokeWidth="2"
                 strokeDasharray="8 4"
@@ -121,10 +125,10 @@ export default function HeroFloating() {
               
               {/* Mobile Line 2: Climate (top-right) */}
               <motion.line
-                x1="50%"
-                y1="50%"
-                x2="calc(50% + 100px)"
-                y2="calc(50% - 70px)"
+                x1="200"
+                y1="250"
+                x2="300"
+                y2="180"
                 stroke="url(#lineGradientMobile)"
                 strokeWidth="2"
                 strokeDasharray="8 4"
@@ -136,10 +140,10 @@ export default function HeroFloating() {
               
               {/* Mobile Line 3: Security (bottom-left) */}
               <motion.line
-                x1="50%"
-                y1="50%"
-                x2="calc(50% - 110px)"
-                y2="calc(50% + 50px)"
+                x1="200"
+                y1="250"
+                x2="90"
+                y2="300"
                 stroke="url(#lineGradientMobile)"
                 strokeWidth="2"
                 strokeDasharray="8 4"
@@ -151,10 +155,10 @@ export default function HeroFloating() {
               
               {/* Mobile Line 4: Locks (bottom-right) */}
               <motion.line
-                x1="50%"
-                y1="50%"
-                x2="calc(50% + 90px)"
-                y2="calc(50% + 80px)"
+                x1="200"
+                y1="250"
+                x2="290"
+                y2="330"
                 stroke="url(#lineGradientMobile)"
                 strokeWidth="2"
                 strokeDasharray="8 4"
@@ -166,10 +170,10 @@ export default function HeroFloating() {
               
               {/* Mobile Line 5: Curtains (straight UP) */}
               <motion.line
-                x1="50%"
-                y1="50%"
-                x2="50%"
-                y2="calc(50% - 120px)"
+                x1="200"
+                y1="250"
+                x2="200"
+                y2="130"
                 stroke="url(#lineGradientMobile)"
                 strokeWidth="2"
                 strokeDasharray="8 4"
@@ -181,10 +185,10 @@ export default function HeroFloating() {
               
               {/* Mobile Line 6: Network (straight DOWN) */}
               <motion.line
-                x1="50%"
-                y1="50%"
-                x2="50%"
-                y2="calc(50% + 110px)"
+                x1="200"
+                y1="250"
+                x2="200"
+                y2="360"
                 stroke="url(#lineGradientMobile)"
                 strokeWidth="2"
                 strokeDasharray="8 4"
@@ -199,6 +203,8 @@ export default function HeroFloating() {
             <svg 
               className="absolute inset-0 w-full h-full pointer-events-none hidden md:block" 
               style={{ zIndex: 1 }}
+              viewBox="0 0 700 700"
+              preserveAspectRatio="xMidYMid meet"
             >
               <defs>
                 <linearGradient id="lineGradientDesktop" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -208,12 +214,14 @@ export default function HeroFloating() {
                 </linearGradient>
               </defs>
               
+              {/* Center point: 350, 350 */}
+              
               {/* Desktop Line 1: Lights */}
               <motion.line
-                x1="50%"
-                y1="50%"
-                x2="calc(50% - 180px)"
-                y2="calc(50% - 120px)"
+                x1="350"
+                y1="350"
+                x2="170"
+                y2="230"
                 stroke="url(#lineGradientDesktop)"
                 strokeWidth="2"
                 strokeDasharray="8 4"
@@ -225,10 +233,10 @@ export default function HeroFloating() {
               
               {/* Desktop Line 2: Climate */}
               <motion.line
-                x1="50%"
-                y1="50%"
-                x2="calc(50% + 180px)"
-                y2="calc(50% - 100px)"
+                x1="350"
+                y1="350"
+                x2="530"
+                y2="250"
                 stroke="url(#lineGradientDesktop)"
                 strokeWidth="2"
                 strokeDasharray="8 4"
@@ -240,10 +248,10 @@ export default function HeroFloating() {
               
               {/* Desktop Line 3: Security */}
               <motion.line
-                x1="50%"
-                y1="50%"
-                x2="calc(50% - 200px)"
-                y2="calc(50% + 80px)"
+                x1="350"
+                y1="350"
+                x2="150"
+                y2="430"
                 stroke="url(#lineGradientDesktop)"
                 strokeWidth="2"
                 strokeDasharray="8 4"
@@ -255,10 +263,10 @@ export default function HeroFloating() {
               
               {/* Desktop Line 4: Locks */}
               <motion.line
-                x1="50%"
-                y1="50%"
-                x2="calc(50% + 160px)"
-                y2="calc(50% + 120px)"
+                x1="350"
+                y1="350"
+                x2="510"
+                y2="470"
                 stroke="url(#lineGradientDesktop)"
                 strokeWidth="2"
                 strokeDasharray="8 4"
@@ -270,10 +278,10 @@ export default function HeroFloating() {
               
               {/* Desktop Line 5: Curtains (straight UP) */}
               <motion.line
-                x1="50%"
-                y1="50%"
-                x2="50%"
-                y2="calc(50% - 180px)"
+                x1="350"
+                y1="350"
+                x2="350"
+                y2="170"
                 stroke="url(#lineGradientDesktop)"
                 strokeWidth="2"
                 strokeDasharray="8 4"
@@ -285,10 +293,10 @@ export default function HeroFloating() {
               
               {/* Desktop Line 6: Network (straight DOWN) */}
               <motion.line
-                x1="50%"
-                y1="50%"
-                x2="50%"
-                y2="calc(50% + 160px)"
+                x1="350"
+                y1="350"
+                x2="350"
+                y2="510"
                 stroke="url(#lineGradientDesktop)"
                 strokeWidth="2"
                 strokeDasharray="8 4"
