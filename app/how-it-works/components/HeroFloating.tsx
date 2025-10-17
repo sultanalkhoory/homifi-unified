@@ -100,7 +100,6 @@ export default function HeroFloating() {
                   <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.4" />
                 </linearGradient>
 
-                {/* ✅ Fixed vertical gradient */}
                 <linearGradient
                   id="lineGradientMobileVertical"
                   x1="200" y1="110" x2="200" y2="380"
@@ -112,15 +111,67 @@ export default function HeroFloating() {
                 </linearGradient>
               </defs>
 
-              {/* 4 diagonal lines */}
-              <motion.line x1="200" y1="250" x2="100" y2="170" stroke="url(#lineGradientMobile)" strokeWidth="2" strokeDasharray="8 4" strokeLinecap="round" />
-              <motion.line x1="200" y1="250" x2="300" y2="180" stroke="url(#lineGradientMobile)" strokeWidth="2" strokeDasharray="8 4" strokeLinecap="round" />
-              <motion.line x1="200" y1="250" x2="90" y2="300" stroke="url(#lineGradientMobile)" strokeWidth="2" strokeDasharray="8 4" strokeLinecap="round" />
-              <motion.line x1="200" y1="250" x2="290" y2="330" stroke="url(#lineGradientMobile)" strokeWidth="2" strokeDasharray="8 4" strokeLinecap="round" />
-
-              {/* Curtains + Network */}
-              <motion.line x1="200" y1="250" x2="200" y2="110" stroke="url(#lineGradientMobileVertical)" strokeWidth="2" strokeDasharray="8 4" strokeLinecap="round" />
-              <motion.line x1="200" y1="250" x2="200" y2="380" stroke="url(#lineGradientMobileVertical)" strokeWidth="2" strokeDasharray="8 4" strokeLinecap="round" />
+              {/* Animated lines with pathLength */}
+              <motion.line 
+                x1="200" y1="250" x2="100" y2="170" 
+                stroke="url(#lineGradientMobile)" 
+                strokeWidth="2" 
+                strokeDasharray="8 4" 
+                strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0, ease: [0.22, 1, 0.36, 1] }}
+              />
+              <motion.line 
+                x1="200" y1="250" x2="300" y2="180" 
+                stroke="url(#lineGradientMobile)" 
+                strokeWidth="2" 
+                strokeDasharray="8 4" 
+                strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              />
+              <motion.line 
+                x1="200" y1="250" x2="90" y2="300" 
+                stroke="url(#lineGradientMobile)" 
+                strokeWidth="2" 
+                strokeDasharray="8 4" 
+                strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              />
+              <motion.line 
+                x1="200" y1="250" x2="290" y2="330" 
+                stroke="url(#lineGradientMobile)" 
+                strokeWidth="2" 
+                strokeDasharray="8 4" 
+                strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              />
+              <motion.line 
+                x1="200" y1="250" x2="200" y2="110" 
+                stroke="url(#lineGradientMobileVertical)" 
+                strokeWidth="2" 
+                strokeDasharray="8 4" 
+                strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              />
+              <motion.line 
+                x1="200" y1="250" x2="200" y2="380" 
+                stroke="url(#lineGradientMobileVertical)" 
+                strokeWidth="2" 
+                strokeDasharray="8 4" 
+                strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 1, ease: [0.22, 1, 0.36, 1] }}
+              />
             </svg>
 
             {/* ===== DESKTOP SVG ===== */}
@@ -132,7 +183,6 @@ export default function HeroFloating() {
                   <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.4" />
                 </linearGradient>
 
-                {/* ✅ Fixed vertical gradient */}
                 <linearGradient
                   id="lineGradientDesktopVertical"
                   x1="350" y1="150" x2="350" y2="530"
@@ -144,15 +194,67 @@ export default function HeroFloating() {
                 </linearGradient>
               </defs>
 
-              {/* 4 diagonal lines */}
-              <motion.line x1="350" y1="350" x2="170" y2="230" stroke="url(#lineGradientDesktop)" strokeWidth="2" strokeDasharray="8 4" strokeLinecap="round" />
-              <motion.line x1="350" y1="350" x2="530" y2="250" stroke="url(#lineGradientDesktop)" strokeWidth="2" strokeDasharray="8 4" strokeLinecap="round" />
-              <motion.line x1="350" y1="350" x2="150" y2="430" stroke="url(#lineGradientDesktop)" strokeWidth="2" strokeDasharray="8 4" strokeLinecap="round" />
-              <motion.line x1="350" y1="350" x2="510" y2="470" stroke="url(#lineGradientDesktop)" strokeWidth="2" strokeDasharray="8 4" strokeLinecap="round" />
-
-              {/* Curtains + Network */}
-              <motion.line x1="350" y1="350" x2="350" y2="150" stroke="url(#lineGradientDesktopVertical)" strokeWidth="2" strokeDasharray="8 4" strokeLinecap="round" />
-              <motion.line x1="350" y1="350" x2="350" y2="530" stroke="url(#lineGradientDesktopVertical)" strokeWidth="2" strokeDasharray="8 4" strokeLinecap="round" />
+              {/* Animated lines with pathLength */}
+              <motion.line 
+                x1="350" y1="350" x2="170" y2="230" 
+                stroke="url(#lineGradientDesktop)" 
+                strokeWidth="2" 
+                strokeDasharray="8 4" 
+                strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0, ease: [0.22, 1, 0.36, 1] }}
+              />
+              <motion.line 
+                x1="350" y1="350" x2="530" y2="250" 
+                stroke="url(#lineGradientDesktop)" 
+                strokeWidth="2" 
+                strokeDasharray="8 4" 
+                strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              />
+              <motion.line 
+                x1="350" y1="350" x2="150" y2="430" 
+                stroke="url(#lineGradientDesktop)" 
+                strokeWidth="2" 
+                strokeDasharray="8 4" 
+                strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              />
+              <motion.line 
+                x1="350" y1="350" x2="510" y2="470" 
+                stroke="url(#lineGradientDesktop)" 
+                strokeWidth="2" 
+                strokeDasharray="8 4" 
+                strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              />
+              <motion.line 
+                x1="350" y1="350" x2="350" y2="150" 
+                stroke="url(#lineGradientDesktopVertical)" 
+                strokeWidth="2" 
+                strokeDasharray="8 4" 
+                strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              />
+              <motion.line 
+                x1="350" y1="350" x2="350" y2="530" 
+                stroke="url(#lineGradientDesktopVertical)" 
+                strokeWidth="2" 
+                strokeDasharray="8 4" 
+                strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 1, ease: [0.22, 1, 0.36, 1] }}
+              />
             </svg>
 
             {/* ===== CENTER HOUSE ===== */}
