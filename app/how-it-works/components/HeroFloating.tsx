@@ -91,198 +91,211 @@ export default function HeroFloating() {
 
           {/* Right: Floating Ecosystem */}
           <div className="relative h-[500px] md:h-[600px] lg:h-[700px]">
-            {/* Connection lines */}
+            {/* Connection lines for MOBILE */}
             <svg 
-              className="absolute inset-0 w-full h-full pointer-events-none" 
+              className="absolute inset-0 w-full h-full pointer-events-none md:hidden" 
               style={{ zIndex: 1 }}
-              preserveAspectRatio="none"
             >
               <defs>
-                <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <linearGradient id="lineGradientMobile" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.4" />
                   <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.8" />
                   <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.4" />
                 </linearGradient>
               </defs>
               
-              {/* Line 1: Lights */}
+              {/* Mobile Line 1: Lights (top-left) */}
               <motion.line
                 x1="50%"
                 y1="50%"
                 x2="calc(50% - 100px)"
                 y2="calc(50% - 80px)"
-                stroke="url(#lineGradient)"
+                stroke="url(#lineGradientMobile)"
                 strokeWidth="2"
                 strokeDasharray="8 4"
                 strokeLinecap="round"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                className="md:hidden"
-              />
-              <motion.line
-                x1="50%"
-                y1="50%"
-                x2="calc(50% - 180px)"
-                y2="calc(50% - 120px)"
-                stroke="url(#lineGradient)"
-                strokeWidth="2"
-                strokeDasharray="8 4"
-                strokeLinecap="round"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                className="hidden md:block"
+                transition={{ duration: 0.8, delay: 0.3 }}
               />
               
-              {/* Line 2: Climate */}
+              {/* Mobile Line 2: Climate (top-right) */}
               <motion.line
                 x1="50%"
                 y1="50%"
                 x2="calc(50% + 100px)"
                 y2="calc(50% - 70px)"
-                stroke="url(#lineGradient)"
+                stroke="url(#lineGradientMobile)"
                 strokeWidth="2"
                 strokeDasharray="8 4"
                 strokeLinecap="round"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="md:hidden"
-              />
-              <motion.line
-                x1="50%"
-                y1="50%"
-                x2="calc(50% + 180px)"
-                y2="calc(50% - 100px)"
-                stroke="url(#lineGradient)"
-                strokeWidth="2"
-                strokeDasharray="8 4"
-                strokeLinecap="round"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="hidden md:block"
+                transition={{ duration: 0.8, delay: 0.5 }}
               />
               
-              {/* Line 3: Security */}
+              {/* Mobile Line 3: Security (bottom-left) */}
               <motion.line
                 x1="50%"
                 y1="50%"
                 x2="calc(50% - 110px)"
                 y2="calc(50% + 50px)"
-                stroke="url(#lineGradient)"
+                stroke="url(#lineGradientMobile)"
                 strokeWidth="2"
                 strokeDasharray="8 4"
                 strokeLinecap="round"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="md:hidden"
-              />
-              <motion.line
-                x1="50%"
-                y1="50%"
-                x2="calc(50% - 200px)"
-                y2="calc(50% + 80px)"
-                stroke="url(#lineGradient)"
-                strokeWidth="2"
-                strokeDasharray="8 4"
-                strokeLinecap="round"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="hidden md:block"
+                transition={{ duration: 0.8, delay: 0.7 }}
               />
               
-              {/* Line 4: Locks */}
+              {/* Mobile Line 4: Locks (bottom-right) */}
               <motion.line
                 x1="50%"
                 y1="50%"
                 x2="calc(50% + 90px)"
                 y2="calc(50% + 80px)"
-                stroke="url(#lineGradient)"
+                stroke="url(#lineGradientMobile)"
                 strokeWidth="2"
                 strokeDasharray="8 4"
                 strokeLinecap="round"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                className="md:hidden"
-              />
-              <motion.line
-                x1="50%"
-                y1="50%"
-                x2="calc(50% + 160px)"
-                y2="calc(50% + 120px)"
-                stroke="url(#lineGradient)"
-                strokeWidth="2"
-                strokeDasharray="8 4"
-                strokeLinecap="round"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                className="hidden md:block"
+                transition={{ duration: 0.8, delay: 0.9 }}
               />
               
-              {/* Line 5: Curtains (TOP) */}
+              {/* Mobile Line 5: Curtains (straight UP) */}
               <motion.line
                 x1="50%"
                 y1="50%"
                 x2="50%"
                 y2="calc(50% - 120px)"
-                stroke="url(#lineGradient)"
+                stroke="url(#lineGradientMobile)"
                 strokeWidth="2"
                 strokeDasharray="8 4"
                 strokeLinecap="round"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
-                className="md:hidden"
-              />
-              <motion.line
-                x1="50%"
-                y1="50%"
-                x2="50%"
-                y2="calc(50% - 180px)"
-                stroke="url(#lineGradient)"
-                strokeWidth="2"
-                strokeDasharray="8 4"
-                strokeLinecap="round"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
-                className="hidden md:block"
+                transition={{ duration: 0.8, delay: 1.1 }}
               />
               
-              {/* Line 6: Network (BOTTOM) */}
+              {/* Mobile Line 6: Network (straight DOWN) */}
               <motion.line
                 x1="50%"
                 y1="50%"
                 x2="50%"
                 y2="calc(50% + 110px)"
-                stroke="url(#lineGradient)"
+                stroke="url(#lineGradientMobile)"
                 strokeWidth="2"
                 strokeDasharray="8 4"
                 strokeLinecap="round"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 1.3, ease: [0.22, 1, 0.36, 1] }}
-                className="md:hidden"
+                transition={{ duration: 0.8, delay: 1.3 }}
               />
+            </svg>
+
+            {/* Connection lines for DESKTOP */}
+            <svg 
+              className="absolute inset-0 w-full h-full pointer-events-none hidden md:block" 
+              style={{ zIndex: 1 }}
+            >
+              <defs>
+                <linearGradient id="lineGradientDesktop" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.4" />
+                  <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.4" />
+                </linearGradient>
+              </defs>
+              
+              {/* Desktop Line 1: Lights */}
+              <motion.line
+                x1="50%"
+                y1="50%"
+                x2="calc(50% - 180px)"
+                y2="calc(50% - 120px)"
+                stroke="url(#lineGradientDesktop)"
+                strokeWidth="2"
+                strokeDasharray="8 4"
+                strokeLinecap="round"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+              />
+              
+              {/* Desktop Line 2: Climate */}
+              <motion.line
+                x1="50%"
+                y1="50%"
+                x2="calc(50% + 180px)"
+                y2="calc(50% - 100px)"
+                stroke="url(#lineGradientDesktop)"
+                strokeWidth="2"
+                strokeDasharray="8 4"
+                strokeLinecap="round"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+              />
+              
+              {/* Desktop Line 3: Security */}
+              <motion.line
+                x1="50%"
+                y1="50%"
+                x2="calc(50% - 200px)"
+                y2="calc(50% + 80px)"
+                stroke="url(#lineGradientDesktop)"
+                strokeWidth="2"
+                strokeDasharray="8 4"
+                strokeLinecap="round"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.7 }}
+              />
+              
+              {/* Desktop Line 4: Locks */}
+              <motion.line
+                x1="50%"
+                y1="50%"
+                x2="calc(50% + 160px)"
+                y2="calc(50% + 120px)"
+                stroke="url(#lineGradientDesktop)"
+                strokeWidth="2"
+                strokeDasharray="8 4"
+                strokeLinecap="round"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.9 }}
+              />
+              
+              {/* Desktop Line 5: Curtains (straight UP) */}
+              <motion.line
+                x1="50%"
+                y1="50%"
+                x2="50%"
+                y2="calc(50% - 180px)"
+                stroke="url(#lineGradientDesktop)"
+                strokeWidth="2"
+                strokeDasharray="8 4"
+                strokeLinecap="round"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 1.1 }}
+              />
+              
+              {/* Desktop Line 6: Network (straight DOWN) */}
               <motion.line
                 x1="50%"
                 y1="50%"
                 x2="50%"
                 y2="calc(50% + 160px)"
-                stroke="url(#lineGradient)"
+                stroke="url(#lineGradientDesktop)"
                 strokeWidth="2"
                 strokeDasharray="8 4"
                 strokeLinecap="round"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 1.3, ease: [0.22, 1, 0.36, 1] }}
-                className="hidden md:block"
+                transition={{ duration: 0.8, delay: 1.3 }}
               />
             </svg>
 
