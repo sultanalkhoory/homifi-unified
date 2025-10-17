@@ -104,6 +104,11 @@ export default function HeroFloating() {
                   <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.8" />
                   <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.4" />
                 </linearGradient>
+                <linearGradient id="lineGradientMobileVertical" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.4" />
+                  <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.4" />
+                </linearGradient>
               </defs>
               
               {/* Center point: 200, 250 */}
@@ -173,8 +178,8 @@ export default function HeroFloating() {
                 x1="200"
                 y1="250"
                 x2="200"
-                y2="130"
-                stroke="url(#lineGradientMobile)"
+                y2="110"
+                stroke="url(#lineGradientMobileVertical)"
                 strokeWidth="2"
                 strokeDasharray="8 4"
                 strokeLinecap="round"
@@ -188,8 +193,8 @@ export default function HeroFloating() {
                 x1="200"
                 y1="250"
                 x2="200"
-                y2="360"
-                stroke="url(#lineGradientMobile)"
+                y2="380"
+                stroke="url(#lineGradientMobileVertical)"
                 strokeWidth="2"
                 strokeDasharray="8 4"
                 strokeLinecap="round"
@@ -208,6 +213,11 @@ export default function HeroFloating() {
             >
               <defs>
                 <linearGradient id="lineGradientDesktop" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.4" />
+                  <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.4" />
+                </linearGradient>
+                <linearGradient id="lineGradientDesktopVertical" x1="0%" y1="0%" x2="0%" y2="100%">
                   <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.4" />
                   <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.8" />
                   <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.4" />
@@ -281,8 +291,8 @@ export default function HeroFloating() {
                 x1="350"
                 y1="350"
                 x2="350"
-                y2="170"
-                stroke="url(#lineGradientDesktop)"
+                y2="150"
+                stroke="url(#lineGradientDesktopVertical)"
                 strokeWidth="2"
                 strokeDasharray="8 4"
                 strokeLinecap="round"
@@ -296,8 +306,8 @@ export default function HeroFloating() {
                 x1="350"
                 y1="350"
                 x2="350"
-                y2="510"
-                stroke="url(#lineGradientDesktop)"
+                y2="530"
+                stroke="url(#lineGradientDesktopVertical)"
                 strokeWidth="2"
                 strokeDasharray="8 4"
                 strokeLinecap="round"
