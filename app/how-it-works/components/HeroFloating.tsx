@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import React from 'react';
 
-// SVG icon components (same as before)
+// =============== ICONS ===============
 const LightbulbIcon = () => (
   <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
@@ -48,9 +48,9 @@ const WifiIcon = () => (
   </svg>
 );
 
+// =============== MAIN COMPONENT ===============
 export default function HeroFloating() {
   const [scrollY, setScrollY] = useState(0);
-
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
@@ -72,7 +72,8 @@ export default function HeroFloating() {
 
       <div className="relative z-10 max-w-7xl mx-auto py-12 md:py-20 w-full">
         <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
-          {/* Left: Text */}
+
+          {/* LEFT SIDE */}
           <motion.div 
             className="text-center lg:text-left space-y-4 md:space-y-6"
             initial={{ opacity: 0, y: 30 }}
@@ -87,9 +88,10 @@ export default function HeroFloating() {
             </p>
           </motion.div>
 
-          {/* Right: Ecosystem */}
+          {/* RIGHT SIDE */}
           <div className="relative h-[500px] md:h-[600px] lg:h-[700px]">
-            {/* MOBILE SVG */}
+
+            {/* ===== MOBILE SVG ===== */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none md:hidden" viewBox="0 0 400 500">
               <defs>
                 <linearGradient id="lineGradientMobile" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -110,18 +112,18 @@ export default function HeroFloating() {
                 </linearGradient>
               </defs>
 
-              {/* Same motion.line setup */}
+              {/* 4 diagonal lines */}
               <motion.line x1="200" y1="250" x2="100" y2="170" stroke="url(#lineGradientMobile)" strokeWidth="2" strokeDasharray="8 4" strokeLinecap="round" />
               <motion.line x1="200" y1="250" x2="300" y2="180" stroke="url(#lineGradientMobile)" strokeWidth="2" strokeDasharray="8 4" strokeLinecap="round" />
               <motion.line x1="200" y1="250" x2="90" y2="300" stroke="url(#lineGradientMobile)" strokeWidth="2" strokeDasharray="8 4" strokeLinecap="round" />
               <motion.line x1="200" y1="250" x2="290" y2="330" stroke="url(#lineGradientMobile)" strokeWidth="2" strokeDasharray="8 4" strokeLinecap="round" />
 
-              {/* Curtains (Up) + Network (Down) */}
+              {/* Curtains + Network */}
               <motion.line x1="200" y1="250" x2="200" y2="110" stroke="url(#lineGradientMobileVertical)" strokeWidth="2" strokeDasharray="8 4" strokeLinecap="round" />
               <motion.line x1="200" y1="250" x2="200" y2="380" stroke="url(#lineGradientMobileVertical)" strokeWidth="2" strokeDasharray="8 4" strokeLinecap="round" />
             </svg>
 
-            {/* DESKTOP SVG */}
+            {/* ===== DESKTOP SVG ===== */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none hidden md:block" viewBox="0 0 700 700">
               <defs>
                 <linearGradient id="lineGradientDesktop" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -142,19 +144,81 @@ export default function HeroFloating() {
                 </linearGradient>
               </defs>
 
-              {/* Lines */}
+              {/* 4 diagonal lines */}
               <motion.line x1="350" y1="350" x2="170" y2="230" stroke="url(#lineGradientDesktop)" strokeWidth="2" strokeDasharray="8 4" strokeLinecap="round" />
               <motion.line x1="350" y1="350" x2="530" y2="250" stroke="url(#lineGradientDesktop)" strokeWidth="2" strokeDasharray="8 4" strokeLinecap="round" />
               <motion.line x1="350" y1="350" x2="150" y2="430" stroke="url(#lineGradientDesktop)" strokeWidth="2" strokeDasharray="8 4" strokeLinecap="round" />
               <motion.line x1="350" y1="350" x2="510" y2="470" stroke="url(#lineGradientDesktop)" strokeWidth="2" strokeDasharray="8 4" strokeLinecap="round" />
+
+              {/* Curtains + Network */}
               <motion.line x1="350" y1="350" x2="350" y2="150" stroke="url(#lineGradientDesktopVertical)" strokeWidth="2" strokeDasharray="8 4" strokeLinecap="round" />
               <motion.line x1="350" y1="350" x2="350" y2="530" stroke="url(#lineGradientDesktopVertical)" strokeWidth="2" strokeDasharray="8 4" strokeLinecap="round" />
             </svg>
 
-            {/* Rest unchanged (house + floating cards + scroll indicator) */}
-            {/* ... */}
+            {/* ===== CENTER HOUSE ===== */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+              <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
+                <div className="relative">
+                  <div className="absolute inset-0 bg-blue-500/20 rounded-2xl md:rounded-3xl blur-2xl md:blur-3xl animate-pulse" />
+                  <div className="relative bg-gradient-to-br from-blue-500 to-blue-600 p-5 md:p-8 rounded-2xl md:rounded-3xl shadow-2xl text-white">
+                    <HomeIcon />
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* ===== FLOATING DEVICES ===== */}
+            {devices.map((device, i) => {
+              const Icon = device.icon;
+              return (
+                <div key={i} className="absolute" style={{
+                  left: '50%', top: '50%', zIndex: 30,
+                  transform: `translate(calc(-50% + ${device.mobileX}px), calc(-50% + ${device.mobileY}px))`
+                }}>
+                  <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: device.delay }}>
+                    <motion.div className="group relative md:hidden" animate={{ y: [0, -10, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: device.delay + 1 }}>
+                      <div className="absolute inset-0 bg-blue-400/30 rounded-xl blur-lg group-hover:bg-blue-400/50 transition-all duration-500" />
+                      <div className="relative bg-white/90 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-slate-200/50 hover:shadow-xl hover:scale-110 transition-all duration-500 text-slate-700">
+                        <Icon />
+                        <p className="text-xs font-medium text-slate-600 mt-1">{device.label}</p>
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                </div>
+              );
+            })}
+
+            {devices.map((device, i) => {
+              const Icon = device.icon;
+              return (
+                <div key={`d-${i}`} className="absolute hidden md:block" style={{
+                  left: '50%', top: '50%', zIndex: 30,
+                  transform: `translate(calc(-50% + ${device.x}px), calc(-50% + ${device.y}px))`
+                }}>
+                  <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: device.delay }}>
+                    <motion.div className="group relative" animate={{ y: [0, -15, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: device.delay + 1 }}>
+                      <div className="absolute inset-0 bg-blue-400/30 rounded-2xl blur-xl group-hover:bg-blue-400/50 transition-all duration-500" />
+                      <div className="relative bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-slate-200/50 hover:shadow-xl hover:scale-110 transition-all duration-500 text-slate-700">
+                        <Icon />
+                        <p className="text-xs font-medium text-slate-600 mt-2">{device.label}</p>
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                </div>
+              );
+            })}
           </div>
         </div>
+
+        {/* ===== SCROLL INDICATOR ===== */}
+        <motion.div className="absolute bottom-8 md:bottom-12 left-1/2 -translate-x-1/2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5, duration: 0.8 }}>
+          <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }} className="flex flex-col items-center gap-2 text-gray-400">
+            <span className="text-xs md:text-sm">Scroll to explore</span>
+            <div className="w-5 h-8 md:w-6 md:h-10 rounded-full border-2 border-slate-300 flex items-start justify-center p-1.5 md:p-2">
+              <div className="w-1 h-2 md:h-3 bg-slate-400 rounded-full" />
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
