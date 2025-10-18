@@ -4,9 +4,9 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 /**
- * StepCustomize - Before/After Transformation
- * Shows clear visual transformation when scene activates
- * Split screen with center activation button
+ * StepCustomize - Scene Builder Interface
+ * Shows HOW customers create scenes themselves
+ * Step-by-step creation process: Name → Select Devices → Configure → Done
  */
 
 export default function StepCustomize({ 
@@ -17,33 +17,98 @@ export default function StepCustomize({
   fullScreen?: boolean;
 }) {
   
-  const [movieMode, setMovieMode] = useState(false);
+  const [buildStep, setBuildStep] = useState(0); // 0=start, 1=name, 2=devices, 3=configure, 4=done
+  const [sceneName, setSceneName] = useState('');
+  const [selectedDevices, setSelectedDevices] = useState<string[]>([]);
+  const [deviceSettings, setDeviceSettings] = useState<{[key: string]: any}>({});
 
-  // Auto-demo on load
+  // Auto-demo progression
   useEffect(() => {
     if (!isActive) return;
     
-    const timeout1 = setTimeout(() => setMovieMode(true), 2000);
-    const timeout2 = setTimeout(() => setMovieMode(false), 5000);
-    const timeout3 = setTimeout(() => setMovieMode(true), 7000);
+    const sequence = [
+      { delay: 1000, action: () => setBuildStep(1) },
+      { delay: 2500, action: () => { setSceneName('Movie Night'); setBuildStep(2); }},
+      { delay: 4500, action: () => setSelectedDevices(['lights', 'tv', 'curtains']) },
+      { delay: 6000, action: () => setBuildStep(3) },
+      { delay: 7500, action: () => setDeviceSettings({ lights: 20, tv: 'on', curtains: 'closed' }) },
+      { delay: 9000, action: () => setBuildStep(4) }
+    ];
     
-    return () => {
-      clearTimeout(timeout1);
-      clearTimeout(timeout2);
-      clearTimeout(timeout3);
-    };
+    const timeouts = sequence.map(({ delay, action }) => setTimeout(action, delay));
+    return () => timeouts.forEach(clearTimeout);
   }, [isActive]);
 
+  // Reset when inactive
   useEffect(() => {
-    if (!isActive) setMovieMode(false);
+    if (!isActive) {
+      setBuildStep(0);
+      setSceneName('');
+      setSelectedDevices([]);
+      setDeviceSettings({});
+    }
   }, [isActive]);
+
+  const availableDevices = [
+    { 
+      id: 'lights', 
+      name: 'Living Room Lights', 
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+        </svg>
+      ),
+      actionType: 'slider',
+      actionLabel: 'Brightness'
+    },
+    { 
+      id: 'tv', 
+      name: 'Apple TV', 
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+      ),
+      actionType: 'toggle',
+      actionLabel: 'Power'
+    },
+    { 
+      id: 'curtains', 
+      name: 'Curtains', 
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h18M3 21h18M5 3v18M10 3v18M14 3v18M19 3v18" />
+        </svg>
+      ),
+      actionType: 'toggle',
+      actionLabel: 'Position'
+    },
+    { 
+      id: 'thermostat', 
+      name: 'Thermostat', 
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
+      actionType: 'slider',
+      actionLabel: 'Temperature'
+    }
+  ];
+
+  const progressSteps = [
+    { label: 'Name', step: 1 },
+    { label: 'Select', step: 2 },
+    { label: 'Configure', step: 3 },
+    { label: 'Done', step: 4 }
+  ];
 
   return (
     <motion.div
       initial={{ opacity: 0.3 }}
       animate={{ opacity: isActive ? 1 : 0.5 }}
       transition={{ duration: 0.6 }}
-      className={`${fullScreen ? 'rounded-3xl shadow-2xl' : 'absolute inset-0'} bg-white p-6 md:p-12 overflow-hidden relative`}
+      className={`${fullScreen ? 'rounded-3xl shadow-2xl' : 'absolute inset-0'} bg-gradient-to-b from-slate-50 via-white to-slate-50 p-6 md:p-12 overflow-hidden relative`}
     >
       <div className="relative h-full flex flex-col">
         
@@ -52,278 +117,286 @@ export default function StepCustomize({
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="text-center mb-8 md:mb-12"
+          className="text-center mb-8"
         >
           <h3 className={`${fullScreen ? 'text-4xl md:text-5xl' : 'text-2xl'} font-semibold text-slate-900 mb-4 tracking-tight`}>
-            One tap. Instant transformation.
+            Create scenes in 30 seconds
           </h3>
           <p className={`${fullScreen ? 'text-xl' : 'text-base'} text-slate-600 max-w-2xl mx-auto`}>
-            Watch what happens when you activate Movie Night
+            Simple taps and sliders. No coding, no complexity.
           </p>
         </motion.div>
 
-        {/* Main Content - Split Screen */}
-        <div className="flex-1 flex items-center justify-center">
-          <div className="relative w-full max-w-7xl">
-            
-            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-              
-              {/* LEFT SIDE - BEFORE */}
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3, type: 'spring', stiffness: 100 }}
-                className="relative"
-              >
-                <div className="text-center mb-6">
-                  <h4 className="text-2xl font-semibold text-slate-900 mb-2">Before</h4>
-                  <p className="text-slate-500">Normal daytime mode</p>
-                </div>
-
-                {/* Room visualization - BEFORE state */}
-                <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
-                  {/* Background - bright */}
-                  <div className={`absolute inset-0 transition-all duration-1000 ${
-                    movieMode 
-                      ? 'bg-gradient-to-b from-slate-800 via-slate-900 to-black'
-                      : 'bg-gradient-to-b from-blue-100 via-slate-100 to-slate-200'
-                  }`} />
-
-                  {/* Room elements */}
-                  <div className="relative h-full p-8 flex flex-col justify-between">
-                    
-                    {/* Top - Window/Curtains */}
-                    <div className="flex justify-center gap-4">
-                      <motion.div 
-                        className="relative w-32 h-40 rounded-2xl overflow-hidden border-4 border-slate-300"
-                        animate={{
-                          borderColor: movieMode ? '#1e293b' : '#cbd5e1'
-                        }}
-                        transition={{ duration: 1 }}
-                      >
-                        {/* Window/Sky */}
-                        <motion.div
-                          className="absolute inset-0"
-                          animate={{
-                            background: movieMode 
-                              ? 'linear-gradient(to bottom, #1e293b, #0f172a)'
-                              : 'linear-gradient(to bottom, #93c5fd, #60a5fa)'
-                          }}
-                          transition={{ duration: 1 }}
-                        />
-                        
-                        {/* Curtains overlay */}
-                        <motion.div
-                          className="absolute inset-0 bg-slate-700"
-                          initial={{ scaleX: 0 }}
-                          animate={{ 
-                            scaleX: movieMode ? 1 : 0,
-                            opacity: movieMode ? 0.95 : 0
-                          }}
-                          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                        />
-                      </motion.div>
-                    </div>
-
-                    {/* Middle - TV */}
-                    <div className="flex justify-center">
-                      <motion.div 
-                        className="w-48 h-28 rounded-xl border-4 flex items-center justify-center"
-                        animate={{
-                          borderColor: movieMode ? '#0f172a' : '#475569',
-                          backgroundColor: movieMode ? '#3b82f6' : '#334155'
-                        }}
-                        transition={{ duration: 1 }}
-                      >
-                        {/* TV screen glow when active */}
-                        <AnimatePresence>
-                          {movieMode && (
-                            <motion.div
-                              initial={{ opacity: 0, scale: 0.8 }}
-                              animate={{ opacity: 1, scale: 1 }}
-                              exit={{ opacity: 0, scale: 0.8 }}
-                              className="text-4xl"
-                            >
-                              ▶️
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </motion.div>
-                    </div>
-
-                    {/* Bottom - Light indicator */}
-                    <div className="flex justify-center">
-                      <motion.div
-                        className="w-16 h-16 rounded-full"
-                        animate={{
-                          backgroundColor: movieMode ? '#422006' : '#fbbf24',
-                          boxShadow: movieMode 
-                            ? '0 0 20px rgba(251, 191, 36, 0.1)'
-                            : '0 0 60px rgba(251, 191, 36, 0.6)'
-                        }}
-                        transition={{ duration: 1 }}
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Device states */}
-                <div className="mt-6 space-y-2">
-                  {[
-                    { name: 'Lights', state: movieMode ? '20%' : '100%', icon: '💡' },
-                    { name: 'Curtains', state: movieMode ? 'Closed' : 'Open', icon: '🪟' },
-                    { name: 'TV', state: movieMode ? 'On' : 'Off', icon: '📺' }
-                  ].map((device) => (
-                    <motion.div
-                      key={device.name}
-                      className="flex items-center justify-between px-4 py-2 bg-slate-50 rounded-xl"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                    >
-                      <div className="flex items-center gap-2">
-                        <span className="text-lg">{device.icon}</span>
-                        <span className="text-sm font-medium text-slate-700">{device.name}</span>
-                      </div>
-                      <motion.span 
-                        className="text-sm font-semibold"
-                        animate={{
-                          color: movieMode ? '#f97316' : '#64748b'
-                        }}
-                      >
-                        {device.state}
-                      </motion.span>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* CENTER - ACTIVATION BUTTON */}
-              <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-                <motion.button
-                  onClick={() => setMovieMode(!movieMode)}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`relative px-8 py-8 rounded-full transition-all duration-500 ${
-                    movieMode
-                      ? 'bg-gradient-to-br from-orange-500 via-amber-500 to-orange-600 text-white shadow-2xl shadow-orange-500/40'
-                      : 'bg-white text-slate-900 shadow-2xl border-4 border-slate-200'
+        {/* Progress Indicator */}
+        <div className="flex justify-center mb-12">
+          <div className="flex items-center gap-2">
+            {progressSteps.map((item, index) => (
+              <div key={item.step} className="flex items-center">
+                <motion.div
+                  className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 ${
+                    buildStep >= item.step
+                      ? 'bg-slate-900 text-white'
+                      : 'bg-slate-100 text-slate-400'
                   }`}
+                  animate={{
+                    scale: buildStep === item.step ? 1.05 : 1
+                  }}
                 >
-                  <div className="flex flex-col items-center gap-2">
-                    <motion.div
-                      animate={{ rotate: movieMode ? 360 : 0 }}
-                      transition={{ duration: 0.6 }}
-                    >
-                      <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h1.5C5.496 19.5 6 18.996 6 18.375m-3.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-1.5A1.125 1.125 0 0118 18.375M20.625 4.5H3.375m17.25 0c.621 0 1.125.504 1.125 1.125M20.625 4.5h-1.5C18.504 4.5 18 5.004 18 5.625m3.75 0v1.5c0 .621-.504 1.125-1.125 1.125M3.375 4.5c-.621 0-1.125.504-1.125 1.125M3.375 4.5h1.5C5.496 4.5 6 5.004 6 5.625m-3.75 0v1.5c0 .621.504 1.125 1.125 1.125m0 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m1.5-3.75C5.496 8.25 6 7.746 6 7.125v-1.5M4.875 8.25C5.496 8.25 6 8.754 6 9.375v1.5m0-5.25v5.25m0-5.25C6 5.004 6.504 4.5 7.125 4.5h9.75c.621 0 1.125.504 1.125 1.125m1.125 2.625h1.5m-1.5 0A1.125 1.125 0 0118 7.125v-1.5m1.125 2.625c-.621 0-1.125.504-1.125 1.125v1.5m2.625-2.625c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125M18 5.625v5.25M7.125 12h9.75m-9.75 0A1.125 1.125 0 016 10.875M7.125 12C6.504 12 6 12.504 6 13.125m0-2.25C6 11.496 5.496 12 4.875 12M18 10.875c0 .621-.504 1.125-1.125 1.125M18 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m-12 5.25v-5.25m0 5.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125m-12 0v-1.5c0-.621-.504-1.125-1.125-1.125M18 18.375v-5.25m0 5.25v-1.5c0-.621.504-1.125 1.125-1.125M18 13.125v1.5c0 .621.504 1.125 1.125 1.125M18 13.125c0-.621.504-1.125 1.125-1.125M6 13.125v1.5c0 .621-.504 1.125-1.125 1.125M6 13.125C6 12.504 5.496 12 4.875 12m6.375 0c.621 0 1.125.504 1.125 1.125m-1.125-1.125c-.621 0-1.125.504-1.125 1.125m0 0c0 .621.504 1.125 1.125 1.125M13.5 14.25h-3" />
-                      </svg>
-                    </motion.div>
-                    <div className="text-center">
-                      <div className="text-sm font-bold whitespace-nowrap">Movie Night</div>
-                      <div className="text-xs opacity-80">{movieMode ? 'Active' : 'Tap to activate'}</div>
-                    </div>
+                  <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
+                    buildStep >= item.step ? 'bg-white/20' : 'bg-slate-200'
+                  }`}>
+                    {buildStep > item.step ? '✓' : item.step}
                   </div>
-                </motion.button>
+                  <span className="text-sm font-semibold">{item.label}</span>
+                </motion.div>
+                {index < progressSteps.length - 1 && (
+                  <div className={`w-8 h-0.5 mx-1 transition-colors duration-300 ${
+                    buildStep > item.step ? 'bg-slate-900' : 'bg-slate-200'
+                  }`} />
+                )}
               </div>
-
-              {/* RIGHT SIDE - AFTER */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4, type: 'spring', stiffness: 100 }}
-                className="relative"
-              >
-                <div className="text-center mb-6">
-                  <h4 className="text-2xl font-semibold text-slate-900 mb-2">After</h4>
-                  <p className="text-slate-500">Perfect cinema mode</p>
-                </div>
-
-                {/* Duplicate visualization for "After" view - shows end state */}
-                <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
-                  <div className="absolute inset-0 bg-gradient-to-b from-slate-800 via-slate-900 to-black" />
-
-                  <div className="relative h-full p-8 flex flex-col justify-between">
-                    
-                    {/* Top - Closed curtains */}
-                    <div className="flex justify-center gap-4">
-                      <div className="relative w-32 h-40 rounded-2xl overflow-hidden border-4 border-slate-800">
-                        <div className="absolute inset-0 bg-gradient-to-b from-slate-800 to-slate-900" />
-                        <div className="absolute inset-0 bg-slate-700 opacity-95" />
-                      </div>
-                    </div>
-
-                    {/* Middle - TV ON */}
-                    <div className="flex justify-center">
-                      <div className="w-48 h-28 rounded-xl border-4 border-slate-900 bg-blue-500 flex items-center justify-center">
-                        <div className="text-4xl">▶️</div>
-                      </div>
-                    </div>
-
-                    {/* Bottom - Dimmed light */}
-                    <div className="flex justify-center">
-                      <div 
-                        className="w-16 h-16 rounded-full bg-amber-900"
-                        style={{ boxShadow: '0 0 20px rgba(251, 191, 36, 0.1)' }}
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Device states - After */}
-                <div className="mt-6 space-y-2">
-                  {[
-                    { name: 'Lights', state: '20%', icon: '💡' },
-                    { name: 'Curtains', state: 'Closed', icon: '🪟' },
-                    { name: 'TV', state: 'On', icon: '📺' }
-                  ].map((device) => (
-                    <div
-                      key={device.name}
-                      className="flex items-center justify-between px-4 py-2 bg-slate-50 rounded-xl"
-                    >
-                      <div className="flex items-center gap-2">
-                        <span className="text-lg">{device.icon}</span>
-                        <span className="text-sm font-medium text-slate-700">{device.name}</span>
-                      </div>
-                      <span className="text-sm font-semibold text-orange-500">
-                        {device.state}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Mobile button */}
-            <div className="md:hidden mt-8 flex justify-center">
-              <motion.button
-                onClick={() => setMovieMode(!movieMode)}
-                whileTap={{ scale: 0.95 }}
-                className={`px-8 py-4 rounded-2xl text-lg font-semibold transition-all duration-500 ${
-                  movieMode
-                    ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-xl'
-                    : 'bg-slate-900 text-white'
-                }`}
-              >
-                {movieMode ? '✓ Movie Night Active' : 'Activate Movie Night'}
-              </motion.button>
-            </div>
+            ))}
           </div>
         </div>
 
-        {/* Bottom info */}
+        {/* Main Content Area */}
+        <div className="flex-1 flex items-center justify-center">
+          <div className="w-full max-w-2xl">
+            
+            <AnimatePresence mode="wait">
+              {/* STEP 1: Name Your Scene */}
+              {buildStep === 1 && (
+                <motion.div
+                  key="step1"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-100"
+                >
+                  <h4 className="text-2xl font-semibold text-slate-900 mb-6 text-center">
+                    What should we call this scene?
+                  </h4>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      value={sceneName}
+                      onChange={(e) => setSceneName(e.target.value)}
+                      placeholder="e.g., Movie Night, Good Morning..."
+                      className="w-full px-6 py-4 text-lg border-2 border-slate-200 rounded-2xl focus:border-slate-900 focus:outline-none transition-colors"
+                      autoFocus
+                    />
+                    {sceneName && (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 text-green-500"
+                      >
+                        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+                        </svg>
+                      </motion.div>
+                    )}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* STEP 2: Select Devices */}
+              {buildStep === 2 && (
+                <motion.div
+                  key="step2"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-100"
+                >
+                  <h4 className="text-2xl font-semibold text-slate-900 mb-2 text-center">
+                    Which devices should "{sceneName}" control?
+                  </h4>
+                  <p className="text-slate-500 text-center mb-8">Tap to select</p>
+                  
+                  <div className="grid grid-cols-2 gap-4">
+                    {availableDevices.map((device, index) => {
+                      const isSelected = selectedDevices.includes(device.id);
+                      return (
+                        <motion.button
+                          key={device.id}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: index * 0.1 }}
+                          onClick={() => {
+                            if (isSelected) {
+                              setSelectedDevices(prev => prev.filter(id => id !== device.id));
+                            } else {
+                              setSelectedDevices(prev => [...prev, device.id]);
+                            }
+                          }}
+                          className={`relative p-6 rounded-2xl border-2 transition-all duration-300 ${
+                            isSelected
+                              ? 'border-slate-900 bg-slate-50'
+                              : 'border-slate-200 bg-white hover:border-slate-300'
+                          }`}
+                        >
+                          <div className={`mb-3 ${isSelected ? 'text-slate-900' : 'text-slate-600'}`}>
+                            {device.icon}
+                          </div>
+                          <div className="text-sm font-semibold text-slate-900 text-left">
+                            {device.name}
+                          </div>
+                          
+                          {/* Checkmark */}
+                          <AnimatePresence>
+                            {isSelected && (
+                              <motion.div
+                                initial={{ scale: 0, rotate: -45 }}
+                                animate={{ scale: 1, rotate: 0 }}
+                                exit={{ scale: 0, rotate: 45 }}
+                                className="absolute top-3 right-3 w-6 h-6 bg-slate-900 rounded-full flex items-center justify-center"
+                              >
+                                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                </svg>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </motion.button>
+                      );
+                    })}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* STEP 3: Configure Actions */}
+              {buildStep === 3 && (
+                <motion.div
+                  key="step3"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-100"
+                >
+                  <h4 className="text-2xl font-semibold text-slate-900 mb-2 text-center">
+                    What should each device do?
+                  </h4>
+                  <p className="text-slate-500 text-center mb-8">Adjust settings below</p>
+                  
+                  <div className="space-y-6">
+                    {selectedDevices.map((deviceId, index) => {
+                      const device = availableDevices.find(d => d.id === deviceId)!;
+                      return (
+                        <motion.div
+                          key={deviceId}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.1 }}
+                          className="p-5 bg-slate-50 rounded-2xl"
+                        >
+                          <div className="flex items-center gap-3 mb-4">
+                            <div className="text-slate-700">{device.icon}</div>
+                            <div className="flex-1">
+                              <div className="font-semibold text-slate-900">{device.name}</div>
+                              <div className="text-xs text-slate-500">{device.actionLabel}</div>
+                            </div>
+                          </div>
+                          
+                          {device.actionType === 'slider' ? (
+                            <div>
+                              <input
+                                type="range"
+                                min="0"
+                                max="100"
+                                value={deviceSettings[deviceId] || 50}
+                                onChange={(e) => setDeviceSettings(prev => ({ ...prev, [deviceId]: parseInt(e.target.value) }))}
+                                className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-slate-900"
+                              />
+                              <div className="flex justify-between mt-2 text-sm">
+                                <span className="text-slate-400">0%</span>
+                                <span className="font-semibold text-slate-900">{deviceSettings[deviceId] || 50}%</span>
+                                <span className="text-slate-400">100%</span>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="flex gap-2">
+                              {['On', 'Off'].map(option => (
+                                <button
+                                  key={option}
+                                  onClick={() => setDeviceSettings(prev => ({ ...prev, [deviceId]: option.toLowerCase() }))}
+                                  className={`flex-1 py-2 rounded-xl text-sm font-semibold transition-all ${
+                                    (deviceSettings[deviceId] || 'on') === option.toLowerCase()
+                                      ? 'bg-slate-900 text-white'
+                                      : 'bg-white text-slate-600 hover:bg-slate-100'
+                                  }`}
+                                >
+                                  {option}
+                                </button>
+                              ))}
+                            </div>
+                          )}
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* STEP 4: Done */}
+              {buildStep === 4 && (
+                <motion.div
+                  key="step4"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-3xl p-8 md:p-12 shadow-2xl text-white text-center"
+                >
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
+                    className="w-20 h-20 mx-auto mb-6 bg-white/20 rounded-full flex items-center justify-center"
+                  >
+                    <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+                    </svg>
+                  </motion.div>
+                  
+                  <h4 className="text-3xl font-bold mb-3">Scene Created!</h4>
+                  <p className="text-lg text-white/90 mb-6">
+                    "{sceneName}" is ready to use
+                  </p>
+                  
+                  <div className="bg-white/10 rounded-2xl p-5 backdrop-blur-sm">
+                    <p className="text-sm text-white/80 mb-3">Controlling {selectedDevices.length} devices</p>
+                    <div className="flex flex-wrap gap-2 justify-center">
+                      {selectedDevices.map(deviceId => {
+                        const device = availableDevices.find(d => d.id === deviceId)!;
+                        return (
+                          <div key={deviceId} className="px-3 py-1.5 bg-white/20 rounded-full text-xs font-medium">
+                            {device.name}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+          </div>
+        </div>
+
+        {/* Bottom Message */}
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.6 }}
-          className="mt-8 md:mt-12 text-center space-y-6"
+          className="mt-8 text-center space-y-4"
         >
           <p className="text-slate-600 text-lg">
-            <span className="font-semibold text-slate-900">One tap.</span> Everything adjusts automatically.
+            Create unlimited scenes. <span className="font-semibold text-slate-900">Takes under 30 seconds.</span>
           </p>
-
-          {/* Platform badges */}
+          
+          {/* Platform Badges */}
           <div>
-            <p className="text-sm text-slate-500 mb-4">Works with</p>
+            <p className="text-sm text-slate-500 mb-3">Works with</p>
             <div className="flex justify-center gap-3 flex-wrap">
               {['Apple Home', 'Google Home', 'Alexa'].map((platform, i) => (
                 <motion.div
@@ -331,7 +404,7 @@ export default function StepCustomize({
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.7 + i * 0.1, type: 'spring' }}
-                  className="px-5 py-2 rounded-full bg-slate-100 text-slate-700 text-sm font-medium"
+                  className="px-5 py-2 rounded-full bg-slate-100 text-slate-700 text-sm font-semibold"
                 >
                   {platform}
                 </motion.div>
