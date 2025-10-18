@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 /**
  * StepCustomize - Scene Builder Interface
- * Refactored for cleaner code and better maintainability
+ * Refactored with smooth animations
  */
 
 export default function StepCustomize({ 
@@ -16,10 +16,14 @@ export default function StepCustomize({
   fullScreen?: boolean;
 }) {
   
+  // All state declarations
   const [buildStep, setBuildStep] = useState(0);
   const [sceneName, setSceneName] = useState('');
   const [selectedDevices, setSelectedDevices] = useState<string[]>([]);
   const [deviceSettings, setDeviceSettings] = useState<{[key: string]: any}>({});
+  const [displayName, setDisplayName] = useState('');
+  const [showCursor, setShowCursor] = useState(false);
+  const [targetLights, setTargetLights] = useState<number | null>(null);
 
   // Auto-demo sequence
   useEffect(() => {
@@ -42,7 +46,7 @@ export default function StepCustomize({
     return () => timeouts.forEach(clearTimeout);
   }, [isActive]);
 
-  // Smooth typing animation for scene name
+  // Smooth typing animation
   useEffect(() => {
     if (!sceneName) {
       setDisplayName('');
@@ -86,10 +90,10 @@ export default function StepCustomize({
         const newValue = Math.round(current + (step * frame));
         setDeviceSettings(prev => ({ ...prev, lights: newValue }));
       }
-    }, 16); // ~60fps
+    }, 16);
     
     return () => clearInterval(interval);
-  }, [targetLights]);
+  }, [targetLights, deviceSettings.lights]);
 
   // Reset state
   useEffect(() => {
@@ -147,7 +151,7 @@ export default function StepCustomize({
     { label: 'Done', step: 4 }
   ];
 
-  // Shared animation configs
+  // Shared configs
   const cardTransition = { type: 'spring' as const, stiffness: 120, damping: 20 };
   const cardAnimation = {
     initial: { opacity: 0, scale: 0.95, y: 20 },
@@ -156,12 +160,10 @@ export default function StepCustomize({
     transition: cardTransition
   };
 
-  // Shared class names
   const cardClass = "bg-white/80 backdrop-blur-xl rounded-3xl md:rounded-[32px] p-6 md:p-10 lg:p-14 shadow-xl border border-white/20";
   const headingClass = "text-2xl md:text-3xl font-semibold text-slate-900 mb-6 md:mb-8 text-center tracking-tight";
   const subtitleClass = "text-slate-500 text-center mb-6 md:mb-10 text-base md:text-lg font-light";
 
-  // Icon wrapper component
   const DeviceIcon = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
     <svg className={`w-6 md:w-7 h-6 md:h-7 ${className}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8}>
       {children}
@@ -175,7 +177,6 @@ export default function StepCustomize({
       transition={{ duration: 0.6 }}
       className={`${fullScreen ? 'rounded-3xl shadow-2xl' : 'absolute inset-0'} bg-gradient-to-b from-white via-slate-50/50 to-white p-4 md:p-8 lg:p-12 overflow-hidden relative`}
     >
-      {/* Background gradient */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.03),transparent_50%)]" />
       
       <div className="relative h-full flex flex-col">
@@ -244,7 +245,7 @@ export default function StepCustomize({
                         onChange={(e) => {
                           setSceneName(e.target.value);
                           setDisplayName(e.target.value);
-                          setShowCursor(false); // Stop cursor when typing manually
+                          setShowCursor(false);
                         }}
                         placeholder="Movie Night"
                         className="w-full px-5 md:px-7 py-4 md:py-5 text-lg md:text-xl bg-slate-50/80 border-2 border-slate-200/50 rounded-2xl md:rounded-[20px] focus:border-slate-900 focus:bg-white focus:outline-none transition-all duration-300 placeholder:text-slate-400 min-h-[56px]"
@@ -379,7 +380,7 @@ export default function StepCustomize({
                                 max="100"
                                 value={value}
                                 onChange={(e) => {
-                                  setTargetLights(null); // Cancel any animation
+                                  setTargetLights(null);
                                   setDeviceSettings(prev => ({ ...prev, [deviceId]: parseInt(e.target.value) }));
                                 }}
                                 className="w-full h-2 md:h-2 bg-slate-200 rounded-full appearance-none cursor-pointer accent-slate-900 touch-none"
