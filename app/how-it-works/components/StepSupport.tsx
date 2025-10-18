@@ -78,7 +78,7 @@ export default function StepSupport({
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="text-center mb-6 md:mb-8 flex-shrink-0"
+          className="text-center mb-6 md:mb-12 lg:mb-16 flex-shrink-0"
         >
           <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-900 mb-2">
             We're Always Here
