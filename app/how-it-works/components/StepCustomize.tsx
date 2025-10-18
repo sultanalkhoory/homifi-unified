@@ -33,7 +33,8 @@ export default function StepCustomize({
       [5200, () => setSelectedDevices(['lights', 'tv'])],
       [5900, () => setSelectedDevices(['lights', 'tv', 'curtains'])],
       [7200, () => setBuildStep(3)],
-      [8500, () => setDeviceSettings({ lights: 20, tv: 'on', curtains: 'closed' })],
+      [7500, () => setDeviceSettings({ lights: 50, tv: 'on', curtains: 'closed' })],
+      [8500, () => setTargetLights(20)],
       [10000, () => setBuildStep(4)]
     ] as const;
     
@@ -46,8 +47,11 @@ export default function StepCustomize({
     if (!isActive) {
       setBuildStep(0);
       setSceneName('');
+      setDisplayName('');
+      setShowCursor(false);
       setSelectedDevices([]);
       setDeviceSettings({});
+      setTargetLights(null);
     }
   }, [isActive]);
 
@@ -184,15 +188,31 @@ export default function StepCustomize({
                 <motion.div key="step1" {...cardAnimation} className={cardClass}>
                   <h4 className={headingClass}>Name your scene</h4>
                   <div className="relative">
-                    <input
-                      type="text"
-                      value={sceneName}
-                      onChange={(e) => setSceneName(e.target.value)}
-                      placeholder="Movie Night"
-                      className="w-full px-5 md:px-7 py-4 md:py-5 text-lg md:text-xl bg-slate-50/80 border-2 border-slate-200/50 rounded-2xl md:rounded-[20px] focus:border-slate-900 focus:bg-white focus:outline-none transition-all duration-300 placeholder:text-slate-400 min-h-[56px]"
-                    />
+                    <div className="relative">
+                      <input
+                        type="text"
+                        value={displayName}
+                        onChange={(e) => {
+                          setSceneName(e.target.value);
+                          setDisplayName(e.target.value);
+                          setShowCursor(false); // Stop cursor when typing manually
+                        }}
+                        placeholder="Movie Night"
+                        className="w-full px-5 md:px-7 py-4 md:py-5 text-lg md:text-xl bg-slate-50/80 border-2 border-slate-200/50 rounded-2xl md:rounded-[20px] focus:border-slate-900 focus:bg-white focus:outline-none transition-all duration-300 placeholder:text-slate-400 min-h-[56px]"
+                      />
+                      {showCursor && displayName && (
+                        <motion.span
+                          animate={{ opacity: [1, 0] }}
+                          transition={{ duration: 0.8, repeat: Infinity, repeatType: 'reverse' }}
+                          className="absolute left-5 md:left-7 top-1/2 -translate-y-1/2 text-lg md:text-xl text-slate-900 pointer-events-none"
+                          style={{ marginLeft: `${displayName.length * 0.6}em` }}
+                        >
+                          |
+                        </motion.span>
+                      )}
+                    </div>
                     <AnimatePresence>
-                      {sceneName && (
+                      {displayName && (
                         <motion.div
                           initial={{ opacity: 0, scale: 0.5, rotate: -90 }}
                           animate={{ opacity: 1, scale: 1, rotate: 0 }}
@@ -309,7 +329,10 @@ export default function StepCustomize({
                                 min="0"
                                 max="100"
                                 value={value}
-                                onChange={(e) => setDeviceSettings(prev => ({ ...prev, [deviceId]: parseInt(e.target.value) }))}
+                                onChange={(e) => {
+                                  setTargetLights(null); // Cancel any animation
+                                  setDeviceSettings(prev => ({ ...prev, [deviceId]: parseInt(e.target.value) }));
+                                }}
                                 className="w-full h-2 md:h-2 bg-slate-200 rounded-full appearance-none cursor-pointer accent-slate-900 touch-none"
                                 style={{ background: `linear-gradient(to right, #0f172a 0%, #0f172a ${value}%, #e2e8f0 ${value}%, #e2e8f0 100%)` }}
                               />
