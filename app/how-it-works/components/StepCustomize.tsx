@@ -394,7 +394,8 @@ export default function StepCustomize({
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ type: 'spring', stiffness: 140, damping: 18 }}
-                  className="bg-gradient-to-br from-emerald-500 via-green-500 to-emerald-600 rounded-3xl md:rounded-[32px] p-8 md:p-10 lg:p-14 shadow-2xl text-white text-center relative overflow-hidden"
+                  className="bg-gradient-to-br from-orange-500 via-amber-500 to-orange-600 rounded-3xl md:rounded-[32px] p-8 md:p-10 lg:p-14 shadow-2xl text-white text-center relative overflow-hidden"
+                  style={{ boxShadow: '0 30px 80px rgba(251, 146, 60, 0.4), 0 0 0 1px rgba(255,255,255,0.1) inset' }}
                 >
                   {/* Glass overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
