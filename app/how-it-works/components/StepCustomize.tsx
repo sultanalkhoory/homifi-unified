@@ -42,6 +42,55 @@ export default function StepCustomize({
     return () => timeouts.forEach(clearTimeout);
   }, [isActive]);
 
+  // Smooth typing animation for scene name
+  useEffect(() => {
+    if (!sceneName) {
+      setDisplayName('');
+      setShowCursor(false);
+      return;
+    }
+    
+    setShowCursor(true);
+    let currentIndex = 0;
+    const interval = setInterval(() => {
+      if (currentIndex <= sceneName.length) {
+        setDisplayName(sceneName.slice(0, currentIndex));
+        currentIndex++;
+      } else {
+        clearInterval(interval);
+        setTimeout(() => setShowCursor(false), 500);
+      }
+    }, 80);
+    
+    return () => clearInterval(interval);
+  }, [sceneName]);
+
+  // Smooth slider animation
+  useEffect(() => {
+    if (targetLights === null || deviceSettings.lights === targetLights) return;
+    
+    let current = deviceSettings.lights ?? 50;
+    const target = targetLights;
+    const diff = target - current;
+    const frames = 30;
+    const step = diff / frames;
+    let frame = 0;
+    
+    const interval = setInterval(() => {
+      frame++;
+      if (frame >= frames) {
+        setDeviceSettings(prev => ({ ...prev, lights: target }));
+        setTargetLights(null);
+        clearInterval(interval);
+      } else {
+        const newValue = Math.round(current + (step * frame));
+        setDeviceSettings(prev => ({ ...prev, lights: newValue }));
+      }
+    }, 16); // ~60fps
+    
+    return () => clearInterval(interval);
+  }, [targetLights]);
+
   // Reset state
   useEffect(() => {
     if (!isActive) {
