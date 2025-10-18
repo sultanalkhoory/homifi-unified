@@ -3,14 +3,9 @@ import { motion } from "framer-motion";
 import { staggerUp, childUp } from "@/lib/animations";
 
 /**
- * WorksWithFooter Component
- * 
- * A compact footer version of the Works With component that displays
- * official compatibility badges in an elegant, space-efficient layout.
- * Designed to be placed in the footer area of the site.
+ * WorksWithFooter with proper top spacing
  */
 export default function WorksWithFooter() {
-  // Platform compatibility data with paths to official WebP badges
   const platforms = [
     {
       id: "apple-homekit",
@@ -30,9 +25,10 @@ export default function WorksWithFooter() {
   ];
 
   return (
-    <section className="py-12 bg-gray-50 border-t border-gray-100">
+    <section className="pt-16 md:pt-12 pb-12 bg-gray-50 border-t border-gray-100">
       <div className="mx-auto max-w-6xl px-4">
-        {/* Compact heading */}
+        
+        {/* Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -43,7 +39,7 @@ export default function WorksWithFooter() {
           Compatible with all major smart home platforms
         </motion.h2>
 
-        {/* Compact badge layout */}
+        {/* Badges */}
         <motion.div 
           variants={staggerUp}
           initial="hidden"
@@ -62,7 +58,6 @@ export default function WorksWithFooter() {
               }}
               className="flex-shrink-0"
             >
-              {/* Smaller Apple-style card */}
               <div className="bg-white rounded-xl px-5 py-3 flex items-center justify-center h-16 w-48
                 shadow-[0_4px_10px_rgba(0,0,0,0.03),_0_1px_2px_rgba(0,0,0,0.01)]
                 border border-gray-50 transition-all duration-300"
