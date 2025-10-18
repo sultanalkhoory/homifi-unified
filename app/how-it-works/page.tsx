@@ -61,7 +61,7 @@ export default function HowItWorksPage() {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial check
+    handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -80,7 +80,7 @@ export default function HowItWorksPage() {
     <main className="bg-white">
       <Header />
       
-      {/* Fixed Progress Indicator - subtle left side dots */}
+      {/* Fixed Progress Indicator */}
       <div className="fixed left-8 top-1/2 -translate-y-1/2 z-50 hidden md:block">
         <div className="flex flex-col gap-4">
           {steps.map((step, index) => (
@@ -90,7 +90,6 @@ export default function HowItWorksPage() {
               className="group relative"
               aria-label={`Go to step ${index + 1}: ${step.title}`}
             >
-              {/* Circle indicator */}
               <div className={`
                 w-2 h-2 rounded-full transition-all duration-300
                 ${activeStep === index 
@@ -99,7 +98,7 @@ export default function HowItWorksPage() {
                 }
               `} />
               
-              {/* Tooltip on hover */}
+              {/* Tooltip */}
               <div className="absolute left-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
                 <div className="bg-black text-white text-xs px-3 py-1.5 rounded-lg">
                   {step.title}
@@ -110,22 +109,25 @@ export default function HowItWorksPage() {
         </div>
       </div>
 
-      {/* NEW: Floating Hero Section */}
+      {/* Floating Hero Section */}
       <HeroFloating />
 
       {/* Scrolling Steps Container */}
       <div ref={containerRef}>
         {steps.map((step, index) => {
           const ActiveComponent = step.component;
+          const isLastStep = index === steps.length - 1;
           
           return (
             <section
               key={step.id}
-              className="step-section min-h-screen flex items-center justify-center px-4 py-20"
+              className={`step-section min-h-[80vh] md:min-h-screen flex items-center justify-center px-4 ${
+                isLastStep ? 'py-20 pb-32 md:pb-40' : 'py-20'
+              }`}
             >
               <div className="max-w-7xl mx-auto w-full">
                 
-                {/* Step Header - animates in on scroll */}
+                {/* Step Header */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -146,7 +148,7 @@ export default function HowItWorksPage() {
                   </p>
                 </motion.div>
 
-                {/* Step Content - smooth scale/fade animation */}
+                {/* Step Content */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
