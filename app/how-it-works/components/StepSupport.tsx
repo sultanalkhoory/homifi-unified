@@ -4,9 +4,7 @@ import { motion } from 'framer-motion';
 
 /**
  * Step 4: We Support You
- * 
- * Shows explicit support offering with 3 months included
- * WhatsApp support, remote help, on-site visits, firmware updates
+ * Mobile-optimized with flexible height
  */
 
 export default function StepSupport({ 
@@ -65,82 +63,86 @@ export default function StepSupport({
       initial={{ opacity: 0.3 }}
       animate={{ opacity: isActive ? 1 : 0.5 }}
       transition={{ duration: 0.6 }}
-      className={`${fullScreen ? 'rounded-3xl shadow-2xl' : 'absolute inset-0'} bg-gradient-to-br from-white to-blue-50/30 p-6 md:p-12 overflow-hidden`}
+      className={`
+        ${fullScreen ? 'rounded-3xl shadow-2xl' : 'absolute inset-0'} 
+        bg-gradient-to-br from-white to-blue-50/30 
+        p-4 md:p-8 lg:p-12 
+        overflow-auto
+        h-full
+      `}
     >
-      <div className="relative h-full flex flex-col">
+      <div className="relative h-full flex flex-col justify-between min-h-0">
         
         {/* Header */}
         <motion.div
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="text-center mb-8"
+          className="text-center mb-6 md:mb-8 flex-shrink-0"
         >
-          <h3 className={`${fullScreen ? 'text-2xl md:text-3xl' : 'text-lg'} font-semibold text-gray-900 mb-2`}>
+          <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-900 mb-2">
             We're Always Here
           </h3>
-          <p className={`${fullScreen ? 'text-base' : 'text-xs'} text-gray-600`}>
+          <p className="text-sm md:text-base text-gray-600">
             3 months of hands-on support, then flexible care plans
           </p>
         </motion.div>
 
-        {/* Main Support Card */}
-        <div className="flex-1 flex items-center justify-center">
+        {/* Main Content */}
+        <div className="flex-1 flex items-center justify-center min-h-0 pb-4">
           <div className="w-full max-w-2xl">
             
-            {/* 3 Months Badge */}
+            {/* Badge */}
             <motion.div
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.3, type: 'spring', stiffness: 200 }}
-              className="flex justify-center mb-8"
+              className="flex justify-center mb-6 md:mb-8"
             >
-              <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-br from-blue-500 to-indigo-600 text-white rounded-full shadow-lg">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+              <div className="inline-flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2 md:py-3 bg-gradient-to-br from-blue-500 to-indigo-600 text-white rounded-full shadow-lg">
+                <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
-                <span className="font-semibold text-lg">3 Months Included</span>
+                <span className="font-semibold text-base md:text-lg">3 Months Included</span>
               </div>
             </motion.div>
 
-            {/* Support Features Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+            {/* Features Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mb-6 md:mb-8">
               {supportFeatures.map((feature, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 + index * 0.1, type: 'spring', stiffness: 150 }}
-                  className="bg-white rounded-2xl p-5 shadow-md border border-gray-100 hover:shadow-lg transition-shadow"
+                  className="bg-white rounded-xl md:rounded-2xl p-4 md:p-5 shadow-md border border-gray-100 hover:shadow-lg transition-shadow"
                 >
-                  {/* Icon */}
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center text-white mb-3 shadow-md`}>
+                  <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center text-white mb-2 md:mb-3 shadow-md`}>
                     {feature.icon}
                   </div>
                   
-                  {/* Text */}
-                  <h4 className="text-lg font-semibold text-gray-900 mb-1">
+                  <h4 className="text-base md:text-lg font-semibold text-gray-900 mb-1">
                     {feature.title}
                   </h4>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-xs md:text-sm text-gray-600">
                     {feature.description}
                   </p>
                 </motion.div>
               ))}
             </div>
 
-            {/* Contact Support CTA */}
+            {/* CTA */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9 }}
-              className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 text-center"
+              className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 text-center"
             >
-              <p className="text-gray-600 mb-4">
+              <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-4">
                 After 3 months, flexible care plans available
               </p>
-              <button className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white rounded-full font-medium hover:bg-gray-900 hover:scale-105 transition-all duration-200 shadow-md">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+              <button className="inline-flex items-center gap-2 px-5 md:px-6 py-2.5 md:py-3 bg-black text-white rounded-full text-sm md:text-base font-medium hover:bg-gray-900 hover:scale-105 transition-all duration-200 shadow-md">
+                <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                 </svg>
                 Contact Support
@@ -154,9 +156,9 @@ export default function StepSupport({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.1 }}
-          className="mt-6 text-center"
+          className="text-center flex-shrink-0 mt-4"
         >
-          <p className="text-sm text-gray-500">
+          <p className="text-xs md:text-sm text-gray-500">
             Honestly, you probably won't need us much—it's that simple.
           </p>
         </motion.div>
