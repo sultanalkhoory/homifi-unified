@@ -152,11 +152,11 @@ export default function StepCustomize({
   ];
 
   // Shared configs
-  const cardTransition = { type: 'spring' as const, stiffness: 120, damping: 20 };
+  const cardTransition = { type: 'spring' as const, stiffness: 100, damping: 25 };
   const cardAnimation = {
-    initial: { opacity: 0, scale: 0.95, y: 20 },
+    initial: { opacity: 0, scale: 0.97, y: 30 },
     animate: { opacity: 1, scale: 1, y: 0 },
-    exit: { opacity: 0, scale: 0.95, y: -20 },
+    exit: { opacity: 0, scale: 0.97, y: -30 },
     transition: cardTransition
   };
 
@@ -247,8 +247,7 @@ export default function StepCustomize({
                           setDisplayName(e.target.value);
                           setShowCursor(false);
                         }}
-                        placeholder="Movie Night"
-                        className="w-full px-5 md:px-7 py-4 md:py-5 text-lg md:text-xl bg-slate-50/80 border-2 border-slate-200/50 rounded-2xl md:rounded-[20px] focus:border-slate-900 focus:bg-white focus:outline-none transition-all duration-300 placeholder:text-slate-400 min-h-[56px]"
+                        className="w-full px-5 md:px-7 py-4 md:py-5 text-lg md:text-xl bg-slate-50/80 border-2 border-slate-200/50 rounded-2xl md:rounded-[20px] focus:border-slate-900 focus:bg-white focus:outline-none transition-all duration-300 min-h-[56px] font-medium text-slate-900"
                       />
                       {showCursor && displayName && (
                         <motion.span
