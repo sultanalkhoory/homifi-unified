@@ -121,27 +121,15 @@ export default function StepCustomize({
       
       <div className="relative h-full flex flex-col">
         
-        {/* Header */}
-        <motion.div
-          initial={{ y: -30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2, type: 'spring', stiffness: 80 }}
-          className="text-center mb-10"
-        >
-          <h3 className={`${fullScreen ? 'text-5xl md:text-6xl' : 'text-3xl'} font-semibold text-slate-900 mb-4 tracking-tight leading-tight`}>
-            Create scenes in seconds
-          </h3>
-          <p className={`${fullScreen ? 'text-xl' : 'text-lg'} text-slate-600 max-w-2xl mx-auto font-light`}>
-            Simple taps. No coding required.
-          </p>
-        </motion.div>
+        {/* Spacer for better vertical centering */}
+        <div className="h-8" />
 
         {/* Refined Progress Indicator */}
         <motion.div 
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="flex justify-center mb-16"
+          className="flex justify-center mb-12"
         >
           <div className="flex items-center gap-3 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-sm border border-slate-100">
             {progressSteps.map((item, index) => (
@@ -472,35 +460,8 @@ export default function StepCustomize({
           </div>
         </div>
 
-        {/* Bottom */}
-        <motion.div
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.6, type: 'spring', stiffness: 80 }}
-          className="mt-12 text-center space-y-6"
-        >
-          <p className="text-slate-600 text-lg font-light">
-            Create unlimited scenes. <span className="font-semibold text-slate-900">No coding needed.</span>
-          </p>
-          
-          {/* Platform Badges */}
-          <div>
-            <p className="text-sm text-slate-500 mb-4 font-medium">Works with</p>
-            <div className="flex justify-center gap-3 flex-wrap">
-              {['Apple Home', 'Google Home', 'Alexa'].map((platform, i) => (
-                <motion.div
-                  key={platform}
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.8 + i * 0.08, type: 'spring', stiffness: 200 }}
-                  className="px-6 py-2.5 rounded-full bg-slate-900/5 text-slate-700 text-sm font-semibold border border-slate-900/5"
-                >
-                  {platform}
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
+        {/* Spacer */}
+        <div className="h-8" />
 
       </div>
     </motion.div>
