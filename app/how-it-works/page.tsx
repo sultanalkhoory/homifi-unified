@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Header from '@/app/layouts/Desktop/sections/Header';
 import Footer from '@/app/layouts/Desktop/sections/Footer';
 import HeroFloating from './components/HeroFloating';
@@ -41,7 +41,7 @@ export default function HowItWorksPage() {
     }
   ];
 
-  // Track scroll position to update active step
+  // Track scroll position
   useEffect(() => {
     const handleScroll = () => {
       if (!containerRef.current) return;
@@ -62,11 +62,10 @@ export default function HowItWorksPage() {
 
     window.addEventListener('scroll', handleScroll);
     handleScroll();
-
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Smooth scroll to step when clicking progress indicator
+  // Smooth scroll helper
   const scrollToStep = (index: number) => {
     const sections = containerRef.current?.querySelectorAll('.step-section');
     if (sections && sections[index]) {
@@ -80,7 +79,7 @@ export default function HowItWorksPage() {
     <main className="bg-white">
       <Header />
       
-      {/* Fixed Progress Indicator */}
+      {/* Progress Indicator */}
       <div className="fixed left-8 top-1/2 -translate-y-1/2 z-50 hidden md:block">
         <div className="flex flex-col gap-4">
           {steps.map((step, index) => (
@@ -92,13 +91,9 @@ export default function HowItWorksPage() {
             >
               <div className={`
                 w-2 h-2 rounded-full transition-all duration-300
-                ${activeStep === index 
-                  ? 'bg-black scale-150' 
-                  : 'bg-gray-300 hover:bg-gray-400'
-                }
+                ${activeStep === index ? 'bg-black scale-150' : 'bg-gray-300 hover:bg-gray-400'}
               `} />
               
-              {/* Tooltip */}
               <div className="absolute left-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
                 <div className="bg-black text-white text-xs px-3 py-1.5 rounded-lg">
                   {step.title}
@@ -109,10 +104,10 @@ export default function HowItWorksPage() {
         </div>
       </div>
 
-      {/* Floating Hero Section */}
+      {/* Hero Section */}
       <HeroFloating />
 
-      {/* Scrolling Steps Container */}
+      {/* Steps Container */}
       <div ref={containerRef}>
         {steps.map((step, index) => {
           const ActiveComponent = step.component;
@@ -121,9 +116,12 @@ export default function HowItWorksPage() {
           return (
             <section
               key={step.id}
-              className={`step-section min-h-[80vh] md:min-h-screen flex items-center justify-center px-4 ${
-                isLastStep ? 'py-20 pb-32 md:pb-40' : 'py-20'
-              }`}
+              className={`step-section flex items-center justify-center px-4 
+                min-h-screen 
+                ${isLastStep 
+                  ? 'py-12 pb-16 md:py-20 md:pb-24' 
+                  : 'py-20'
+                }`}
             >
               <div className="max-w-7xl mx-auto w-full">
                 
@@ -133,28 +131,32 @@ export default function HowItWorksPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: false, margin: "-100px" }}
                   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                  className="text-center mb-12"
+                  className="text-center mb-8 md:mb-12"
                 >
                   <div className="inline-flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center font-semibold">
                       {index + 1}
                     </div>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900">
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-gray-900">
                       {step.title}
                     </h2>
                   </div>
-                  <p className="text-lg md:text-xl text-gray-600">
+                  <p className="text-base md:text-lg lg:text-xl text-gray-600">
                     {step.subtitle}
                   </p>
                 </motion.div>
 
-                {/* Step Content */}
+                {/* Step Content - remove aspect ratio constraint on mobile */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: false, margin: "-150px" }}
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                  className="relative aspect-[16/10] max-w-6xl mx-auto"
+                  className={`relative max-w-6xl mx-auto 
+                    ${isLastStep 
+                      ? 'min-h-[400px] md:aspect-[16/10]' 
+                      : 'aspect-[16/10]'
+                    }`}
                 >
                   <ActiveComponent isActive={activeStep === index} fullScreen={true} />
                 </motion.div>
@@ -165,8 +167,8 @@ export default function HowItWorksPage() {
         })}
       </div>
 
-      {/* Final CTA Section */}
-      <section className="min-h-screen flex items-center justify-center px-4 bg-gradient-to-b from-white to-gray-50">
+      {/* Final CTA with proper spacing */}
+      <section className="flex items-center justify-center px-4 py-16 md:py-24 lg:min-h-screen bg-gradient-to-b from-white to-gray-50">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -174,10 +176,10 @@ export default function HowItWorksPage() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="text-center max-w-3xl mx-auto"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-gray-900 mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold text-gray-900 mb-6">
             Ready to transform your home?
           </h2>
-          <p className="text-xl text-gray-600 mb-10">
+          <p className="text-lg md:text-xl text-gray-600 mb-10">
             Professional installation. Simple setup. Perfect automation.
           </p>
           <a
