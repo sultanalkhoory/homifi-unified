@@ -23,7 +23,7 @@ export default function CTAHowItWorks() {
           See how it all comes together.
         </h2>
         <p className="text-lg md:text-xl text-gray-600 mb-10">
-          Installation is simple. Anyone can do it.
+          Professional installation. Expert setup. Zero hassle.
         </p>
         <Link
           href="/how-it-works"
