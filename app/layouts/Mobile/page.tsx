@@ -7,7 +7,7 @@ import CurtainsSection from './sections/CurtainsSection';
 import ClimateSection from './sections/ClimateSection';
 import SecuritySection from '@/components/sharedsections/PerfectSecurity';
 import PerfectHomeKey from '@/components/sharedsections/PerfectHomeKey';
-import CoverageSection from './sections/CoverageSection';
+import PerfectCoverage from '@/components/sharedsections/PerfectCoverage';
 import Header from '@/app/layouts/Desktop/sections/Header';
 import Footer from '@/app/layouts/Desktop/sections/Footer';
 
