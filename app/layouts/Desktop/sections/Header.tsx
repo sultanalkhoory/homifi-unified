@@ -4,8 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 /**
- * Header Component with Apple's original menu animation (2015)
- * Based on CSS-Tricks documentation
+ * Header Component with Apple-style menu animation
  */
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -50,7 +49,7 @@ export default function Header() {
             Get Started
           </a>
           
-          {/* Mobile Menu Button - Apple's original technique */}
+          {/* Mobile Menu Button - Apple-style animation */}
           <button 
             aria-label="Menu" 
             onClick={() => setOpen((v) => !v)}
@@ -59,43 +58,41 @@ export default function Header() {
               hover:bg-gray-900 active:scale-95
               transition-all duration-200"
           >
-            {/* Container that rotates 90deg */}
-            <motion.div
-              animate={{
-                rotate: open ? 90 : 0
-              }}
-              transition={{ 
-                duration: 0.25,
-                ease: [0.4, 0.0, 0.2, 1]
-              }}
-              className="relative w-5 h-4 flex items-center justify-center"
-            >
+            <div className="w-5 h-4 relative flex items-center justify-center">
               {/* Top Line */}
               <motion.span
-                animate={{
-                  rotate: open ? 45 : 0,
-                  y: open ? 0 : -3,
+                animate={open ? {
+                  y: ["-3px", "0px", "0px"],
+                  rotate: [0, 0, 45]
+                } : {
+                  rotate: [45, 0, 0],
+                  y: ["0px", "0px", "-3px"]
                 }}
                 transition={{ 
-                  duration: 0.25,
-                  ease: [0.4, 0.0, 0.2, 1]
+                  duration: 0.4,
+                  ease: [0.4, 0.0, 0.2, 1],
+                  times: [0, 0.5, 1]
                 }}
                 className="absolute w-full h-0.5 bg-white rounded-full"
               />
               
               {/* Bottom Line */}
               <motion.span
-                animate={{
-                  rotate: open ? -45 : 0,
-                  y: open ? 0 : 3,
+                animate={open ? {
+                  y: ["3px", "0px", "0px"],
+                  rotate: [0, 0, -45]
+                } : {
+                  rotate: [-45, 0, 0],
+                  y: ["0px", "0px", "3px"]
                 }}
                 transition={{ 
-                  duration: 0.25,
-                  ease: [0.4, 0.0, 0.2, 1]
+                  duration: 0.4,
+                  ease: [0.4, 0.0, 0.2, 1],
+                  times: [0, 0.5, 1]
                 }}
                 className="absolute w-full h-0.5 bg-white rounded-full"
               />
-            </motion.div>
+            </div>
           </button>
         </div>
 
