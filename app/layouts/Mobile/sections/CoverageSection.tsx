@@ -136,7 +136,7 @@ export default function PerfectWiFiSection() {
                         fill="url(#fullCoverageGradient)"
                         rx="6"
                         animate={{ 
-                          opacity: [0.12, 0.18, 0.12]
+                          opacity: [0.3, 0.4, 0.3]
                         }}
                         transition={{
                           duration: 4,
@@ -151,7 +151,7 @@ export default function PerfectWiFiSection() {
                         fill="url(#fullCoverageGradient)"
                         rx="6"
                         animate={{ 
-                          opacity: [0.12, 0.18, 0.12]
+                          opacity: [0.3, 0.4, 0.3]
                         }}
                         transition={{
                           duration: 4,
@@ -167,7 +167,7 @@ export default function PerfectWiFiSection() {
                         fill="url(#fullCoverageGradient)"
                         rx="6"
                         animate={{ 
-                          opacity: [0.12, 0.18, 0.12]
+                          opacity: [0.3, 0.4, 0.3]
                         }}
                         transition={{
                           duration: 4,
@@ -182,7 +182,7 @@ export default function PerfectWiFiSection() {
                     <motion.g>
                       {/* Localized coverage emphasis around AP */}
                       <motion.circle 
-                        cx="80" cy="170" r="35"
+                        cx="80" cy="200" r="35"
                         fill="url(#coverageGradient)"
                         initial={{ r: 0, opacity: 0 }}
                         animate={{ 
@@ -207,11 +207,11 @@ export default function PerfectWiFiSection() {
                         transition={{ duration: 0.4, delay: 0.3, type: 'spring', stiffness: 300 }}
                       >
                         {/* AP body - white circular disc */}
-                        <circle cx="80" cy="170" r="7" fill="white" stroke="#e5e7eb" strokeWidth="1" />
+                        <circle cx="80" cy="200" r="7" fill="white" stroke="#e5e7eb" strokeWidth="1" />
                         
                         {/* LED ring - breathing blue light */}
                         <motion.circle 
-                          cx="80" cy="170" r="9"
+                          cx="80" cy="200" r="9"
                           fill="none"
                           stroke="#3b82f6"
                           strokeWidth="1.5"
@@ -230,7 +230,7 @@ export default function PerfectWiFiSection() {
                         
                         {/* Center LED dot */}
                         <motion.circle 
-                          cx="80" cy="170" r="2"
+                          cx="80" cy="200" r="2"
                           fill="#3b82f6"
                           animate={{ 
                             opacity: [0.6, 1, 0.6]
@@ -249,7 +249,7 @@ export default function PerfectWiFiSection() {
                     <motion.g>
                       {/* Localized coverage emphasis */}
                       <motion.circle 
-                        cx="200" cy="170" r="35"
+                        cx="200" cy="200" r="35"
                         fill="url(#coverageGradient)"
                         initial={{ r: 0, opacity: 0 }}
                         animate={{ 
@@ -272,9 +272,9 @@ export default function PerfectWiFiSection() {
                         animate={{ scale: 1 }}
                         transition={{ duration: 0.4, delay: 0.5, type: 'spring', stiffness: 300 }}
                       >
-                        <circle cx="200" cy="170" r="7" fill="white" stroke="#e5e7eb" strokeWidth="1" />
+                        <circle cx="200" cy="200" r="7" fill="white" stroke="#e5e7eb" strokeWidth="1" />
                         <motion.circle 
-                          cx="200" cy="170" r="9"
+                          cx="200" cy="200" r="9"
                           fill="none"
                           stroke="#3b82f6"
                           strokeWidth="1.5"
@@ -291,7 +291,7 @@ export default function PerfectWiFiSection() {
                           }}
                         />
                         <motion.circle 
-                          cx="200" cy="170" r="2"
+                          cx="200" cy="200" r="2"
                           fill="#3b82f6"
                           animate={{ 
                             opacity: [0.6, 1, 0.6]
