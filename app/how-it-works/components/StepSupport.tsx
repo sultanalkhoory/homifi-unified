@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 /**
  * Step 4: We Support You
- * Fixed spacing issues on desktop
+ * Fixed spacing - no overlaps
  */
 
 export default function StepSupport({ 
@@ -71,14 +71,14 @@ export default function StepSupport({
         h-full
       `}
     >
-      <div className="relative h-full flex flex-col justify-between min-h-0">
+      <div className="relative h-full flex flex-col">
         
         {/* Header */}
         <motion.div
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="text-center mb-6 md:mb-8 lg:mb-12 flex-shrink-0"
+          className="text-center mb-6 md:mb-8"
         >
           <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-900 mb-2">
             We're Always Here
@@ -88,11 +88,11 @@ export default function StepSupport({
           </p>
         </motion.div>
 
-        {/* Main Content */}
-        <div className="flex-1 flex items-center justify-center min-h-0 pb-4">
+        {/* Main Content - Centered */}
+        <div className="flex-1 flex items-center justify-center">
           <div className="w-full max-w-2xl">
             
-            {/* Badge - Desktop only: pushed down more */}
+            {/* Badge - Desktop pushed down more */}
             <motion.div
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -131,12 +131,12 @@ export default function StepSupport({
               ))}
             </div>
 
-            {/* CTA - Added mb-6 to ensure space below button */}
+            {/* CTA */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9 }}
-              className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 text-center mb-6"
+              className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 text-center"
             >
               <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-4">
                 After 3 months, flexible care plans available
@@ -151,12 +151,12 @@ export default function StepSupport({
           </div>
         </div>
 
-        {/* Bottom Note - Same position as mobile */}
+        {/* Bottom Note - Fixed position at bottom */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.1 }}
-          className="text-center flex-shrink-0 mt-4"
+          className="text-center mt-8 md:mt-12 pt-4"
         >
           <p className="text-xs md:text-sm text-gray-500">
             Honestly, you probably won't need us much—it's that simple.
