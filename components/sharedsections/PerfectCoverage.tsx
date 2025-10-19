@@ -46,14 +46,23 @@ export default function PerfectCoverage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="md:col-span-5 space-y-4 md:space-y-6 text-center md:text-left"
+            className="md:col-span-5 space-y-6"
           >
+            {/* Heading */}
             <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-black">
               Perfect WiFi
             </h2>
+            
+            {/* Subheading */}
             <p className="text-xl md:text-2xl text-gray-700 leading-relaxed">
-              Seamless coverage.<br />
-              Everywhere.
+              Every corner. Every device.<br />
+              Always connected.
+            </p>
+            
+            {/* Description */}
+            <p className="text-gray-600 text-lg">
+              Professional mesh WiFi ensures seamless roaming throughout your home. 
+              Move anywhere without dropping connection—streaming, calls, smart devices all stay online.
             </p>
           </motion.div>
 
