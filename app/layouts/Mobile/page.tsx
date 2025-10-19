@@ -22,7 +22,7 @@ export default function Page() {
       <ClimateSection />
       <SecuritySection />
       <PerfectHomeKey />
-      <CoverageSection />
+      <PerfectCoverage />
       <Footer />
     </main>
   );
