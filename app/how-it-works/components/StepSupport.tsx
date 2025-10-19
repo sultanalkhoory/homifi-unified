@@ -92,12 +92,12 @@ export default function StepSupport({
         <div className="flex-1 flex items-center justify-center min-h-0 pb-4">
           <div className="w-full max-w-2xl">
             
-            {/* Badge - Added mt-4 md:mt-8 for separation from subtitle */}
+            {/* Badge - Desktop only: pushed down more */}
             <motion.div
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.3, type: 'spring', stiffness: 200 }}
-              className="flex justify-center mt-4 md:mt-8 mb-8 md:mb-10"
+              className="flex justify-center mt-4 md:mt-16 mb-8 md:mb-10"
             >
               <div className="inline-flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2 md:py-3 bg-gradient-to-br from-blue-500 to-indigo-600 text-white rounded-full shadow-lg">
                 <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
@@ -151,12 +151,12 @@ export default function StepSupport({
           </div>
         </div>
 
-        {/* Bottom Note - Increased mt-8 md:mt-10 for better separation */}
+        {/* Bottom Note - Same position as mobile */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.1 }}
-          className="text-center flex-shrink-0 mt-8 md:mt-10"
+          className="text-center flex-shrink-0 mt-4"
         >
           <p className="text-xs md:text-sm text-gray-500">
             Honestly, you probably won't need us much—it's that simple.
