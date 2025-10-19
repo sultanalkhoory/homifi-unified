@@ -32,17 +32,17 @@ export default function PerfectCoverage() {
     <section 
       ref={containerRef} 
       id="perfect-coverage"
-      className="pt-8 pb-20 md:py-28 bg-white"
+      className="pt-8 pb-20 md:py-20 bg-white"
     >
       <div className="mx-auto max-w-6xl px-4">
         
-        {/* Text Above - Centered */}
+        {/* Text Above - Centered - More compact spacing */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-12 md:mb-16 space-y-4 md:space-y-6"
+          className="text-center mb-8 md:mb-10 space-y-3 md:space-y-4"
         >
           {/* Heading */}
           <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-black">
@@ -51,49 +51,47 @@ export default function PerfectCoverage() {
           
           {/* Subheading */}
           <p className="text-xl md:text-2xl text-gray-700 leading-relaxed">
-            Every corner. Every device.<br />
-            Always connected.
+            Every corner. Every device. Always connected.
           </p>
           
-          {/* Description - Desktop only */}
-          <p className="hidden md:block text-gray-600 text-lg max-w-3xl mx-auto">
-            Professional mesh WiFi ensures seamless roaming throughout your home. 
-            Move anywhere without dropping connection—streaming, calls, smart devices all stay online.
+          {/* Description - Desktop only, more compact */}
+          <p className="hidden md:block text-gray-600 text-base max-w-2xl mx-auto">
+            Professional mesh WiFi ensures seamless roaming throughout your home.
           </p>
         </motion.div>
 
-        {/* Visualization Below - Full width */}
+        {/* Visualization Below - More horizontal aspect ratio */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="relative w-full max-w-4xl mx-auto"
+          className="relative w-full max-w-5xl mx-auto"
         >
-          {/* Visualization container */}
+          {/* Visualization container - horizontal aspect ratio for desktop */}
           <div className="relative w-full rounded-3xl shadow-xl border border-gray-200 overflow-hidden bg-gradient-to-br from-gray-50 to-white" 
-               style={{ paddingBottom: '120%' }}>
+               style={{ paddingBottom: 'clamp(60%, 70%, 120%)' }}>
             <div className="absolute inset-0">
               
-              <svg viewBox="0 0 400 480" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
+              <svg viewBox="0 0 600 360" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
                 
-                {/* Floor Plan - 3 rooms */}
+                {/* Floor Plan - 3 rooms (horizontal layout) */}
                 <motion.rect 
-                  x="40" y="80" width="140" height="150" 
+                  x="40" y="60" width="220" height="130" 
                   fill="none" stroke="#d1d5db" strokeWidth="2" rx="8"
                   initial={{ pathLength: 0, opacity: 0 }}
                   animate={{ pathLength: 1, opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
                 />
                 <motion.rect 
-                  x="180" y="80" width="180" height="150" 
+                  x="260" y="60" width="300" height="130" 
                   fill="none" stroke="#d1d5db" strokeWidth="2" rx="8"
                   initial={{ pathLength: 0, opacity: 0 }}
                   animate={{ pathLength: 1, opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.3 }}
                 />
                 <motion.rect 
-                  x="40" y="230" width="320" height="180" 
+                  x="40" y="190" width="520" height="130" 
                   fill="none" stroke="#d1d5db" strokeWidth="2" rx="8"
                   initial={{ pathLength: 0, opacity: 0 }}
                   animate={{ pathLength: 1, opacity: 1 }}
@@ -102,8 +100,8 @@ export default function PerfectCoverage() {
                 
                 {/* Room Labels */}
                 <motion.text 
-                  x="110" y="160" textAnchor="middle" 
-                  fill="#9ca3af" fontSize="16" fontWeight="500"
+                  x="150" y="130" textAnchor="middle" 
+                  fill="#9ca3af" fontSize="18" fontWeight="500"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.6 }}
@@ -111,8 +109,8 @@ export default function PerfectCoverage() {
                   Living
                 </motion.text>
                 <motion.text 
-                  x="270" y="160" textAnchor="middle" 
-                  fill="#9ca3af" fontSize="16" fontWeight="500"
+                  x="410" y="130" textAnchor="middle" 
+                  fill="#9ca3af" fontSize="18" fontWeight="500"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.7 }}
@@ -120,8 +118,8 @@ export default function PerfectCoverage() {
                   Kitchen
                 </motion.text>
                 <motion.text 
-                  x="200" y="325" textAnchor="middle" 
-                  fill="#9ca3af" fontSize="16" fontWeight="500"
+                  x="300" y="260" textAnchor="middle" 
+                  fill="#9ca3af" fontSize="18" fontWeight="500"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.8 }}
@@ -132,7 +130,7 @@ export default function PerfectCoverage() {
                 {/* Network Coverage with UniFi-style APs */}
                 {showNetwork && (
                   <>
-                    {/* Full Coverage Heatmap - Shows complete coverage across all rooms */}
+                    {/* Full Coverage Heatmap */}
                     <motion.g
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
@@ -140,7 +138,7 @@ export default function PerfectCoverage() {
                     >
                       {/* Living Room - full coverage */}
                       <motion.rect 
-                        x="40" y="80" width="140" height="150" 
+                        x="40" y="60" width="220" height="130" 
                         fill="url(#fullCoverageGradient)"
                         rx="8"
                         animate={{ 
@@ -155,7 +153,7 @@ export default function PerfectCoverage() {
                       
                       {/* Kitchen - full coverage */}
                       <motion.rect 
-                        x="180" y="80" width="180" height="150" 
+                        x="260" y="60" width="300" height="130" 
                         fill="url(#fullCoverageGradient)"
                         rx="8"
                         animate={{ 
@@ -171,7 +169,7 @@ export default function PerfectCoverage() {
                       
                       {/* Bedrooms - full coverage */}
                       <motion.rect 
-                        x="40" y="230" width="320" height="180" 
+                        x="40" y="190" width="520" height="130" 
                         fill="url(#fullCoverageGradient)"
                         rx="8"
                         animate={{ 
@@ -188,13 +186,12 @@ export default function PerfectCoverage() {
 
                     {/* AP 1 - Living Room */}
                     <motion.g>
-                      {/* Localized coverage emphasis around AP */}
                       <motion.circle 
-                        cx="110" cy="190" r="45"
+                        cx="150" cy="155" r="50"
                         fill="url(#coverageGradient)"
                         initial={{ r: 0, opacity: 0 }}
                         animate={{ 
-                          r: 45, 
+                          r: 50, 
                           opacity: [0, 0.2, 0.15, 0.2]
                         }}
                         transition={{ 
@@ -208,18 +205,14 @@ export default function PerfectCoverage() {
                         }}
                       />
                       
-                      {/* UniFi AP - White disc with LED ring */}
                       <motion.g
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ duration: 0.4, delay: 0.3, type: 'spring', stiffness: 300 }}
                       >
-                        {/* AP body */}
-                        <circle cx="110" cy="190" r="8" fill="white" stroke="#e5e7eb" strokeWidth="1.5" />
-                        
-                        {/* LED ring - breathing blue light */}
+                        <circle cx="150" cy="155" r="8" fill="white" stroke="#e5e7eb" strokeWidth="1.5" />
                         <motion.circle 
-                          cx="110" cy="190" r="11"
+                          cx="150" cy="155" r="11"
                           fill="none"
                           stroke="#3b82f6"
                           strokeWidth="2"
@@ -235,10 +228,8 @@ export default function PerfectCoverage() {
                             ease: "easeInOut"
                           }}
                         />
-                        
-                        {/* Center LED dot */}
                         <motion.circle 
-                          cx="110" cy="190" r="2.5"
+                          cx="150" cy="155" r="2.5"
                           fill="#3b82f6"
                           animate={{ 
                             opacity: [0.6, 1, 0.6]
@@ -256,11 +247,11 @@ export default function PerfectCoverage() {
                     {/* AP 2 - Kitchen */}
                     <motion.g>
                       <motion.circle 
-                        cx="270" cy="190" r="45"
+                        cx="410" cy="155" r="50"
                         fill="url(#coverageGradient)"
                         initial={{ r: 0, opacity: 0 }}
                         animate={{ 
-                          r: 45, 
+                          r: 50, 
                           opacity: [0, 0.2, 0.15, 0.2]
                         }}
                         transition={{ 
@@ -279,9 +270,9 @@ export default function PerfectCoverage() {
                         animate={{ scale: 1 }}
                         transition={{ duration: 0.4, delay: 0.5, type: 'spring', stiffness: 300 }}
                       >
-                        <circle cx="270" cy="190" r="8" fill="white" stroke="#e5e7eb" strokeWidth="1.5" />
+                        <circle cx="410" cy="155" r="8" fill="white" stroke="#e5e7eb" strokeWidth="1.5" />
                         <motion.circle 
-                          cx="270" cy="190" r="11"
+                          cx="410" cy="155" r="11"
                           fill="none"
                           stroke="#3b82f6"
                           strokeWidth="2"
@@ -298,7 +289,7 @@ export default function PerfectCoverage() {
                           }}
                         />
                         <motion.circle 
-                          cx="270" cy="190" r="2.5"
+                          cx="410" cy="155" r="2.5"
                           fill="#3b82f6"
                           animate={{ 
                             opacity: [0.6, 1, 0.6]
@@ -316,11 +307,11 @@ export default function PerfectCoverage() {
                     {/* AP 3 - Bedrooms */}
                     <motion.g>
                       <motion.circle 
-                        cx="200" cy="350" r="45"
+                        cx="300" cy="285" r="50"
                         fill="url(#coverageGradient)"
                         initial={{ r: 0, opacity: 0 }}
                         animate={{ 
-                          r: 45, 
+                          r: 50, 
                           opacity: [0, 0.2, 0.15, 0.2]
                         }}
                         transition={{ 
@@ -339,9 +330,9 @@ export default function PerfectCoverage() {
                         animate={{ scale: 1 }}
                         transition={{ duration: 0.4, delay: 0.7, type: 'spring', stiffness: 300 }}
                       >
-                        <circle cx="200" cy="350" r="8" fill="white" stroke="#e5e7eb" strokeWidth="1.5" />
+                        <circle cx="300" cy="285" r="8" fill="white" stroke="#e5e7eb" strokeWidth="1.5" />
                         <motion.circle 
-                          cx="200" cy="350" r="11"
+                          cx="300" cy="285" r="11"
                           fill="none"
                           stroke="#3b82f6"
                           strokeWidth="2"
@@ -358,7 +349,7 @@ export default function PerfectCoverage() {
                           }}
                         />
                         <motion.circle 
-                          cx="200" cy="350" r="2.5"
+                          cx="300" cy="285" r="2.5"
                           fill="#3b82f6"
                           animate={{ 
                             opacity: [0.6, 1, 0.6]
