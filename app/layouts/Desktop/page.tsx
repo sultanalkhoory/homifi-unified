@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import Header from '@/app/layouts/Desktop/sections/Header';
 import Footer from '@/app/layouts/Desktop/sections/Footer';
 import HeroSection from '@/app/layouts/Desktop/sections/HeroSection';
@@ -13,66 +14,80 @@ import PerfectCoverage from '@/components/sharedsections/PerfectCoverage';
 import CTAHowItWorks from '@/components/CTAHowItWorks';
 
 export default function Page() {
+  // Apple-style spring physics for smooth, natural entrance
+  const sectionAnimation = {
+    initial: { 
+      opacity: 0, 
+      y: 60,
+      filter: 'blur(8px)'
+    },
+    whileInView: { 
+      opacity: 1, 
+      y: 0,
+      filter: 'blur(0px)'
+    },
+    viewport: { 
+      once: true, 
+      margin: '-100px' // Trigger animation slightly before section is visible
+    },
+    transition: {
+      type: 'spring',
+      stiffness: 260,
+      damping: 20,
+      mass: 0.8,
+      duration: 0.8
+    }
+  };
+
   return (
     <main>
-      {/* Fixed header navigation */}
+      {/* Header stays fixed, no animation needed */}
       <Header />
       
-      {/* 
-        ========== HERO SECTION (4/8 BALANCED LAYOUT) ==========
-        
-        Mobile spacing fix: md:min-h-screen instead of min-h-screen
-        - Mobile: Content-driven height (no forced white space)
-        - Desktop: Full-screen hero effect (dramatic impact)
-      */}
+      {/* Hero - No wrapper, has its own internal animations */}
       <HeroSection />
 
-      {/* ========== PERFECT BENEFITS SECTION ========== */}
-      <PerfectBenefits />
+      {/* Benefits Section */}
+      <motion.div {...sectionAnimation}>
+        <PerfectBenefits />
+      </motion.div>
       
-      {/* 
-        ========== PERFECT LIGHT SECTION ==========
-        Interactive lights demo with iOS Control Center-style card
-        Shows room state changes with synchronized photo transitions
-        Features:
-        - Control Center card (compact on mobile, full size on desktop)
-        - Smooth crossfade between lights on/off photos
-        - Auto-trigger animation on scroll into view
-      */}
-      <PerfectLight />
+      {/* Perfect Light Section */}
+      <motion.div {...sectionAnimation}>
+        <PerfectLight />
+      </motion.div>
 
-      {/* 
-        ========== PERFECT PRIVACY SECTION ==========
-        Interactive curtains demo with video playback
-        Shows curtains opening/closing with Control Center card
-        Layout alternates: Video LEFT, Text RIGHT (opposite of PerfectLight)
-        Auto-plays opening video once when section comes into view
-      */}
-      <PerfectPrivacy />
+      {/* Perfect Privacy Section */}
+      <motion.div {...sectionAnimation}>
+        <PerfectPrivacy />
+      </motion.div>
 
-      {/* ========== PERFECT CLIMATE SECTION ========== */}
-      <PerfectClimate />
+      {/* Perfect Climate Section */}
+      <motion.div {...sectionAnimation}>
+        <PerfectClimate />
+      </motion.div>
       
-      {/* ========== PERFECT SECURITY SECTION ========== */}
-      <PerfectSecurity />
+      {/* Perfect Security Section */}
+      <motion.div {...sectionAnimation}>
+        <PerfectSecurity />
+      </motion.div>
 
-      {/* ========== PERFECT HOMEKEY SECTION ========== */}
-      <PerfectHomeKey />
+      {/* Perfect HomeKey Section */}
+      <motion.div {...sectionAnimation}>
+        <PerfectHomeKey />
+      </motion.div>
       
-      {/* ========== PERFECT COVERAGE SECTION ========== */}
-      <PerfectCoverage />
+      {/* Perfect Coverage Section */}
+      <motion.div {...sectionAnimation}>
+        <PerfectCoverage />
+      </motion.div>
 
-      {/* ========== CTA Section ========== */}
-      <CTAHowItWorks />
+      {/* CTA Section */}
+      <motion.div {...sectionAnimation}>
+        <CTAHowItWorks />
+      </motion.div>
       
-      {/*
-        ========== FOOTER ==========
-        Site footer with multiple components:
-        - Works With platform badges (HomeKit, Google, Alexa)
-        - Navigation links
-        - Legal links (Privacy, Terms, Cookies)
-        - Copyright notice
-      */}
+      {/* Footer stays visible, no animation */}
       <Footer />
     </main>
   );
