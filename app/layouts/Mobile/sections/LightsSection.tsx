@@ -23,14 +23,13 @@ export default function LightsSection() {
   return (
     <section ref={containerRef} className="min-h-screen flex items-center py-20 bg-white">
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        {/* Copy - FIXED TYPOGRAPHY */}
+        {/* Copy */}
         <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }}>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-black mb-4 leading-tight">
-            Perfect Light
+          <div className="text-sm uppercase tracking-wider text-blue-600 font-medium mb-3">Perfect Light</div>
+          <h2 className="text-4xl md:text-5xl font-thin text-gray-900 mb-4 leading-tight">
+            Every room.<br />Every moment.
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 mb-8">
-            Every room, every moment—exactly as you want it.
-          </p>
+          <p className="text-lg text-gray-600 font-light mb-8">Exactly as you want it.</p>
         </motion.div>
 
         {/* iPhone */}
@@ -56,6 +55,7 @@ export default function LightsSection() {
                 />
               </motion.div>
 
+              {/* Button */}
               <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30">
                 <GlassButton
                   label={lightsState === 'off' ? 'Turn On Lights' : 'Turn Off Lights'}
