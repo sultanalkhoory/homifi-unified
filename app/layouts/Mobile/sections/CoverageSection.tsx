@@ -124,16 +124,70 @@ export default function PerfectWiFiSection() {
                 {/* Network Coverage with UniFi-style APs */}
                 {showNetwork && (
                   <>
+                    {/* Full Coverage Heatmap - Shows complete coverage across all rooms */}
+                    <motion.g
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 1.5, delay: 0.9 }}
+                    >
+                      {/* Living Room - full coverage */}
+                      <motion.rect 
+                        x="20" y="80" width="120" height="160" 
+                        fill="url(#fullCoverageGradient)"
+                        rx="6"
+                        animate={{ 
+                          opacity: [0.12, 0.18, 0.12]
+                        }}
+                        transition={{
+                          duration: 4,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                      />
+                      
+                      {/* Kitchen - full coverage */}
+                      <motion.rect 
+                        x="140" y="80" width="120" height="160" 
+                        fill="url(#fullCoverageGradient)"
+                        rx="6"
+                        animate={{ 
+                          opacity: [0.12, 0.18, 0.12]
+                        }}
+                        transition={{
+                          duration: 4,
+                          delay: 0.3,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                      />
+                      
+                      {/* Bedrooms - full coverage */}
+                      <motion.rect 
+                        x="20" y="240" width="240" height="200" 
+                        fill="url(#fullCoverageGradient)"
+                        rx="6"
+                        animate={{ 
+                          opacity: [0.12, 0.18, 0.12]
+                        }}
+                        transition={{
+                          duration: 4,
+                          delay: 0.6,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                      />
+                    </motion.g>
+
                     {/* AP 1 - Living Room */}
                     <motion.g>
-                      {/* Pulsing coverage zone */}
+                      {/* Localized coverage emphasis around AP */}
                       <motion.circle 
-                        cx="80" cy="170" r="50"
+                        cx="80" cy="170" r="35"
                         fill="url(#coverageGradient)"
                         initial={{ r: 0, opacity: 0 }}
                         animate={{ 
-                          r: 50, 
-                          opacity: [0, 0.25, 0.2, 0.25]
+                          r: 35, 
+                          opacity: [0, 0.2, 0.15, 0.2]
                         }}
                         transition={{ 
                           r: { duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] },
@@ -193,13 +247,14 @@ export default function PerfectWiFiSection() {
 
                     {/* AP 2 - Kitchen */}
                     <motion.g>
+                      {/* Localized coverage emphasis */}
                       <motion.circle 
-                        cx="200" cy="170" r="50"
+                        cx="200" cy="170" r="35"
                         fill="url(#coverageGradient)"
                         initial={{ r: 0, opacity: 0 }}
                         animate={{ 
-                          r: 50, 
-                          opacity: [0, 0.25, 0.2, 0.25]
+                          r: 35, 
+                          opacity: [0, 0.2, 0.15, 0.2]
                         }}
                         transition={{ 
                           r: { duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] },
@@ -253,13 +308,14 @@ export default function PerfectWiFiSection() {
 
                     {/* AP 3 - Bedrooms */}
                     <motion.g>
+                      {/* Localized coverage emphasis */}
                       <motion.circle 
-                        cx="140" cy="370" r="50"
+                        cx="140" cy="370" r="35"
                         fill="url(#coverageGradient)"
                         initial={{ r: 0, opacity: 0 }}
                         animate={{ 
-                          r: 50, 
-                          opacity: [0, 0.25, 0.2, 0.25]
+                          r: 35, 
+                          opacity: [0, 0.2, 0.15, 0.2]
                         }}
                         transition={{ 
                           r: { duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] },
@@ -313,12 +369,20 @@ export default function PerfectWiFiSection() {
                   </>
                 )}
 
-                {/* SVG Gradient - Subtle coverage */}
+                {/* SVG Gradients */}
                 <defs>
+                  {/* Localized AP coverage gradient */}
                   <radialGradient id="coverageGradient">
                     <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.15" />
                     <stop offset="100%" stopColor="#3b82f6" stopOpacity="0" />
                   </radialGradient>
+                  
+                  {/* Full coverage heatmap gradient - fills entire rooms */}
+                  <linearGradient id="fullCoverageGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.08" />
+                    <stop offset="50%" stopColor="#06b6d4" stopOpacity="0.12" />
+                    <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.08" />
+                  </linearGradient>
                 </defs>
               </svg>
 
