@@ -212,29 +212,29 @@ export default function CoverageSection() {
                 )}
               </svg>
 
-              {/* Stats card at BOTTOM */}
+              {/* Stats card at BOTTOM - properly positioned */}
               {networkOn && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.5 }}
-                  className="absolute bottom-24 left-1/2 -translate-x-1/2 w-[240px]"
+                  className="absolute bottom-32 left-1/2 -translate-x-1/2"
                 >
-                  <div className="bg-black/90 backdrop-blur-md rounded-2xl px-5 py-3.5 shadow-2xl">
-                    <div className="flex items-center justify-between">
-                      <div className="text-center flex-1">
-                        <p className="text-2xl font-bold text-white">100%</p>
-                        <p className="text-[9px] text-gray-400 uppercase tracking-widest mt-0.5">Coverage</p>
+                  <div className="bg-black/90 backdrop-blur-md rounded-2xl px-6 py-3 shadow-2xl">
+                    <div className="flex items-center gap-4">
+                      <div className="text-center">
+                        <p className="text-xl font-bold text-white">100%</p>
+                        <p className="text-[10px] text-gray-400 uppercase tracking-wider">Coverage</p>
                       </div>
-                      <div className="w-px h-10 bg-gray-700" />
-                      <div className="text-center flex-1">
-                        <p className="text-2xl font-bold text-white">3</p>
-                        <p className="text-[9px] text-gray-400 uppercase tracking-widest mt-0.5">APs</p>
+                      <div className="w-px h-9 bg-gray-700" />
+                      <div className="text-center">
+                        <p className="text-xl font-bold text-white">3</p>
+                        <p className="text-[10px] text-gray-400 uppercase tracking-wider">APs</p>
                       </div>
-                      <div className="w-px h-10 bg-gray-700" />
-                      <div className="text-center flex-1">
-                        <p className="text-2xl font-bold text-white">18</p>
-                        <p className="text-[9px] text-gray-400 uppercase tracking-widest mt-0.5">Devices</p>
+                      <div className="w-px h-9 bg-gray-700" />
+                      <div className="text-center">
+                        <p className="text-xl font-bold text-white">18</p>
+                        <p className="text-[10px] text-gray-400 uppercase tracking-wider">Devices</p>
                       </div>
                     </div>
                   </div>
