@@ -180,7 +180,6 @@ export default function PerfectCoverage() {
               
               {/* Floor Plan Base - always visible */}
               <div className="absolute inset-0 p-8 md:p-12">
-                {/* Simple floor plan illustration */}
                 <svg viewBox="0 0 400 300" className="w-full h-full">
                   {/* Room outlines */}
                   <rect x="20" y="20" width="160" height="120" fill="none" stroke="#e5e7eb" strokeWidth="2" />
@@ -188,11 +187,11 @@ export default function PerfectCoverage() {
                   <rect x="20" y="140" width="360" height="140" fill="none" stroke="#e5e7eb" strokeWidth="2" />
                   
                   {/* Room labels */}
-                  <text x="100" y="85" textAnchor="middle" fill="#9ca3af" fontSize="14" fontWeight="500">Living</text>
-                  <text x="280" y="85" textAnchor="middle" fill="#9ca3af" fontSize="14" fontWeight="500">Kitchen</text>
-                  <text x="200" y="215" textAnchor="middle" fill="#9ca3af" fontSize="14" fontWeight="500">Bedrooms</text>
+                  <text x="100" y="50" textAnchor="middle" fill="#9ca3af" fontSize="14" fontWeight="500">Living Room</text>
+                  <text x="280" y="50" textAnchor="middle" fill="#9ca3af" fontSize="14" fontWeight="500">Kitchen</text>
+                  <text x="200" y="170" textAnchor="middle" fill="#9ca3af" fontSize="14" fontWeight="500">Bedrooms</text>
                   
-                  {/* Access Point locations - shown when network is on */}
+                  {/* Access Points */}
                   {networkOn && (
                     <>
                       {/* AP 1 - Living Room */}
@@ -201,8 +200,9 @@ export default function PerfectCoverage() {
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ delay: 0.3, type: 'spring', stiffness: 200 }}
                       >
-                        <circle cx="100" cy="60" r="6" fill="#3b82f6" />
-                        <circle cx="100" cy="60" r="4" fill="white" />
+                        <circle cx="100" cy="80" r="8" fill="#3b82f6" opacity="0.2" />
+                        <circle cx="100" cy="80" r="6" fill="#3b82f6" />
+                        <circle cx="100" cy="80" r="3" fill="white" />
                       </motion.g>
                       
                       {/* AP 2 - Kitchen */}
@@ -211,25 +211,106 @@ export default function PerfectCoverage() {
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ delay: 0.5, type: 'spring', stiffness: 200 }}
                       >
-                        <circle cx="280" cy="60" r="6" fill="#3b82f6" />
-                        <circle cx="280" cy="60" r="4" fill="white" />
+                        <circle cx="280" cy="80" r="8" fill="#6366f1" opacity="0.2" />
+                        <circle cx="280" cy="80" r="6" fill="#6366f1" />
+                        <circle cx="280" cy="80" r="3" fill="white" />
                       </motion.g>
                       
-                      {/* AP 3 - Hallway */}
+                      {/* AP 3 - Bedrooms */}
                       <motion.g
                         initial={{ scale: 0, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ delay: 0.7, type: 'spring', stiffness: 200 }}
                       >
-                        <circle cx="200" cy="180" r="6" fill="#3b82f6" />
-                        <circle cx="200" cy="180" r="4" fill="white" />
+                        <circle cx="200" cy="210" r="8" fill="#8b5cf6" opacity="0.2" />
+                        <circle cx="200" cy="210" r="6" fill="#8b5cf6" />
+                        <circle cx="200" cy="210" r="3" fill="white" />
                       </motion.g>
                     </>
+                  )}
+
+                  {/* Animated Device with Connection Lines */}
+                  {networkOn && (
+                    <motion.g
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 1 }}
+                    >
+                      {/* Connection line to nearest AP */}
+                      <motion.line
+                        animate={{
+                          x1: [70, 150, 280, 220, 70],
+                          y1: [100, 90, 90, 200, 100],
+                          x2: [100, 100, 280, 200, 100],
+                          y2: [80, 80, 80, 210, 80],
+                          opacity: [0.6, 0.6, 0.6, 0.6, 0.6]
+                        }}
+                        transition={{
+                          duration: 16,
+                          repeat: Infinity,
+                          ease: 'linear',
+                          times: [0, 0.25, 0.5, 0.75, 1]
+                        }}
+                        stroke="#3b82f6"
+                        strokeWidth="2"
+                        strokeDasharray="4 4"
+                        opacity="0.6"
+                      />
+
+                      {/* Moving Device */}
+                      <motion.g
+                        animate={{
+                          x: [70, 150, 280, 220, 70],
+                          y: [100, 90, 90, 200, 100]
+                        }}
+                        transition={{
+                          duration: 16,
+                          repeat: Infinity,
+                          ease: 'linear',
+                          times: [0, 0.25, 0.5, 0.75, 1]
+                        }}
+                      >
+                        {/* Device circle */}
+                        <circle r="12" fill="white" stroke="#3b82f6" strokeWidth="2" />
+                        
+                        {/* WiFi signal icon */}
+                        <g transform="translate(-6, -6)">
+                          <path
+                            d="M6 9c2.2 0 4-1.8 4-4M6 9c-2.2 0-4-1.8-4-4M6 11v1"
+                            stroke="#3b82f6"
+                            strokeWidth="1.5"
+                            fill="none"
+                            strokeLinecap="round"
+                          />
+                          <circle cx="6" cy="13" r="1" fill="#3b82f6" />
+                        </g>
+
+                        {/* Signal strength bars */}
+                        <motion.g transform="translate(8, -8)">
+                          <rect x="0" y="6" width="2" height="2" fill="#10b981" rx="0.5" />
+                          <rect x="3" y="4" width="2" height="4" fill="#10b981" rx="0.5" />
+                          <rect x="6" y="2" width="2" height="6" fill="#10b981" rx="0.5" />
+                        </motion.g>
+                      </motion.g>
+
+                      {/* Path trail showing movement */}
+                      <motion.path
+                        d="M 70 100 Q 110 95, 150 90 Q 215 90, 280 90 Q 250 145, 220 200 Q 145 150, 70 100"
+                        fill="none"
+                        stroke="#3b82f6"
+                        strokeWidth="1"
+                        strokeDasharray="3 3"
+                        opacity="0.3"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 2, delay: 1.5 }}
+                      />
+                    </motion.g>
                   )}
                 </svg>
               </div>
 
-              {/* Coverage Gradient Overlay - animates in when network is on */}
+              {/* Coverage Gradient Overlay */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: networkOn ? 1 : 0 }}
@@ -237,34 +318,12 @@ export default function PerfectCoverage() {
                 className="absolute inset-0 pointer-events-none"
                 style={{
                   background: `
-                    radial-gradient(circle at 35% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 40%),
-                    radial-gradient(circle at 70% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
-                    radial-gradient(circle at 50% 65%, rgba(139, 92, 246, 0.15) 0%, transparent 40%)
+                    radial-gradient(circle at 35% 32%, rgba(59, 130, 246, 0.12) 0%, transparent 45%),
+                    radial-gradient(circle at 70% 32%, rgba(99, 102, 241, 0.12) 0%, transparent 45%),
+                    radial-gradient(circle at 50% 68%, rgba(139, 92, 246, 0.12) 0%, transparent 45%)
                   `
                 }}
               />
-
-              {/* Animated device icon showing seamless roaming */}
-              {networkOn && (
-                <motion.div
-                  initial={{ x: '15%', y: '25%' }}
-                  animate={{ 
-                    x: ['15%', '45%', '70%', '50%', '15%'],
-                    y: ['25%', '25%', '30%', '60%', '25%']
-                  }}
-                  transition={{ 
-                    duration: 12, 
-                    repeat: Infinity, 
-                    ease: 'linear',
-                    times: [0, 0.25, 0.5, 0.75, 1]
-                  }}
-                  className="absolute w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center border-2 border-blue-500"
-                >
-                  <svg className="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M10.5 4.5c.28 0 .5.22.5.5v10.5c0 .28-.22.5-.5.5s-.5-.22-.5-.5V5c0-.28.22-.5.5-.5zm3 0c.28 0 .5.22.5.5v10.5c0 .28-.22.5-.5.5s-.5-.22-.5-.5V5c0-.28.22-.5.5-.5z"/>
-                  </svg>
-                </motion.div>
-              )}
 
               {/* Coverage stats overlay */}
               {networkOn && (
