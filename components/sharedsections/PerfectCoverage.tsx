@@ -55,8 +55,8 @@ export default function PerfectCoverage() {
               <span className="hidden md:inline">Every corner. Every device.<br />Always connected.</span>
             </p>
             
-            {/* Description */}
-            <p className="text-gray-600 text-lg">
+            {/* Description - Desktop only */}
+            <p className="hidden md:block text-gray-600 text-lg">
               Professional mesh WiFi ensures seamless roaming throughout your home. 
               Move anywhere without dropping connection—streaming, calls, smart devices all stay online.
             </p>
