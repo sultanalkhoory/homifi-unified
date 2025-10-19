@@ -258,22 +258,38 @@ export default function StepCustomize({
                         return (
                           <motion.button
                             key={device.id}
+                            layout
                             initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.08, type: 'spring', stiffness: 140 }}
+                            animate={{ 
+                              opacity: 1, 
+                              y: 0,
+                              backgroundColor: isSelected ? '#0f172a' : 'rgba(248, 250, 252, 0.8)',
+                              color: isSelected ? '#ffffff' : '#334155'
+                            }}
+                            transition={{ 
+                              layout: { type: 'spring', stiffness: 300, damping: 30 },
+                              opacity: { delay: index * 0.08 },
+                              y: { delay: index * 0.08, type: 'spring', stiffness: 140, damping: 20 },
+                              backgroundColor: { duration: 0.3, ease: 'easeInOut' },
+                              color: { duration: 0.3, ease: 'easeInOut' }
+                            }}
                             onClick={() => setSelectedDevices(prev => 
                               isSelected ? prev.filter(id => id !== device.id) : [...prev, device.id]
                             )}
-                            className={`relative p-4 md:p-5 rounded-xl md:rounded-2xl transition-all duration-500 text-left ${
+                            className={`relative p-4 md:p-5 rounded-xl md:rounded-2xl text-left ${
                               isSelected
-                                ? 'bg-slate-900 text-white shadow-lg'
-                                : 'bg-slate-50/80 text-slate-700 hover:bg-slate-100/80 border-2 border-slate-100'
+                                ? 'shadow-lg'
+                                : 'hover:bg-slate-100/80 border-2 border-slate-100'
                             }`}
+                            style={{ 
+                              backgroundColor: isSelected ? '#0f172a' : 'rgba(248, 250, 252, 0.8)',
+                              color: isSelected ? '#ffffff' : '#334155'
+                            }}
                           >
                             <motion.div 
                               className="mb-2 md:mb-3"
                               animate={{ scale: isSelected ? 1.1 : 1 }}
-                              transition={{ type: 'spring', stiffness: 300 }}
+                              transition={{ type: 'spring', stiffness: 300, damping: 25 }}
                             >
                               <DeviceIcon>{device.icon}</DeviceIcon>
                             </motion.div>
@@ -287,7 +303,7 @@ export default function StepCustomize({
                                   initial={{ scale: 0, rotate: -180 }}
                                   animate={{ scale: 1, rotate: 0 }}
                                   exit={{ scale: 0, rotate: 180 }}
-                                  transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+                                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                                   className="absolute top-2 md:top-3 right-2 md:right-3 w-5 md:w-6 h-5 md:h-6 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center"
                                 >
                                   <svg className="w-3 md:w-3.5 h-3 md:h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
