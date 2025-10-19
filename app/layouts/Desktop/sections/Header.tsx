@@ -58,31 +58,33 @@ export default function Header() {
               hover:bg-gray-900 active:scale-95
               transition-all duration-200"
           >
-            <div className="w-5 h-4 flex flex-col justify-center items-center gap-1.5">
+            <div className="w-5 h-4 flex flex-col justify-center items-center">
               {/* Top Line */}
               <motion.span
                 animate={{
                   rotate: open ? 45 : 0,
-                  y: open ? 5 : 0,
+                  y: open ? 4 : -2.5,
                 }}
                 transition={{ 
                   duration: 0.3,
                   ease: [0.4, 0.0, 0.2, 1] // Apple's easing curve
                 }}
                 className="w-full h-0.5 bg-white rounded-full block"
+                style={{ transformOrigin: 'center' }}
               />
               
               {/* Bottom Line */}
               <motion.span
                 animate={{
                   rotate: open ? -45 : 0,
-                  y: open ? -5 : 0,
+                  y: open ? -4 : 2.5,
                 }}
                 transition={{ 
                   duration: 0.3,
                   ease: [0.4, 0.0, 0.2, 1]
                 }}
                 className="w-full h-0.5 bg-white rounded-full block"
+                style={{ transformOrigin: 'center' }}
               />
             </div>
           </button>
