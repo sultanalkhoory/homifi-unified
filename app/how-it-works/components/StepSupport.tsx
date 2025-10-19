@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 /**
  * Step 4: We Support You
- * Mobile-optimized with flexible height
+ * Fixed spacing issues on desktop
  */
 
 export default function StepSupport({ 
@@ -78,7 +78,7 @@ export default function StepSupport({
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="text-center mb-6 md:mb-12 lg:mb-16 flex-shrink-0"
+          className="text-center mb-6 md:mb-8 lg:mb-12 flex-shrink-0"
         >
           <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-900 mb-2">
             We're Always Here
@@ -92,12 +92,12 @@ export default function StepSupport({
         <div className="flex-1 flex items-center justify-center min-h-0 pb-4">
           <div className="w-full max-w-2xl">
             
-            {/* Badge */}
+            {/* Badge - Added mt-4 md:mt-8 for separation from subtitle */}
             <motion.div
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.3, type: 'spring', stiffness: 200 }}
-              className="flex justify-center mb-6 md:mb-8"
+              className="flex justify-center mt-4 md:mt-8 mb-8 md:mb-10"
             >
               <div className="inline-flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2 md:py-3 bg-gradient-to-br from-blue-500 to-indigo-600 text-white rounded-full shadow-lg">
                 <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
@@ -131,12 +131,12 @@ export default function StepSupport({
               ))}
             </div>
 
-            {/* CTA */}
+            {/* CTA - Added mb-6 to ensure space below button */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9 }}
-              className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 text-center"
+              className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 text-center mb-6"
             >
               <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-4">
                 After 3 months, flexible care plans available
@@ -151,12 +151,12 @@ export default function StepSupport({
           </div>
         </div>
 
-        {/* Bottom Note */}
+        {/* Bottom Note - Increased mt-8 md:mt-10 for better separation */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.1 }}
-          className="text-center flex-shrink-0 mt-4"
+          className="text-center flex-shrink-0 mt-8 md:mt-10"
         >
           <p className="text-xs md:text-sm text-gray-500">
             Honestly, you probably won't need us much—it's that simple.
