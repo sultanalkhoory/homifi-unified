@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { fadeRise, staggerUp, childUp } from '@/lib/animations';
 
 export default function BenefitsSection() {
-  // Key benefits data - 4 cards
+  // Key benefits data
   const benefits = [
     {
       icon: (
@@ -52,7 +52,7 @@ export default function BenefitsSection() {
   ];
 
   return (
-    <section className="py-12 md:py-20 lg:py-32 bg-gradient-to-b from-white to-gray-50">
+    <section id="features" className="py-12 md:py-20 lg:py-32 bg-gradient-to-b from-white to-gray-50">
       <div className="mx-auto max-w-7xl px-4">
         
         {/* Section Header */}
@@ -71,7 +71,7 @@ export default function BenefitsSection() {
           </p>
         </motion.div>
 
-        {/* Benefits Grid - 2x2 on mobile, 2 cols on tablet, 4 cols on desktop */}
+        {/* Benefits Grid */}
         <motion.div
           variants={staggerUp}
           initial="hidden"
@@ -85,20 +85,19 @@ export default function BenefitsSection() {
               variants={childUp}
               className="group relative"
             >
-              {/* Card - comfortable padding, naturally taller */}
               <div className="relative h-full bg-white rounded-2xl p-4 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100">
                 
-                {/* Icon with gradient background - comfortable size */}
+                {/* Icon */}
                 <div className={`inline-flex items-center justify-center w-11 h-11 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br ${benefit.color} text-white mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300`}>
                   {benefit.icon}
                 </div>
 
-                {/* Title - comfortable reading size */}
+                {/* Title */}
                 <h3 className="text-base md:text-xl font-semibold text-black mb-2 md:mb-3 leading-snug">
                   {benefit.title}
                 </h3>
 
-                {/* Description - comfortable reading size with mobile text */}
+                {/* Description */}
                 <p className="text-sm md:text-base text-gray-600 leading-relaxed">
                   <span className="md:hidden">{benefit.mobileDescription}</span>
                   <span className="hidden md:inline">{benefit.description}</span>
@@ -111,7 +110,7 @@ export default function BenefitsSection() {
           ))}
         </motion.div>
 
-        {/* Bottom CTA - hidden on mobile, visible on desktop */}
+        {/* Bottom CTA */}
         <motion.div
           variants={fadeRise}
           initial="hidden"
