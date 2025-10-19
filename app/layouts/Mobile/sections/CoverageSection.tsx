@@ -212,9 +212,9 @@ export default function CoverageSection() {
                 )}
               </svg>
 
-              {/* Stats card - properly centered */}
+              {/* Stats card - properly centered at bottom */}
               {networkOn && (
-                <div className="absolute bottom-40 left-0 right-0 flex justify-center px-8">
+                <div className="absolute bottom-16 left-0 right-0 flex justify-center px-8">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
