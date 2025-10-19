@@ -4,7 +4,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 /**
- * Header Component with Apple-style menu animation
+ * Header Component with sequential menu animation
+ * Lines meet first, then rotate into X
  */
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -49,7 +50,7 @@ export default function Header() {
             Get Started
           </a>
           
-          {/* Mobile Menu Button - Apple-style animation */}
+          {/* Mobile Menu Button - Sequential animation */}
           <button 
             aria-label="Menu" 
             onClick={() => setOpen((v) => !v)}
