@@ -34,7 +34,7 @@ export default function CurtainsSection() {
     return () => video.removeEventListener('loadeddata', onLoad);
   }, []);
 
-  // Auto-close when section becomes visible (once)
+  // Auto-close when section becomes visible
   useEffect(() => {
     if (isInView && !manualControl && curtainsState === 'open' && videoLoaded) {
       const timer = setTimeout(() => playCurtainVideo('closing'), 800);
@@ -42,7 +42,6 @@ export default function CurtainsSection() {
     }
   }, [isInView, manualControl, curtainsState, videoLoaded]);
 
-  // Capture current frame for seamless source swap
   const captureCurrentFrame = () => {
     if (!videoRef.current || !canvasRef.current) return;
     const video = videoRef.current;
@@ -54,125 +53,66 @@ export default function CurtainsSection() {
     try {
       ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
       setShowCanvas(true);
-    } catch {
-      // ignore draw errors
-    }
+    } catch {}
   };
 
-  // Play opening/closing video without changing core logic
   const playCurtainVideo = (action: 'opening' | 'closing') => {
     if (!videoRef.current || isAnimating || !videoLoaded) return;
     setIsAnimating(true);
 
     const video = videoRef.current;
     const newSrc = action === 'opening' ? '/video/curtains-opening.mp4' : '/video/curtains-closing.mp4';
-    const currentName = (video.src.split('/').pop() || '').toLowerCase();
-    const newName = (newSrc.split('/').pop() || '').toLowerCase();
 
-    if (currentName === newName) {
-      setShowCanvas(false);
-      video.currentTime = 0;
-      video.play().catch(() => {});
-    } else {
-      captureCurrentFrame();
-      const preload = document.createElement('video');
-      preload.src = newSrc;
-      preload.muted = true;
-      preload.playsInline = true;
-      preload.preload = 'auto';
-      document.body.appendChild(preload);
+    captureCurrentFrame();
 
-      const onReady = () => {
-        video.src = newSrc;
-        video.currentTime = 0;
-        const onLoaded = () => {
-          setShowCanvas(false);
-          video.play().catch(() => {});
-          document.body.removeChild(preload);
+    setTimeout(() => {
+      video.src = newSrc;
+      video.load();
+      video.onloadeddata = () => {
+        video.play();
+        setShowCanvas(false);
+        video.onended = () => {
+          setCurtainsState(action === 'opening' ? 'open' : 'closed');
+          setIsAnimating(false);
         };
-        video.addEventListener('loadeddata', onLoaded, { once: true });
-        video.load();
       };
-
-      preload.addEventListener('canplaythrough', onReady, { once: true });
-      preload.load();
-    }
-
-    video.onended = () => {
-      video.pause();
-      setCurtainsState(action === 'opening' ? 'open' : 'closed');
-      video.currentTime = Math.max(video.duration - 0.1, 0);
-      setIsAnimating(false);
-    };
+    }, 50);
   };
 
   const handleCycle = () => {
-    if (isAnimating || !videoLoaded) return;
     setManualControl(true);
     playCurtainVideo(curtainsState === 'open' ? 'closing' : 'opening');
   };
 
   const buttonLabel = isAnimating
-    ? curtainsState === 'open'
-      ? 'Curtains Closing...'
-      : 'Curtains Opening...'
-    : curtainsState === 'open'
-    ? 'Close Curtains'
-    : 'Open Curtains';
+    ? curtainsState === 'open' ? 'Closing...' : 'Opening...'
+    : curtainsState === 'open' ? 'Close Curtains' : 'Open Curtains';
 
   return (
     <section ref={containerRef} className="min-h-screen flex items-center py-20 bg-gray-50">
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        {/* iPhone with Curtains video */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="flex justify-center order-2 md:order-1"
-        >
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="flex justify-center order-2 md:order-1">
           <IPhoneFrame>
             <div className="relative w-full h-full overflow-hidden bg-black">
-              {!videoLoaded && (
-                <div className="absolute inset-0 bg-gray-200 flex items-center justify-center">
-                  <div className="w-8 h-8 border-2 border-gray-400 border-t-transparent rounded-full animate-spin" />
-                </div>
-              )}
+              <canvas ref={canvasRef} className={`absolute inset-0 w-full h-full object-cover ${showCanvas ? 'opacity-100 z-20' : 'opacity-0 z-10'}`} style={{ objectPosition: '60% center' }} />
 
-              <canvas
-                ref={canvasRef}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-100 ${
-                  showCanvas ? 'opacity-100 z-20' : 'opacity-0 z-10'
-                }`}
-                style={{ objectPosition: '60% center' }}
-              />
-
-              <video
-                ref={videoRef}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
-                  videoLoaded ? 'opacity-100' : 'opacity-0'
-                } ${showCanvas ? 'z-10' : 'z-20'}`}
-                style={{ objectPosition: '60% center' }}
-                muted
-                playsInline
-                preload="auto"
-              />
+              <video ref={videoRef} className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${videoLoaded ? 'opacity-100' : 'opacity-0'} ${showCanvas ? 'z-10' : 'z-20'}`} style={{ objectPosition: '60% center' }} muted playsInline preload="auto" />
             </div>
 
-            {/* Button with animated label + haptic */}
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30">
               <GlassButton label={buttonLabel} onClick={handleCycle} disabled={isAnimating} />
             </div>
           </IPhoneFrame>
         </motion.div>
 
-        {/* Copy */}
+        {/* Copy - FIXED TYPOGRAPHY */}
         <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="order-1 md:order-2">
-          <div className="text-sm uppercase tracking-wider text-blue-600 mb-3">Perfect Privacy</div>
-          <h2 className="text-4xl md:text-5xl font-thin text-gray-900 mb-4 leading-tight">
-            Comfort <br /> and control.
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-black mb-4 leading-tight">
+            Perfect Privacy
           </h2>
-          <p className="text-lg text-gray-600 font-light mb-8">Exactly when you need it.</p>
+          <p className="text-lg md:text-xl text-gray-600 mb-8">
+            Comfort and control, exactly when you need it.
+          </p>
         </motion.div>
       </div>
     </section>
