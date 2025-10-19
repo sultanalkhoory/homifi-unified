@@ -178,20 +178,20 @@ export default function PerfectCoverage() {
           >
             <div className="relative w-full aspect-[16/10] rounded-3xl overflow-hidden bg-gray-50 border border-gray-200">
               
-              {/* Floor Plan Base - always visible */}
+              {/* Floor Plan Base */}
               <div className="absolute inset-0 p-8 md:p-12">
                 <svg viewBox="0 0 400 300" className="w-full h-full">
                   {/* Room outlines */}
-                  <rect x="20" y="20" width="160" height="120" fill="none" stroke="#e5e7eb" strokeWidth="2" />
-                  <rect x="180" y="20" width="200" height="120" fill="none" stroke="#e5e7eb" strokeWidth="2" />
-                  <rect x="20" y="140" width="360" height="140" fill="none" stroke="#e5e7eb" strokeWidth="2" />
+                  <rect x="20" y="20" width="160" height="120" fill="none" stroke="#e5e7eb" strokeWidth="2" rx="4" />
+                  <rect x="180" y="20" width="200" height="120" fill="none" stroke="#e5e7eb" strokeWidth="2" rx="4" />
+                  <rect x="20" y="140" width="360" height="140" fill="none" stroke="#e5e7eb" strokeWidth="2" rx="4" />
                   
                   {/* Room labels */}
-                  <text x="100" y="50" textAnchor="middle" fill="#9ca3af" fontSize="14" fontWeight="500">Living Room</text>
-                  <text x="280" y="50" textAnchor="middle" fill="#9ca3af" fontSize="14" fontWeight="500">Kitchen</text>
-                  <text x="200" y="170" textAnchor="middle" fill="#9ca3af" fontSize="14" fontWeight="500">Bedrooms</text>
+                  <text x="100" y="75" textAnchor="middle" fill="#9ca3af" fontSize="13" fontWeight="500">Living Room</text>
+                  <text x="280" y="75" textAnchor="middle" fill="#9ca3af" fontSize="13" fontWeight="500">Kitchen</text>
+                  <text x="200" y="210" textAnchor="middle" fill="#9ca3af" fontSize="13" fontWeight="500">Bedrooms</text>
                   
-                  {/* Access Points */}
+                  {/* Access Points with coverage rings */}
                   {networkOn && (
                     <>
                       {/* AP 1 - Living Room */}
@@ -200,9 +200,10 @@ export default function PerfectCoverage() {
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ delay: 0.3, type: 'spring', stiffness: 200 }}
                       >
-                        <circle cx="100" cy="80" r="8" fill="#3b82f6" opacity="0.2" />
-                        <circle cx="100" cy="80" r="6" fill="#3b82f6" />
-                        <circle cx="100" cy="80" r="3" fill="white" />
+                        <circle cx="110" cy="95" r="35" fill="#3b82f6" opacity="0.08" />
+                        <circle cx="110" cy="95" r="20" fill="#3b82f6" opacity="0.12" />
+                        <circle cx="110" cy="95" r="8" fill="#3b82f6" />
+                        <circle cx="110" cy="95" r="4" fill="white" />
                       </motion.g>
                       
                       {/* AP 2 - Kitchen */}
@@ -211,9 +212,10 @@ export default function PerfectCoverage() {
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ delay: 0.5, type: 'spring', stiffness: 200 }}
                       >
-                        <circle cx="280" cy="80" r="8" fill="#6366f1" opacity="0.2" />
-                        <circle cx="280" cy="80" r="6" fill="#6366f1" />
-                        <circle cx="280" cy="80" r="3" fill="white" />
+                        <circle cx="300" cy="95" r="35" fill="#6366f1" opacity="0.08" />
+                        <circle cx="300" cy="95" r="20" fill="#6366f1" opacity="0.12" />
+                        <circle cx="300" cy="95" r="8" fill="#6366f1" />
+                        <circle cx="300" cy="95" r="4" fill="white" />
                       </motion.g>
                       
                       {/* AP 3 - Bedrooms */}
@@ -222,125 +224,146 @@ export default function PerfectCoverage() {
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ delay: 0.7, type: 'spring', stiffness: 200 }}
                       >
-                        <circle cx="200" cy="210" r="8" fill="#8b5cf6" opacity="0.2" />
-                        <circle cx="200" cy="210" r="6" fill="#8b5cf6" />
-                        <circle cx="200" cy="210" r="3" fill="white" />
+                        <circle cx="200" cy="230" r="35" fill="#8b5cf6" opacity="0.08" />
+                        <circle cx="200" cy="230" r="20" fill="#8b5cf6" opacity="0.12" />
+                        <circle cx="200" cy="230" r="8" fill="#8b5cf6" />
+                        <circle cx="200" cy="230" r="4" fill="white" />
                       </motion.g>
                     </>
                   )}
 
-                  {/* Animated Device with Connection Lines */}
+                  {/* Connection lines and device */}
                   {networkOn && (
-                    <motion.g
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 1 }}
-                    >
-                      {/* Connection line to nearest AP */}
+                    <>
+                      {/* Connection line to AP 1 (Living) - visible first quarter */}
                       <motion.line
-                        animate={{
-                          x1: [70, 150, 280, 220, 70],
-                          y1: [100, 90, 90, 200, 100],
-                          x2: [100, 100, 280, 200, 100],
-                          y2: [80, 80, 80, 210, 80],
-                          opacity: [0.6, 0.6, 0.6, 0.6, 0.6]
-                        }}
-                        transition={{
-                          duration: 16,
-                          repeat: Infinity,
-                          ease: 'linear',
-                          times: [0, 0.25, 0.5, 0.75, 1]
-                        }}
+                        x1="80" y1="110" x2="110" y2="95"
                         stroke="#3b82f6"
                         strokeWidth="2"
                         strokeDasharray="4 4"
-                        opacity="0.6"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: [0, 0.6, 0.6, 0, 0, 0] }}
+                        transition={{ duration: 20, repeat: Infinity, times: [0, 0.05, 0.2, 0.25, 0.95, 1] }}
+                      />
+
+                      {/* Connection line to AP 2 (Kitchen) - visible second quarter */}
+                      <motion.line
+                        x1="200" y1="90" x2="300" y2="95"
+                        stroke="#6366f1"
+                        strokeWidth="2"
+                        strokeDasharray="4 4"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: [0, 0, 0, 0.6, 0.6, 0, 0] }}
+                        transition={{ duration: 20, repeat: Infinity, times: [0, 0.25, 0.3, 0.35, 0.45, 0.5, 1] }}
+                      />
+
+                      {/* Connection line to AP 3 (Bedroom) - visible third quarter */}
+                      <motion.line
+                        x1="250" y1="180" x2="200" y2="230"
+                        stroke="#8b5cf6"
+                        strokeWidth="2"
+                        strokeDasharray="4 4"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: [0, 0, 0, 0, 0, 0.6, 0.6, 0, 0] }}
+                        transition={{ duration: 20, repeat: Infinity, times: [0, 0.5, 0.55, 0.6, 0.7, 0.75, 0.95, 1] }}
                       />
 
                       {/* Moving Device */}
                       <motion.g
-                        animate={{
-                          x: [70, 150, 280, 220, 70],
-                          y: [100, 90, 90, 200, 100]
+                        initial={{ opacity: 0 }}
+                        animate={{ 
+                          opacity: 1,
                         }}
-                        transition={{
-                          duration: 16,
-                          repeat: Infinity,
-                          ease: 'linear',
-                          times: [0, 0.25, 0.5, 0.75, 1]
-                        }}
+                        transition={{ delay: 1 }}
                       >
-                        {/* Device circle */}
-                        <circle r="12" fill="white" stroke="#3b82f6" strokeWidth="2" />
-                        
-                        {/* WiFi signal icon */}
-                        <g transform="translate(-6, -6)">
-                          <path
-                            d="M6 9c2.2 0 4-1.8 4-4M6 9c-2.2 0-4-1.8-4-4M6 11v1"
-                            stroke="#3b82f6"
-                            strokeWidth="1.5"
-                            fill="none"
-                            strokeLinecap="round"
-                          />
-                          <circle cx="6" cy="13" r="1" fill="#3b82f6" />
-                        </g>
+                        <motion.g
+                          animate={{
+                            x: [80, 110, 200, 300, 320, 250, 200, 130, 80],
+                            y: [110, 105, 90, 90, 110, 180, 230, 200, 110]
+                          }}
+                          transition={{
+                            duration: 20,
+                            repeat: Infinity,
+                            ease: 'easeInOut',
+                            times: [0, 0.15, 0.25, 0.38, 0.45, 0.6, 0.75, 0.9, 1]
+                          }}
+                        >
+                          {/* Device shadow */}
+                          <circle r="14" fill="black" opacity="0.1" cy="2" />
+                          
+                          {/* Device body */}
+                          <circle r="13" fill="white" stroke="#3b82f6" strokeWidth="2.5" />
+                          
+                          {/* Phone icon */}
+                          <rect x="-4" y="-6" width="8" height="12" rx="1.5" fill="#3b82f6" opacity="0.2" />
+                          <rect x="-3" y="-5" width="6" height="8" rx="0.5" fill="#3b82f6" />
+                          <circle cy="4" r="0.8" fill="white" />
 
-                        {/* Signal strength bars */}
-                        <motion.g transform="translate(8, -8)">
-                          <rect x="0" y="6" width="2" height="2" fill="#10b981" rx="0.5" />
-                          <rect x="3" y="4" width="2" height="4" fill="#10b981" rx="0.5" />
-                          <rect x="6" y="2" width="2" height="6" fill="#10b981" rx="0.5" />
+                          {/* Signal strength indicator */}
+                          <motion.g transform="translate(10, -10)">
+                            <rect x="0" y="6" width="2" height="3" fill="#10b981" rx="0.5" />
+                            <rect x="3" y="4" width="2" height="5" fill="#10b981" rx="0.5" />
+                            <rect x="6" y="2" width="2" height="7" fill="#10b981" rx="0.5" />
+                          </motion.g>
+
+                          {/* Handoff pulse effect at transition points */}
+                          <motion.circle
+                            r="16"
+                            fill="none"
+                            stroke="#3b82f6"
+                            strokeWidth="2"
+                            initial={{ scale: 0.8, opacity: 0 }}
+                            animate={{ 
+                              scale: [0.8, 1.5, 0.8],
+                              opacity: [0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0]
+                            }}
+                            transition={{
+                              duration: 20,
+                              repeat: Infinity,
+                              times: [0, 0.15, 0.2, 0.25, 0.38, 0.43, 0.48, 0.6, 0.65, 0.7, 0.75, 0.8, 1]
+                            }}
+                          />
                         </motion.g>
                       </motion.g>
 
-                      {/* Path trail showing movement */}
+                      {/* Movement path trail */}
                       <motion.path
-                        d="M 70 100 Q 110 95, 150 90 Q 215 90, 280 90 Q 250 145, 220 200 Q 145 150, 70 100"
+                        d="M 80 110 Q 95 108, 110 105 L 200 90 Q 250 90, 300 90 Q 310 100, 320 110 Q 285 145, 250 180 L 200 230 Q 165 215, 130 200 L 80 110"
                         fill="none"
                         stroke="#3b82f6"
-                        strokeWidth="1"
-                        strokeDasharray="3 3"
-                        opacity="0.3"
+                        strokeWidth="1.5"
+                        strokeDasharray="4 4"
+                        opacity="0.25"
                         initial={{ pathLength: 0 }}
                         animate={{ pathLength: 1 }}
-                        transition={{ duration: 2, delay: 1.5 }}
+                        transition={{ duration: 2.5, delay: 1.2 }}
                       />
-                    </motion.g>
+                    </>
                   )}
                 </svg>
               </div>
 
-              {/* Coverage Gradient Overlay */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: networkOn ? 1 : 0 }}
-                transition={{ duration: 1, ease: 'easeOut' }}
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background: `
-                    radial-gradient(circle at 35% 32%, rgba(59, 130, 246, 0.12) 0%, transparent 45%),
-                    radial-gradient(circle at 70% 32%, rgba(99, 102, 241, 0.12) 0%, transparent 45%),
-                    radial-gradient(circle at 50% 68%, rgba(139, 92, 246, 0.12) 0%, transparent 45%)
-                  `
-                }}
-              />
-
-              {/* Coverage stats overlay */}
+              {/* Stats overlay */}
               {networkOn && (
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1 }}
-                  className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-3 shadow-lg"
+                  transition={{ delay: 1.5 }}
+                  className="absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm rounded-xl px-4 py-3 shadow-lg border border-gray-200"
                 >
                   <div className="flex items-center gap-3 text-sm">
                     <div className="text-center">
-                      <p className="text-2xl font-bold text-blue-600">100%</p>
+                      <p className="text-xl font-bold text-blue-600">100%</p>
                       <p className="text-xs text-gray-600">Coverage</p>
                     </div>
                     <div className="w-px h-8 bg-gray-300" />
                     <div className="text-center">
-                      <p className="text-2xl font-bold text-green-600">18</p>
+                      <p className="text-xl font-bold text-green-600">3</p>
+                      <p className="text-xs text-gray-600">Access Points</p>
+                    </div>
+                    <div className="w-px h-8 bg-gray-300" />
+                    <div className="text-center">
+                      <p className="text-xl font-bold text-purple-600">18</p>
                       <p className="text-xs text-gray-600">Devices</p>
                     </div>
                   </div>
