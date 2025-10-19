@@ -9,23 +9,16 @@ type LockState = 'locked' | 'unlocking' | 'unlocked';
 export default function PerfectHomeKey() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [lockState, setLockState] = useState<LockState>('locked');
-  const [hasAutoTriggered, setHasAutoTriggered] = useState(false);
   const [showHint, setShowHint] = useState(false);
 
-  // Auto-trigger unlock
+  // Show hint when section enters viewport
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasAutoTriggered) {
+          if (entry.isIntersecting && !showHint) {
             setTimeout(() => {
-              triggerUnlock();
-              setHasAutoTriggered(true);
-              
-              // Show hint AFTER first animation completes
-              setTimeout(() => {
-                setShowHint(true);
-              }, 3000);
+              setShowHint(true);
             }, 800);
           }
         });
@@ -37,20 +30,12 @@ export default function PerfectHomeKey() {
       observer.observe(containerRef.current);
     }
     return () => observer.disconnect();
-  }, [hasAutoTriggered]);
-
-  // Hide hint after 4 seconds of showing
-  useEffect(() => {
-    if (showHint) {
-      const timer = setTimeout(() => {
-        setShowHint(false);
-      }, 4000);
-      return () => clearTimeout(timer);
-    }
   }, [showHint]);
 
+  // Unlock sequence - only triggered by user tap
   const triggerUnlock = () => {
     if (lockState !== 'locked') return;
+    
     setLockState('unlocking');
     setShowHint(false);
     
@@ -246,7 +231,7 @@ export default function PerfectHomeKey() {
                           style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 25%, transparent 50%, transparent 75%, rgba(255,255,255,0.02) 100%)' }}
                         />
 
-                        {/* Dynamic Island - much smaller on mobile */}
+                        {/* Dynamic Island */}
                         <div className="absolute top-1 sm:top-1.5 md:top-2 left-1/2 -translate-x-1/2 z-40">
                           <motion.div
                             animate={{
@@ -321,15 +306,15 @@ export default function PerfectHomeKey() {
 
               </motion.div>
 
-              {/* Tap to unlock hint - ON the door at top */}
+              {/* Tap to unlock hint - centered top middle */}
               <AnimatePresence>
                 {showHint && lockState === 'locked' && (
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute top-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none"
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -5 }}
+                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute top-6 md:top-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none"
                   >
                     <div className="bg-black/80 backdrop-blur-md text-white px-4 py-2 rounded-full text-xs sm:text-sm font-medium shadow-2xl">
                       Tap to unlock
