@@ -4,13 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 /**
- * Header Component
- * 
- * Apple-style frosted glass navigation with responsive behavior
- * - Desktop: Full horizontal nav with links
- * - Mobile: Hamburger menu with slide-down dropdown
- * - Fixed at top with breathing room (top-6 offset)
- * - Includes "How It Works" as separate page link
+ * Header Component with Apple-style menu animation
  */
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -55,17 +49,42 @@ export default function Header() {
             Get Started
           </a>
           
-          {/* Mobile Menu Button (Hamburger) */}
+          {/* Mobile Menu Button - Apple-style animation */}
           <button 
             aria-label="Menu" 
             onClick={() => setOpen((v) => !v)}
             className="md:hidden ml-auto inline-flex items-center justify-center 
-              rounded-full w-10 h-10 bg-black text-white
+              rounded-full w-10 h-10 bg-black
               hover:bg-gray-900 active:scale-95
               transition-all duration-200"
           >
-            {/* Toggle between hamburger and X */}
-            <span className="text-lg leading-none">{open ? '×' : '≡'}</span>
+            <div className="w-5 h-4 flex flex-col justify-center items-center gap-1.5">
+              {/* Top Line */}
+              <motion.span
+                animate={{
+                  rotate: open ? 45 : 0,
+                  y: open ? 5 : 0,
+                }}
+                transition={{ 
+                  duration: 0.3,
+                  ease: [0.4, 0.0, 0.2, 1] // Apple's easing curve
+                }}
+                className="w-full h-0.5 bg-white rounded-full block"
+              />
+              
+              {/* Bottom Line */}
+              <motion.span
+                animate={{
+                  rotate: open ? -45 : 0,
+                  y: open ? -5 : 0,
+                }}
+                transition={{ 
+                  duration: 0.3,
+                  ease: [0.4, 0.0, 0.2, 1]
+                }}
+                className="w-full h-0.5 bg-white rounded-full block"
+              />
+            </div>
           </button>
         </div>
 
