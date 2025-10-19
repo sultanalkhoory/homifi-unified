@@ -32,9 +32,9 @@ export default function Header() {
             <a href="/#ecosystem" className="hover:text-black transition-colors duration-200">
               Ecosystem
             </a>
-            <a href="/#about" className="hover:text-black transition-colors duration-200">
+            <Link href="/about" className="hover:text-black transition-colors duration-200">
               About Us
-            </a>
+            </Link>
           </nav>
           
           {/* Desktop CTA Button */}
