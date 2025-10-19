@@ -306,7 +306,7 @@ export default function PerfectHomeKey() {
 
               </motion.div>
 
-              {/* Tap to unlock hint - centered and subtle */}
+              {/* Tap to unlock hint - centered at top, subtle */}
               <AnimatePresence>
                 {showHint && lockState === 'locked' && (
                   <motion.div
@@ -314,7 +314,7 @@ export default function PerfectHomeKey() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none"
+                    className="absolute top-6 md:top-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none"
                   >
                     <div className="bg-black/50 backdrop-blur-sm text-white/90 px-3 py-1.5 rounded-full text-xs font-normal shadow-lg">
                       Tap to unlock
