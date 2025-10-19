@@ -12,7 +12,7 @@ export default function PerfectHomeKey() {
   const [hasAutoTriggered, setHasAutoTriggered] = useState(false);
   const [showHint, setShowHint] = useState(true);
 
-  // Auto-trigger unlock when entering viewport
+  // Auto-trigger unlock
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -25,16 +25,12 @@ export default function PerfectHomeKey() {
           }
         });
       },
-      {
-        threshold: 0.3,
-        rootMargin: '0px 0px -100px 0px'
-      }
+      { threshold: 0.3, rootMargin: '0px 0px -100px 0px' }
     );
 
     if (containerRef.current) {
       observer.observe(containerRef.current);
     }
-
     return () => observer.disconnect();
   }, [hasAutoTriggered]);
 
@@ -46,16 +42,13 @@ export default function PerfectHomeKey() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Unlock sequence
   const triggerUnlock = () => {
     if (lockState !== 'locked') return;
-    
     setLockState('unlocking');
     setShowHint(false);
     
     setTimeout(() => {
       setLockState('unlocked');
-      
       setTimeout(() => {
         setLockState('locked');
       }, 1800);
@@ -82,26 +75,23 @@ export default function PerfectHomeKey() {
             Perfect Entry
           </h2>
           
-          <p className="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed mb-2">
+          <p className="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
             Unlock your home with just a tap. Your iPhone or Apple Watch becomes your key.
-          </p>
-          
-          <p className="text-sm text-gray-500">
-            Apple HomeKey stored securely in Apple Wallet
           </p>
         </motion.div>
 
-        {/* Door Scene + Hint Container */}
-        <div className="relative mb-16">
+        {/* Scene Container with Hint */}
+        <div className="relative">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-12"
           >
             <div className="mx-auto w-full max-w-4xl">
               
-              {/* Clickable Scene */}
+              {/* Clickable Door Scene */}
               <motion.div
                 onClick={triggerUnlock}
                 whileHover={{ scale: 1.02 }}
@@ -139,25 +129,17 @@ export default function PerfectHomeKey() {
                         : 'bg-gradient-to-br from-gray-700 to-gray-800 shadow-xl'
                       }
                     `}>
-                      {/* Corner screws */}
                       <div className="absolute top-2 left-2 w-1.5 h-1.5 rounded-full bg-gray-900/30" />
                       <div className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-gray-900/30" />
                       <div className="absolute bottom-2 left-2 w-1.5 h-1.5 rounded-full bg-gray-900/30" />
                       <div className="absolute bottom-2 right-2 w-1.5 h-1.5 rounded-full bg-gray-900/30" />
 
-                      {/* Pulsing blue glow when locked */}
+                      {/* Pulsing glow */}
                       {lockState === 'locked' && (
                         <motion.div
                           className="absolute inset-0 rounded-2xl bg-blue-400"
-                          animate={{
-                            opacity: [0, 0.3, 0],
-                            scale: [0.95, 1.1, 0.95]
-                          }}
-                          transition={{
-                            duration: 2.5,
-                            repeat: Infinity,
-                            ease: "easeInOut"
-                          }}
+                          animate={{ opacity: [0, 0.3, 0], scale: [0.95, 1.1, 0.95] }}
+                          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
                           style={{ filter: 'blur(8px)' }}
                         />
                       )}
@@ -167,65 +149,46 @@ export default function PerfectHomeKey() {
                     <motion.div
                       className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-6 md:w-24 md:h-7"
                       style={{ originX: 0.2, originY: 0.5 }}
-                      animate={{
-                        rotate: lockState === 'unlocked' ? 35 : 0
-                      }}
-                      transition={{ 
-                        duration: 0.5, 
-                        ease: [0.22, 1, 0.36, 1],
-                        delay: lockState === 'unlocking' ? 0.3 : 0
-                      }}
+                      animate={{ rotate: lockState === 'unlocked' ? 35 : 0 }}
+                      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: lockState === 'unlocking' ? 0.3 : 0 }}
                     >
                       <div className="absolute inset-0 rounded-full bg-gradient-to-b from-gray-800 via-gray-700 to-gray-900 shadow-lg">
                         <div className="absolute inset-0 rounded-full bg-gradient-to-b from-white/30 via-transparent to-black/20" />
-                        
-                        {/* Grip texture */}
                         <div className="absolute inset-y-2 right-4 left-8 flex items-center gap-0.5">
                           {[...Array(5)].map((_, i) => (
                             <div key={i} className="w-px h-full bg-gray-900/40" />
                           ))}
                         </div>
                       </div>
-
                       <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-gradient-to-br from-gray-700 to-gray-900 shadow-md" />
                     </motion.div>
 
-                    {/* Center hub with LED */}
+                    {/* Center hub */}
                     <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-gray-800 to-gray-900 shadow-lg z-10">
                       <div className="absolute inset-2 rounded-full bg-gray-900">
                         <motion.div 
-                          className={`absolute inset-0 m-auto w-2 h-2 rounded-full transition-colors duration-300`}
+                          className="absolute inset-0 m-auto w-2 h-2 rounded-full"
                           style={{
                             backgroundColor: lockState === 'unlocking' ? '#3b82f6' 
-                              : lockState === 'unlocked' ? '#10b981' 
-                              : '#6b7280'
+                              : lockState === 'unlocked' ? '#10b981' : '#6b7280'
                           }}
-                          animate={{
-                            opacity: lockState === 'locked' ? [0.5, 1, 0.5] : 1
-                          }}
-                          transition={{
-                            duration: 2,
-                            repeat: lockState === 'locked' ? Infinity : 0,
-                            ease: "easeInOut"
-                          }}
+                          animate={{ opacity: lockState === 'locked' ? [0.5, 1, 0.5] : 1 }}
+                          transition={{ duration: 2, repeat: lockState === 'locked' ? Infinity : 0, ease: "easeInOut" }}
                         />
                       </div>
                     </div>
 
-                    {/* Glow effect */}
+                    {/* Glow effects */}
                     {lockState !== 'locked' && (
                       <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: [0, 0.5, 0], scale: [0.9, 1.4, 1.4] }}
                         transition={{ duration: 1.5, repeat: Infinity }}
-                        className={`absolute inset-0 rounded-2xl ${
-                          lockState === 'unlocking' ? 'bg-blue-400' : 'bg-green-400'
-                        }`}
+                        className={`absolute inset-0 rounded-2xl ${lockState === 'unlocking' ? 'bg-blue-400' : 'bg-green-400'}`}
                         style={{ filter: 'blur(12px)' }}
                       />
                     )}
 
-                    {/* Radiating pulse */}
                     {lockState === 'unlocking' && (
                       <motion.div
                         className="absolute inset-0 rounded-2xl border-2 border-blue-400"
@@ -258,18 +221,13 @@ export default function PerfectHomeKey() {
                     <div className="relative w-full h-full bg-black rounded-[28px] sm:rounded-[38px] md:rounded-[45px] p-[2px] sm:p-[3px] md:p-[4px] shadow-[0_0_0_2px_#1a1a1a,0_0_60px_rgba(0,0,0,0.4)]">
                       <div className="relative w-full h-full bg-black rounded-[22px] sm:rounded-[30px] md:rounded-[37px] overflow-hidden">
                         
-                        {/* Lock Screen Wallpaper */}
+                        {/* Wallpaper */}
                         <div className="absolute inset-0">
                           <img 
                             src="/iphone-homekey-screen.png" 
                             alt="iPhone Lock Screen"
                             className="absolute w-full h-full object-cover"
-                            style={{ 
-                              top: '-2%',
-                              imageRendering: 'crisp-edges',
-                              transform: 'translateZ(0)',
-                              backfaceVisibility: 'hidden'
-                            }}
+                            style={{ top: '-2%', imageRendering: 'crisp-edges', transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
                             loading="eager"
                             decoding="sync"
                           />
@@ -278,24 +236,19 @@ export default function PerfectHomeKey() {
                         {/* Screen glare */}
                         <div
                           className="absolute inset-0 pointer-events-none rounded-[22px] sm:rounded-[30px] md:rounded-[37px]"
-                          style={{
-                            background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 25%, transparent 50%, transparent 75%, rgba(255,255,255,0.02) 100%)'
-                          }}
+                          style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 25%, transparent 50%, transparent 75%, rgba(255,255,255,0.02) 100%)' }}
                         />
 
-                        {/* Dynamic Island */}
+                        {/* Dynamic Island - smaller on mobile */}
                         <div className="absolute top-1 sm:top-1.5 md:top-2 left-1/2 -translate-x-1/2 z-40">
                           <motion.div
                             animate={{
                               width: lockState === 'locked' 
-                                ? '70px'
-                                : '140px',
-                              height: lockState === 'unlocking' || lockState === 'unlocked' ? '36px' : '26px'
+                                ? '60px'
+                                : '120px',
+                              height: (lockState === 'unlocking' || lockState === 'unlocked') ? '30px' : '22px'
                             }}
-                            transition={{ 
-                              duration: 0.4,
-                              ease: [0.22, 1, 0.36, 1]
-                            }}
+                            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                             className="bg-black rounded-full overflow-hidden flex items-center justify-center"
                           >
                             <AnimatePresence mode="wait">
@@ -304,16 +257,10 @@ export default function PerfectHomeKey() {
                                   initial={{ opacity: 0 }}
                                   animate={{ opacity: 1 }}
                                   exit={{ opacity: 0 }}
-                                  className="flex items-center gap-2 px-4 h-full"
+                                  className="flex items-center gap-1.5 px-3 h-full"
                                 >
                                   {lockState === 'unlocking' && (
-                                    <motion.svg 
-                                      className="w-4 h-4 text-white flex-shrink-0" 
-                                      fill="none" 
-                                      stroke="currentColor" 
-                                      viewBox="0 0 24 24" 
-                                      strokeWidth={2}
-                                    >
+                                    <svg className="w-3 h-3 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                                       <motion.path 
                                         strokeLinecap="round" 
                                         strokeLinejoin="round" 
@@ -322,16 +269,12 @@ export default function PerfectHomeKey() {
                                         animate={{ pathLength: 1 }}
                                         transition={{ duration: 0.5 }}
                                       />
-                                    </motion.svg>
+                                    </svg>
                                   )}
 
                                   {lockState === 'unlocked' && (
-                                    <motion.div
-                                      initial={{ scale: 0 }}
-                                      animate={{ scale: 1 }}
-                                      transition={{ type: 'spring', delay: 0.1 }}
-                                    >
-                                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
+                                    <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', delay: 0.1 }}>
+                                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
                                         <motion.path 
                                           strokeLinecap="round" 
                                           strokeLinejoin="round" 
@@ -348,7 +291,7 @@ export default function PerfectHomeKey() {
                                     initial={{ opacity: 0, x: -5 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: 0.15, duration: 0.3 }}
-                                    className="text-white text-xs font-medium whitespace-nowrap"
+                                    className="text-white text-[9px] sm:text-[10px] font-medium whitespace-nowrap"
                                   >
                                     {lockState === 'unlocking' ? 'Unlocking...' : 'Unlocked'}
                                   </motion.span>
@@ -360,17 +303,11 @@ export default function PerfectHomeKey() {
                       </div>
                     </div>
 
-                    {/* iPhone shadow */}
+                    {/* Shadow */}
                     <motion.div
                       className="absolute -left-2 sm:-left-3 md:-left-5 top-0 bottom-0 w-4 sm:w-6 md:w-10"
-                      animate={{
-                        opacity: lockState === 'locked' ? 0.1 : 0.2,
-                        x: lockState === 'locked' ? 0 : -8
-                      }}
-                      style={{
-                        background: 'radial-gradient(ellipse at right, rgba(0,0,0,0.2) 0%, transparent 70%)',
-                        filter: 'blur(8px)'
-                      }}
+                      animate={{ opacity: lockState === 'locked' ? 0.1 : 0.2, x: lockState === 'locked' ? 0 : -8 }}
+                      style={{ background: 'radial-gradient(ellipse at right, rgba(0,0,0,0.2) 0%, transparent 70%)', filter: 'blur(8px)' }}
                     />
                   </div>
                 </motion.div>
@@ -379,7 +316,7 @@ export default function PerfectHomeKey() {
             </div>
           </motion.div>
 
-          {/* "Tap to unlock" hint - OUTSIDE scene */}
+          {/* Tap to unlock hint - positioned below scene */}
           <AnimatePresence>
             {showHint && lockState === 'locked' && (
               <motion.div
@@ -387,10 +324,9 @@ export default function PerfectHomeKey() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.5 }}
-                className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
-                style={{ top: 'calc(100% + 2rem)' }}
+                className="flex justify-center mt-8"
               >
-                <div className="bg-black/70 backdrop-blur-md text-white px-5 py-2.5 rounded-full text-sm font-medium shadow-lg whitespace-nowrap">
+                <div className="bg-black/70 backdrop-blur-md text-white px-5 py-2.5 rounded-full text-sm font-medium shadow-lg">
                   Tap to unlock
                 </div>
               </motion.div>
@@ -398,6 +334,19 @@ export default function PerfectHomeKey() {
           </AnimatePresence>
         </div>
 
+        {/* Apple Wallet badge */}
+        <motion.div
+          variants={fadeRise}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          className="flex items-center justify-center gap-2 text-sm text-gray-500"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+          <span>Apple HomeKey stored securely in Apple Wallet</span>
+        </motion.div>
       </div>
     </section>
   );
