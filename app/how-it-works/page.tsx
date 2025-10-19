@@ -41,6 +41,7 @@ export default function HowItWorksPage() {
     }
   ];
 
+  // Track scroll position
   useEffect(() => {
     const handleScroll = () => {
       if (!containerRef.current) return;
@@ -64,6 +65,7 @@ export default function HowItWorksPage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Smooth scroll helper
   const scrollToStep = (index: number) => {
     const sections = containerRef.current?.querySelectorAll('.step-section');
     if (sections && sections[index]) {
@@ -102,6 +104,7 @@ export default function HowItWorksPage() {
         </div>
       </div>
 
+      {/* Hero Section */}
       <HeroFloating />
 
       {/* Steps Container */}
@@ -122,15 +125,17 @@ export default function HowItWorksPage() {
             >
               <div className="max-w-7xl mx-auto w-full">
                 
-                {/* Step Header - FIX: Changed once to true, removed y animation */}
+                {/* Step Header - FIX: Added amount threshold + will-change for hardware acceleration */}
                 <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ 
-                    once: true, // Only animates in once, never tries to animate out
-                    margin: "-100px" 
+                    once: false, 
+                    margin: "-100px",
+                    amount: 0.3 // Requires 30% visibility before triggering
                   }}
                   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  style={{ willChange: 'transform, opacity' }} // Hardware acceleration prevents layout thrashing
                   className="text-center mb-8 md:mb-12"
                 >
                   <div className="inline-flex items-center gap-3 mb-4">
@@ -167,7 +172,7 @@ export default function HowItWorksPage() {
         })}
       </div>
 
-      {/* Final CTA */}
+      {/* Final CTA with proper spacing */}
       <section className="flex items-center justify-center px-4 py-16 md:py-24 lg:min-h-screen bg-gradient-to-b from-white to-gray-50">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
