@@ -58,33 +58,39 @@ export default function Header() {
               hover:bg-gray-900 active:scale-95
               transition-all duration-200"
           >
-            <div className="w-5 h-4 flex flex-col justify-center items-center">
+            <div className="w-5 h-4 relative flex items-center justify-center">
               {/* Top Line */}
               <motion.span
-                animate={{
-                  rotate: open ? 45 : 0,
-                  y: open ? 4 : -2.5,
+                animate={open ? {
+                  y: ["-3px", "0px", "0px"],
+                  rotate: [0, 0, 45]
+                } : {
+                  rotate: [45, 0, 0],
+                  y: ["0px", "0px", "-3px"]
                 }}
                 transition={{ 
-                  duration: 0.3,
-                  ease: [0.4, 0.0, 0.2, 1] // Apple's easing curve
+                  duration: 0.4,
+                  ease: [0.4, 0.0, 0.2, 1],
+                  times: [0, 0.5, 1]
                 }}
-                className="w-full h-0.5 bg-white rounded-full block"
-                style={{ transformOrigin: 'center' }}
+                className="absolute w-full h-0.5 bg-white rounded-full"
               />
               
               {/* Bottom Line */}
               <motion.span
-                animate={{
-                  rotate: open ? -45 : 0,
-                  y: open ? -4 : 2.5,
+                animate={open ? {
+                  y: ["3px", "0px", "0px"],
+                  rotate: [0, 0, -45]
+                } : {
+                  rotate: [-45, 0, 0],
+                  y: ["0px", "0px", "3px"]
                 }}
                 transition={{ 
-                  duration: 0.3,
-                  ease: [0.4, 0.0, 0.2, 1]
+                  duration: 0.4,
+                  ease: [0.4, 0.0, 0.2, 1],
+                  times: [0, 0.5, 1]
                 }}
-                className="w-full h-0.5 bg-white rounded-full block"
-                style={{ transformOrigin: 'center' }}
+                className="absolute w-full h-0.5 bg-white rounded-full"
               />
             </div>
           </button>
