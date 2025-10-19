@@ -11,7 +11,7 @@ export default function StepCustomize({
   fullScreen?: boolean;
 }) {
   
-  const [buildStep, setBuildStep] = useState(0);
+  const [buildStep, setBuildStep] = useState(1); // Start at step 1 so card is immediately visible
   const [sceneName, setSceneName] = useState('');
   const [selectedDevices, setSelectedDevices] = useState<string[]>([]);
   const [deviceSettings, setDeviceSettings] = useState<{[key: string]: any}>({});
@@ -24,16 +24,15 @@ export default function StepCustomize({
     if (!isActive) return;
     
     const actions = [
-      [800, () => setBuildStep(1)],
-      [2200, () => setSceneName('Movie Night')],
-      [3500, () => setBuildStep(2)],
-      [4500, () => setSelectedDevices(['lights'])],
-      [5200, () => setSelectedDevices(['lights', 'tv'])],
-      [5900, () => setSelectedDevices(['lights', 'tv', 'curtains'])],
-      [7200, () => setBuildStep(3)],
-      [7500, () => setDeviceSettings({ lights: 50, tv: 'on', curtains: 'closed' })],
-      [8500, () => setTargetLights(20)],
-      [10000, () => setBuildStep(4)]
+      [1400, () => setSceneName('Movie Night')], // Start typing after 1400ms
+      [2700, () => setBuildStep(2)],
+      [3700, () => setSelectedDevices(['lights'])],
+      [4400, () => setSelectedDevices(['lights', 'tv'])],
+      [5100, () => setSelectedDevices(['lights', 'tv', 'curtains'])],
+      [6400, () => setBuildStep(3)],
+      [6700, () => setDeviceSettings({ lights: 50, tv: 'on', curtains: 'closed' })],
+      [7700, () => setTargetLights(20)],
+      [9200, () => setBuildStep(4)]
     ] as const;
     
     const timeouts = actions.map(([delay, action]) => setTimeout(action, delay));
