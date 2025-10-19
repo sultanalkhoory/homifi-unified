@@ -56,7 +56,7 @@ export default function PerfectWiFiSection() {
           </p>
         </motion.div>
 
-        {/* iPhone Frame with Simple Coverage Visualization */}
+        {/* iPhone Frame with UniFi-style Visualization */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }} 
           whileInView={{ opacity: 1, y: 0 }} 
@@ -121,29 +121,74 @@ export default function PerfectWiFiSection() {
                   Bedrooms
                 </motion.text>
 
-                {/* Network Coverage - Simple and clean */}
+                {/* Network Coverage with UniFi-style APs */}
                 {showNetwork && (
                   <>
                     {/* AP 1 - Living Room */}
                     <motion.g>
-                      {/* Subtle coverage zone */}
+                      {/* Pulsing coverage zone */}
                       <motion.circle 
                         cx="80" cy="170" r="50"
                         fill="url(#coverageGradient)"
                         initial={{ r: 0, opacity: 0 }}
-                        animate={{ r: 50, opacity: 1 }}
-                        transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                        animate={{ 
+                          r: 50, 
+                          opacity: [0, 0.25, 0.2, 0.25]
+                        }}
+                        transition={{ 
+                          r: { duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] },
+                          opacity: { 
+                            duration: 3, 
+                            delay: 1,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }
+                        }}
                       />
-                      {/* Access Point dot */}
-                      <motion.circle 
-                        cx="80" cy="170" r="5"
-                        fill="white"
-                        stroke="#3b82f6"
-                        strokeWidth="2"
+                      
+                      {/* UniFi AP - White disc with LED ring */}
+                      <motion.g
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ duration: 0.4, delay: 0.3, type: 'spring', stiffness: 300 }}
-                      />
+                      >
+                        {/* AP body - white circular disc */}
+                        <circle cx="80" cy="170" r="7" fill="white" stroke="#e5e7eb" strokeWidth="1" />
+                        
+                        {/* LED ring - breathing blue light */}
+                        <motion.circle 
+                          cx="80" cy="170" r="9"
+                          fill="none"
+                          stroke="#3b82f6"
+                          strokeWidth="1.5"
+                          initial={{ opacity: 0.5 }}
+                          animate={{ 
+                            opacity: [0.5, 1, 0.5],
+                            scale: [1, 1.1, 1]
+                          }}
+                          transition={{
+                            duration: 2,
+                            delay: 0.5,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }}
+                        />
+                        
+                        {/* Center LED dot */}
+                        <motion.circle 
+                          cx="80" cy="170" r="2"
+                          fill="#3b82f6"
+                          animate={{ 
+                            opacity: [0.6, 1, 0.6]
+                          }}
+                          transition={{
+                            duration: 2,
+                            delay: 0.5,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }}
+                        />
+                      </motion.g>
                     </motion.g>
 
                     {/* AP 2 - Kitchen */}
@@ -152,18 +197,58 @@ export default function PerfectWiFiSection() {
                         cx="200" cy="170" r="50"
                         fill="url(#coverageGradient)"
                         initial={{ r: 0, opacity: 0 }}
-                        animate={{ r: 50, opacity: 1 }}
-                        transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                        animate={{ 
+                          r: 50, 
+                          opacity: [0, 0.25, 0.2, 0.25]
+                        }}
+                        transition={{ 
+                          r: { duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] },
+                          opacity: { 
+                            duration: 3, 
+                            delay: 1.2,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }
+                        }}
                       />
-                      <motion.circle 
-                        cx="200" cy="170" r="5"
-                        fill="white"
-                        stroke="#3b82f6"
-                        strokeWidth="2"
+                      
+                      <motion.g
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ duration: 0.4, delay: 0.5, type: 'spring', stiffness: 300 }}
-                      />
+                      >
+                        <circle cx="200" cy="170" r="7" fill="white" stroke="#e5e7eb" strokeWidth="1" />
+                        <motion.circle 
+                          cx="200" cy="170" r="9"
+                          fill="none"
+                          stroke="#3b82f6"
+                          strokeWidth="1.5"
+                          initial={{ opacity: 0.5 }}
+                          animate={{ 
+                            opacity: [0.5, 1, 0.5],
+                            scale: [1, 1.1, 1]
+                          }}
+                          transition={{
+                            duration: 2,
+                            delay: 0.7,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }}
+                        />
+                        <motion.circle 
+                          cx="200" cy="170" r="2"
+                          fill="#3b82f6"
+                          animate={{ 
+                            opacity: [0.6, 1, 0.6]
+                          }}
+                          transition={{
+                            duration: 2,
+                            delay: 0.7,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }}
+                        />
+                      </motion.g>
                     </motion.g>
 
                     {/* AP 3 - Bedrooms */}
@@ -172,32 +257,72 @@ export default function PerfectWiFiSection() {
                         cx="140" cy="370" r="50"
                         fill="url(#coverageGradient)"
                         initial={{ r: 0, opacity: 0 }}
-                        animate={{ r: 50, opacity: 1 }}
-                        transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                        animate={{ 
+                          r: 50, 
+                          opacity: [0, 0.25, 0.2, 0.25]
+                        }}
+                        transition={{ 
+                          r: { duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] },
+                          opacity: { 
+                            duration: 3, 
+                            delay: 1.4,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }
+                        }}
                       />
-                      <motion.circle 
-                        cx="140" cy="370" r="5"
-                        fill="white"
-                        stroke="#3b82f6"
-                        strokeWidth="2"
+                      
+                      <motion.g
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ duration: 0.4, delay: 0.7, type: 'spring', stiffness: 300 }}
-                      />
+                      >
+                        <circle cx="140" cy="370" r="7" fill="white" stroke="#e5e7eb" strokeWidth="1" />
+                        <motion.circle 
+                          cx="140" cy="370" r="9"
+                          fill="none"
+                          stroke="#3b82f6"
+                          strokeWidth="1.5"
+                          initial={{ opacity: 0.5 }}
+                          animate={{ 
+                            opacity: [0.5, 1, 0.5],
+                            scale: [1, 1.1, 1]
+                          }}
+                          transition={{
+                            duration: 2,
+                            delay: 0.9,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }}
+                        />
+                        <motion.circle 
+                          cx="140" cy="370" r="2"
+                          fill="#3b82f6"
+                          animate={{ 
+                            opacity: [0.6, 1, 0.6]
+                          }}
+                          transition={{
+                            duration: 2,
+                            delay: 0.9,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }}
+                        />
+                      </motion.g>
                     </motion.g>
                   </>
                 )}
 
-                {/* SVG Gradient - Very subtle, Apple-style */}
+                {/* SVG Gradient - Subtle coverage */}
                 <defs>
                   <radialGradient id="coverageGradient">
-                    <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.18" />
+                    <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.15" />
                     <stop offset="100%" stopColor="#3b82f6" stopOpacity="0" />
                   </radialGradient>
                 </defs>
               </svg>
 
-              {/* Stats Card - Clean and simple */}
+              {/* Smaller Stats Card */}
               {showNetwork && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -205,18 +330,12 @@ export default function PerfectWiFiSection() {
                   transition={{ delay: 1.2, duration: 0.6 }}
                   className="absolute bottom-10 left-0 right-0 flex justify-center px-8"
                 >
-                  <div className="bg-white/90 backdrop-blur-xl rounded-2xl px-6 py-4 shadow-xl border border-gray-200">
-                    <div className="flex items-center gap-3 text-sm">
-                      <div className="text-center">
-                        <p className="text-2xl font-bold text-blue-600 leading-none">100%</p>
-                        <p className="text-[10px] text-gray-600 uppercase tracking-wide mt-1.5 font-medium">Coverage</p>
-                      </div>
-                      <div className="w-px h-10 bg-gray-300/50" />
-                      <div className="text-center">
-                        <p className="text-2xl font-bold text-blue-600 leading-none">18+</p>
-                        <p className="text-[10px] text-gray-600 uppercase tracking-wide mt-1.5 font-medium">Devices</p>
-                      </div>
-                    </div>
+                  <div className="bg-white/90 backdrop-blur-xl rounded-xl px-4 py-2.5 shadow-lg border border-gray-200">
+                    <p className="text-xs text-gray-700 font-medium text-center">
+                      <span className="text-blue-600 font-semibold">3 Access Points</span>
+                      {' • '}
+                      <span className="text-blue-600 font-semibold">100% Coverage</span>
+                    </p>
                   </div>
                 </motion.div>
               )}
