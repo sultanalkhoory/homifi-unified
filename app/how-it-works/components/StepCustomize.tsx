@@ -11,7 +11,7 @@ export default function StepCustomize({
   fullScreen?: boolean;
 }) {
   
-  const [buildStep, setBuildStep] = useState(1); // Start at step 1 so card is immediately visible
+  const [buildStep, setBuildStep] = useState(1);
   const [sceneName, setSceneName] = useState('');
   const [selectedDevices, setSelectedDevices] = useState<string[]>([]);
   const [deviceSettings, setDeviceSettings] = useState<{[key: string]: any}>({});
@@ -19,7 +19,7 @@ export default function StepCustomize({
   const [showCursor, setShowCursor] = useState(false);
   const [targetLights, setTargetLights] = useState<number | null>(null);
 
-  // Auto-demo sequence
+  // Auto-demo: Shows how easy automation setup is - no coding required
   useEffect(() => {
     if (!isActive) return;
     
@@ -31,12 +31,11 @@ export default function StepCustomize({
       [5100, () => setSelectedDevices(['lights', 'tv', 'curtains'])],
       [6400, () => {
         setBuildStep(3);
-        // Set initial values for smooth transitions
         setDeviceSettings({ lights: 50, tv: 'off', curtains: 'open' });
       }],
-      [7200, () => setDeviceSettings(prev => ({ ...prev, tv: 'on' }))], // Smooth TV transition
-      [7800, () => setDeviceSettings(prev => ({ ...prev, curtains: 'closed' }))], // Smooth curtains transition
-      [8400, () => setTargetLights(20)], // Then animate lights slider
+      [7200, () => setDeviceSettings(prev => ({ ...prev, tv: 'on' }))],
+      [7800, () => setDeviceSettings(prev => ({ ...prev, curtains: 'closed' }))],
+      [8400, () => setTargetLights(20)],
       [9900, () => setBuildStep(4)]
     ] as const;
     
@@ -44,7 +43,7 @@ export default function StepCustomize({
     return () => timeouts.forEach(clearTimeout);
   }, [isActive]);
 
-  // Smooth typing animation
+  // Typing animation for scene name
   useEffect(() => {
     if (!sceneName) {
       setDisplayName('');
@@ -67,7 +66,7 @@ export default function StepCustomize({
     return () => clearInterval(interval);
   }, [sceneName]);
 
-  // Smooth slider animation
+  // Smooth slider animation for light dimming
   useEffect(() => {
     if (targetLights === null || deviceSettings.lights === targetLights) return;
     
@@ -86,6 +85,7 @@ export default function StepCustomize({
     return () => clearInterval(interval);
   }, [targetLights, deviceSettings.lights]);
 
+  // Seamless integrations: Works with Apple HomeKit, Google Home, Alexa
   const devices = [
     { 
       id: 'lights', 
@@ -95,7 +95,7 @@ export default function StepCustomize({
     },
     { 
       id: 'tv', 
-      name: 'Apple TV', 
+      name: 'Apple TV', // Apple integration showcase
       icon: <path strokeLinecap="round" strokeLinejoin="round" d="M6 20.25h12m-7.5-3v3m3-3v3m-10.125-3h17.25c.621 0 1.125-.504 1.125-1.125V4.875c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125z" />,
       actionType: 'buttons',
       options: ['On', 'Off']
@@ -124,7 +124,6 @@ export default function StepCustomize({
     transition: cardTransition
   };
 
-  // Fixed height card with consistent sizing
   const cardClass = "bg-white/80 backdrop-blur-xl rounded-3xl md:rounded-[32px] p-6 md:p-8 lg:p-10 shadow-xl border border-white/20 min-h-[400px] md:min-h-[450px] flex flex-col justify-center";
   const headingClass = "text-xl md:text-2xl lg:text-3xl font-semibold text-slate-900 mb-4 md:mb-6 text-center tracking-tight";
   const subtitleClass = "text-slate-500 text-center mb-4 md:mb-6 text-sm md:text-base font-light";
@@ -147,10 +146,9 @@ export default function StepCustomize({
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.03),transparent_50%)]" />
       
-      {/* Flex container with consistent height */}
       <div className="relative h-full flex flex-col">
         
-        {/* Progress Indicator - compact */}
+        {/* Progress indicator - Simple 4-step setup */}
         <motion.div 
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -194,13 +192,12 @@ export default function StepCustomize({
           </div>
         </motion.div>
 
-        {/* Main Content - centered with fixed height */}
         <div className="flex-1 flex items-center justify-center px-4">
           <div className="w-full max-w-2xl">
             
             <AnimatePresence mode="wait">
               
-              {/* STEP 1: Name Scene */}
+              {/* STEP 1: Name your automation scene */}
               {buildStep === 1 && (
                 <motion.div key="step1" {...cardAnimation} className={cardClass}>
                   <div>
@@ -249,7 +246,7 @@ export default function StepCustomize({
                 </motion.div>
               )}
 
-              {/* STEP 2: Select Devices */}
+              {/* STEP 2: Select devices - Works with Apple Home, Google Home, Alexa */}
               {buildStep === 2 && (
                 <motion.div key="step2" {...cardAnimation} className={cardClass}>
                   <div>
@@ -285,10 +282,6 @@ export default function StepCustomize({
                                 ? 'shadow-lg'
                                 : 'hover:bg-slate-100/80 border-2 border-slate-100'
                             }`}
-                            style={{ 
-                              backgroundColor: isSelected ? '#0f172a' : 'rgba(248, 250, 252, 0.8)',
-                              color: isSelected ? '#ffffff' : '#334155'
-                            }}
                           >
                             <motion.div 
                               className="mb-2 md:mb-3"
@@ -324,7 +317,7 @@ export default function StepCustomize({
                 </motion.div>
               )}
 
-              {/* STEP 3: Configure Actions */}
+              {/* STEP 3: Configure - No coding knowledge required */}
               {buildStep === 3 && (
                 <motion.div key="step3" {...cardAnimation} className={cardClass}>
                   <div>
@@ -404,7 +397,7 @@ export default function StepCustomize({
                 </motion.div>
               )}
 
-              {/* STEP 4: Success */}
+              {/* STEP 4: Success - Instant notification ready, voice control enabled */}
               {buildStep === 4 && (
                 <motion.div
                   key="step4"
@@ -441,7 +434,10 @@ export default function StepCustomize({
                       transition={{ delay: 0.5 }}
                       className="text-sm md:text-base text-white/90 mb-6 md:mb-8"
                     >
-                      "{sceneName}" is ready to use
+                      "{sceneName}" is ready to use<br />
+                      <span className="text-xs text-white/70">
+                        Control with Siri, Alexa, or Google Assistant
+                      </span>
                     </motion.p>
 
                     <motion.button
