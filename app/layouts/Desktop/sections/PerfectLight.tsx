@@ -1,224 +1,229 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { fadeRise, scaleIn } from '@/lib/animations';
+import { motion, AnimatePresence } from 'framer-motion';
+import { slideFromLeft, slideFromRight, gentleSpring, snappySpring, smoothColorTransition } from '@/lib/animations';
 import { LightBulbIcon } from '@heroicons/react/24/outline';
+import Image from 'next/image';
 
 /**
- * PerfectLight Section Component
- * 
- * Demonstrates smart lighting control with an iOS Control Center-style card.
- * Features:
- * - Auto-triggers lights on when section enters viewport (once only)
- * - Beautiful gradient animation on toggle (gray → vibrant amber/orange)
- * - Synchronized room photo changes (lights on/off)
- * - Smooth 750ms transitions for professional feel
- * 
- * Layout:
- * - Left column (5/12): Heading, description, Control Center card
- * - Right column (7/12): Room photo that changes based on light state
+ * Enhanced PerfectLight Section
+ * Apple-level polish with spring physics and smooth state transitions
  */
 export default function PerfectLight() {
-  // Track whether lights are currently on or off
   const [lightsOn, setLightsOn] = useState(false);
-  
-  // Track if we've already auto-triggered lights (prevent multiple triggers)
   const [hasAutoTriggered, setHasAutoTriggered] = useState(false);
-  
-  // Reference to the section for intersection observer
   const sectionRef = useRef(null);
 
-  /**
-   * Auto-trigger Effect
-   * Uses IntersectionObserver to detect when section enters viewport.
-   * When 30% of section is visible, waits 800ms then turns lights on.
-   * Only triggers once (controlled by hasAutoTriggered flag).
-   */
+  // Auto-trigger lights on scroll
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // Only trigger if section is visible AND we haven't triggered before
           if (entry.isIntersecting && !hasAutoTriggered) {
-            // Delay the lights turning on for dramatic effect
             setTimeout(() => {
               setLightsOn(true);
-              setHasAutoTriggered(true); // Prevent future auto-triggers
-            }, 800); // 800ms delay after section enters view
+              setHasAutoTriggered(true);
+            }, 800);
           }
         });
       },
-      {
-        threshold: 0.3, // Trigger when 30% of section is visible
-        rootMargin: '0px 0px -100px 0px' // Start slightly before fully visible
-      }
+      { threshold: 0.3, rootMargin: '0px 0px -100px 0px' }
     );
 
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
 
-    // Cleanup observer on component unmount
     return () => observer.disconnect();
-  }, [hasAutoTriggered]); // Only re-run if hasAutoTriggered changes
-
-  /**
-   * Toggle Handler
-   * Manually toggles lights on/off when user clicks the Control Center card
-   */
-  const handleToggle = () => {
-    setLightsOn(!lightsOn);
-  };
+  }, [hasAutoTriggered]);
 
   return (
-    <section 
-      ref={sectionRef} 
-      id="perfect-light" 
-      className="pt-8 pb-20 md:py-28 bg-gray-50"
+    <section
+      ref={sectionRef}
+      className="min-h-screen flex items-center py-20 bg-white"
     >
-      <div className="mx-auto max-w-6xl px-4">
-        {/* Two-column grid: Text + Control on left, Photo on right */}
-        <div className="grid md:grid-cols-12 gap-12 items-center">
+      <div className="max-w-7xl mx-auto px-6 w-full">
+        <div className="grid md:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* ===== LEFT COLUMN: Text + Control Center Card ===== */}
+          {/* LEFT: Text & Control Card */}
           <motion.div
-            variants={fadeRise}
+            variants={slideFromLeft}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-100px" }}
             className="md:col-span-5 space-y-6"
           >
-            {/* Section Heading */}
-            <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-black">
-              Perfect Light
-            </h2>
-            
-            {/* Subheading */}
-            <p className="text-xl md:text-2xl text-gray-700 leading-relaxed">
-              Every room, every moment.<br />
-              Exactly as you want it.
-            </p>
-            
-            {/* Description */}
-            <p className="text-gray-600 text-lg">
-              Control your lighting with intuitive controls and automation. 
-              Set the perfect ambiance for any moment.
-            </p>
-            
-            {/* ===== CONTROL CENTER CARD ===== */}
-            <div className="pt-4">
-              <button
-                onClick={handleToggle}
-                className={`
-                  group relative overflow-hidden
-                  rounded-xl sm:rounded-2xl
-                  w-full max-w-[160px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[256px]
-                  p-3 sm:p-4 md:p-5 lg:p-6
-                  transition-all duration-500 ease-out
-                  hover:scale-[1.02] active:scale-[0.98]
-                  ${lightsOn
-                    ? 'bg-gradient-to-br from-amber-400 via-orange-400 to-orange-500 shadow-xl shadow-amber-500/20'
-                    : 'bg-gray-200 shadow-lg'
-                  }
-                `}
-                aria-label={`Toggle lights ${lightsOn ? 'off' : 'on'}`}
+            {/* Header */}
+            <div>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, ...gentleSpring }}
+                viewport={{ once: true }}
+                className="text-sm uppercase tracking-wider text-amber-600 mb-3 font-medium"
               >
-                {/* Top Row: Icon + Status Indicator */}
-                <div className="flex items-start justify-between mb-2 sm:mb-3 md:mb-4">
-                  {/* Light bulb icon with background circle */}
-                  <div className={`
-                    p-1.5 sm:p-2 md:p-2.5 lg:p-3 rounded-full transition-all duration-300
-                    ${lightsOn 
-                      ? 'bg-white/20 backdrop-blur-sm' 
-                      : 'bg-white/60'
-                    }
-                  `}>
-                    <LightBulbIcon className={`
-                      w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 
-                      transition-colors duration-300
-                      ${lightsOn ? 'text-white' : 'text-gray-500'}
-                    `} />
-                  </div>
-                  
-                  {/* Status indicator dot (top-right corner) */}
-                  <div className={`
-                    h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full transition-all duration-300
-                    ${lightsOn 
-                      ? 'bg-white shadow-lg shadow-white/50' 
-                      : 'bg-gray-400'
-                    }
-                  `} />
-                </div>
-                
-                {/* Bottom Row: Room name + Status text */}
-                <div className="text-left">
-                  {/* Room name */}
-                  <p className={`
-                    text-xs sm:text-sm md:text-base font-semibold transition-colors duration-300
-                    ${lightsOn ? 'text-white' : 'text-gray-700'}
-                  `}>
-                    Living Room
-                  </p>
-                  
-                  {/* Status text (On/Off) */}
-                  <p className={`
-                    text-[10px] sm:text-xs md:text-sm mt-0.5 transition-colors duration-300
-                    ${lightsOn ? 'text-white/90' : 'text-gray-500'}
-                  `}>
-                    {lightsOn ? 'Lights On' : 'Lights Off'}
-                  </p>
-                </div>
-                
-                {/* Subtle inner glow effect when lights are on */}
-                {lightsOn && (
-                  <motion.div 
-                    className="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5 }}
-                  />
-                )}
-              </button>
+                Perfect Light
+              </motion.div>
+              
+              <motion.h2
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, ...gentleSpring }}
+                viewport={{ once: true }}
+                className="text-4xl md:text-5xl font-thin text-gray-900 mb-4 tracking-tight"
+              >
+                Light that adapts to you.
+              </motion.h2>
+              
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, ...gentleSpring }}
+                viewport={{ once: true }}
+                className="text-lg text-gray-600 font-light"
+              >
+                The perfect ambiance for any moment, automatically.
+              </motion.p>
             </div>
+
+            {/* Enhanced Control Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5, ...gentleSpring }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <motion.button
+                onClick={() => setLightsOn(!lightsOn)}
+                className="relative w-full p-6 rounded-3xl backdrop-blur-xl overflow-hidden text-left border"
+                animate={{
+                  background: lightsOn
+                    ? 'linear-gradient(135deg, rgba(251, 146, 60, 0.15), rgba(249, 115, 22, 0.1))'
+                    : 'linear-gradient(135deg, rgba(229, 231, 235, 0.8), rgba(209, 213, 219, 0.6))',
+                  borderColor: lightsOn ? 'rgba(251, 146, 60, 0.3)' : 'rgba(229, 231, 235, 0.8)',
+                  boxShadow: lightsOn
+                    ? '0 20px 50px -12px rgba(251, 146, 60, 0.25), 0 0 0 1px rgba(251, 146, 60, 0.1) inset'
+                    : '0 4px 6px -1px rgba(0, 0, 0, 0.05)'
+                }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{
+                  scale: snappySpring,
+                  background: smoothColorTransition,
+                  borderColor: smoothColorTransition,
+                  boxShadow: smoothColorTransition
+                }}
+              >
+                {/* Icon & Toggle */}
+                <div className="flex items-center justify-between mb-4">
+                  <motion.div
+                    animate={{
+                      scale: lightsOn ? 1.1 : 1,
+                      rotate: lightsOn ? 180 : 0
+                    }}
+                    transition={gentleSpring}
+                    className="relative"
+                  >
+                    <div className={`
+                      p-3 rounded-2xl transition-colors duration-400
+                      ${lightsOn ? 'bg-orange-500/20' : 'bg-gray-300/50'}
+                    `}>
+                      <LightBulbIcon className={`w-6 h-6 transition-colors duration-400 ${
+                        lightsOn ? 'text-orange-600' : 'text-gray-600'
+                      }`} />
+                    </div>
+                    
+                    {/* Glow effect when on */}
+                    <AnimatePresence>
+                      {lightsOn && (
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.8 }}
+                          transition={gentleSpring}
+                          className="absolute inset-0 bg-orange-400/30 rounded-2xl blur-xl -z-10"
+                        />
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+
+                  {/* Toggle Switch */}
+                  <div className={`
+                    w-14 h-8 rounded-full p-1 transition-colors duration-400
+                    ${lightsOn ? 'bg-orange-500' : 'bg-gray-300'}
+                  `}>
+                    <motion.div
+                      animate={{ x: lightsOn ? 24 : 0 }}
+                      transition={snappySpring}
+                      className="w-6 h-6 bg-white rounded-full shadow-md"
+                    />
+                  </div>
+                </div>
+
+                {/* Room Label & Status */}
+                <div>
+                  <motion.p
+                    animate={{ color: lightsOn ? '#000' : '#374151' }}
+                    transition={smoothColorTransition}
+                    className="text-base font-semibold mb-1"
+                  >
+                    Living Room Lights
+                  </motion.p>
+                  
+                  <motion.p
+                    animate={{ color: lightsOn ? '#f97316' : '#6b7280' }}
+                    transition={smoothColorTransition}
+                    className="text-sm"
+                  >
+                    {lightsOn ? 'On • 100% brightness' : 'Off'}
+                  </motion.p>
+                </div>
+
+                {/* Ambient glow overlay when on */}
+                <AnimatePresence>
+                  {lightsOn && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.6 }}
+                      className="absolute inset-0 bg-gradient-to-br from-orange-400/5 to-transparent pointer-events-none"
+                    />
+                  )}
+                </AnimatePresence>
+              </motion.button>
+            </motion.div>
           </motion.div>
 
-          {/* ===== RIGHT COLUMN: Room Photo ===== */}
+          {/* RIGHT: Room Photo */}
           <motion.div
-            variants={scaleIn}
+            variants={slideFromRight}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-100px" }}
             className="md:col-span-7"
           >
-            {/* 
-              Photo Container
-              Contains two images that crossfade based on lightsOn state.
-              Both images are positioned absolutely to enable smooth opacity transitions.
-            */}
-            <div className="relative w-full aspect-[16/10] rounded-3xl overflow-hidden">
-              
-              {/* Lights ON image - visible when lightsOn === true */}
-              <img
-                src="/Curtains-Closed-Lights-On.png"
-                alt="Room with lights on"
-                className={`
-                  absolute inset-0 w-full h-full object-cover 
-                  transition-opacity duration-[750ms] ease-out 
-                  ${lightsOn ? 'opacity-100' : 'opacity-0'}
-                `}
-              />
-              
-              {/* Lights OFF image - visible when lightsOn === false */}
-              <img
-                src="/Curtains-Closed-Lights-Off.png"
-                alt="Room with lights off"
-                className={`
-                  absolute inset-0 w-full h-full object-cover 
-                  transition-opacity duration-[750ms] ease-out 
-                  ${lightsOn ? 'opacity-0' : 'opacity-100'}
-                `}
-              />
+            <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={lightsOn ? 'on' : 'off'}
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative w-full h-full"
+                >
+                  <Image
+                    src={lightsOn ? '/Curtains-Open-Lights-On.png' : '/Curtains-Open-Lights-Off.png'}
+                    alt={`Room with lights ${lightsOn ? 'on' : 'off'}`}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </motion.div>
+              </AnimatePresence>
             </div>
           </motion.div>
         </div>
