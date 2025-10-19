@@ -10,6 +10,7 @@ import PerfectClimate from '@/app/layouts/Desktop/sections/PerfectClimate';
 import PerfectSecurity from '@/components/sharedsections/PerfectSecurity';
 import PerfectHomeKey from '@/components/sharedsections/PerfectHomeKey';
 import PerfectCoverage from '@/components/sharedsections/PerfectCoverage';
+import CTAHowItWorks from '@/components/CTAHowItWorks';
 
 export default function Page() {
   return (
@@ -60,6 +61,9 @@ export default function Page() {
       
       {/* ========== PERFECT COVERAGE SECTION ========== */}
       <PerfectCoverage />
+
+      {/* ========== CTA Section ========== */}
+      <CTAHowItWorks />
       
       {/*
         ========== FOOTER ==========
