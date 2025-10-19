@@ -32,8 +32,8 @@ export default function Header() {
             <a href="/#ecosystem" className="hover:text-black transition-colors duration-200">
               Ecosystem
             </a>
-            <a href="/#pricing" className="hover:text-black transition-colors duration-200">
-              Pricing
+            <a href="/#about" className="hover:text-black transition-colors duration-200">
+              About Us
             </a>
           </nav>
           
@@ -131,11 +131,11 @@ export default function Header() {
                     Ecosystem
                   </a>
                   <a 
-                    href="/#pricing"
+                    href="/#about"
                     onClick={() => setOpen(false)}
                     className="px-4 py-3 rounded-xl hover:bg-white/50 transition-colors text-gray-700 font-medium"
                   >
-                    Pricing
+                    About Us
                   </a>
                   
                   {/* Separator */}
