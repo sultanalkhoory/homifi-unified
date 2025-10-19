@@ -42,17 +42,20 @@ export default function PerfectCoverage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="md:col-span-5 space-y-6"
+            className="md:col-span-5 space-y-6 text-center md:text-left"
           >
             {/* Heading */}
             <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-black">
               Perfect WiFi
             </h2>
             
-            {/* Subheading - Shorter on mobile */}
-            <p className="text-xl md:text-2xl text-gray-700 leading-relaxed">
-              <span className="md:hidden">Seamless coverage. Everywhere.</span>
-              <span className="hidden md:inline">Every corner. Every device.<br />Always connected.</span>
+            {/* Subheading - Simple on mobile, detailed on desktop */}
+            <p className="text-lg md:text-2xl text-gray-700 leading-relaxed md:hidden">
+              Seamless coverage.<br />Everywhere.
+            </p>
+            <p className="hidden md:block text-xl md:text-2xl text-gray-700 leading-relaxed">
+              Every corner. Every device.<br />
+              Always connected.
             </p>
             
             {/* Description - Desktop only */}
