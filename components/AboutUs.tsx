@@ -1,12 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Header from '@/app/layouts/Desktop/sections/Header';
+import Footer from '@/app/layouts/Desktop/sections/Footer';
 
 /**
- * AboutUs Section - "We Fixed Smart Homes"
+ * About Us Page - "We Fixed Smart Homes"
  * Story-driven, problem → solution, personal and bold
  */
-export default function AboutUs() {
+export default function AboutPage() {
   
   const solutions = [
     {
@@ -40,14 +42,14 @@ export default function AboutUs() {
   ];
 
   return (
-    <div id="about" className="bg-white">
+    <main className="bg-white">
+      <Header />
       
       {/* Section 1: The Opening */}
-      <section className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-50 to-white px-4">
+      <section className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-50 to-white px-4 pt-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="text-center max-w-4xl"
         >
@@ -57,8 +59,7 @@ export default function AboutUs() {
           
           <motion.div
             initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.8 }}
             className="mt-12"
           >
@@ -234,6 +235,8 @@ export default function AboutUs() {
           </motion.div>
         </div>
       </section>
-    </div>
+
+      <Footer />
+    </main>
   );
 }
