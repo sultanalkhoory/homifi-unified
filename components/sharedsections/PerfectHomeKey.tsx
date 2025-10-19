@@ -231,14 +231,14 @@ export default function PerfectHomeKey() {
                           style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 25%, transparent 50%, transparent 75%, rgba(255,255,255,0.02) 100%)' }}
                         />
 
-                        {/* Dynamic Island */}
+                        {/* Dynamic Island - much smaller on mobile */}
                         <div className="absolute top-1 sm:top-1.5 md:top-2 left-1/2 -translate-x-1/2 z-40">
                           <motion.div
                             animate={{
                               width: lockState === 'locked' 
-                                ? '50px'
-                                : '100px',
-                              height: (lockState === 'unlocking' || lockState === 'unlocked') ? '26px' : '18px'
+                                ? '35px'
+                                : '75px',
+                              height: (lockState === 'unlocking' || lockState === 'unlocked') ? '22px' : '14px'
                             }}
                             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                             className="bg-black rounded-full overflow-hidden flex items-center justify-center"
@@ -249,10 +249,10 @@ export default function PerfectHomeKey() {
                                   initial={{ opacity: 0 }}
                                   animate={{ opacity: 1 }}
                                   exit={{ opacity: 0 }}
-                                  className="flex items-center gap-1 px-2.5 h-full"
+                                  className="flex items-center gap-1 px-2 h-full"
                                 >
                                   {lockState === 'unlocking' && (
-                                    <svg className="w-2.5 h-2.5 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                                    <svg className="w-2 h-2 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                                       <motion.path 
                                         strokeLinecap="round" 
                                         strokeLinejoin="round" 
@@ -266,7 +266,7 @@ export default function PerfectHomeKey() {
 
                                   {lockState === 'unlocked' && (
                                     <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', delay: 0.1 }}>
-                                      <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
+                                      <svg className="w-2 h-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
                                         <motion.path 
                                           strokeLinecap="round" 
                                           strokeLinejoin="round" 
@@ -283,7 +283,7 @@ export default function PerfectHomeKey() {
                                     initial={{ opacity: 0, x: -5 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: 0.15, duration: 0.3 }}
-                                    className="text-white text-[8px] sm:text-[9px] font-medium whitespace-nowrap"
+                                    className="text-white text-[7px] font-medium whitespace-nowrap"
                                   >
                                     {lockState === 'unlocking' ? 'Unlocking...' : 'Unlocked'}
                                   </motion.span>
