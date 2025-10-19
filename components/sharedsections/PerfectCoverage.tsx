@@ -49,10 +49,10 @@ export default function PerfectCoverage() {
               Perfect WiFi
             </h2>
             
-            {/* Subheading */}
+            {/* Subheading - Shorter on mobile */}
             <p className="text-xl md:text-2xl text-gray-700 leading-relaxed">
-              Every corner. Every device.<br />
-              Always connected.
+              <span className="md:hidden">Seamless coverage. Everywhere.</span>
+              <span className="hidden md:inline">Every corner. Every device.<br />Always connected.</span>
             </p>
             
             {/* Description */}
