@@ -9,7 +9,7 @@ import PerfectPrivacy from '@/app/layouts/Desktop/sections/PerfectPrivacy';
 import PerfectClimate from '@/app/layouts/Desktop/sections/PerfectClimate';
 import PerfectSecurity from '@/components/sharedsections/PerfectSecurity';
 import PerfectHomeKey from '@/components/sharedsections/PerfectHomeKey';
-import PerfectCoverage from '@/app/layouts/Desktop/sections/PerfectCoverage';
+import PerfectCoverage from '@/components/sharedsections/PerfectCoverage';
 
 export default function Page() {
   return (
