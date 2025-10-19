@@ -8,6 +8,7 @@ import ClimateSection from './sections/ClimateSection';
 import SecuritySection from '@/components/sharedsections/PerfectSecurity';
 import PerfectHomeKey from '@/components/sharedsections/PerfectHomeKey';
 import PerfectCoverage from '@/components/sharedsections/PerfectCoverage';
+import CTAHowItWorks from '@/components/CTAHowItWorks';
 import Header from '@/app/layouts/Desktop/sections/Header';
 import Footer from '@/app/layouts/Desktop/sections/Footer';
 
@@ -23,6 +24,7 @@ export default function Page() {
       <SecuritySection />
       <PerfectHomeKey />
       <PerfectCoverage />
+      <CTAHowItWorks />
       <Footer />
     </main>
   );
