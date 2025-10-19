@@ -41,7 +41,7 @@ export default function HowItWorksPage() {
     }
   ];
 
-  // Track scroll position
+  // Track scroll position for progress indicator
   useEffect(() => {
     const handleScroll = () => {
       if (!containerRef.current) return;
@@ -125,11 +125,14 @@ export default function HowItWorksPage() {
             >
               <div className="max-w-7xl mx-auto w-full">
                 
-                {/* Step Header */}
+                {/* Step Header - FIXED: Added larger rootMargin buffer to prevent jitter */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false, margin: "-100px" }}
+                  viewport={{ 
+                    once: false, 
+                    margin: "-200px 0px -100px 0px" // Larger top buffer prevents jitter at viewport edge
+                  }}
                   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   className="text-center mb-8 md:mb-12"
                 >
@@ -146,11 +149,14 @@ export default function HowItWorksPage() {
                   </p>
                 </motion.div>
 
-                {/* Step Content - remove aspect ratio constraint on mobile */}
+                {/* Step Content - Also adjusted buffer for consistency */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: false, margin: "-150px" }}
+                  viewport={{ 
+                    once: false, 
+                    margin: "-200px 0px -150px 0px" // Adjusted for smoother transitions
+                  }}
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                   className={`relative max-w-6xl mx-auto 
                     ${isLastStep 
@@ -167,7 +173,7 @@ export default function HowItWorksPage() {
         })}
       </div>
 
-      {/* Final CTA with proper spacing */}
+      {/* Final CTA */}
       <section className="flex items-center justify-center px-4 py-16 md:py-24 lg:min-h-screen bg-gradient-to-b from-white to-gray-50">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
