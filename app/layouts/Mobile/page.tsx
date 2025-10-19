@@ -89,7 +89,7 @@ export default function StepSupport({
         </motion.div>
 
         {/* Main Content */}
-        <div className="flex-1 flex items-center justify-center min-h-0 pb-4">
+        <div className="flex-1 flex items-center justify-center min-h-0 pb-16 md:pb-24">
           <div className="w-full max-w-2xl">
             
             {/* Badge - Desktop only: pushed down more */}
@@ -131,12 +131,12 @@ export default function StepSupport({
               ))}
             </div>
 
-            {/* CTA - Centered between texts */}
+            {/* CTA */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9 }}
-              className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 text-center mb-8 md:mb-12"
+              className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 text-center"
             >
               <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-4">
                 After 3 months, flexible care plans available
@@ -151,12 +151,12 @@ export default function StepSupport({
           </div>
         </div>
 
-        {/* Bottom Note - Pushed down to balance CTA */}
+        {/* Bottom Note */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.1 }}
-          className="text-center flex-shrink-0 mt-8 md:mt-12"
+          className="text-center flex-shrink-0 mt-4 md:mt-6"
         >
           <p className="text-xs md:text-sm text-gray-500">
             Honestly, you probably won't need us much—it's that simple.
