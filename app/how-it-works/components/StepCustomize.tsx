@@ -18,6 +18,7 @@ export default function StepCustomize({
   const [displayName, setDisplayName] = useState('');
   const [showCursor, setShowCursor] = useState(false);
   const [targetLights, setTargetLights] = useState<number | null>(null);
+  const [demoKey, setDemoKey] = useState(0); // Key to restart demo
 
   // Auto-demo: Shows how easy automation setup is - no coding required
   useEffect(() => {
@@ -31,6 +32,7 @@ export default function StepCustomize({
       [5100, () => setSelectedDevices(['lights', 'tv', 'curtains'])],
       [6400, () => {
         setBuildStep(3);
+        // Set initial values - start with lights at 50%, TV off, curtains open
         setDeviceSettings({ lights: 50, tv: 'off', curtains: 'open' });
       }],
       [7200, () => setDeviceSettings(prev => ({ ...prev, tv: 'on' }))],
@@ -41,7 +43,7 @@ export default function StepCustomize({
     
     const timeouts = actions.map(([delay, action]) => setTimeout(action, delay));
     return () => timeouts.forEach(clearTimeout);
-  }, [isActive]);
+  }, [isActive, demoKey]); // Re-run when demoKey changes
 
   // Typing animation for scene name
   useEffect(() => {
@@ -64,7 +66,7 @@ export default function StepCustomize({
     }, 80);
     
     return () => clearInterval(interval);
-  }, [sceneName]);
+  }, [sceneName, demoKey]);
 
   // Smooth slider animation for light dimming
   useEffect(() => {
@@ -84,6 +86,17 @@ export default function StepCustomize({
     
     return () => clearInterval(interval);
   }, [targetLights, deviceSettings.lights]);
+
+  // Reset function to restart the entire demo
+  const handleReset = () => {
+    setBuildStep(1);
+    setSceneName('');
+    setSelectedDevices([]);
+    setDeviceSettings({});
+    setDisplayName('');
+    setTargetLights(null);
+    setDemoKey(prev => prev + 1); // Increment key to restart useEffect
+  };
 
   // Seamless integrations: Works with Apple HomeKit, Google Home, Alexa
   const devices = [
@@ -363,30 +376,31 @@ export default function StepCustomize({
                             
                             {device.actionType === 'buttons' && device.options && (
                               <div className="flex gap-2">
-                                {device.options.map((option) => (
-                                  <motion.button
-                                    key={option}
-                                    whileTap={{ scale: 0.95 }}
-                                    onClick={() => setDeviceSettings(prev => ({ ...prev, [deviceId]: option.toLowerCase() }))}
-                                    animate={{
-                                      backgroundColor: value === option.toLowerCase() ? '#0f172a' : 'rgba(255, 255, 255, 0.8)',
-                                      color: value === option.toLowerCase() ? '#ffffff' : '#475569',
-                                      scale: value === option.toLowerCase() ? 1.02 : 1
-                                    }}
-                                    transition={{ 
-                                      duration: 0.4,
-                                      ease: 'easeInOut',
-                                      scale: { type: 'spring', stiffness: 300, damping: 25 }
-                                    }}
-                                    className={`flex-1 py-2 md:py-2.5 rounded-lg md:rounded-xl text-xs md:text-sm font-semibold ${
-                                      value === option.toLowerCase()
-                                        ? 'shadow-md'
-                                        : 'border border-slate-200/50'
-                                    }`}
-                                  >
-                                    {option}
-                                  </motion.button>
-                                ))}
+                                {device.options.map((option) => {
+                                  const isActive = value === option.toLowerCase();
+                                  return (
+                                    <motion.button
+                                      key={option}
+                                      whileTap={{ scale: 0.95 }}
+                                      onClick={() => setDeviceSettings(prev => ({ ...prev, [deviceId]: option.toLowerCase() }))}
+                                      animate={{
+                                        backgroundColor: isActive ? '#0f172a' : 'rgba(255, 255, 255, 0.8)',
+                                        color: isActive ? '#ffffff' : '#475569',
+                                        scale: isActive ? 1.02 : 1
+                                      }}
+                                      transition={{ 
+                                        duration: 0.4,
+                                        ease: 'easeInOut',
+                                        scale: { type: 'spring', stiffness: 300, damping: 25 }
+                                      }}
+                                      className={`flex-1 py-2 md:py-2.5 rounded-lg md:rounded-xl text-xs md:text-sm font-semibold ${
+                                        isActive ? 'shadow-md' : 'border border-slate-200/50'
+                                      }`}
+                                    >
+                                      {option}
+                                    </motion.button>
+                                  );
+                                })}
                               </div>
                             )}
                           </motion.div>
@@ -446,14 +460,7 @@ export default function StepCustomize({
                       transition={{ delay: 0.7 }}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      onClick={() => {
-                        setBuildStep(1);
-                        setSceneName('');
-                        setSelectedDevices([]);
-                        setDeviceSettings({});
-                        setDisplayName('');
-                        setTargetLights(null);
-                      }}
+                      onClick={handleReset}
                       className="mx-auto px-6 md:px-8 py-2.5 md:py-3 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full text-sm md:text-base font-semibold transition-colors duration-300 border border-white/30"
                     >
                       Create Another Scene
