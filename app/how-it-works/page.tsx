@@ -41,7 +41,6 @@ export default function HowItWorksPage() {
     }
   ];
 
-  // Track scroll position for progress indicator
   useEffect(() => {
     const handleScroll = () => {
       if (!containerRef.current) return;
@@ -65,7 +64,6 @@ export default function HowItWorksPage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Smooth scroll helper
   const scrollToStep = (index: number) => {
     const sections = containerRef.current?.querySelectorAll('.step-section');
     if (sections && sections[index]) {
@@ -104,7 +102,6 @@ export default function HowItWorksPage() {
         </div>
       </div>
 
-      {/* Hero Section */}
       <HeroFloating />
 
       {/* Steps Container */}
@@ -125,13 +122,13 @@ export default function HowItWorksPage() {
             >
               <div className="max-w-7xl mx-auto w-full">
                 
-                {/* Step Header - FIXED: Added larger rootMargin buffer to prevent jitter */}
+                {/* Step Header - FIX: Changed once to true, removed y animation */}
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
                   viewport={{ 
-                    once: false, 
-                    margin: "-200px 0px -100px 0px" // Larger top buffer prevents jitter at viewport edge
+                    once: true, // Only animates in once, never tries to animate out
+                    margin: "-100px" 
                   }}
                   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   className="text-center mb-8 md:mb-12"
@@ -149,14 +146,11 @@ export default function HowItWorksPage() {
                   </p>
                 </motion.div>
 
-                {/* Step Content - Also adjusted buffer for consistency */}
+                {/* Step Content */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ 
-                    once: false, 
-                    margin: "-200px 0px -150px 0px" // Adjusted for smoother transitions
-                  }}
+                  viewport={{ once: false, margin: "-150px" }}
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                   className={`relative max-w-6xl mx-auto 
                     ${isLastStep 
