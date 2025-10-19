@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 /**
  * Step 4: We Support You
- * Fixed spacing - no overlaps
+ * Fits on one page - no scrolling
  */
 
 export default function StepSupport({ 
@@ -66,19 +66,19 @@ export default function StepSupport({
       className={`
         ${fullScreen ? 'rounded-3xl shadow-2xl' : 'absolute inset-0'} 
         bg-gradient-to-br from-white to-blue-50/30 
-        p-4 md:p-8 lg:p-12 
-        overflow-auto
+        p-4 md:p-8 lg:p-10 
+        overflow-hidden
         h-full
       `}
     >
-      <div className="relative h-full flex flex-col">
+      <div className="relative h-full flex flex-col justify-between">
         
         {/* Header */}
         <motion.div
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="text-center mb-6 md:mb-8"
+          className="text-center flex-shrink-0"
         >
           <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-900 mb-2">
             We're Always Here
@@ -88,8 +88,8 @@ export default function StepSupport({
           </p>
         </motion.div>
 
-        {/* Main Content - Centered */}
-        <div className="flex-1 flex items-center justify-center">
+        {/* Main Content - Takes remaining space */}
+        <div className="flex-1 flex flex-col items-center justify-center py-4 md:py-6">
           <div className="w-full max-w-2xl">
             
             {/* Badge - Desktop pushed down more */}
@@ -97,7 +97,7 @@ export default function StepSupport({
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.3, type: 'spring', stiffness: 200 }}
-              className="flex justify-center mt-4 md:mt-16 mb-8 md:mb-10"
+              className="flex justify-center mt-2 md:mt-8 mb-6 md:mb-8"
             >
               <div className="inline-flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2 md:py-3 bg-gradient-to-br from-blue-500 to-indigo-600 text-white rounded-full shadow-lg">
                 <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
@@ -108,7 +108,7 @@ export default function StepSupport({
             </motion.div>
 
             {/* Features Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mb-6 md:mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mb-4 md:mb-6">
               {supportFeatures.map((feature, index) => (
                 <motion.div
                   key={index}
@@ -136,9 +136,9 @@ export default function StepSupport({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9 }}
-              className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 text-center"
+              className="bg-white rounded-xl md:rounded-2xl p-4 md:p-5 shadow-lg border border-gray-100 text-center"
             >
-              <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-4">
+              <p className="text-sm md:text-base text-gray-600 mb-3">
                 After 3 months, flexible care plans available
               </p>
               <button className="inline-flex items-center gap-2 px-5 md:px-6 py-2.5 md:py-3 bg-black text-white rounded-full text-sm md:text-base font-medium hover:bg-gray-900 hover:scale-105 transition-all duration-200 shadow-md">
@@ -151,12 +151,12 @@ export default function StepSupport({
           </div>
         </div>
 
-        {/* Bottom Note - Fixed position at bottom */}
+        {/* Bottom Note - Always at bottom */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.1 }}
-          className="text-center mt-8 md:mt-12 pt-4"
+          className="text-center flex-shrink-0"
         >
           <p className="text-xs md:text-sm text-gray-500">
             Honestly, you probably won't need us much—it's that simple.
