@@ -212,16 +212,16 @@ export default function CoverageSection() {
                 )}
               </svg>
 
-              {/* Stats card - positioned safely away from iPhone frame edges */}
+              {/* Stats card - properly centered */}
               {networkOn && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.5 }}
-                  className="absolute bottom-44 left-1/2 -translate-x-1/2 max-w-[220px] w-full px-4"
-                >
-                  <div className="bg-black/90 backdrop-blur-md rounded-xl p-3 shadow-2xl">
-                    <div className="flex items-center justify-around gap-2">
+                <div className="absolute bottom-40 left-0 right-0 flex justify-center px-8">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1.5 }}
+                    className="bg-black/90 backdrop-blur-md rounded-xl px-5 py-3 shadow-2xl"
+                  >
+                    <div className="flex items-center gap-4">
                       <div className="text-center">
                         <p className="text-lg font-bold text-white leading-none">100%</p>
                         <p className="text-[9px] text-gray-400 uppercase tracking-wide mt-1">Coverage</p>
@@ -237,8 +237,8 @@ export default function CoverageSection() {
                         <p className="text-[9px] text-gray-400 uppercase tracking-wide mt-1">Devices</p>
                       </div>
                     </div>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </div>
               )}
             </div>
           </IPhoneFrame>
