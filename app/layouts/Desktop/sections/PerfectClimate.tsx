@@ -1,84 +1,35 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { fadeRise, scaleIn } from '@/lib/animations';
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
+import Image from "next/image";
+import IPhoneFrame from "@/components/ui/IPhoneFrame";
 
-/**
- * PerfectClimate Section Component
- * 
- * Interactive climate control demonstration with animated airflow effects.
- * Features:
- * - Three climate modes: Cool (18°C), Comfort (22°C), Warm (26°C)
- * - Animated temperature transitions with "warming/cooling" status
- * - Realistic airflow animations concentrated in upper 45% of image (near AC vents)
- * - Visual particles and streams that change color based on temperature mode
- * - Auto-triggers to Comfort mode (22°C) when section enters viewport
- * 
- * Layout:
- * - Left column (5/12): Heading, description, Control Center card with mode buttons
- * - Right column (7/12): Room photo with animated climate effects overlay
- */
-export default function PerfectClimate() {
+export default function ClimateSection() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  
-  // Temperature state (18°C - 26°C range)
   const [temperature, setTemperature] = useState(26);
-  
-  // Animation state tracking
+  const [targetTemperature, setTargetTemperature] = useState(26);
+  const [manual, setManual] = useState(false);
+  const [started, setStarted] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [animatingDirection, setAnimatingDirection] = useState<'warming' | 'cooling' | null>(null);
-  const [hasAutoTriggered, setHasAutoTriggered] = useState(false);
+  const isInView = useInView(containerRef, { once: true, amount: 0.4 });
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  /**
-   * Determine climate mode based on current temperature
-   * Cool: ≤20°C, Comfort: 21-23°C, Warm: ≥24°C
-   */
-  const getMode = () => {
-    if (temperature <= 20) return 'cool';
-    if (temperature >= 24) return 'warm';
-    return 'comfort';
-  };
-
-  const mode = getMode();
-
-  /**
-   * Auto-trigger Effect
-   * Uses IntersectionObserver to animate to Comfort mode when section enters viewport
-   * Only triggers once per page load
-   */
+  // Auto trigger to 18° (cool) when section enters view
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasAutoTriggered) {
-            setTimeout(() => {
-              animateToTemperature(22); // Auto-transition to Comfort mode
-              setHasAutoTriggered(true);
-            }, 800); // 800ms delay for dramatic effect
-          }
-        });
-      },
-      {
-        threshold: 0.3, // Trigger when 30% visible
-        rootMargin: '0px 0px -100px 0px'
-      }
-    );
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
+    if (isInView && !manual && !started) {
+      setStarted(true);
+      setTimeout(() => {
+        animateToTemperature(18);
+      }, 500);
     }
+  }, [isInView, manual, started]);
 
-    return () => observer.disconnect();
-  }, [hasAutoTriggered]);
-
-  /**
-   * Animate temperature change with step-by-step progression
-   * Creates smooth counting animation from current temp to target temp
-   * Updates every 400ms for visible number changes
-   */
+  // Gradual temperature animation - step through each degree
   const animateToTemperature = (targetTemp: number) => {
+    // Set target immediately for UI indicator
+    setTargetTemperature(targetTemp);
+    
     // Clear any existing animation
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
@@ -94,9 +45,6 @@ export default function PerfectClimate() {
     const current = temperature;
     const steps = Math.abs(targetTemp - current);
     const direction = targetTemp > current ? 1 : -1;
-    
-    // Set status text based on direction
-    setAnimatingDirection(direction > 0 ? 'warming' : 'cooling');
 
     let step = 0;
     intervalRef.current = setInterval(() => {
@@ -111,72 +59,66 @@ export default function PerfectClimate() {
           intervalRef.current = null;
         }
         setIsAnimating(false);
-        setAnimatingDirection(null);
       }
-    }, 400); // 400ms per degree change
+    }, 400); // 400ms per degree
   };
 
-  /**
-   * Handle mode button clicks
-   * Triggers temperature animation to target mode's temperature
-   */
-  const handleModeChange = (targetMode: 'cool' | 'comfort' | 'warm') => {
-    const targetTemp = targetMode === 'cool' ? 18 : targetMode === 'warm' ? 26 : 22;
-    if (targetTemp !== temperature) {
-      animateToTemperature(targetTemp);
-    }
+  // Temperature change handler
+  const handleTempChange = (t: number) => {
+    if (t === targetTemperature || isAnimating) return;
+    setManual(true);
+    animateToTemperature(t);
   };
 
-  /**
-   * Get visual effect colors based on current temperature/mode
-   * Returns colors for airflow streams and particles
-   */
-  /**
-   * Get visual effect colors based on current temperature/mode
-   * Colors are muted and Apple-like, with smooth transitions between modes
-   */
-  const getEffectColors = () => {
-    if (temperature >= 24) {
-      // Warm mode: Subtle orange/amber tones
+  // Cleanup interval on unmount
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, []);
+
+  // Mode based on temperature ranges (gradual transition)
+  const getMode = () => {
+    if (temperature <= 20) return 'cool';
+    if (temperature >= 24) return 'warm';
+    return 'comfort';
+  };
+
+  // Dynamic colors based on temperature (smooth transitions)
+  const getEffectColors = (t: number) => {
+    if (t >= 24) {
       return {
         primary: 'rgba(255, 193, 7, 0.1)',
         secondary: 'rgba(255, 152, 0, 0.15)',
         particle: 'bg-orange-200',
+        vignette: 'rgba(255, 193, 7, 0.05), rgba(255, 152, 0, 0.03)',
       };
-    } else if (temperature <= 20) {
-      // Cool mode: Very muted blue tones (Apple-style subtle)
+    } else if (t <= 20) {
       return {
-        primary: 'rgba(59, 130, 246, 0.08)',
-        secondary: 'rgba(96, 165, 250, 0.12)',
+        primary: 'rgba(59, 130, 246, 0.18)',
+        secondary: 'rgba(96, 165, 250, 0.25)',
         particle: 'bg-blue-200',
+        vignette: 'rgba(59, 130, 246, 0.05), rgba(96, 165, 250, 0.03)',
       };
     } else {
-      // Comfort mode: Very muted teal/green tones (Apple-style subtle)
+      // Comfort mode - teal/green colors
       return {
-        primary: 'rgba(20, 184, 166, 0.08)',
-        secondary: 'rgba(16, 185, 129, 0.12)',
+        primary: 'rgba(45, 212, 191, 0.15)',
+        secondary: 'rgba(16, 185, 129, 0.2)',
         particle: 'bg-teal-200',
+        vignette: 'rgba(45, 212, 191, 0.05), rgba(16, 185, 129, 0.03)',
       };
     }
   };
 
-  const colors = getEffectColors();
-
-  /**
-   * Get status text for Control Center card
-   */
-  const getStatusText = () => {
-    if (isAnimating && animatingDirection) {
-      return animatingDirection === 'warming' ? 'Warming...' : 'Cooling...';
-    }
-    if (mode === 'cool') return 'Cool Mode';
-    if (mode === 'warm') return 'Warm Mode';
-    return 'Comfort Mode';
-  };
+  const colors = getEffectColors(temperature);
+  const mode = getMode();
 
   return (
     <>
-      {/* Global keyframe animations for airflow effects */}
+      {/* Keep original keyframe animations */}
       <style jsx global>{`
         @keyframes airFlow {
           0% {
@@ -207,168 +149,82 @@ export default function PerfectClimate() {
             opacity: 0;
           }
         }
+        @keyframes sunbeamSubtle {
+          0% {
+            opacity: 0;
+            transform: rotate(-3deg) translateY(10px);
+          }
+          15% {
+            opacity: 0.8;
+          }
+          85% {
+            opacity: 0.8;
+          }
+          100% {
+            opacity: 0;
+            transform: rotate(3deg) translateY(-10px);
+          }
+        }
       `}</style>
 
-      <section 
-        ref={containerRef} 
-        id="perfect-climate" 
-        className="pt-8 pb-20 md:py-28 bg-white"
+      <section
+        ref={containerRef}
+        className="min-h-screen flex items-center py-20 bg-gray-50"
       >
-        <div className="mx-auto max-w-6xl px-4">
-          <div className="grid md:grid-cols-12 gap-12 items-center">
-            
-            {/* ===== LEFT COLUMN: Text + Control Center Card ===== */}
-            <motion.div
-              variants={fadeRise}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-100px" }}
-              className="md:col-span-5 space-y-6"
-            >
-              {/* Section Heading */}
-              <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-black">
-                Perfect Climate
-              </h2>
-              
-              {/* Description */}
-              <p className="text-gray-600 text-lg">
-                The perfect temperature, automatically. Always comfortable, exactly as you want it.
-              </p>
-              
-              {/* ===== CONTROL CENTER CARD ===== */}
-              <div className="pt-4">
-                <div
-                  className={`
-                    relative overflow-hidden rounded-xl sm:rounded-2xl
-                    w-full max-w-[200px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[256px]
-                    p-3 sm:p-4 md:p-5 lg:p-6
-                    transition-all duration-500 ease-out
-                    ${mode === 'cool'
-                      ? 'bg-gradient-to-br from-slate-400 via-cyan-500 to-slate-500 shadow-xl shadow-slate-500/20'
-                      : mode === 'warm'
-                      ? 'bg-gradient-to-br from-amber-400 via-orange-300 to-amber-500 shadow-xl shadow-amber-500/20'
-                      : 'bg-gradient-to-br from-teal-500 via-emerald-500 to-teal-600 shadow-xl shadow-teal-500/20'
-                    }
-                  `}
-                >
-                  {/* Top Row: Icon + Status Indicator */}
-                  <div className="flex items-start justify-between mb-2 sm:mb-3 md:mb-4">
-                    {/* Thermometer icon */}
-                    <div className="p-1.5 sm:p-2 md:p-2.5 lg:p-3 rounded-full bg-white/20 backdrop-blur-sm">
-                      <svg 
-                        className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 text-white"
-                        fill="none" 
-                        stroke="currentColor" 
-                        viewBox="0 0 24 24"
-                        strokeWidth={2}
-                      >
-                        <circle cx="12" cy="16" r="2" fill="currentColor" />
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v8" strokeWidth={2.5} />
-                      </svg>
-                    </div>
-                    
-                    {/* Status indicator dot */}
-                    <div className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-white shadow-lg shadow-white/50" />
-                  </div>
-                  
-                  {/* Room name + Status text */}
-                  <div className="text-left mb-3 sm:mb-4">
-                    <p className="text-xs sm:text-sm md:text-base font-semibold text-white">
-                      Living Room
-                    </p>
-                    <p className="text-[10px] sm:text-xs md:text-sm mt-0.5 text-white/90">
-                      {getStatusText()}
-                    </p>
-                  </div>
+        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+          {/* Copy */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="text-sm uppercase tracking-wider text-blue-600 mb-3">
+              Perfect Climate
+            </div>
+            <h2 className="text-4xl md:text-5xl font-thin text-gray-900 mb-4">
+              Always comfortable.
+            </h2>
+            <p className="text-lg text-gray-600 font-light mb-8">
+              The perfect temperature, automatically.
+            </p>
+          </motion.div>
 
-                  {/* Mode Selection Buttons */}
-                  <div className="flex gap-1.5 sm:gap-2">
-                    <button
-                      onClick={() => handleModeChange('cool')}
-                      className={`
-                        flex-1 px-2 py-1.5 sm:px-3 sm:py-2 rounded-full text-[10px] sm:text-xs font-medium
-                        transition-all duration-200 cursor-pointer
-                        ${mode === 'cool'
-                          ? 'bg-white/30 text-white'
-                          : 'bg-white/10 text-white/70 hover:bg-white/20'
-                        }
-                      `}
-                    >
-                      Cool
-                    </button>
-                    
-                    <button
-                      onClick={() => handleModeChange('comfort')}
-                      className={`
-                        flex-1 px-2 py-1.5 sm:px-3 sm:py-2 rounded-full text-[10px] sm:text-xs font-medium
-                        transition-all duration-300 cursor-pointer
-                        ${mode === 'comfort'
-                          ? 'bg-white/30 text-white'
-                          : 'bg-white/10 text-white/70 hover:bg-white/20'
-                        }
-                      `}
-                    >
-                      Comfort
-                    </button>
-                    
-                    <button
-                      onClick={() => handleModeChange('warm')}
-                      className={`
-                        flex-1 px-2 py-1.5 sm:px-3 sm:py-2 rounded-full text-[10px] sm:text-xs font-medium
-                        transition-all duration-300 cursor-pointer
-                        ${mode === 'warm'
-                          ? 'bg-white/30 text-white'
-                          : 'bg-white/10 text-white/70 hover:bg-white/20'
-                        }
-                      `}
-                    >
-                      Warm
-                    </button>
-                  </div>
-
-                  {/* Subtle inner glow overlay */}
-                  <motion.div 
-                    className="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent pointer-events-none"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5 }}
-                  />
-                </div>
-              </div>
-            </motion.div>
-
-            {/* ===== RIGHT COLUMN: Room Photo with Climate Effects ===== */}
-            <motion.div
-              variants={scaleIn}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-100px" }}
-              className="md:col-span-7"
-            >
-              <div className="relative w-full aspect-[16/10] rounded-3xl overflow-hidden shadow-2xl">
-                {/* Base room photo */}
-                <img
-                  src="/Curtains-Open-Lights-On-Homepod.png"
-                  alt="Smart climate controlled room"
-                  className="w-full h-full object-cover"
+          {/* iPhone */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="flex justify-center"
+          >
+            <IPhoneFrame>
+              <div className="relative w-full h-full overflow-hidden">
+                {/* Room photo */}
+                <Image
+                  src="/Curtains-Open-Lights-On.png"
+                  alt="Climate room"
+                  fill
+                  className="object-cover"
+                  style={{ objectPosition: '45% center' }}
                 />
 
-                {/* Animated airflow effects overlay */}
+                {/* Keep all effects */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 1.5 }}
-                  className="absolute inset-0 pointer-events-none"
+                  className="absolute inset-0"
                 >
-                  {/* Airflow streams - concentrated in upper 45% (realistic AC vent position) */}
-                  {/* All modes use same animation (airFlow) with staggered delays for smooth appearance */}
+                  {/* Air streams - concentrated in upper portion like desktop */}
                   {[...Array(4)].map((_, i) => (
                     <div
                       key={`airstream-${i}`}
-                      className="absolute"
+                      className="absolute pointer-events-none"
                       style={{
-                        top: `${10 + i * 11.67}%`, // Results in: 10%, 21.67%, 33.34%, 45%
-                        left: '-20%', // All modes flow from left (same direction)
+                        top: `${10 + i * 11.67}%`, // Upper 45%: 10%, 21.67%, 33.34%, 45%
+                        left: mode === 'cool' ? '-20%' : undefined,
+                        right: mode === 'warm' ? '-20%' : undefined,
                         width: '300px',
                         height: '4px',
                         background: `linear-gradient(90deg,
@@ -377,77 +233,287 @@ export default function PerfectClimate() {
                           ${colors.secondary} 70%,
                           transparent 100%
                         )`,
-                        animation: `airFlow ${8 + i * 0.8}s ease-in-out infinite ${i * 2.8}s`, // Increased stagger delay
+                        animation: `${
+                          mode === 'cool' ? 'airFlow' : 'sunbeamSubtle'
+                        } ${8 + i * 0.8}s ease-in-out infinite ${i * 1.5}s`,
                         filter: 'blur(2px)',
-                        transition: 'background 0.8s ease-out', // Smooth color transitions between modes
                       }}
                     />
                   ))}
 
-                  {/* Floating particles with smooth color transitions */}
+                  {/* Vignette - positioned in upper portion */}
+                  <div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background: `
+                        radial-gradient(ellipse 300px 200px at ${
+                          mode === 'cool' ? '40%' : '60%'
+                        } 30%,
+                          ${colors.vignette.split(',')[0]} 0%,
+                          ${colors.vignette.split(',')[1]} 40%,
+                          transparent 70%
+                        )
+                      `,
+                      animation: 'pulse 6s ease-in-out infinite',
+                    }}
+                  />
+
+                  {/* Particles - in upper portion only */}
                   {[...Array(3)].map((_, i) => (
                     <div
                       key={`particle-${i}`}
-                      className={`absolute w-1 h-1 ${colors.particle} rounded-full opacity-40 transition-colors duration-700 ease-out`}
+                      className={`absolute w-1 h-1 ${colors.particle} rounded-full opacity-40`}
                       style={{
                         left: `${20 + (i % 3) * 25}%`,
-                        top: `${25 + (i % 2) * 20}%`,
-                        animation: `particleFloat ${4 + i * 0.4}s ease-in-out infinite ${i * 0.7}s`,
+                        top: `${15 + (i % 2) * 15}%`, // Keep particles in upper area
+                        animation: `particleFloat ${
+                          4 + i * 0.4
+                        }s ease-in-out infinite ${i * 0.7}s`,
                       }}
                     />
                   ))}
                 </motion.div>
 
-                {/* Temperature indicator bubble - positioned near AC grill in photo */}
-                <div className="absolute top-[42%] left-[37%] z-30">
+                {/* Wall thermostat */}
+                <div className="absolute top-[40%] left-14 z-30">
                   <div className="relative">
-                    <div className="w-6 h-6 sm:w-7 sm:h-7 backdrop-blur-xl bg-white/20 rounded-full shadow-lg border border-white/30">
-                      {/* Colored border ring that changes with mode */}
+                    <div className="w-8 h-8 backdrop-blur-xl bg-white/20 rounded-full shadow-lg border border-white/30">
                       <div
-                        className="absolute inset-0.5 rounded-full border transition-all duration-500"
+                        className="absolute inset-0.5 rounded-full border"
                         style={{
                           borderColor:
                             mode === 'cool'
                               ? 'rgba(59, 130, 246, 0.6)'
                               : mode === 'warm'
                               ? 'rgba(245, 158, 11, 0.6)'
-                              : 'rgba(16, 185, 129, 0.6)',
+                              : 'rgba(45, 212, 191, 0.6)', // Teal for comfort
                           boxShadow:
                             mode === 'cool'
                               ? '0 0 8px rgba(59, 130, 246, 0.3)'
                               : mode === 'warm'
                               ? '0 0 8px rgba(245, 158, 11, 0.3)'
-                              : '0 0 8px rgba(16, 185, 129, 0.3)',
+                              : '0 0 8px rgba(45, 212, 191, 0.3)', // Teal glow for comfort
                         }}
                       />
-                      
-                      {/* Temperature display with animated count */}
-                      <div className="absolute inset-0 flex flex-col items-center justify-center">
+                      <div className="absolute inset-0 flex items-center justify-center">
                         <motion.div 
-                          key={temperature} // Re-animates on temperature change
+                          key={temperature}
                           initial={{ scale: 1.2, opacity: 0 }}
                           animate={{ scale: 1, opacity: 1 }}
                           transition={{ duration: 0.3 }}
-                          className="text-[7px] sm:text-[10px] font-medium text-white leading-none flex items-center justify-center"
+                          className="text-[10px] font-medium text-white"
                         >
                           {temperature}°
                         </motion.div>
                       </div>
-                      
-                      {/* Glass reflection effect */}
                       <div
                         className="absolute inset-0 rounded-full pointer-events-none"
                         style={{
-                          background:
-                            'linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%)',
+                          background: 'linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%)',
                         }}
                       />
                     </div>
                   </div>
                 </div>
+
+                {/* Bottom glass segmented control */}
+                <div className="absolute inset-x-0 bottom-8 flex justify-center px-6">
+                  <motion.div
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                  >
+                    <div 
+                      className="relative rounded-2xl p-1"
+                      style={{
+                        background: 'linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.15) 100%)',
+                        backdropFilter: 'blur(30px) saturate(180%)',
+                        WebkitBackdropFilter: 'blur(30px) saturate(180%)',
+                        boxShadow: '0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.5)',
+                        border: '1px solid rgba(255,255,255,0.3)',
+                      }}
+                    >
+                      <div className="relative grid grid-cols-3 gap-1">
+                        {/* Fluid sliding indicator - based on target temperature */}
+                        <motion.div
+                          className="absolute top-1 bottom-1 rounded-xl pointer-events-none"
+                          animate={{
+                            left: targetTemperature === 18 ? '4px' : targetTemperature === 22 ? 'calc(33.333% + 2px)' : 'calc(66.666%)',
+                            width: 'calc(33.333% - 4px)',
+                            scale: [1, 1.05, 1], // Subtle bounce
+                          }}
+                          transition={{ 
+                            left: {
+                              type: 'spring', 
+                              stiffness: 180, 
+                              damping: 20,
+                              mass: 0.8,
+                            },
+                            width: {
+                              type: 'spring', 
+                              stiffness: 180, 
+                              damping: 20,
+                            },
+                            scale: {
+                              duration: 0.3,
+                              ease: [0.34, 1.56, 0.64, 1] // Bounce ease
+                            }
+                          }}
+                          style={{
+                            background: targetTemperature === 18 
+                              ? 'linear-gradient(135deg, #60A5FA 0%, #22D3EE 100%)'
+                              : targetTemperature === 22
+                              ? 'linear-gradient(135deg, #2DD4BF 0%, #10B981 100%)' // Teal/green gradient for comfort
+                              : 'linear-gradient(135deg, #FB923C 0%, #F59E0B 100%)',
+                            boxShadow: targetTemperature === 18
+                              ? '0 4px 12px rgba(96, 165, 250, 0.5), 0 2px 4px rgba(96, 165, 250, 0.3)'
+                              : targetTemperature === 22
+                              ? '0 4px 12px rgba(45, 212, 191, 0.5), 0 2px 4px rgba(45, 212, 191, 0.3)' // Teal shadow
+                              : '0 4px 12px rgba(251, 146, 60, 0.5), 0 2px 4px rgba(251, 146, 60, 0.3)'
+                          }}
+                        >
+                          {/* Inner shine with smooth fade */}
+                          <motion.div
+                            className="absolute inset-0 rounded-xl"
+                            animate={{
+                              opacity: [0.3, 0.6, 0.3]
+                            }}
+                            transition={{
+                              duration: 1.5,
+                              repeat: Infinity,
+                              ease: 'easeInOut'
+                            }}
+                            style={{
+                              background: 'linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.15) 50%, transparent 100%)'
+                            }}
+                          />
+                        </motion.div>
+
+                        {/* Cool Button - shifted right for centering */}
+                        <button
+                          onClick={() => handleTempChange(18)}
+                          className="relative z-10 py-3 px-4 text-center rounded-xl transition-all"
+                        >
+                          <motion.div 
+                            animate={{
+                              color: targetTemperature === 18 ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.65)',
+                              scale: targetTemperature === 18 ? 1 : 0.96,
+                              y: targetTemperature === 18 ? 0 : 1
+                            }}
+                            transition={{ 
+                              duration: 0.4,
+                              ease: [0.22, 1, 0.36, 1]
+                            }}
+                            className="text-xs font-semibold ml-1"
+                            style={{
+                              textShadow: targetTemperature === 18 ? '0 1px 2px rgba(0,0,0,0.2)' : 'none'
+                            }}
+                          >
+                            Cool
+                          </motion.div>
+                          <motion.div 
+                            animate={{
+                              color: targetTemperature === 18 ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.5)',
+                              opacity: targetTemperature === 18 ? 1 : 0.7
+                            }}
+                            transition={{ 
+                              duration: 0.4,
+                              ease: [0.22, 1, 0.36, 1]
+                            }}
+                            className="text-[10px] mt-0.5 ml-1"
+                          >
+                            18°
+                          </motion.div>
+                        </button>
+
+                        {/* Comfort Button - shifted left for centering */}
+                        <button
+                          onClick={() => handleTempChange(22)}
+                          className="relative z-10 py-3 px-3 text-center rounded-xl transition-all"
+                        >
+                          <motion.div 
+                            animate={{
+                              color: targetTemperature === 22 ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.65)',
+                              scale: targetTemperature === 22 ? 1 : 0.96,
+                              y: targetTemperature === 22 ? 0 : 1
+                            }}
+                            transition={{ 
+                              duration: 0.4,
+                              ease: [0.22, 1, 0.36, 1]
+                            }}
+                            className="text-xs font-semibold whitespace-nowrap -ml-1"
+                            style={{
+                              textShadow: targetTemperature === 22 ? '0 1px 2px rgba(0,0,0,0.2)' : 'none'
+                            }}
+                          >
+                            Comfort
+                          </motion.div>
+                          <motion.div 
+                            animate={{
+                              color: targetTemperature === 22 ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.5)',
+                              opacity: targetTemperature === 22 ? 1 : 0.7
+                            }}
+                            transition={{ 
+                              duration: 0.4,
+                              ease: [0.22, 1, 0.36, 1]
+                            }}
+                            className="text-[10px] mt-0.5 -ml-1"
+                          >
+                            22°
+                          </motion.div>
+                        </button>
+
+                        {/* Warm Button */}
+                        <button
+                          onClick={() => handleTempChange(26)}
+                          className="relative z-10 py-3 px-4 text-center rounded-xl transition-all"
+                        >
+                          <motion.div 
+                            animate={{
+                              color: targetTemperature === 26 ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.65)',
+                              scale: targetTemperature === 26 ? 1 : 0.96,
+                              y: targetTemperature === 26 ? 0 : 1
+                            }}
+                            transition={{ 
+                              duration: 0.4,
+                              ease: [0.22, 1, 0.36, 1]
+                            }}
+                            className="text-xs font-semibold"
+                            style={{
+                              textShadow: targetTemperature === 26 ? '0 1px 2px rgba(0,0,0,0.2)' : 'none'
+                            }}
+                          >
+                            Warm
+                          </motion.div>
+                          <motion.div 
+                            animate={{
+                              color: targetTemperature === 26 ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.5)',
+                              opacity: targetTemperature === 26 ? 1 : 0.7
+                            }}
+                            transition={{ 
+                              duration: 0.4,
+                              ease: [0.22, 1, 0.36, 1]
+                            }}
+                            className="text-[10px] mt-0.5"
+                          >
+                            26°
+                          </motion.div>
+                        </button>
+                      </div>
+
+                      {/* Top shine */}
+                      <div
+                        className="absolute inset-0 rounded-2xl pointer-events-none"
+                        style={{
+                          background: 'linear-gradient(180deg, rgba(255,255,255,0.25) 0%, transparent 50%)',
+                        }}
+                      />
+                    </div>
+                  </motion.div>
+                </div>
               </div>
-            </motion.div>
-          </div>
+            </IPhoneFrame>
+          </motion.div>
         </div>
       </section>
     </>
