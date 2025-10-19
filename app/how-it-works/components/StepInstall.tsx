@@ -2,13 +2,7 @@ import { motion } from 'framer-motion';
 
 /**
  * Step 2: Wi-Fi Foundation - Enterprise Network with Ubiquiti Style
- * 
- * Features:
- * - Complex realistic floor plan (L-shaped, multiple rooms)
- * - Ubiquiti-style AP icons (white circular with LED)
- * - Smooth waves emanating from CENTER of APs outward (Apple-style easing)
- * - Room-named access points
- * - Professional network stats
+ * Updated to WiFi 7
  */
 export default function StepInstall({ 
   isActive = true, 
@@ -72,23 +66,20 @@ export default function StepInstall({
                 strokeDasharray="5,5"
               />
               
-              {/* Interior walls - complex layout */}
-              {/* Vertical walls */}
+              {/* Interior walls */}
               <motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.5, duration: 0.6 }}
                 x1="140" y1="60" x2="140" y2="240" stroke="rgba(59, 130, 246, 0.3)" strokeWidth="1" strokeDasharray="3,3" />
               <motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.55, duration: 0.6 }}
                 x1="240" y1="60" x2="240" y2="180" stroke="rgba(59, 130, 246, 0.3)" strokeWidth="1" strokeDasharray="3,3" />
               <motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.6, duration: 0.6 }}
                 x1="320" y1="60" x2="320" y2="240" stroke="rgba(59, 130, 246, 0.3)" strokeWidth="1" strokeDasharray="3,3" />
-              
-              {/* Horizontal walls */}
               <motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.65, duration: 0.6 }}
                 x1="40" y1="180" x2="380" y2="180" stroke="rgba(59, 130, 246, 0.3)" strokeWidth="1" strokeDasharray="3,3" />
               <motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.7, duration: 0.6 }}
                 x1="40" y1="260" x2="240" y2="260" stroke="rgba(59, 130, 246, 0.3)" strokeWidth="1" strokeDasharray="3,3" />
             </svg>
 
-            {/* ACCESS POINT 1 - Living Room (Center-left area) */}
+            {/* ACCESS POINT 1 - Living Room */}
             <motion.div
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -96,7 +87,7 @@ export default function StepInstall({
               className="absolute"
               style={{ left: '22%', top: '35%', transform: 'translate(-50%, -50%)', zIndex: 20 }}
             >
-              {/* Smooth waves FROM CENTER - Apple-style */}
+              {/* Waves */}
               {[1, 2, 3].map((ring, i) => (
                 <motion.div
                   key={ring}
@@ -118,20 +109,18 @@ export default function StepInstall({
                 </motion.div>
               ))}
 
-              {/* Ubiquiti UniFi AP - 3D design with depth */}
+              {/* UniFi AP */}
               <div className={`relative ${fullScreen ? 'w-16 h-16' : 'w-12 h-12'} rounded-full bg-gradient-to-br from-gray-50 to-white flex items-center justify-center`}
                 style={{
                   boxShadow: '0 8px 24px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'
                 }}
               >
-                {/* Outer rim - adds depth */}
                 <div className="absolute inset-0 rounded-full border border-gray-200" 
                   style={{
                     background: 'linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(200,200,200,0.3) 100%)'
                   }}
                 />
                 
-                {/* Blue LED ring - UniFi signature with glow */}
                 <div className={`relative ${fullScreen ? 'w-9 h-9' : 'w-7 h-7'} rounded-full flex items-center justify-center`}
                   style={{
                     background: 'radial-gradient(circle, rgba(6, 182, 212, 0.4) 0%, rgba(6, 182, 212, 0.2) 50%, transparent 100%)',
@@ -158,13 +147,13 @@ export default function StepInstall({
                     Living Room
                   </p>
                   <p className={`${fullScreen ? 'text-[10px]' : 'text-[8px]'} text-cyan-400/70 mt-0.5`}>
-                    Wi-Fi 6
+                    Wi-Fi 7
                   </p>
                 </div>
               </motion.div>
             </motion.div>
 
-            {/* ACCESS POINT 2 - Bedroom (Top-right area) */}
+            {/* ACCESS POINT 2 - Bedroom */}
             <motion.div
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -172,7 +161,7 @@ export default function StepInstall({
               className="absolute"
               style={{ right: '18%', top: '28%', transform: 'translate(50%, -50%)', zIndex: 20 }}
             >
-              {/* Smooth waves FROM CENTER */}
+              {/* Waves */}
               {[1, 2, 3].map((ring, i) => (
                 <motion.div
                   key={ring}
@@ -194,7 +183,7 @@ export default function StepInstall({
                 </motion.div>
               ))}
 
-              {/* Ubiquiti UniFi AP */}
+              {/* UniFi AP */}
               <div className={`relative ${fullScreen ? 'w-16 h-16' : 'w-12 h-12'} rounded-full bg-gradient-to-br from-gray-50 to-white flex items-center justify-center`}
                 style={{
                   boxShadow: '0 8px 24px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'
@@ -232,13 +221,13 @@ export default function StepInstall({
                     Bedroom
                   </p>
                   <p className={`${fullScreen ? 'text-[10px]' : 'text-[8px]'} text-blue-400/70 mt-0.5`}>
-                    Wi-Fi 6
+                    Wi-Fi 7
                   </p>
                 </div>
               </motion.div>
             </motion.div>
 
-            {/* Coverage heat map - SMOOTHER gradient */}
+            {/* Coverage heat map */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.3 }}
@@ -263,92 +252,18 @@ export default function StepInstall({
           transition={{ delay: 1.8 }}
           className="grid grid-cols-3 gap-3 px-2"
         >
-          <div className={`bg-white/5 backdrop-blur-sm rounded-xl ${fullScreen ? 'p-4' : 'p-2.5'} border border-white/10 hover:border-green-400/30 transition-colors duration-500`}>
-            <div className="flex items-center gap-1.5 mb-1.5">
-              <motion.div 
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="w-1.5 h-1.5 rounded-full bg-green-400 shadow-lg shadow-green-400/50"
-              />
-              <span className={`${fullScreen ? 'text-xs' : 'text-[9px]'} text-gray-400 uppercase tracking-wide font-medium`}>
-                Speed
-              </span>
-            </div>
-            <motion.p
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 2.0, type: 'spring', stiffness: 200, damping: 15 }}
-              className={`${fullScreen ? 'text-xl' : 'text-base'} font-bold text-white`}
-            >
-              1 Gbps
-            </motion.p>
+          <div className={`bg-white/5 backdrop-blur-sm rounded-xl ${fullScreen ? 'p-3 md:p-4' : 'p-2'} border border-white/10 text-center`}>
+            <p className={`${fullScreen ? 'text-2xl md:text-3xl' : 'text-lg'} font-bold text-cyan-400`}>1 Gbps</p>
+            <p className={`${fullScreen ? 'text-xs' : 'text-[10px]'} text-gray-400 mt-1`}>Max Speed</p>
           </div>
-
-          <div className={`bg-white/5 backdrop-blur-sm rounded-xl ${fullScreen ? 'p-4' : 'p-2.5'} border border-white/10 hover:border-cyan-400/30 transition-colors duration-500`}>
-            <div className="flex items-center gap-1.5 mb-1.5">
-              <motion.div 
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
-                className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-lg shadow-cyan-400/50"
-              />
-              <span className={`${fullScreen ? 'text-xs' : 'text-[9px]'} text-gray-400 uppercase tracking-wide font-medium`}>
-                Devices
-              </span>
-            </div>
-            <motion.p
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 2.1, type: 'spring', stiffness: 200, damping: 15 }}
-              className={`${fullScreen ? 'text-xl' : 'text-base'} font-bold text-white`}
-            >
-              12
-            </motion.p>
+          <div className={`bg-white/5 backdrop-blur-sm rounded-xl ${fullScreen ? 'p-3 md:p-4' : 'p-2'} border border-white/10 text-center`}>
+            <p className={`${fullScreen ? 'text-2xl md:text-3xl' : 'text-lg'} font-bold text-blue-400`}>100%</p>
+            <p className={`${fullScreen ? 'text-xs' : 'text-[10px]'} text-gray-400 mt-1`}>Coverage</p>
           </div>
-
-          <div className={`bg-white/5 backdrop-blur-sm rounded-xl ${fullScreen ? 'p-4' : 'p-2.5'} border border-white/10 hover:border-blue-400/30 transition-colors duration-500`}>
-            <div className="flex items-center gap-1.5 mb-1.5">
-              <motion.div 
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
-                className="w-1.5 h-1.5 rounded-full bg-blue-400 shadow-lg shadow-blue-400/50"
-              />
-              <span className={`${fullScreen ? 'text-xs' : 'text-[9px]'} text-gray-400 uppercase tracking-wide font-medium`}>
-                Coverage
-              </span>
-            </div>
-            <motion.p
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 2.2, type: 'spring', stiffness: 200, damping: 15 }}
-              className={`${fullScreen ? 'text-xl' : 'text-base'} font-bold text-white`}
-            >
-              100%
-            </motion.p>
+          <div className={`bg-white/5 backdrop-blur-sm rounded-xl ${fullScreen ? 'p-3 md:p-4' : 'p-2'} border border-white/10 text-center`}>
+            <p className={`${fullScreen ? 'text-2xl md:text-3xl' : 'text-lg'} font-bold text-purple-400`}>WPA3</p>
+            <p className={`${fullScreen ? 'text-xs' : 'text-[10px]'} text-gray-400 mt-1`}>Security</p>
           </div>
-        </motion.div>
-
-        {/* Status */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2.3 }}
-          className="flex items-center justify-center gap-2 mt-5"
-        >
-          <motion.div
-            animate={{ 
-              scale: [1, 1.15, 1],
-              opacity: [0.8, 1, 0.8]
-            }}
-            transition={{ 
-              duration: 2.5,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="w-1.5 h-1.5 rounded-full bg-green-400 shadow-lg shadow-green-400/50"
-          />
-          <span className={`${fullScreen ? 'text-sm' : 'text-[10px]'} text-green-400 font-medium tracking-wide`}>
-            All Systems Optimal
-          </span>
         </motion.div>
       </div>
     </motion.div>
