@@ -1,38 +1,79 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 import Header from '@/app/layouts/Desktop/sections/Header';
 import Footer from '@/app/layouts/Desktop/sections/Footer';
 
 export default function AboutPage() {
+  const [expandedCard, setExpandedCard] = useState<number | null>(null);
+
+  const gridPrinciples = [
+    {
+      title: 'No Complexity',
+      short: 'One app. One ecosystem.',
+      full: 'Your iPhone controls everything. No manuals. No training sessions. No IT degree required. If it's not intuitive, we don't install it.'
+    },
+    {
+      title: 'Apple First',
+      short: 'If it doesn\'t work with HomeKit, we don\'t install it.',
+      full: 'Apple Home is the center of everything. Siri, Apple TV, CarPlay, HomeKey—it all works seamlessly or it doesn't leave our warehouse.'
+    },
+    {
+      title: 'Real Support',
+      short: 'WhatsApp us 9 AM - 6 PM. Seriously.',
+      full: 'Three months of support included. No surprise charges. No gatekeeping. Real people who actually use this technology every day.'
+    },
+    {
+      title: 'Honest Pricing',
+      short: 'No hidden fees. Ever.',
+      full: 'Fixed quotes. Transparent costs. No upsells. No ransom for basic features. What you see is what you pay. Always.'
+    }
+  ];
 
   return (
     <main className="bg-white">
       <Header />
       
-      {/* HERO */}
-      <section className="min-h-screen flex items-center justify-center px-4 pt-32 pb-20">
+      {/* SECTION 1: Anti-About Opening */}
+      <section className="min-h-screen flex items-center justify-center bg-black text-white px-4 pt-32">
         <div className="max-w-5xl mx-auto text-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="space-y-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+            className="space-y-12"
           >
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-semibold text-black leading-[1.1]">
-              Before our<br />
-              first install.
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-semibold leading-tight">
+              We don't do smart homes.
             </h1>
             
-            <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              We wanted to tell you why we're doing this.
-            </p>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1.5, delay: 1, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <h2 className="text-4xl md:text-6xl lg:text-7xl font-semibold leading-tight">
+                We do homes that happen<br />to be smart.
+              </h2>
+            </motion.div>
+            
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 2, ease: [0.22, 1, 0.36, 1] }}
+              className="text-xl md:text-2xl text-gray-400 pt-8"
+            >
+              The difference?<br />
+              You'll never notice the tech.<br />
+              Just the magic.
+            </motion.p>
           </motion.div>
         </div>
       </section>
 
-      {/* THE MOMENT */}
-      <section className="py-32 px-4 bg-black text-white">
+      {/* SECTION 2: The Moment */}
+      <section className="py-32 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -41,19 +82,19 @@ export default function AboutPage() {
             transition={{ duration: 0.8 }}
             className="space-y-12"
           >
-            <h2 className="text-3xl md:text-5xl font-semibold">
+            <h2 className="text-3xl md:text-5xl font-semibold text-black">
               The moment it clicked.
             </h2>
             
-            <div className="space-y-8 text-lg md:text-xl text-gray-300 leading-relaxed">
+            <div className="space-y-8 text-lg md:text-xl text-gray-700 leading-relaxed">
               <p>
                 I was using Siri to turn off the lights.<br />
                 My cameras showed up instantly on Apple TV.<br />
                 I opened my garage from CarPlay without thinking about it.
               </p>
               
-              <p>
-                And I thought: <span className="text-white font-medium">"This is magic."</span>
+              <p className="text-2xl md:text-3xl font-semibold text-black">
+                "This is magic."
               </p>
               
               <p>
@@ -65,103 +106,170 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* THE PROBLEMS - Story Format */}
-      <section className="py-32 px-4">
+      {/* SECTION 3: Interactive Grid of Truth */}
+      <section className="py-32 px-4 bg-gradient-to-b from-gray-50 to-white">
+        <div className="max-w-6xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="text-4xl md:text-5xl font-semibold mb-16 text-center text-black"
+          >
+            What we stand for.
+          </motion.h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {gridPrinciples.map((principle, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                onClick={() => setExpandedCard(expandedCard === index ? null : index)}
+                className="cursor-pointer group"
+              >
+                <div className={`
+                  bg-white border-2 border-gray-200 rounded-2xl p-8 
+                  transition-all duration-300
+                  ${expandedCard === index ? 'shadow-2xl border-black' : 'hover:shadow-xl hover:border-gray-300'}
+                `}>
+                  <h3 className="text-2xl md:text-3xl font-semibold text-black mb-4">
+                    {principle.title}
+                  </h3>
+                  
+                  <p className="text-lg text-gray-600 leading-relaxed">
+                    {principle.short}
+                  </p>
+
+                  <motion.div
+                    initial={false}
+                    animate={{
+                      height: expandedCard === index ? 'auto' : 0,
+                      opacity: expandedCard === index ? 1 : 0
+                    }}
+                    transition={{ duration: 0.3 }}
+                    className="overflow-hidden"
+                  >
+                    <p className="text-base text-gray-600 leading-relaxed mt-4 pt-4 border-t border-gray-200">
+                      {principle.full}
+                    </p>
+                  </motion.div>
+
+                  <div className="mt-4 text-sm text-gray-400">
+                    {expandedCard === index ? '− Less' : '+ More'}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4: Problems We Saw */}
+      <section className="py-32 px-4 bg-black text-white">
         <div className="max-w-5xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="text-4xl md:text-6xl font-semibold mb-20 text-center text-black"
+            className="text-4xl md:text-6xl font-semibold mb-20 text-center"
           >
             What we kept seeing.
           </motion.h2>
 
           <div className="space-y-16">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-              className="border-l-4 border-black pl-8"
-            >
-              <h3 className="text-2xl md:text-3xl font-semibold text-black mb-4">
-                Apps that hold you hostage
-              </h3>
-              <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
-                Ugly interfaces from 2010. Forced to use the integrator's app forever. 
-                No Apple Home. No Google. No choice. Just trapped.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="border-l-4 border-black pl-8"
-            >
-              <h3 className="text-2xl md:text-3xl font-semibold text-black mb-4">
-                Expensive mistakes
-              </h3>
-              <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
-                Someone installed six UniFi access points—professional-grade WiFi.<br />
-                Then connected them to a cheap router.<br />
-                <span className="font-medium text-black">Completely defeated the purpose.</span>
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="border-l-4 border-black pl-8"
-            >
-              <h3 className="text-2xl md:text-3xl font-semibold text-black mb-4">
-                People who don't actually care
-              </h3>
-              <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
-                Integrators who don't use the systems they install.<br />
-                Salespeople who don't understand Apple Home.<br />
-                Companies that see smart homes as just another upsell.
-              </p>
-            </motion.div>
+            {[
+              {
+                title: 'Apps that hold you hostage',
+                description: 'Ugly interfaces from 2010. Forced to use the integrator's app forever. No Apple Home. No Google. No choice. Just trapped.'
+              },
+              {
+                title: 'Expensive mistakes',
+                description: 'Someone installed six UniFi access points—professional-grade WiFi. Then connected them to a cheap router. Completely defeated the purpose.'
+              },
+              {
+                title: 'People who don't actually care',
+                description: 'Integrators who don't use the systems they install. Salespeople who don't understand Apple Home. Companies that see smart homes as just another upsell.'
+              }
+            ].map((problem, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                className="border-l-4 border-white pl-8"
+              >
+                <h3 className="text-2xl md:text-3xl font-semibold mb-4">
+                  {problem.title}
+                </h3>
+                <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
+                  {problem.description}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* THE DECISION */}
-      <section className="py-32 px-4 bg-gray-50">
-        <div className="max-w-4xl mx-auto text-center">
+      {/* SECTION 5: Philosophy - Cinematic Text */}
+      <section className="py-32 px-4 bg-white">
+        <div className="max-w-4xl mx-auto space-y-32">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-            className="space-y-12"
+            viewport={{ once: true, margin: "-150px" }}
+            transition={{ duration: 1 }}
+            className="text-center"
           >
             <h2 className="text-4xl md:text-6xl font-semibold text-black leading-tight">
-              So we're fixing it.
+              Technology should<br />be invisible.
             </h2>
-            
-            <p className="text-xl md:text-2xl text-gray-700 leading-relaxed">
-              Two engineers from Dubai who actually love this technology.<br />
-              Who use Apple Home every single day.<br />
-              Who understand UniFi isn't just about fast WiFi—it's about reliability.
-            </p>
+          </motion.div>
 
-            <p className="text-2xl md:text-3xl font-semibold text-black pt-8">
-              We haven't done our first install yet.<br />
-              And that's exactly why we'll do it right.
-            </p>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-150px" }}
+            transition={{ duration: 1 }}
+            className="text-center"
+          >
+            <h2 className="text-4xl md:text-6xl font-semibold text-black leading-tight">
+              Intelligence should<br />be intuitive.
+            </h2>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-150px" }}
+            transition={{ duration: 1 }}
+            className="text-center"
+          >
+            <h2 className="text-4xl md:text-6xl font-semibold text-black leading-tight">
+              Luxury should<br />be effortless.
+            </h2>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-150px" }}
+            transition={{ duration: 1 }}
+            className="text-center pt-16"
+          >
+            <h2 className="text-5xl md:text-7xl font-semibold text-black leading-tight">
+              This is HomiFi.
+            </h2>
           </motion.div>
         </div>
       </section>
 
-      {/* OUR PROMISE - Numbered */}
-      <section className="py-32 px-4">
+      {/* SECTION 6: Our Promise */}
+      <section className="py-32 px-4 bg-gray-50">
         <div className="max-w-5xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -223,7 +331,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* THE VISION */}
+      {/* SECTION 7: The Vision */}
       <section className="py-32 px-4 bg-black text-white">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
@@ -234,32 +342,30 @@ export default function AboutPage() {
             className="space-y-12"
           >
             <h2 className="text-4xl md:text-6xl font-semibold leading-tight">
-              Our vision is simple.
+              We haven't done<br />our first install yet.
             </h2>
 
-            <div className="space-y-8 text-xl md:text-2xl text-gray-300 leading-relaxed">
+            <p className="text-2xl md:text-3xl text-gray-300 leading-relaxed">
+              And that's exactly why<br />we'll do it right.
+            </p>
+
+            <div className="space-y-6 text-xl md:text-2xl text-gray-400 leading-relaxed pt-12">
               <p>
-                Change how people in Dubai think about smart homes.
+                We're not the biggest.
               </p>
-              
               <p>
-                Show them it can be <span className="text-white font-medium">seamless</span>.<br />
-                Show them it can be <span className="text-white font-medium">honest</span>.<br />
-                Show them it can actually <span className="text-white font-medium">elevate their lives</span>.
+                We're not the oldest.
+              </p>
+              <p className="text-white font-semibold text-2xl md:text-3xl pt-4">
+                We're just doing it right.
               </p>
             </div>
-
-            <p className="text-xl md:text-2xl text-gray-400 pt-8">
-              We're not the biggest.<br />
-              We're not the oldest.<br />
-              <span className="text-white font-semibold">We're just doing it right.</span>
-            </p>
           </motion.div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-32 px-4">
+      {/* SECTION 8: CTA */}
+      <section className="py-32 px-4 bg-white">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -288,8 +394,8 @@ export default function AboutPage() {
               </svg>
             </motion.a>
 
-            <p className="text-sm text-gray-500">
-              Based in Dubai · Obsessed with Apple Home · Powered by UniFi
+            <p className="text-sm text-gray-500 pt-8">
+              Based in Dubai · Apple Home First · Powered by UniFi
             </p>
           </motion.div>
         </div>
