@@ -184,15 +184,15 @@ export default function AboutPage() {
             {[
               {
                 title: 'Apps that hold you hostage',
-                description: 'Ugly interfaces from 2010. Forced to use the integrator's app forever. No Apple Home. No Google. No choice. Just trapped.'
+                description: 'Ugly interfaces from 2010. Forced to use the integrator app forever. No Apple Home. No Google. No choice. Just trapped.'
               },
               {
                 title: 'Expensive mistakes',
                 description: 'Someone installed six UniFi access points—professional-grade WiFi. Then connected them to a cheap router. Completely defeated the purpose.'
               },
               {
-                title: 'People who don't actually care',
-                description: 'Integrators who don't use the systems they install. Salespeople who don't understand Apple Home. Companies that see smart homes as just another upsell.'
+                title: 'People who do not actually care',
+                description: 'Integrators who do not use the systems they install. Salespeople who do not understand Apple Home. Companies that see smart homes as just another upsell.'
               }
             ].map((problem, index) => (
               <motion.div
