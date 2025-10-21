@@ -130,13 +130,13 @@ export default function Header() {
                   >
                     Ecosystem
                   </a>
-                  <a 
-                    href="/#about"
+                  <Link 
+                    href="/about"
                     onClick={() => setOpen(false)}
                     className="px-4 py-3 rounded-xl hover:bg-white/50 transition-colors text-gray-700 font-medium"
                   >
                     About Us
-                  </a>
+                  </Link>
                   
                   {/* Separator */}
                   <div className="h-px bg-gray-200 my-2" />
