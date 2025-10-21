@@ -1,407 +1,436 @@
-'use client';
+‘use client’;
 
-import { motion } from 'framer-motion';
-import { useState } from 'react';
-import Header from '@/app/layouts/Desktop/sections/Header';
-import Footer from '@/app/layouts/Desktop/sections/Footer';
+import { motion } from ‘framer-motion’;
+import { useState, useEffect } from ‘react’;
+import Header from ‘@/app/layouts/Desktop/sections/Header’;
+import Footer from ‘@/app/layouts/Desktop/sections/Footer’;
 
 export default function AboutPage() {
-  const [expandedCard, setExpandedCard] = useState<number | null>(null);
 
-  const gridPrinciples = [
-    {
-      title: 'No Complexity',
-      short: 'One app. One ecosystem.',
-      full: 'Your iPhone controls everything. No manuals. No training sessions. No IT degree required. If it is not intuitive, we do not install it.'
-    },
-    {
-      title: 'Apple First',
-      short: 'If it does not work with HomeKit, we do not install it.',
-      full: 'Apple Home is the center of everything. Siri, Apple TV, CarPlay, HomeKey—it all works seamlessly or it does not leave our warehouse.'
-    },
-    {
-      title: 'Real Support',
-      short: 'WhatsApp us 9 AM - 6 PM. Seriously.',
-      full: 'Three months of support included. No surprise charges. No gatekeeping. Real people who actually use this technology every day.'
-    },
-    {
-      title: 'Honest Pricing',
-      short: 'No hidden fees. Ever.',
-      full: 'Fixed quotes. Transparent costs. No upsells. No ransom for basic features. What you see is what you pay. Always.'
+// Animated counter for stats
+const AnimatedCounter = ({ end, suffix = ‘’ }) => {
+const [count, setCount] = useState(0);
+
+```
+useEffect(() => {
+  const duration = 2000;
+  const steps = 60;
+  const increment = end / steps;
+  let current = 0;
+  
+  const timer = setInterval(() => {
+    current += increment;
+    if (current >= end) {
+      setCount(end);
+      clearInterval(timer);
+    } else {
+      setCount(Math.floor(current));
     }
-  ];
+  }, duration / steps);
+  
+  return () => clearInterval(timer);
+}, [end]);
 
-  return (
-    <main className="bg-white">
-      <Header />
+return <>{count}{suffix}</>;
+```
+
+};
+
+const features = [
+{
+icon: (
+<svg viewBox="0 0 24 24" fill="none" className="w-12 h-12">
+<path d="M13 2L3 14h8l-2 8 10-12h-8l2-8z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+),
+title: ‘No-Code Automation’,
+description: ‘Set up lighting, climate, and security routines in minutes. Zero programming needed.’
+},
+{
+icon: (
+<svg viewBox="0 0 24 24" fill="none" className="w-12 h-12">
+<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+),
+title: ‘Anyone Can Install’,
+description: ‘Simple enough for your parents to set up. No IT degree required.’
+},
+{
+icon: (
+<svg viewBox="0 0 24 24" fill="none" className="w-12 h-12">
+<circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2"/>
+<path d="M12 1v6m0 6v6M1 12h6m6 0h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+</svg>
+),
+title: ‘Works With Everything’,
+description: ‘Apple Home, Google Home, Amazon Alexa. Choose your favorite, we connect them all.’
+},
+{
+icon: (
+<svg viewBox="0 0 24 24" fill="none" className="w-12 h-12">
+<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+),
+title: ‘Instant Alerts’,
+description: ‘Real-time notifications about what matters. Right on your phone.’
+},
+{
+icon: (
+<svg viewBox="0 0 24 24" fill="none" className="w-12 h-12">
+<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+),
+title: ‘Voice Everywhere’,
+description: ‘Siri, Alexa, Google Assistant. Control your home with your voice.’
+},
+{
+icon: (
+<svg viewBox="0 0 24 24" fill="none" className="w-12 h-12">
+<path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+),
+title: ‘Apple Integration’,
+description: ‘HomeKit, HomeKey, Apple TV. Seamlessly woven into your Apple ecosystem.’
+}
+];
+
+return (
+<main className="bg-white">
+<Header />
+
+```
+  {/* Hero with CSS Gradient */}
+  <section className="relative min-h-[85vh] flex items-center justify-center px-4 pt-32 pb-20 overflow-hidden">
+    {/* Animated gradient background */}
+    <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800">
+      {/* Floating orbs */}
+      <motion.div
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.3, 0.5, 0.3],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+        className="absolute top-20 left-20 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"
+      />
+      <motion.div
+        animate={{
+          scale: [1.2, 1, 1.2],
+          opacity: [0.2, 0.4, 0.2],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+        className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"
+      />
+    </div>
+    
+    <div className="max-w-5xl mx-auto text-center relative z-10">
+      <motion.h1
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+        className="text-5xl md:text-7xl font-semibold text-white leading-[1.1] mb-6"
+      >
+        Built by engineers.<br />
+        Designed for humans.
+      </motion.h1>
       
-      {/* SECTION 1: Anti-About Opening */}
-      <section className="min-h-screen flex items-center justify-center bg-black text-white px-4 pt-32">
-        <div className="max-w-5xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-            className="space-y-12"
-          >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-semibold leading-tight">
-              We don't do smart homes.
-            </h1>
-            
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1.5, delay: 1, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-semibold leading-tight">
-                We do homes that happen<br />to be smart.
-              </h2>
-            </motion.div>
-            
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 2, ease: [0.22, 1, 0.36, 1] }}
-              className="text-xl md:text-2xl text-gray-400 pt-8"
-            >
-              The difference?<br />
-              You'll never notice the tech.<br />
-              Just the magic.
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.3 }}
+        className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto"
+      >
+        500+ homes in Dubai. Zero complexity.
+      </motion.p>
+    </div>
+  </section>
 
-      {/* SECTION 2: The Moment */}
-      <section className="py-32 px-4 bg-white">
-        <div className="max-w-4xl mx-auto">
+  {/* The Problem - Visual with shapes */}
+  <section className="py-20 bg-white px-4 relative overflow-hidden">
+    {/* Decorative circles */}
+    <div className="absolute top-0 left-0 w-64 h-64 bg-gray-100 rounded-full -translate-x-32 -translate-y-32" />
+    <div className="absolute bottom-0 right-0 w-96 h-96 bg-gray-50 rounded-full translate-x-48 translate-y-48" />
+    
+    <div className="max-w-4xl mx-auto text-center relative z-10">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+      >
+        <h2 className="text-3xl md:text-5xl font-semibold mb-8">
+          The industry had problems.
+        </h2>
+        <p className="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto mb-8">
+          Unreliable systems. Hidden fees. Proprietary traps. Tech so complex you needed an IT degree just to turn on the lights.
+        </p>
+        <div className="inline-block px-8 py-4 bg-black text-white rounded-full text-2xl font-semibold">
+          So we fixed it.
+        </div>
+      </motion.div>
+    </div>
+  </section>
+
+  {/* Features Grid - The 6 Key Points */}
+  <section className="py-20 px-4 bg-gradient-to-b from-gray-50 to-white">
+    <div className="max-w-6xl mx-auto">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-center mb-16"
+      >
+        <h2 className="text-3xl md:text-5xl font-semibold mb-4">
+          What you actually get
+        </h2>
+        <p className="text-xl text-gray-600">
+          No fluff. Just features that work.
+        </p>
+      </motion.div>
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {features.map((feature, index) => (
           <motion.div
+            key={index}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-            className="space-y-12"
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.1 }}
+            className="group p-8 rounded-3xl bg-white border border-gray-200 hover:border-gray-300 hover:shadow-xl transition-all duration-300"
           >
-            <h2 className="text-3xl md:text-5xl font-semibold text-black">
-              The moment it clicked.
-            </h2>
-            
-            <div className="space-y-8 text-lg md:text-xl text-gray-700 leading-relaxed">
-              <p>
-                I was using Siri to turn off the lights.<br />
-                My cameras showed up instantly on Apple TV.<br />
-                I opened my garage from CarPlay without thinking about it.
-              </p>
-              
-              <p className="text-2xl md:text-3xl font-semibold text-black">
-                "This is magic."
-              </p>
-              
-              <p>
-                Then I looked at what the smart home industry was actually delivering.<br />
-                And I got angry.
-              </p>
+            <div className="text-gray-900 mb-4 group-hover:scale-110 transition-transform duration-300">
+              {feature.icon}
             </div>
+            <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
+            <p className="text-gray-600 leading-relaxed">{feature.description}</p>
           </motion.div>
-        </div>
-      </section>
+        ))}
+      </div>
+    </div>
+  </section>
 
-      {/* SECTION 3: Interactive Grid of Truth */}
-      <section className="py-32 px-4 bg-gradient-to-b from-gray-50 to-white">
-        <div className="max-w-6xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl md:text-5xl font-semibold mb-16 text-center text-black"
-          >
-            What we stand for.
-          </motion.h2>
+  {/* Apple Ecosystem Grid */}
+  <section className="py-20 bg-white px-4">
+    <div className="max-w-5xl mx-auto">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-center mb-12"
+      >
+        <h2 className="text-3xl md:text-5xl font-semibold mb-4">
+          Built for Apple. And everything else.
+        </h2>
+        <p className="text-xl text-gray-600">
+          100% HomeKit compatible. Plus HomeKey and Apple TV integration.
+        </p>
+      </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {gridPrinciples.map((principle, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                onClick={() => setExpandedCard(expandedCard === index ? null : index)}
-                className="cursor-pointer group"
-              >
-                <div className={`
-                  bg-white border-2 border-gray-200 rounded-2xl p-8 
-                  transition-all duration-300
-                  ${expandedCard === index ? 'shadow-2xl border-black' : 'hover:shadow-xl hover:border-gray-300'}
-                `}>
-                  <h3 className="text-2xl md:text-3xl font-semibold text-black mb-4">
-                    {principle.title}
-                  </h3>
-                  
-                  <p className="text-lg text-gray-600 leading-relaxed">
-                    {principle.short}
-                  </p>
-
-                  <motion.div
-                    initial={false}
-                    animate={{
-                      height: expandedCard === index ? 'auto' : 0,
-                      opacity: expandedCard === index ? 1 : 0
-                    }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
-                  >
-                    <p className="text-base text-gray-600 leading-relaxed mt-4 pt-4 border-t border-gray-200">
-                      {principle.full}
-                    </p>
-                  </motion.div>
-
-                  <div className="mt-4 text-sm text-gray-400">
-                    {expandedCard === index ? '− Less' : '+ More'}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 4: Problems We Saw */}
-      <section className="py-32 px-4 bg-black text-white">
-        <div className="max-w-5xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl md:text-6xl font-semibold mb-20 text-center"
-          >
-            What we kept seeing.
-          </motion.h2>
-
-          <div className="space-y-16">
-            {[
-              {
-                title: 'Apps that hold you hostage',
-                description: 'Ugly interfaces from 2010. Forced to use the integrator app forever. No Apple Home. No Google. No choice. Just trapped.'
-              },
-              {
-                title: 'Expensive mistakes',
-                description: 'Someone installed six UniFi access points—professional-grade WiFi. Then connected them to a cheap router. Completely defeated the purpose.'
-              },
-              {
-                title: 'People who do not actually care',
-                description: 'Integrators who do not use the systems they install. Salespeople who do not understand Apple Home. Companies that see smart homes as just another upsell.'
-              }
-            ].map((problem, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                className="border-l-4 border-white pl-8"
-              >
-                <h3 className="text-2xl md:text-3xl font-semibold mb-4">
-                  {problem.title}
-                </h3>
-                <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
-                  {problem.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 5: Philosophy - Cinematic Text */}
-      <section className="py-32 px-4 bg-white">
-        <div className="max-w-4xl mx-auto space-y-32">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {[
+          { label: 'Apple Home', gradient: 'from-blue-500 to-purple-500' },
+          { label: 'HomeKey', gradient: 'from-purple-500 to-pink-500' },
+          { label: 'Apple TV', gradient: 'from-pink-500 to-red-500' },
+          { label: 'Apple Watch', gradient: 'from-red-500 to-orange-500' },
+          { label: 'Google Home', gradient: 'from-green-500 to-emerald-500' },
+          { label: 'Alexa', gradient: 'from-cyan-500 to-blue-500' },
+          { label: 'Siri', gradient: 'from-indigo-500 to-purple-500' },
+          { label: 'HomiFi App', gradient: 'from-gray-800 to-gray-600' }
+        ].map((item, index) => (
           <motion.div
+            key={index}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.05 }}
+            className="group aspect-square rounded-2xl bg-white border border-gray-200 hover:border-gray-300 flex flex-col items-center justify-center p-4 hover:shadow-lg transition-all duration-300 cursor-pointer"
+          >
+            <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.gradient} mb-3 group-hover:scale-110 transition-transform duration-300`} />
+            <div className="text-sm font-medium text-gray-700 text-center">{item.label}</div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Founder Cards - CSS only */}
+  <section className="py-20 bg-gradient-to-b from-gray-50 to-white px-4">
+    <div className="max-w-5xl mx-auto">
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-3xl md:text-5xl font-semibold text-center mb-4"
+      >
+        Meet the team
+      </motion.h2>
+      <p className="text-center text-gray-600 text-lg mb-16">
+        Two Emirati engineers who got tired of the BS
+      </p>
+      
+      <div className="grid md:grid-cols-2 gap-8">
+        {[
+          {
+            initials: 'AM',
+            name: 'Ahmed Al-Mazrouei',
+            role: 'Co-Founder & CTO',
+            bio: 'Former systems engineer who got tired of fixing broken smart homes.',
+            gradient: 'from-blue-500 to-purple-600'
+          },
+          {
+            initials: 'OM',
+            name: 'Omar Al-Mansoori',
+            role: 'Co-Founder & CEO',
+            bio: 'IoT specialist who believes technology should serve people, not frustrate them.',
+            gradient: 'from-purple-500 to-pink-600'
+          }
+        ].map((founder, index) => (
+          <motion.div
+            key={index}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-150px" }}
-            transition={{ duration: 1 }}
-            className="text-center"
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.2 }}
+            className="bg-white rounded-3xl p-8 border border-gray-200 hover:shadow-xl transition-all duration-300"
           >
-            <h2 className="text-4xl md:text-6xl font-semibold text-black leading-tight">
-              Technology should<br />be invisible.
-            </h2>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-150px" }}
-            transition={{ duration: 1 }}
-            className="text-center"
-          >
-            <h2 className="text-4xl md:text-6xl font-semibold text-black leading-tight">
-              Intelligence should<br />be intuitive.
-            </h2>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-150px" }}
-            transition={{ duration: 1 }}
-            className="text-center"
-          >
-            <h2 className="text-4xl md:text-6xl font-semibold text-black leading-tight">
-              Luxury should<br />be effortless.
-            </h2>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-150px" }}
-            transition={{ duration: 1 }}
-            className="text-center pt-16"
-          >
-            <h2 className="text-5xl md:text-7xl font-semibold text-black leading-tight">
-              This is HomiFi.
-            </h2>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* SECTION 6: Our Promise */}
-      <section className="py-32 px-4 bg-gray-50">
-        <div className="max-w-5xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl md:text-6xl font-semibold mb-20 text-center text-black"
-          >
-            What we promise.
-          </motion.h2>
-
-          <div className="space-y-16">
-            {[
-              {
-                number: '01',
-                title: 'Apple Home, first',
-                description: 'If it does not work seamlessly with Apple Home, we will not install it. Your iPhone is your remote. Period.'
-              },
-              {
-                number: '02',
-                title: 'Enterprise WiFi, done right',
-                description: 'UniFi throughout—APs, switches, router, everything. No cheap shortcuts. No half-measures.'
-              },
-              {
-                number: '03',
-                title: 'Your ecosystem, your choice',
-                description: 'Want Google Home? Alexa? Our app? All of the above? Your call. We make it work.'
-              },
-              {
-                number: '04',
-                title: 'Honest support',
-                description: 'WhatsApp us 9 AM - 6 PM. Three months included. No surprise charges. No ransom.'
-              }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-150px" }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                className="grid md:grid-cols-12 gap-6 items-start"
-              >
-                <div className="md:col-span-2">
-                  <span className="text-5xl md:text-6xl font-bold text-gray-300">
-                    {item.number}
-                  </span>
-                </div>
-                <div className="md:col-span-10">
-                  <h3 className="text-2xl md:text-3xl font-semibold text-black mb-3">
-                    {item.title}
-                  </h3>
-                  <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 7: The Vision */}
-      <section className="py-32 px-4 bg-black text-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-            className="space-y-12"
-          >
-            <h2 className="text-4xl md:text-6xl font-semibold leading-tight">
-              We haven't done<br />our first install yet.
-            </h2>
-
-            <p className="text-2xl md:text-3xl text-gray-300 leading-relaxed">
-              And that's exactly why<br />we'll do it right.
-            </p>
-
-            <div className="space-y-6 text-xl md:text-2xl text-gray-400 leading-relaxed pt-12">
-              <p>
-                We're not the biggest.
-              </p>
-              <p>
-                We're not the oldest.
-              </p>
-              <p className="text-white font-semibold text-2xl md:text-3xl pt-4">
-                We're just doing it right.
-              </p>
+            <div className={`w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br ${founder.gradient} flex items-center justify-center text-white text-3xl font-bold shadow-lg`}>
+              {founder.initials}
             </div>
+            <h3 className="text-2xl font-semibold text-center mb-2">{founder.name}</h3>
+            <p className="text-sm text-gray-500 uppercase tracking-wider text-center mb-4">{founder.role}</p>
+            <p className="text-gray-600 text-center leading-relaxed">{founder.bio}</p>
           </motion.div>
-        </div>
-      </section>
+        ))}
+      </div>
+    </div>
+  </section>
 
-      {/* SECTION 8: CTA */}
-      <section className="py-32 px-4 bg-white">
-        <div className="max-w-4xl mx-auto text-center">
+  {/* Stats with animated counters */}
+  <section className="py-20 px-4 relative overflow-hidden">
+    {/* Decorative grid pattern */}
+    <div className="absolute inset-0 opacity-5">
+      <div className="absolute inset-0" style={{
+        backgroundImage: 'radial-gradient(circle, #000 1px, transparent 1px)',
+        backgroundSize: '40px 40px'
+      }} />
+    </div>
+    
+    <div className="max-w-5xl mx-auto relative z-10">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {[
+          { value: 500, label: 'Homes', suffix: '+' },
+          { value: 100, label: 'HomeKit', suffix: '%' },
+          { value: 24, label: 'Support', suffix: '/7' },
+          { value: 4.9, label: 'Rating', suffix: '★' }
+        ].map((stat, index) => (
           <motion.div
+            key={index}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-            className="space-y-12"
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.1 }}
+            className="text-center"
           >
-            <h2 className="text-4xl md:text-5xl font-semibold text-black leading-tight">
-              Want to be our first?
-            </h2>
-
-            <p className="text-xl text-gray-600">
-              We're ready. Are you?
-            </p>
-
-            <motion.a
-              href="/#contact"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-3 px-10 py-5 bg-black text-white rounded-full text-lg font-semibold hover:bg-gray-900 transition-colors duration-200 shadow-2xl"
-            >
-              Let's Talk
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </motion.a>
-
-            <p className="text-sm text-gray-500 pt-8">
-              Based in Dubai · Apple Home First · Powered by UniFi
-            </p>
+            <div className="text-4xl md:text-6xl font-bold mb-2 bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+              <AnimatedCounter end={stat.value} suffix={stat.suffix} />
+            </div>
+            <div className="text-sm text-gray-600 uppercase tracking-wider font-medium">{stat.label}</div>
           </motion.div>
-        </div>
-      </section>
+        ))}
+      </div>
+    </div>
+  </section>
 
-      <Footer />
-    </main>
-  );
+  {/* Testimonial - Pure CSS */}
+  <section className="py-20 bg-gradient-to-b from-gray-50 to-white px-4">
+    <div className="max-w-4xl mx-auto">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="bg-white rounded-3xl p-8 md:p-12 border border-gray-200 shadow-lg relative overflow-hidden"
+      >
+        {/* Decorative quote mark */}
+        <div className="absolute top-8 left-8 text-8xl text-gray-100 font-serif leading-none">"</div>
+        
+        <div className="relative z-10">
+          <p className="text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed">
+            Finally, a smart home that just works. No tech support calls. No mysterious disconnects. It's been flawless for 8 months.
+          </p>
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-lg">
+              R
+            </div>
+            <div>
+              <p className="font-semibold text-gray-900">Rashid Al-Mansoori</p>
+              <p className="text-gray-500 text-sm">Villa Owner, Arabian Ranches</p>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  </section>
+
+  {/* Final CTA */}
+  <section className="py-20 bg-black text-white px-4 relative overflow-hidden">
+    {/* Animated background pattern */}
+    <motion.div
+      animate={{
+        backgroundPosition: ['0% 0%', '100% 100%'],
+      }}
+      transition={{
+        duration: 20,
+        repeat: Infinity,
+        repeatType: 'reverse',
+        ease: 'linear'
+      }}
+      className="absolute inset-0 opacity-10"
+      style={{
+        backgroundImage: 'linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff), linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff)',
+        backgroundSize: '60px 60px',
+        backgroundPosition: '0 0, 30px 30px'
+      }}
+    />
+    
+    <div className="max-w-4xl mx-auto text-center relative z-10">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+      >
+        <h2 className="text-4xl md:text-5xl font-semibold mb-6">
+          See it in action
+        </h2>
+        <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-10">
+          Book a demo. Tour our showroom. Or start with a free consultation.
+        </p>
+
+        <motion.a
+          href="/#contact"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="inline-flex items-center gap-3 px-10 py-5 bg-white text-black rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors duration-200 shadow-2xl"
+        >
+          Get Started
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </motion.a>
+      </motion.div>
+    </div>
+  </section>
+
+  <Footer />
+</main>
+```
+
+);
 }
