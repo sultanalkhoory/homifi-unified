@@ -12,12 +12,12 @@ export default function AboutPage() {
     {
       title: 'No Complexity',
       short: 'One app. One ecosystem.',
-      full: 'Your iPhone controls everything. No manuals. No training sessions. No IT degree required. If it's not intuitive, we don't install it.'
+      full: 'Your iPhone controls everything. No manuals. No training sessions. No IT degree required. If it is not intuitive, we do not install it.'
     },
     {
       title: 'Apple First',
-      short: 'If it doesn\'t work with HomeKit, we don\'t install it.',
-      full: 'Apple Home is the center of everything. Siri, Apple TV, CarPlay, HomeKey—it all works seamlessly or it doesn't leave our warehouse.'
+      short: 'If it does not work with HomeKit, we do not install it.',
+      full: 'Apple Home is the center of everything. Siri, Apple TV, CarPlay, HomeKey—it all works seamlessly or it does not leave our warehouse.'
     },
     {
       title: 'Real Support',
@@ -286,7 +286,7 @@ export default function AboutPage() {
               {
                 number: '01',
                 title: 'Apple Home, first',
-                description: 'If it doesn\'t work seamlessly with Apple Home, we won\'t install it. Your iPhone is your remote. Period.'
+                description: 'If it does not work seamlessly with Apple Home, we will not install it. Your iPhone is your remote. Period.'
               },
               {
                 number: '02',
