@@ -9,7 +9,7 @@ export default function AboutPage() {
     <main className="bg-white overflow-hidden">
       <Header />
 
-      {/* Hero - The Problem Statement */}
+      {/* Hero */}
       <section className="min-h-screen flex flex-col items-center justify-center px-4 relative overflow-hidden bg-white">
         <motion.div
           initial={{ opacity: 0 }}
@@ -45,9 +45,8 @@ export default function AboutPage() {
         </motion.div>
       </section>
 
-      {/* The Industry Problems - Gradient Background */}
+      {/* Problems - Gradient */}
       <section className="py-32 px-4 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500 text-white relative overflow-hidden">
-        {/* Animated orbs for depth */}
         <motion.div
           animate={{
             scale: [1, 1.2, 1],
@@ -113,7 +112,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Origin Story - Clean white section */}
+      {/* Origin Story */}
       <section className="py-32 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
           <motion.div
@@ -130,7 +129,7 @@ export default function AboutPage() {
 
             <div className="space-y-8 text-xl text-gray-600 leading-relaxed">
               <p>
-                Multiple apps for one home. Proprietary ecosystems that trap you. Service providers who vanish after the sale. Support that makes you wish you'd never asked.
+                Multiple apps for one home. Proprietary ecosystems that trap you. Service providers who vanish after the sale. Support that makes you regret asking.
               </p>
               <p>
                 We built what we wanted to buy.<br />
@@ -141,7 +140,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Philosophy - Apple-style cards with subtle gradients */}
+      {/* Philosophy */}
       <section className="py-32 px-4 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-6xl mx-auto">
           <motion.h2
@@ -190,7 +189,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* What We Do - Gradient accent */}
+      {/* What We Do */}
       <section className="py-32 px-4 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -216,7 +215,7 @@ export default function AboutPage() {
               },
               {
                 space: 'Offices',
-                detail: 'Meeting rooms that work. Climate that adapts. Access that's secure but simple.',
+                detail: 'Meeting rooms that work. Climate that adapts. Secure access made simple.',
                 gradient: 'from-purple-500 to-pink-500'
               },
               {
@@ -244,9 +243,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Non-negotiables - Dark gradient instead of pure black */}
+      {/* Non-negotiables */}
       <section className="py-32 px-4 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden">
-        {/* Subtle gradient orbs */}
         <motion.div
           animate={{
             scale: [1, 1.3, 1],
@@ -277,10 +275,10 @@ export default function AboutPage() {
             className="space-y-12"
           >
             {[
-              { rule: 'If it locks you in, we don't install it.' },
+              { rule: 'If it locks you in, we refuse to install it.' },
               { rule: 'If it needs seven apps, we find another way.' },
               { rule: 'If support disappears, so do we.' },
-              { rule: 'If it's complicated, it's not ready.' }
+              { rule: 'If it is complicated, it is not ready.' }
             ].map((item, i) => (
               <motion.div
                 key={i}
