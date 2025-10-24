@@ -9,8 +9,8 @@ export default function AboutPage() {
     <main className="bg-white overflow-hidden">
       <Header />
 
-      {/* Hero */}
-      <section className="min-h-screen flex flex-col items-center justify-center px-4 relative overflow-hidden bg-white">
+      {/* Hero - Add subtle gradient */}
+      <section className="min-h-screen flex flex-col items-center justify-center px-4 relative overflow-hidden bg-gradient-to-b from-white via-blue-50/10 to-white">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -39,13 +39,13 @@ export default function AboutPage() {
           className="absolute bottom-12"
         >
           <div className="w-6 h-10 border border-gray-200 rounded-full flex items-center justify-center">
-            <div className="w-1 h-2 bg-gray-300 rounded-full" />
+            <div className="w-1 h-2 bg-gray-400 rounded-full" />
           </div>
         </motion.div>
       </section>
 
-      {/* Why We Started - Clean and simple */}
-      <section className="py-32 px-4 bg-gradient-to-b from-gray-50 to-white">
+      {/* Why We Started - Warmer gradient */}
+      <section className="py-32 px-4 bg-gradient-to-br from-orange-50/30 via-pink-50/20 to-purple-50/20">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -69,19 +69,20 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* How We're Different */}
-      <section className="py-32 px-4 bg-gradient-to-br from-blue-50/20 via-purple-50/15 to-gray-50 relative overflow-hidden">
+      {/* How We're Different - More vibrant gradient */}
+      <section className="py-32 px-4 bg-gradient-to-br from-blue-50/40 via-indigo-50/30 to-purple-50/40 relative overflow-hidden">
+        {/* Enhanced orb */}
         <motion.div
           animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.1, 0.15, 0.1],
+            scale: [1, 1.2, 1],
+            opacity: [0.2, 0.3, 0.2],
           }}
           transition={{
             duration: 8,
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className="absolute top-20 right-20 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl"
+          className="absolute top-20 right-20 w-96 h-96 bg-blue-200/50 rounded-full blur-3xl"
         />
         
         <div className="max-w-5xl mx-auto relative z-10">
@@ -98,19 +99,23 @@ export default function AboutPage() {
             {[
               {
                 title: 'We use open devices',
-                desc: 'Not proprietary hardware. Our devices work with Apple Home, Google Home, and Alexa. Want to switch platforms tomorrow? You can. Want to use all three? You can. Your choice.'
+                desc: 'Not proprietary hardware. Our devices work with Apple Home, Google Home, and Alexa. Want to switch platforms tomorrow? You can. Want to use all three? You can. Your choice.',
+                accent: 'hover:border-blue-400'
               },
               {
                 title: 'You control everything',
-                desc: "Your app. Your scenes. Your automations. No calling us to change a light schedule. We set it up, we train you, then it's yours."
+                desc: "Your app. Your scenes. Your automations. No calling us to change a light schedule. We set it up, we train you, then it's yours.",
+                accent: 'hover:border-purple-400'
               },
               {
                 title: 'We actually stick around',
-                desc: "Three months of included support after install. WhatsApp us, we respond. Need help six months later? We're still here."
+                desc: "Three months of included support after install. WhatsApp us, we respond. Need help six months later? We're still here.",
+                accent: 'hover:border-indigo-400'
               },
               {
                 title: 'We install universal systems',
-                desc: "Not our system. Industry-standard devices that any integrator can service. We disappear tomorrow? You're not stuck."
+                desc: "Not our system. Industry-standard devices that any integrator can service. We disappear tomorrow? You're not stuck.",
+                accent: 'hover:border-cyan-400'
               }
             ].map((item, i) => (
               <motion.div
@@ -119,7 +124,7 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="border-l-2 border-gray-200 pl-8 hover:border-blue-300 transition-colors"
+                className={`border-l-2 border-gray-200 ${item.accent} pl-8 transition-colors`}
               >
                 <h3 className="text-2xl font-semibold mb-3 text-gray-900">{item.title}</h3>
                 <p className="text-lg text-gray-500 leading-relaxed max-w-3xl">{item.desc}</p>
@@ -129,8 +134,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* What We Do - Specific */}
-      <section className="py-32 px-4 bg-white">
+      {/* What We Do - Colorful numbers */}
+      <section className="py-32 px-4 bg-gradient-to-br from-white via-purple-50/15 to-pink-50/20">
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -148,17 +153,20 @@ export default function AboutPage() {
               {
                 space: 'Homes',
                 detail: 'Villas, apartments, townhouses. Full integration or single rooms. You decide the scope.',
-                number: '01'
+                number: '01',
+                color: 'text-blue-400'
               },
               {
                 space: 'Offices',
                 detail: 'Meeting rooms, lighting zones, access control. Managed by your team, not ours.',
-                number: '02'
+                number: '02',
+                color: 'text-purple-400'
               },
               {
                 space: 'Hotels',
                 detail: 'Guest controls, staff overrides, energy management. Scales to any property size.',
-                number: '03'
+                number: '03',
+                color: 'text-pink-400'
               }
             ].map((item, i) => (
               <motion.div
@@ -169,7 +177,7 @@ export default function AboutPage() {
                 transition={{ delay: i * 0.1 }}
                 className="space-y-4"
               >
-                <div className="text-7xl font-light text-gray-200">
+                <div className={`text-7xl font-light ${item.color}`}>
                   {item.number}
                 </div>
                 <h3 className="text-2xl font-semibold text-gray-900">{item.space}</h3>
@@ -180,8 +188,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Final Statement */}
-      <section className="py-40 px-4 bg-gradient-to-b from-gray-50 via-blue-50/10 to-white">
+      {/* Final Statement - Gradient button */}
+      <section className="py-40 px-4 bg-gradient-to-br from-blue-50/20 via-indigo-50/15 to-purple-50/20">
         <div className="max-w-3xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -199,7 +207,7 @@ export default function AboutPage() {
               href="/#hero"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-block px-10 py-4 bg-gray-900 text-white rounded-full text-lg font-semibold hover:bg-gray-800 transition-all"
+              className="inline-block px-10 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full text-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all shadow-lg"
             >
               See How We Do It
             </motion.a>
