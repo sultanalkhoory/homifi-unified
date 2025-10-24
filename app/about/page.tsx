@@ -9,7 +9,7 @@ export default function AboutPage() {
     <main className="bg-white overflow-hidden">
       <Header />
 
-      {/* Hero - Pure white with subtle hint */}
+      {/* Hero */}
       <section className="min-h-screen flex flex-col items-center justify-center px-4 relative overflow-hidden bg-white">
         <motion.div
           initial={{ opacity: 0 }}
@@ -44,8 +44,22 @@ export default function AboutPage() {
         </motion.div>
       </section>
 
-      {/* Problems - Very subtle gradient */}
-      <section className="py-32 px-4 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+      {/* Problems - Subtle blue to purple gradient */}
+      <section className="py-32 px-4 bg-gradient-to-br from-blue-50/30 via-purple-50/20 to-gray-50 relative overflow-hidden">
+        {/* Very subtle orb */}
+        <motion.div
+          animate={{
+            scale: [1, 1.1, 1],
+            opacity: [0.1, 0.15, 0.1],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute top-20 right-20 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl"
+        />
+        
         <div className="max-w-6xl mx-auto relative z-10">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -98,7 +112,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Origin Story - Clean white */}
+      {/* Origin Story */}
       <section className="py-32 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
           <motion.div
@@ -125,8 +139,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Philosophy - Minimal cards */}
-      <section className="py-32 px-4 bg-gradient-to-b from-white to-gray-50">
+      {/* Philosophy - Subtle gradient hints */}
+      <section className="py-32 px-4 bg-gradient-to-b from-gray-50 via-purple-50/10 to-gray-50">
         <div className="max-w-6xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -141,15 +155,18 @@ export default function AboutPage() {
             {[
               {
                 title: 'Open over closed',
-                desc: 'Your home works with Apple, Google, Alexa. Not locked to one.'
+                desc: 'Your home works with Apple, Google, Alexa. Not locked to one.',
+                accent: 'hover:border-blue-200'
               },
               {
                 title: 'Simple over complex',
-                desc: 'If it needs a manual, we failed.'
+                desc: 'If it needs a manual, we failed.',
+                accent: 'hover:border-purple-200'
               },
               {
                 title: 'Service over sale',
-                desc: 'Install is day one. Support is every day after.'
+                desc: 'Install is day one. Support is every day after.',
+                accent: 'hover:border-orange-200'
               }
             ].map((belief, i) => (
               <motion.div
@@ -158,7 +175,7 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15 }}
-                className="bg-white rounded-3xl p-10 border border-gray-100 h-full hover:border-gray-200 transition-all"
+                className={`bg-white rounded-3xl p-10 border border-gray-100 ${belief.accent} h-full transition-all`}
               >
                 <h3 className="text-2xl font-semibold mb-4 text-gray-900">{belief.title}</h3>
                 <p className="text-gray-500 leading-relaxed">{belief.desc}</p>
@@ -168,8 +185,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* What We Do - Ultra minimal */}
-      <section className="py-32 px-4 bg-gray-50">
+      {/* What We Do - Subtle rainbow gradient */}
+      <section className="py-32 px-4 bg-gradient-to-br from-blue-50/20 via-purple-50/15 to-pink-50/20">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -190,17 +207,20 @@ export default function AboutPage() {
               {
                 space: 'Homes',
                 detail: 'Villas to apartments. Lighting to security. Built for how you actually live.',
-                number: '01'
+                number: '01',
+                color: 'text-blue-300'
               },
               {
                 space: 'Offices',
                 detail: 'Meeting rooms that work. Climate that adapts. Secure access made simple.',
-                number: '02'
+                number: '02',
+                color: 'text-purple-300'
               },
               {
                 space: 'Hotels',
                 detail: 'Guest comfort. Staff control. Energy efficiency. All from one system.',
-                number: '03'
+                number: '03',
+                color: 'text-pink-300'
               }
             ].map((item, i) => (
               <motion.div
@@ -211,7 +231,7 @@ export default function AboutPage() {
                 transition={{ delay: i * 0.1 }}
                 className="text-center space-y-4"
               >
-                <div className="text-7xl font-light text-gray-200">
+                <div className={`text-7xl font-light ${item.color}`}>
                   {item.number}
                 </div>
                 <h3 className="text-2xl font-semibold text-gray-900">{item.space}</h3>
@@ -222,8 +242,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Non-negotiables - Minimal light section */}
-      <section className="py-32 px-4 bg-white">
+      {/* Non-negotiables - Light with subtle tint */}
+      <section className="py-32 px-4 bg-gradient-to-br from-gray-50 via-indigo-50/10 to-gray-50">
         <div className="max-w-4xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -252,7 +272,7 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="flex items-start gap-6 border-l border-gray-200 hover:border-gray-400 transition-colors pl-8 py-2"
+                className="flex items-start gap-6 border-l border-gray-200 hover:border-blue-300 transition-colors pl-8 py-2"
               >
                 <span className="text-gray-300 font-mono text-sm min-w-[3rem]">
                   {String(i + 1).padStart(2, '0')}
@@ -265,7 +285,7 @@ export default function AboutPage() {
       </section>
 
       {/* Final Statement */}
-      <section className="py-40 px-4 bg-gradient-to-b from-gray-50 to-white">
+      <section className="py-40 px-4 bg-gradient-to-b from-white via-blue-50/10 to-white">
         <div className="max-w-3xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
