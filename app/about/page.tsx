@@ -44,9 +44,33 @@ export default function AboutPage() {
         </motion.div>
       </section>
 
-      {/* Problems - Subtle blue to purple gradient */}
-      <section className="py-32 px-4 bg-gradient-to-br from-blue-50/30 via-purple-50/20 to-gray-50 relative overflow-hidden">
-        {/* Very subtle orb */}
+      {/* Why We Started - Clean and simple */}
+      <section className="py-32 px-4 bg-gradient-to-b from-gray-50 to-white">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="space-y-12"
+          >
+            <h2 className="text-4xl md:text-5xl font-semibold text-gray-900">
+              Why we started
+            </h2>
+
+            <div className="space-y-8 text-xl text-gray-500 leading-relaxed">
+              <p>
+                We kept meeting people stuck with expensive systems they couldn't control. Locked to one vendor. Waiting days for support to change a light schedule. Paying again for something they already bought.
+              </p>
+              <p className="text-gray-900 font-medium">
+                We do it differently.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* How We're Different */}
+      <section className="py-32 px-4 bg-gradient-to-br from-blue-50/20 via-purple-50/15 to-gray-50 relative overflow-hidden">
         <motion.div
           animate={{
             scale: [1, 1.1, 1],
@@ -60,34 +84,33 @@ export default function AboutPage() {
           className="absolute top-20 right-20 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl"
         />
         
-        <div className="max-w-6xl mx-auto relative z-10">
+        <div className="max-w-5xl mx-auto relative z-10">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-6xl font-semibold mb-20 max-w-3xl text-gray-900"
+            className="text-4xl md:text-5xl font-semibold mb-20 text-gray-900"
           >
-            The industry had problems.<br />
-            <span className="text-gray-400">We had opinions.</span>
+            What we do differently
           </motion.h2>
 
-          <div className="grid md:grid-cols-2 gap-16">
+          <div className="space-y-16">
             {[
               {
-                problem: 'Seven apps to control one home',
-                solution: 'One app. Everything.'
+                title: 'We use open devices',
+                desc: 'Not proprietary hardware. Our devices work with Apple Home, Google Home, and Alexa. Want to switch platforms tomorrow? You can. Want to use all three? You can. Your choice.'
               },
               {
-                problem: 'Locked to one vendor forever',
-                solution: 'Your home. Your choice.'
+                title: 'You control everything',
+                desc: 'Your app. Your scenes. Your automations. No calling us to change a light schedule. We set it up, we train you, then it's yours.'
               },
               {
-                problem: 'Support that disappears after install',
-                solution: 'We stick around.'
+                title: 'We actually stick around',
+                desc: 'Three months of included support after install. WhatsApp us, we respond. Need help six months later? We're still here.'
               },
               {
-                problem: 'Proprietary systems that fight each other',
-                solution: 'Open standards. Everything talks.'
+                title: 'We install universal systems',
+                desc: 'Not "our" system. Industry-standard devices that any integrator can service. We disappear tomorrow? You're not stuck.'
               }
             ].map((item, i) => (
               <motion.div
@@ -96,98 +119,19 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="space-y-6"
+                className="border-l-2 border-gray-200 pl-8 hover:border-blue-300 transition-colors"
               >
-                <div className="space-y-2">
-                  <div className="text-xs text-gray-400 font-medium uppercase tracking-widest">Problem</div>
-                  <p className="text-lg text-gray-400 line-through decoration-gray-300">{item.problem}</p>
-                </div>
-                <div className="space-y-2">
-                  <div className="text-xs text-gray-900 font-medium uppercase tracking-widest">Solution</div>
-                  <p className="text-2xl font-semibold text-gray-900">{item.solution}</p>
-                </div>
+                <h3 className="text-2xl font-semibold mb-3 text-gray-900">{item.title}</h3>
+                <p className="text-lg text-gray-500 leading-relaxed max-w-3xl">{item.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Origin Story */}
+      {/* What We Do - Specific */}
       <section className="py-32 px-4 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="space-y-12"
-          >
-            <h2 className="text-4xl md:text-5xl font-semibold leading-tight text-gray-900">
-              Two founders.<br />
-              Both tired of the same thing.
-            </h2>
-
-            <div className="space-y-8 text-xl text-gray-500 leading-relaxed">
-              <p>
-                Multiple apps for one home. Proprietary ecosystems that trap you. Service providers who vanish after the sale. Support that makes you regret asking.
-              </p>
-              <p>
-                We built what we wanted to buy.<br />
-                A system that just works.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Philosophy - Subtle gradient hints */}
-      <section className="py-32 px-4 bg-gradient-to-b from-gray-50 via-purple-50/10 to-gray-50">
-        <div className="max-w-6xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-semibold mb-16 text-center text-gray-900"
-          >
-            What we believe
-          </motion.h2>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                title: 'Open over closed',
-                desc: 'Your home works with Apple, Google, Alexa. Not locked to one.',
-                accent: 'hover:border-blue-200'
-              },
-              {
-                title: 'Simple over complex',
-                desc: 'If it needs a manual, we failed.',
-                accent: 'hover:border-purple-200'
-              },
-              {
-                title: 'Service over sale',
-                desc: 'Install is day one. Support is every day after.',
-                accent: 'hover:border-orange-200'
-              }
-            ].map((belief, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.15 }}
-                className={`bg-white rounded-3xl p-10 border border-gray-100 ${belief.accent} h-full transition-all`}
-              >
-                <h3 className="text-2xl font-semibold mb-4 text-gray-900">{belief.title}</h3>
-                <p className="text-gray-500 leading-relaxed">{belief.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* What We Do - Subtle rainbow gradient */}
-      <section className="py-32 px-4 bg-gradient-to-br from-blue-50/20 via-purple-50/15 to-pink-50/20">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -197,30 +141,24 @@ export default function AboutPage() {
             <h2 className="text-4xl md:text-5xl font-semibold mb-6 text-gray-900">
               Homes. Offices. Hotels.
             </h2>
-            <p className="text-xl text-gray-500 max-w-2xl mx-auto">
-              Any space that needs to be smarter without being harder.
-            </p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-12">
             {[
               {
                 space: 'Homes',
-                detail: 'Villas to apartments. Lighting to security. Built for how you actually live.',
-                number: '01',
-                color: 'text-blue-300'
+                detail: 'Villas, apartments, townhouses. Full integration or single rooms. You decide the scope.',
+                number: '01'
               },
               {
                 space: 'Offices',
-                detail: 'Meeting rooms that work. Climate that adapts. Secure access made simple.',
-                number: '02',
-                color: 'text-purple-300'
+                detail: 'Meeting rooms, lighting zones, access control. Managed by your team, not ours.',
+                number: '02'
               },
               {
                 space: 'Hotels',
-                detail: 'Guest comfort. Staff control. Energy efficiency. All from one system.',
-                number: '03',
-                color: 'text-pink-300'
+                detail: 'Guest controls, staff overrides, energy management. Scales to any property size.',
+                number: '03'
               }
             ].map((item, i) => (
               <motion.div
@@ -229,9 +167,9 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="text-center space-y-4"
+                className="space-y-4"
               >
-                <div className={`text-7xl font-light ${item.color}`}>
+                <div className="text-7xl font-light text-gray-200">
                   {item.number}
                 </div>
                 <h3 className="text-2xl font-semibold text-gray-900">{item.space}</h3>
@@ -242,50 +180,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Non-negotiables - Light with subtle tint */}
-      <section className="py-32 px-4 bg-gradient-to-br from-gray-50 via-indigo-50/10 to-gray-50">
-        <div className="max-w-4xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-semibold mb-16 text-gray-900"
-          >
-            Non-negotiables
-          </motion.h2>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="space-y-10"
-          >
-            {[
-              { rule: 'If it locks you in, we refuse to install it.' },
-              { rule: 'If it needs seven apps, we find another way.' },
-              { rule: 'If support disappears, so do we.' },
-              { rule: 'If it is complicated, it is not ready.' }
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="flex items-start gap-6 border-l border-gray-200 hover:border-blue-300 transition-colors pl-8 py-2"
-              >
-                <span className="text-gray-300 font-mono text-sm min-w-[3rem]">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <p className="text-xl md:text-2xl font-light text-gray-900">{item.rule}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
       {/* Final Statement */}
-      <section className="py-40 px-4 bg-gradient-to-b from-white via-blue-50/10 to-white">
+      <section className="py-40 px-4 bg-gradient-to-b from-gray-50 via-blue-50/10 to-white">
         <div className="max-w-3xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
