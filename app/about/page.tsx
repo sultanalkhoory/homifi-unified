@@ -19,7 +19,7 @@ export default function AboutPage() {
         >
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-light tracking-tight leading-[0.95] text-black">
             Smart homes<br />
-            shouldn't be<br />
+            shouldn\'t be<br />
             <span className="font-semibold">this complicated.</span>
           </h1>
           
@@ -116,7 +116,7 @@ export default function AboutPage() {
 
             <div className="space-y-8 text-xl text-gray-600 leading-relaxed">
               <p>
-                Multiple apps for one home. Proprietary ecosystems that trap you. Service providers who vanish after the sale. Support that makes you wish you'd never asked.
+                Multiple apps for one home. Proprietary ecosystems that trap you. Service providers who vanish after the sale. Support that makes you wish you\'d never asked.
               </p>
               <p>
                 We built what we wanted to buy.<br />
@@ -244,10 +244,10 @@ export default function AboutPage() {
             className="space-y-12"
           >
             {[
-              { rule: 'If it locks you in, we don't install it.' },
+              { rule: 'If it locks you in, we don\'t install it.' },
               { rule: 'If it needs seven apps, we find another way.' },
               { rule: 'If support disappears, so do we.' },
-              { rule: 'If it's complicated, it's not ready.' }
+              { rule: 'If it\'s complicated, it\'s not ready.' }
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -276,7 +276,7 @@ export default function AboutPage() {
           >
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-light leading-tight tracking-tight">
               Smart homes<br />
-              shouldn't make you<br />
+              shouldn\'t make you<br />
               <span className="font-semibold">feel stupid.</span>
             </h2>
             
