@@ -102,15 +102,15 @@ export default function AboutPage() {
               },
               {
                 title: 'You control everything',
-                desc: 'Your app. Your scenes. Your automations. No calling us to change a light schedule. We set it up, we train you, then it's yours.'
+                desc: "Your app. Your scenes. Your automations. No calling us to change a light schedule. We set it up, we train you, then it's yours."
               },
               {
                 title: 'We actually stick around',
-                desc: 'Three months of included support after install. WhatsApp us, we respond. Need help six months later? We're still here.'
+                desc: "Three months of included support after install. WhatsApp us, we respond. Need help six months later? We're still here."
               },
               {
                 title: 'We install universal systems',
-                desc: 'Not "our" system. Industry-standard devices that any integrator can service. We disappear tomorrow? You're not stuck.'
+                desc: "Not our system. Industry-standard devices that any integrator can service. We disappear tomorrow? You're not stuck."
               }
             ].map((item, i) => (
               <motion.div
