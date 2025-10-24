@@ -201,7 +201,7 @@ export default function AboutPage() {
               },
               {
                 space: 'Offices',
-                detail: 'Meeting rooms that work. Climate that adapts. Access that's secure but simple.'
+                detail: 'Meeting rooms that work. Climate that adapts. Access that\'s secure but simple.'
               },
               {
                 space: 'Hotels',
