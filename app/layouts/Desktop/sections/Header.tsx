@@ -8,7 +8,7 @@ import Footer from '@/app/layouts/Desktop/sections/Footer';
 export default function AboutPage() {
 
 // Animated counter for stats
-const AnimatedCounter = ({ end, suffix = '' }) => {
+const AnimatedCounter = ({ end, suffix = '' }: { end: number; suffix?: string }) => {
 const [count, setCount] = useState(0);
 
 useEffect(() => {
