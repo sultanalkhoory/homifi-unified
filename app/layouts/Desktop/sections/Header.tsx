@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 /**
  * Header Component with sequential menu animation
- * Lines meet first, then rotate into X
+ * Updated with Ecosystem page link
  */
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -29,9 +29,9 @@ export default function Header() {
             <Link href="/how-it-works" className="hover:text-black transition-colors duration-200">
               How It Works
             </Link>
-            <a href="/#ecosystem" className="hover:text-black transition-colors duration-200">
+            <Link href="/ecosystem" className="hover:text-black transition-colors duration-200">
               Ecosystem
-            </a>
+            </Link>
             <Link href="/about" className="hover:text-black transition-colors duration-200">
               About Us
             </Link>
@@ -63,11 +63,11 @@ export default function Header() {
               {/* Top Line */}
               <motion.span
                 animate={open ? {
-                  y: ["-3px", "0px", "0px"],
+                  y: ["3px", "0px", "0px"],
                   rotate: [0, 0, 45]
                 } : {
                   rotate: [45, 0, 0],
-                  y: ["0px", "0px", "-3px"]
+                  y: ["0px", "0px", "3px"]
                 }}
                 transition={{ 
                   duration: 0.4,
@@ -77,14 +77,21 @@ export default function Header() {
                 className="absolute w-full h-0.5 bg-white rounded-full"
               />
               
+              {/* Middle Line */}
+              <motion.span
+                animate={{ opacity: open ? 0 : 1 }}
+                transition={{ duration: 0.2 }}
+                className="absolute w-full h-0.5 bg-white rounded-full"
+              />
+              
               {/* Bottom Line */}
               <motion.span
                 animate={open ? {
-                  y: ["3px", "0px", "0px"],
+                  y: ["-3px", "0px", "0px"],
                   rotate: [0, 0, -45]
                 } : {
                   rotate: [-45, 0, 0],
-                  y: ["0px", "0px", "3px"]
+                  y: ["0px", "0px", "-3px"]
                 }}
                 transition={{ 
                   duration: 0.4,
@@ -123,20 +130,20 @@ export default function Header() {
                   >
                     How It Works
                   </Link>
-                  <a 
-                    href="/#ecosystem"
+                  <Link 
+                    href="/ecosystem"
                     onClick={() => setOpen(false)}
                     className="px-4 py-3 rounded-xl hover:bg-white/50 transition-colors text-gray-700 font-medium"
                   >
                     Ecosystem
-                  </a>
-                  <a 
+                  </Link>
+                  <Link 
                     href="/about"
                     onClick={() => setOpen(false)}
                     className="px-4 py-3 rounded-xl hover:bg-white/50 transition-colors text-gray-700 font-medium"
                   >
                     About Us
-                  </a>
+                  </Link>
                   
                   {/* Separator */}
                   <div className="h-px bg-gray-200 my-2" />
