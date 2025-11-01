@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import { motion } from "framer-motion";
 import { staggerUp, childUp } from "@/lib/animations";
 
@@ -62,9 +63,11 @@ export default function WorksWithFooter() {
                 shadow-[0_4px_10px_rgba(0,0,0,0.03),_0_1px_2px_rgba(0,0,0,0.01)]
                 border border-gray-50 transition-all duration-300"
               >
-                <img 
-                  src={platform.imgSrc} 
-                  alt={platform.alt} 
+                <Image
+                  src={platform.imgSrc}
+                  alt={platform.alt}
+                  width={120}
+                  height={40}
                   className="h-auto max-w-full object-contain max-h-10"
                 />
               </div>

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { fadeRise } from '@/lib/animations';
@@ -215,13 +216,14 @@ export default function PerfectHomeKey() {
                         
                         {/* Wallpaper */}
                         <div className="absolute inset-0">
-                          <img 
-                            src="/iphone-homekey-screen.png" 
+                          <Image
+                            src="/iphone-homekey-screen.png"
                             alt="iPhone Lock Screen"
-                            className="absolute w-full h-full object-cover"
+                            fill
+                            className="object-cover"
                             style={{ top: '-2%', imageRendering: 'crisp-edges', transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
-                            loading="eager"
-                            decoding="sync"
+                            sizes="(max-width: 640px) 120px, (max-width: 768px) 180px, 240px"
+                            priority
                           />
                         </div>
 

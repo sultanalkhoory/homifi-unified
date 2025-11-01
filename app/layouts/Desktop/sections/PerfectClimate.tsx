@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { fadeRise, scaleIn } from '@/lib/animations';
@@ -347,10 +348,12 @@ export default function PerfectClimate() {
             >
               <div className="relative w-full aspect-[16/10] rounded-3xl overflow-hidden shadow-2xl">
                 {/* Base room photo */}
-                <img
+                <Image
                   src="/Curtains-Open-Lights-On-Homepod.png"
                   alt="Smart climate controlled room"
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 58vw"
                 />
 
                 {/* Animated airflow effects overlay */}

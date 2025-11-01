@@ -8,6 +8,7 @@
 
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { fadeRise } from '@/lib/animations';
 import SmartIndicators from '@/components/SmartIndicators';
@@ -39,11 +40,29 @@ export default function HeroSection() {
               {/* Platform logos */}
               <div className="pt-2">
                 <div className="flex items-center gap-3">
-                  <img src="/badges/works-with-apple-home.webp" alt="Apple Home" className="h-6 opacity-80 hover:opacity-100 transition-opacity" />
+                  <Image
+                    src="/badges/works-with-apple-home.webp"
+                    alt="Apple Home"
+                    width={84}
+                    height={24}
+                    className="h-6 w-auto opacity-80 hover:opacity-100 transition-opacity"
+                  />
                   <span className="text-gray-300">or</span>
-                  <img src="/badges/works-with-google-home.webp" alt="Google Home" className="h-6 opacity-80 hover:opacity-100 transition-opacity" />
+                  <Image
+                    src="/badges/works-with-google-home.webp"
+                    alt="Google Home"
+                    width={84}
+                    height={24}
+                    className="h-6 w-auto opacity-80 hover:opacity-100 transition-opacity"
+                  />
                   <span className="text-gray-300">or</span>
-                  <img src="/badges/works-with-alexa.webp" alt="Alexa" className="h-6 opacity-80 hover:opacity-100 transition-opacity" />
+                  <Image
+                    src="/badges/works-with-alexa.webp"
+                    alt="Alexa"
+                    width={84}
+                    height={24}
+                    className="h-6 w-auto opacity-80 hover:opacity-100 transition-opacity"
+                  />
                 </div>
               </div>
             </div>
@@ -80,12 +99,15 @@ export default function HeroSection() {
             transition={{ duration: 0.7, ease: 'easeOut' }}
           >
             <div className="relative aspect-[16/10] rounded-3xl overflow-hidden shadow-2xl">
-              <img
+              <Image
                 src="/Curtains-Open-Lights-On-Homepod.png"
                 alt="Modern smart home living room"
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 66vw"
+                priority
               />
-              <div className="absolute inset-0">
+              <div className="absolute inset-0 z-10">
                 <SmartIndicators />
               </div>
             </div>

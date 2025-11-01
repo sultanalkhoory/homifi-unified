@@ -13,6 +13,7 @@
 
 'use client';
 
+import Image from 'next/image';
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 
@@ -153,13 +154,16 @@ export default function HeroSection() {
             }}
           >
             <div className="relative w-full h-full bg-white rounded-[37px] overflow-hidden" style={{ transform: 'translate3d(0,0,0)' }}>
-              <img
+              <Image
                 src="/Curtains-Open-Lights-On.png"
                 alt="HomiFi App"
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
                 style={{ objectPosition: '45% center', transform: 'translate3d(0,0,0)' }}
+                sizes="230px"
+                priority
               />
-              
+
               {/* Dynamic Island - scaled proportionally */}
               <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-[80px] h-[21px] bg-black rounded-full z-30" />
             </div>
