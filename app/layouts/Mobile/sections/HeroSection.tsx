@@ -188,7 +188,19 @@ export default function HeroSection() {
           >
             <button
               onClick={() => setActiveBadge(activeBadge === badge.id ? null : badge.id)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setActiveBadge(activeBadge === badge.id ? null : badge.id);
+                }
+                if (e.key === 'Escape' && activeBadge === badge.id) {
+                  setActiveBadge(null);
+                }
+              }}
               className="relative"
+              aria-label={badge.label}
+              aria-expanded={activeBadge === badge.id}
+              aria-describedby={activeBadge === badge.id ? `badge-${badge.id}-detail` : undefined}
             >
               {/* Badge Circle - stronger glow */}
               <motion.div
@@ -261,7 +273,9 @@ export default function HeroSection() {
                       ...(badge.position.left ? { left: '0' } : { right: '0' }),
                     }}
                   >
-                    <div 
+                    <div
+                      id={`badge-${badge.id}-detail`}
+                      role="tooltip"
                       className="rounded-xl px-3.5 py-2.5 backdrop-blur-2xl shadow-xl text-white"
                       style={{
                         background: 'linear-gradient(135deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0.20) 100%)',
