@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import WorksWithFooter from '@/components/WorksWithFooter';
 
 /**
@@ -24,7 +25,13 @@ export default function Footer() {
             {/* Logo */}
             <div className="col-span-1 md:col-span-2">
               <Link href="/" className="inline-block">
-                <img src="/homifi-logo.png" alt="HomiFi" className="h-8" />
+                <Image
+                  src="/homifi-logo.png"
+                  alt="HomiFi"
+                  width={120}
+                  height={32}
+                  className="h-8 w-auto"
+                />
               </Link>
               <p className="mt-4 text-gray-500 text-sm max-w-xs">
                 Apple-first integration for lighting, privacy, climate, and security — 

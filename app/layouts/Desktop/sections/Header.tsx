@@ -1,5 +1,6 @@
 'use client';
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -18,7 +19,14 @@ export default function Header() {
           
           {/* Logo / Brand */}
           <Link href="/" className="pl-2 flex items-center gap-2">
-            <img src="/homifi-logo.png" alt="HomiFi" className="h-7" />
+            <Image
+              src="/homifi-logo.png"
+              alt="HomiFi"
+              width={105}
+              height={28}
+              className="h-7 w-auto"
+              priority
+            />
           </Link>
           
           {/* Desktop Navigation Links */}

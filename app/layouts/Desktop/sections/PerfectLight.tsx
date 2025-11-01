@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { fadeRise, scaleIn } from '@/lib/animations';
@@ -197,27 +198,31 @@ export default function PerfectLight() {
               Both images are positioned absolutely to enable smooth opacity transitions.
             */}
             <div className="relative w-full aspect-[16/10] rounded-3xl overflow-hidden">
-              
+
               {/* Lights ON image - visible when lightsOn === true */}
-              <img
+              <Image
                 src="/Curtains-Closed-Lights-On.png"
                 alt="Room with lights on"
+                fill
                 className={`
-                  absolute inset-0 w-full h-full object-cover 
-                  transition-opacity duration-[750ms] ease-out 
+                  object-cover
+                  transition-opacity duration-[750ms] ease-out
                   ${lightsOn ? 'opacity-100' : 'opacity-0'}
                 `}
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
-              
+
               {/* Lights OFF image - visible when lightsOn === false */}
-              <img
+              <Image
                 src="/Curtains-Closed-Lights-Off.png"
                 alt="Room with lights off"
+                fill
                 className={`
-                  absolute inset-0 w-full h-full object-cover 
-                  transition-opacity duration-[750ms] ease-out 
+                  object-cover
+                  transition-opacity duration-[750ms] ease-out
                   ${lightsOn ? 'opacity-0' : 'opacity-100'}
                 `}
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
           </motion.div>

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { fadeRise } from '@/lib/animations';
@@ -116,12 +117,14 @@ export default function PerfectSecurity() {
               
               {/* TV Screen */}
               <div className="relative aspect-[16/9] rounded-none overflow-hidden bg-black">
-                
+
                 {/* Apple TV UI Background */}
-                <img
+                <Image
                   src="/apple-tv-ui.png"
                   alt="Apple TV Home Screen"
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 90vw, 50vw"
                 />
 
                 {/* Subtle screen glow */}
@@ -175,11 +178,13 @@ export default function PerfectSecurity() {
                         <div className="flex flex-col sm:flex-row gap-2 md:gap-3 mb-2.5 md:mb-3">
                           {/* Doorbell Camera Thumbnail */}
                           <div className="flex-shrink-0 mx-auto sm:mx-0">
-                            <div className="w-16 h-16 md:w-24 md:h-24 rounded-xl overflow-hidden shadow-lg border-2 border-white/40">
-                              <img 
-                                src="/doorbell-visitor.png" 
+                            <div className="relative w-16 h-16 md:w-24 md:h-24 rounded-xl overflow-hidden shadow-lg border-2 border-white/40">
+                              <Image
+                                src="/doorbell-visitor.png"
                                 alt="Front door camera view"
-                                className="w-full h-full object-cover"
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 64px, 96px"
                               />
                             </div>
                           </div>
