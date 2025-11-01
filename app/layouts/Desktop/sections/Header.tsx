@@ -1,16 +1,52 @@
 'use client';
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 /**
  * Header Component with sequential menu animation
  * Updated with Ecosystem page link
+ * Includes keyboard navigation and focus management
  */
 export default function Header() {
   const [open, setOpen] = useState(false);
-  
+  const menuRef = useRef<HTMLDivElement>(null);
+  const firstMenuItemRef = useRef<HTMLAnchorElement>(null);
+
+  // Handle Escape key to close menu
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && open) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [open]);
+
+  // Focus first menu item when menu opens
+  useEffect(() => {
+    if (open && firstMenuItemRef.current) {
+      firstMenuItemRef.current.focus();
+    }
+  }, [open]);
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+
+    if (open) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [open]);
+
   return (
     <header className="fixed top-6 inset-x-0 z-50">
       <div className="mx-auto max-w-6xl px-4">
@@ -116,6 +152,7 @@ export default function Header() {
         <AnimatePresence>
           {open && (
             <motion.div
+              ref={menuRef}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
@@ -124,44 +161,45 @@ export default function Header() {
             >
               <div className="frosted rounded-2xl p-4 shadow-xl">
                 <nav className="flex flex-col gap-3">
-                  <a 
-                    href="/#features" 
+                  <a
+                    ref={firstMenuItemRef}
+                    href="/#features"
                     onClick={() => setOpen(false)}
-                    className="px-4 py-3 rounded-xl hover:bg-white/50 transition-colors text-gray-700 font-medium"
+                    className="px-4 py-3 rounded-xl hover:bg-white/50 transition-colors text-gray-700 font-medium focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
                   >
                     Features
                   </a>
-                  <Link 
+                  <Link
                     href="/how-it-works"
                     onClick={() => setOpen(false)}
-                    className="px-4 py-3 rounded-xl hover:bg-white/50 transition-colors text-gray-700 font-medium"
+                    className="px-4 py-3 rounded-xl hover:bg-white/50 transition-colors text-gray-700 font-medium focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
                   >
                     How It Works
                   </Link>
-                  <Link 
+                  <Link
                     href="/ecosystem"
                     onClick={() => setOpen(false)}
-                    className="px-4 py-3 rounded-xl hover:bg-white/50 transition-colors text-gray-700 font-medium"
+                    className="px-4 py-3 rounded-xl hover:bg-white/50 transition-colors text-gray-700 font-medium focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
                   >
                     Ecosystem
                   </Link>
-                  <Link 
+                  <Link
                     href="/about"
                     onClick={() => setOpen(false)}
-                    className="px-4 py-3 rounded-xl hover:bg-white/50 transition-colors text-gray-700 font-medium"
+                    className="px-4 py-3 rounded-xl hover:bg-white/50 transition-colors text-gray-700 font-medium focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
                   >
                     About Us
                   </Link>
-                  
+
                   {/* Separator */}
                   <div className="h-px bg-gray-200 my-2" />
-                  
+
                   {/* Mobile CTA */}
-                  <a 
+                  <a
                     href="/#contact"
                     onClick={() => setOpen(false)}
                     className="px-4 py-3 rounded-xl bg-black text-white text-center font-semibold
-                      hover:bg-gray-900 active:scale-95 transition-all"
+                      hover:bg-gray-900 active:scale-95 transition-all focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
                   >
                     Get Started
                   </a>
