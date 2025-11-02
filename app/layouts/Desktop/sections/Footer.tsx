@@ -3,12 +3,14 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import WorksWithFooter from '@/components/WorksWithFooter';
+import { useContactModal } from '@/contexts/ContactModalContext';
 
 /**
  * Footer Component with proper spacing for mobile
  */
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { openModal } = useContactModal();
 
   return (
     <footer className="mt-16 md:mt-auto">
@@ -54,8 +56,14 @@ export default function Footer() {
             <div>
               <h3 className="font-medium text-sm mb-4">Contact</h3>
               <ul className="space-y-2">
-                <li><Link href="#contact" className="text-gray-500 text-sm hover:text-black">Get in Touch</Link></li>
-                <li><Link href="#support" className="text-gray-500 text-sm hover:text-black">Support</Link></li>
+                <li>
+                  <button
+                    onClick={openModal}
+                    className="text-gray-500 text-sm hover:text-black transition-colors"
+                  >
+                    Contact Us
+                  </button>
+                </li>
                 <li><a href="mailto:info@homifi.ae" className="text-gray-500 text-sm hover:text-black">info@homifi.ae</a></li>
               </ul>
             </div>

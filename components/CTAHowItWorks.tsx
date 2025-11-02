@@ -2,14 +2,17 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useContactModal } from '@/contexts/ContactModalContext';
 
 /**
  * CTA Section - Links to How It Works page
- * 
+ *
  * Matches the style of the CTA on the How It Works page
  * Clean, centered, Apple-minimal
  */
 export default function CTAHowItWorks() {
+  const { openModal } = useContactModal();
+
   return (
     <section className="flex items-center justify-center px-4 py-16 md:py-24 bg-gradient-to-b from-white to-gray-50">
       <motion.div
@@ -34,6 +37,16 @@ export default function CTAHowItWorks() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
         </Link>
+
+        {/* Subtle contact link */}
+        <div className="mt-6">
+          <button
+            onClick={openModal}
+            className="text-sm text-gray-600 hover:text-black transition-colors underline underline-offset-4"
+          >
+            Or contact us to get started
+          </button>
+        </div>
       </motion.div>
     </section>
   );
