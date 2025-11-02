@@ -30,13 +30,18 @@ export default function HeroSection() {
             <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-black leading-tight">
               Your home, perfectly automated.
             </h1>
-            
+
+            {/* Subheadline - Service Clarity */}
+            <p className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-medium text-gray-900">
+              Professionally installed in Dubai.
+            </p>
+
             {/* Value Proposition */}
             <div className="space-y-3">
-              <p className="text-gray-600 text-base sm:text-lg lg:text-xl leading-relaxed">
-                Set up automation in minutes. Control lighting, climate, and security with simple taps.
+              <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
+                Complete design, installation, and support. We handle everything from lighting and climate to security and privacy.
               </p>
-              
+
               {/* Platform logos */}
               <div className="pt-2">
                 <div className="flex items-center gap-3">
