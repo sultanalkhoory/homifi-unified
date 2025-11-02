@@ -124,10 +124,10 @@ export default function DesktopEcosystem() {
               <div className="space-y-6">
                 <div>
                   <h3 className="text-xl font-semibold text-black mb-2">
-                    Professional WiFi Coverage
+                    Professional WiFi
                   </h3>
                   <p className="text-gray-600">
-                    No dead zones. No dropouts. Enterprise-grade access points that cover every corner of your property.
+                    No dead zones. Strong signal everywhere. Access points that actually work.
                   </p>
                 </div>
 
@@ -136,7 +136,7 @@ export default function DesktopEcosystem() {
                     Built-In Security
                   </h3>
                   <p className="text-gray-600">
-                    VLANs to isolate IoT devices. Firewall rules. Threat detection. Your network is locked down.
+                    Your devices stay separate from your network. Built-in firewall keeps things safe.
                   </p>
                 </div>
               </div>
@@ -198,7 +198,9 @@ export default function DesktopEcosystem() {
             <div className="grid md:grid-cols-3 gap-8 mb-10">
 
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-yellow-100 to-orange-100 rounded-2xl mx-auto mb-4"></div>
+                <div className="w-16 h-16 bg-gradient-to-br from-yellow-100 to-orange-100 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-2xl font-bold text-orange-600">L</span>
+                </div>
                 <h3 className="font-semibold text-black mb-2">Lighting</h3>
                 <p className="text-sm text-gray-600">
                   Switches, dimmers, smart bulbs
@@ -206,7 +208,9 @@ export default function DesktopEcosystem() {
               </div>
 
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl mx-auto mb-4"></div>
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-2xl font-bold text-cyan-600">C</span>
+                </div>
                 <h3 className="font-semibold text-black mb-2">Climate</h3>
                 <p className="text-sm text-gray-600">
                   AC control, thermostats, sensors
@@ -214,7 +218,9 @@ export default function DesktopEcosystem() {
               </div>
 
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl mx-auto mb-4"></div>
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-2xl font-bold text-purple-600">W</span>
+                </div>
                 <h3 className="font-semibold text-black mb-2">Curtains & Blinds</h3>
                 <p className="text-sm text-gray-600">
                   Motorized curtains, automated blinds
@@ -222,7 +228,9 @@ export default function DesktopEcosystem() {
               </div>
 
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-red-100 to-orange-100 rounded-2xl mx-auto mb-4"></div>
+                <div className="w-16 h-16 bg-gradient-to-br from-red-100 to-orange-100 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-2xl font-bold text-red-600">S</span>
+                </div>
                 <h3 className="font-semibold text-black mb-2">Security</h3>
                 <p className="text-sm text-gray-600">
                   Door locks, sensors, access control
@@ -230,7 +238,9 @@ export default function DesktopEcosystem() {
               </div>
 
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-green-100 to-emerald-100 rounded-2xl mx-auto mb-4"></div>
+                <div className="w-16 h-16 bg-gradient-to-br from-green-100 to-emerald-100 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-2xl font-bold text-green-600">V</span>
+                </div>
                 <h3 className="font-semibold text-black mb-2">Cameras</h3>
                 <p className="text-sm text-gray-600">
                   Doorbells, security cameras
@@ -238,7 +248,9 @@ export default function DesktopEcosystem() {
               </div>
 
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-gray-100 to-slate-100 rounded-2xl mx-auto mb-4"></div>
+                <div className="w-16 h-16 bg-gradient-to-br from-gray-100 to-slate-100 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-2xl font-bold text-slate-600">M</span>
+                </div>
                 <h3 className="font-semibold text-black mb-2">Sensors</h3>
                 <p className="text-sm text-gray-600">
                   Motion, door/window, leak detection
@@ -288,24 +300,24 @@ export default function DesktopEcosystem() {
               <p>
                 <strong className="text-black">UniFi</strong> handles your network.
                 <br />
-                <span className="text-gray-600">Professional. Reliable. Secure.</span>
+                <span className="text-gray-700">Professional. Reliable. Secure.</span>
               </p>
 
               <p>
                 <strong className="text-black">LifeSmart</strong> runs your devices.
                 <br />
-                <span className="text-gray-600">Open protocols. Industry standard.</span>
+                <span className="text-gray-700">Open protocols. Industry standard.</span>
               </p>
 
               <p>
                 <strong className="text-black">Apple, Google, or Alexa</strong> controls it all.
                 <br />
-                <span className="text-gray-600">Your choice. Your system.</span>
+                <span className="text-gray-700">Your choice. Your system.</span>
               </p>
             </div>
 
             <div className="pt-8 border-t border-gray-200">
-              <p className="text-xl text-gray-600">
+              <p className="text-xl text-gray-700">
                 No proprietary lock-in. No hidden dependencies.
                 <br />
                 <span className="text-2xl text-black font-semibold">Just a system that works.</span>
