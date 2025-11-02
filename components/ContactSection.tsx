@@ -111,7 +111,7 @@ export default function ContactSection() {
                   name="name"
                   id="name"
                   required
-                  placeholder="Ahmed Al-Mansoori"
+                  placeholder="Your Email"
                   disabled={status === 'loading'}
                   className="w-full px-4 py-3 rounded-xl border border-gray-200
                     focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20
@@ -130,7 +130,7 @@ export default function ContactSection() {
                   name="email"
                   id="email"
                   required
-                  placeholder="ahmed@example.com"
+                  placeholder="YourEmail@example.com"
                   disabled={status === 'loading'}
                   className="w-full px-4 py-3 rounded-xl border border-gray-200
                     focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20
