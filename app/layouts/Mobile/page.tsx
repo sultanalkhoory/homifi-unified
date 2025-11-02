@@ -10,7 +10,7 @@ import SecuritySection from '@/components/sharedsections/PerfectSecurity';
 import PerfectHomeKey from '@/components/sharedsections/PerfectHomeKey';
 import PerfectCoverage from '@/components/sharedsections/PerfectCoverage';
 import CTAHowItWorks from '@/components/CTAHowItWorks';
-import ContactSection from '@/components/ContactSection';
+import ContactCTA from '@/components/ContactCTA';
 import Header from '@/app/layouts/Desktop/sections/Header';
 import Footer from '@/app/layouts/Desktop/sections/Footer';
 
@@ -88,9 +88,9 @@ export default function Page() {
         <CTAHowItWorks />
       </motion.div>
 
-      {/* Contact Form */}
+      {/* Contact CTA */}
       <motion.div {...sectionAnimation}>
-        <ContactSection />
+        <ContactCTA />
       </motion.div>
 
       {/* Footer - no animation */}

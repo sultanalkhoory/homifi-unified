@@ -12,7 +12,7 @@ import PerfectSecurity from '@/components/sharedsections/PerfectSecurity';
 import PerfectHomeKey from '@/components/sharedsections/PerfectHomeKey';
 import PerfectCoverage from '@/components/sharedsections/PerfectCoverage';
 import CTAHowItWorks from '@/components/CTAHowItWorks';
-import ContactSection from '@/components/ContactSection';
+import ContactCTA from '@/components/ContactCTA';
 
 export default function Page() {
   // Apple-style spring physics for smooth, natural entrance
@@ -88,9 +88,9 @@ export default function Page() {
         <CTAHowItWorks />
       </motion.div>
 
-      {/* Contact Form Section */}
+      {/* Contact CTA Section */}
       <motion.div {...sectionAnimation}>
-        <ContactSection />
+        <ContactCTA />
       </motion.div>
 
       {/* Footer stays visible, no animation */}

@@ -9,10 +9,12 @@ import StepDesign from './components/StepDesign';
 import StepInstall from './components/StepInstall';
 import StepCustomize from './components/StepCustomize';
 import StepSupport from './components/StepSupport';
+import { useContactModal } from '@/contexts/ContactModalContext';
 
 export default function HowItWorksPage() {
   const [activeStep, setActiveStep] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const { openModal } = useContactModal();
 
   const steps = [
     { 
@@ -187,15 +189,15 @@ export default function HowItWorksPage() {
           <p className="text-lg md:text-xl text-gray-600 mb-10">
             Professional installation. Simple setup. Perfect automation.
           </p>
-          <a
-            href="/#hero"
+          <button
+            onClick={openModal}
             className="inline-flex items-center gap-2 px-8 py-4 bg-black text-white rounded-full text-lg font-medium hover:bg-gray-900 hover:scale-105 transition-all duration-200 shadow-xl"
           >
             Get Started
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </a>
+          </button>
         </motion.div>
       </section>
 

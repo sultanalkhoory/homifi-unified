@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useContactModal } from "@/contexts/ContactModalContext";
 
 /**
  * Header Component with sequential menu animation
@@ -13,6 +14,7 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const firstMenuItemRef = useRef<HTMLAnchorElement>(null);
+  const { openModal } = useContactModal();
 
   // Handle Escape key to close menu
   useEffect(() => {
@@ -82,9 +84,9 @@ export default function Header() {
           </nav>
           
           {/* Desktop CTA Button */}
-          <a 
-            href="/#contact" 
-            className="ml-auto hidden md:inline-flex items-center rounded-full 
+          <button
+            onClick={openModal}
+            className="ml-auto hidden md:inline-flex items-center rounded-full
               bg-white border border-black/20 text-black text-sm px-4 py-2
               hover:bg-gray-50 hover:border-black/30 hover:scale-[1.02]
               active:scale-[0.98]
@@ -92,7 +94,7 @@ export default function Header() {
               shadow-sm hover:shadow-md"
           >
             Get Started
-          </a>
+          </button>
           
           {/* Mobile Menu Button - Sequential animation */}
           <button 
@@ -195,14 +197,16 @@ export default function Header() {
                   <div className="h-px bg-gray-200 my-2" />
 
                   {/* Mobile CTA */}
-                  <a
-                    href="/#contact"
-                    onClick={() => setOpen(false)}
+                  <button
+                    onClick={() => {
+                      setOpen(false);
+                      openModal();
+                    }}
                     className="px-4 py-3 rounded-xl bg-black text-white text-center font-semibold
-                      hover:bg-gray-900 active:scale-95 transition-all focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+                      hover:bg-gray-900 active:scale-95 transition-all focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black w-full"
                   >
                     Get Started
-                  </a>
+                  </button>
                 </nav>
               </div>
             </motion.div>
