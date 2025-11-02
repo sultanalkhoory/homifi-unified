@@ -181,7 +181,9 @@ export default function MobileEcosystem() {
             <div className="grid grid-cols-2 gap-6 mb-8">
 
               <div className="text-center">
-                <div className="w-14 h-14 bg-gradient-to-br from-yellow-100 to-orange-100 rounded-2xl mx-auto mb-3"></div>
+                <div className="w-14 h-14 bg-gradient-to-br from-yellow-100 to-orange-100 rounded-2xl mx-auto mb-3 flex items-center justify-center">
+                  <span className="text-2xl">💡</span>
+                </div>
                 <h3 className="text-sm font-semibold text-black mb-1">Lighting</h3>
                 <p className="text-xs text-gray-600">
                   Switches & bulbs
@@ -189,7 +191,9 @@ export default function MobileEcosystem() {
               </div>
 
               <div className="text-center">
-                <div className="w-14 h-14 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl mx-auto mb-3"></div>
+                <div className="w-14 h-14 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl mx-auto mb-3 flex items-center justify-center">
+                  <span className="text-2xl">❄️</span>
+                </div>
                 <h3 className="text-sm font-semibold text-black mb-1">Climate</h3>
                 <p className="text-xs text-gray-600">
                   AC & sensors
@@ -197,7 +201,9 @@ export default function MobileEcosystem() {
               </div>
 
               <div className="text-center">
-                <div className="w-14 h-14 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl mx-auto mb-3"></div>
+                <div className="w-14 h-14 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl mx-auto mb-3 flex items-center justify-center">
+                  <span className="text-2xl">🪟</span>
+                </div>
                 <h3 className="text-sm font-semibold text-black mb-1">Curtains</h3>
                 <p className="text-xs text-gray-600">
                   Motorized blinds
@@ -205,7 +211,9 @@ export default function MobileEcosystem() {
               </div>
 
               <div className="text-center">
-                <div className="w-14 h-14 bg-gradient-to-br from-red-100 to-orange-100 rounded-2xl mx-auto mb-3"></div>
+                <div className="w-14 h-14 bg-gradient-to-br from-red-100 to-orange-100 rounded-2xl mx-auto mb-3 flex items-center justify-center">
+                  <span className="text-2xl">🔐</span>
+                </div>
                 <h3 className="text-sm font-semibold text-black mb-1">Security</h3>
                 <p className="text-xs text-gray-600">
                   Locks & sensors
@@ -213,7 +221,9 @@ export default function MobileEcosystem() {
               </div>
 
               <div className="text-center">
-                <div className="w-14 h-14 bg-gradient-to-br from-green-100 to-emerald-100 rounded-2xl mx-auto mb-3"></div>
+                <div className="w-14 h-14 bg-gradient-to-br from-green-100 to-emerald-100 rounded-2xl mx-auto mb-3 flex items-center justify-center">
+                  <span className="text-2xl">📹</span>
+                </div>
                 <h3 className="text-sm font-semibold text-black mb-1">Cameras</h3>
                 <p className="text-xs text-gray-600">
                   Doorbells & cams
@@ -221,7 +231,9 @@ export default function MobileEcosystem() {
               </div>
 
               <div className="text-center">
-                <div className="w-14 h-14 bg-gradient-to-br from-gray-100 to-slate-100 rounded-2xl mx-auto mb-3"></div>
+                <div className="w-14 h-14 bg-gradient-to-br from-gray-100 to-slate-100 rounded-2xl mx-auto mb-3 flex items-center justify-center">
+                  <span className="text-2xl">📡</span>
+                </div>
                 <h3 className="text-sm font-semibold text-black mb-1">Sensors</h3>
                 <p className="text-xs text-gray-600">
                   Motion & leak
@@ -271,24 +283,24 @@ export default function MobileEcosystem() {
               <p>
                 <strong className="text-black">UniFi</strong> handles your network.
                 <br />
-                <span className="text-gray-600 text-sm">Professional. Reliable. Secure.</span>
+                <span className="text-black text-sm">Professional. Reliable. Secure.</span>
               </p>
 
               <p>
                 <strong className="text-black">LifeSmart</strong> runs your devices.
                 <br />
-                <span className="text-gray-600 text-sm">Open protocols. Industry standard.</span>
+                <span className="text-black text-sm">Open protocols. Industry standard.</span>
               </p>
 
               <p>
                 <strong className="text-black">Apple, Google, or Alexa</strong> controls it.
                 <br />
-                <span className="text-gray-600 text-sm">Your choice. Your system.</span>
+                <span className="text-black text-sm">Your choice. Your system.</span>
               </p>
             </div>
 
             <div className="pt-6 border-t border-gray-200">
-              <p className="text-gray-600 text-sm mb-6">
+              <p className="text-black text-sm mb-6">
                 No proprietary lock-in.
                 <br />
                 <span className="text-lg text-black font-semibold">Just a system that works.</span>
