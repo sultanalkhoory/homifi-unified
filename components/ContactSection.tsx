@@ -30,20 +30,42 @@ export default function ContactSection() {
         body: JSON.stringify(data),
       });
 
-      if (response.ok) {
+      // Try to parse JSON response
+      let result;
+      try {
+        result = await response.json();
+      } catch (parseError) {
+        // If JSON parsing fails but response is ok, consider it success
+        if (response.ok || response.status === 200) {
+          setStatus('success');
+          e.currentTarget.reset();
+          setTimeout(() => setStatus('idle'), 5000);
+          return;
+        }
+        throw new Error('Failed to parse server response');
+      }
+
+      // Check if request was successful
+      if (response.ok || response.status === 200 || result.success) {
         setStatus('success');
         e.currentTarget.reset();
 
         // Reset to idle after 5 seconds
         setTimeout(() => setStatus('idle'), 5000);
       } else {
-        const error = await response.json();
-        setErrorMessage(error.error || 'Something went wrong');
+        setErrorMessage(result.error || 'Something went wrong');
         setStatus('error');
+        
+        // Reset error after 6 seconds
+        setTimeout(() => setStatus('idle'), 6000);
       }
-    } catch (error) {
+    } catch (error: any) {
+      console.error('Form submission error:', error);
       setErrorMessage('Network error. Please try again.');
       setStatus('error');
+      
+      // Reset error after 6 seconds
+      setTimeout(() => setStatus('idle'), 6000);
     }
   }
 
