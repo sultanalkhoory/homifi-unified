@@ -30,20 +30,42 @@ export default function ContactSection() {
         body: JSON.stringify(data),
       });
 
-      if (response.ok) {
+      // Try to parse JSON response
+      let result;
+      try {
+        result = await response.json();
+      } catch (parseError) {
+        // If JSON parsing fails but response is ok, consider it success
+        if (response.ok || response.status === 200) {
+          setStatus('success');
+          e.currentTarget.reset();
+          setTimeout(() => setStatus('idle'), 5000);
+          return;
+        }
+        throw new Error('Failed to parse server response');
+      }
+
+      // Check if request was successful
+      if (response.ok || response.status === 200 || result.success) {
         setStatus('success');
         e.currentTarget.reset();
 
         // Reset to idle after 5 seconds
         setTimeout(() => setStatus('idle'), 5000);
       } else {
-        const error = await response.json();
-        setErrorMessage(error.error || 'Something went wrong');
+        setErrorMessage(result.error || 'Something went wrong');
         setStatus('error');
+        
+        // Reset error after 6 seconds
+        setTimeout(() => setStatus('idle'), 6000);
       }
-    } catch (error) {
+    } catch (error: any) {
+      console.error('Form submission error:', error);
       setErrorMessage('Network error. Please try again.');
       setStatus('error');
+      
+      // Reset error after 6 seconds
+      setTimeout(() => setStatus('idle'), 6000);
     }
   }
 
@@ -89,7 +111,7 @@ export default function ContactSection() {
                   name="name"
                   id="name"
                   required
-                  placeholder="Ahmed Al-Mansoori"
+                  placeholder="Your Email"
                   disabled={status === 'loading'}
                   className="w-full px-4 py-3 rounded-xl border border-gray-200
                     focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20
@@ -108,7 +130,7 @@ export default function ContactSection() {
                   name="email"
                   id="email"
                   required
-                  placeholder="ahmed@example.com"
+                  placeholder="YourEmail@example.com"
                   disabled={status === 'loading'}
                   className="w-full px-4 py-3 rounded-xl border border-gray-200
                     focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20
