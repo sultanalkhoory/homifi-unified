@@ -32,8 +32,8 @@ export default function HeroSection() {
             </h1>
 
             {/* Subheadline - Service Clarity */}
-            <p className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-medium text-gray-900 leading-snug">
-              Designed and installed<br className="hidden lg:inline" /> in Dubai.
+            <p className="text-lg sm:text-xl md:text-xl lg:text-2xl font-normal text-gray-600 leading-relaxed">
+              Professional smart home installation in Dubai.
             </p>
 
             {/* Platform logos */}
