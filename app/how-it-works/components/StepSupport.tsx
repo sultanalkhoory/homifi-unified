@@ -1,19 +1,21 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useContactModal } from '@/contexts/ContactModalContext';
 
 /**
  * Step 4: We Support You
  * All elements visible - no cut-off
  */
 
-export default function StepSupport({ 
-  isActive = true, 
-  fullScreen = true 
-}: { 
+export default function StepSupport({
+  isActive = true,
+  fullScreen = true
+}: {
   isActive?: boolean;
   fullScreen?: boolean;
 }) {
+  const { openModal } = useContactModal();
   
   const supportFeatures = [
     {
@@ -141,7 +143,10 @@ export default function StepSupport({
               <p className="text-xs md:text-sm text-gray-600 mb-2 md:mb-3">
                 After 3 months, flexible care plans available
               </p>
-              <button className="inline-flex items-center gap-2 px-4 md:px-5 py-2 md:py-2.5 bg-black text-white rounded-full text-sm font-medium hover:bg-gray-900 hover:scale-105 transition-all duration-200 shadow-md">
+              <button
+                onClick={openModal}
+                className="inline-flex items-center gap-2 px-4 md:px-5 py-2 md:py-2.5 bg-black text-white rounded-full text-sm font-medium hover:bg-gray-900 hover:scale-105 transition-all duration-200 shadow-md"
+              >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                 </svg>
