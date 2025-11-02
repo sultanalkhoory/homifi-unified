@@ -130,7 +130,7 @@ export default function ContactModal() {
                         disabled={status === 'loading'}
                         className="w-full px-4 py-3 rounded-xl border border-gray-200
                           focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20
-                          outline-none transition-all placeholder:text-gray-400
+                          outline-none transition-all text-gray-900 placeholder:text-gray-400
                           disabled:opacity-50 disabled:cursor-not-allowed"
                       />
                     </div>
@@ -145,11 +145,11 @@ export default function ContactModal() {
                         name="email"
                         id="modal-email"
                         required
-                        placeholder="ahmed@example.com"
+                        placeholder="your.email@example.com"
                         disabled={status === 'loading'}
                         className="w-full px-4 py-3 rounded-xl border border-gray-200
                           focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20
-                          outline-none transition-all placeholder:text-gray-400
+                          outline-none transition-all text-gray-900 placeholder:text-gray-400
                           disabled:opacity-50 disabled:cursor-not-allowed"
                       />
                     </div>
@@ -168,7 +168,7 @@ export default function ContactModal() {
                       disabled={status === 'loading'}
                       className="w-full px-4 py-3 rounded-xl border border-gray-200
                         focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20
-                        outline-none transition-all placeholder:text-gray-400
+                        outline-none transition-all text-gray-900 placeholder:text-gray-400
                         disabled:opacity-50 disabled:cursor-not-allowed"
                     />
                   </div>
@@ -211,7 +211,7 @@ export default function ContactModal() {
                       disabled={status === 'loading'}
                       className="w-full px-4 py-3 rounded-xl border border-gray-200
                         focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20
-                        outline-none transition-all resize-none placeholder:text-gray-400
+                        outline-none transition-all resize-none text-gray-900 placeholder:text-gray-400
                         disabled:opacity-50 disabled:cursor-not-allowed"
                     />
                   </div>
