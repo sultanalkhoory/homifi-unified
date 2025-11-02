@@ -32,43 +32,36 @@ export default function HeroSection() {
             </h1>
 
             {/* Subheadline - Service Clarity */}
-            <p className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-medium text-gray-900">
-              Professionally installed in Dubai.
+            <p className="text-lg sm:text-xl md:text-xl lg:text-2xl font-normal text-gray-600 leading-relaxed">
+              Professional smart home installation in Dubai.
             </p>
 
-            {/* Value Proposition */}
-            <div className="space-y-3">
-              <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
-                Complete design, installation, and support. We handle everything from lighting and climate to security and privacy.
-              </p>
-
-              {/* Platform logos */}
-              <div className="pt-2">
-                <div className="flex items-center gap-3">
-                  <Image
-                    src="/badges/works-with-apple-home.webp"
-                    alt="Apple Home"
-                    width={84}
-                    height={24}
-                    className="h-6 w-auto opacity-80 hover:opacity-100 transition-opacity"
-                  />
-                  <span className="text-gray-300">or</span>
-                  <Image
-                    src="/badges/works-with-google-home.webp"
-                    alt="Google Home"
-                    width={84}
-                    height={24}
-                    className="h-6 w-auto opacity-80 hover:opacity-100 transition-opacity"
-                  />
-                  <span className="text-gray-300">or</span>
-                  <Image
-                    src="/badges/works-with-alexa.webp"
-                    alt="Alexa"
-                    width={84}
-                    height={24}
-                    className="h-6 w-auto opacity-80 hover:opacity-100 transition-opacity"
-                  />
-                </div>
+            {/* Platform logos */}
+            <div className="pt-2">
+              <div className="flex items-center gap-3">
+                <Image
+                  src="/badges/works-with-apple-home.webp"
+                  alt="Apple Home"
+                  width={84}
+                  height={24}
+                  className="h-6 w-auto opacity-80 hover:opacity-100 transition-opacity"
+                />
+                <span className="text-gray-300">or</span>
+                <Image
+                  src="/badges/works-with-google-home.webp"
+                  alt="Google Home"
+                  width={84}
+                  height={24}
+                  className="h-6 w-auto opacity-80 hover:opacity-100 transition-opacity"
+                />
+                <span className="text-gray-300">or</span>
+                <Image
+                  src="/badges/works-with-alexa.webp"
+                  alt="Alexa"
+                  width={84}
+                  height={24}
+                  className="h-6 w-auto opacity-80 hover:opacity-100 transition-opacity"
+                />
               </div>
             </div>
             

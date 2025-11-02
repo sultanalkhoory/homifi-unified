@@ -124,19 +124,9 @@ export default function HeroSection() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.1 }}
-        className="text-lg sm:text-xl font-medium text-gray-900 mb-2 text-center max-w-xs"
+        className="text-base sm:text-lg font-normal text-gray-600 mb-12 text-center max-w-sm leading-relaxed"
       >
-        Professionally installed in Dubai.
-      </motion.p>
-
-      {/* Subheading */}
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.15 }}
-        className="text-sm sm:text-base text-gray-600 mb-12 text-center max-w-xs"
-      >
-        Complete design, installation, and support.
+        Professional smart home installation in Dubai.
       </motion.p>
 
       {/* iPhone + Badges Container */}
