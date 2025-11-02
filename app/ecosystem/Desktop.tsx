@@ -33,7 +33,7 @@ export default function DesktopEcosystem() {
           className="max-w-4xl text-center"
         >
           <h1 className="text-6xl md:text-7xl font-semibold tracking-tight text-black mb-6">
-            The Tech Stack
+            What Makes It Work
           </h1>
 
           <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
@@ -198,9 +198,7 @@ export default function DesktopEcosystem() {
             <div className="grid md:grid-cols-3 gap-8 mb-10">
 
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-yellow-100 to-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <span className="text-3xl">💡</span>
-                </div>
+                <div className="w-16 h-16 bg-gradient-to-br from-yellow-100 to-orange-100 rounded-2xl mx-auto mb-4"></div>
                 <h3 className="font-semibold text-black mb-2">Lighting</h3>
                 <p className="text-sm text-gray-600">
                   Switches, dimmers, smart bulbs
@@ -208,9 +206,7 @@ export default function DesktopEcosystem() {
               </div>
 
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <span className="text-3xl">🌡️</span>
-                </div>
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl mx-auto mb-4"></div>
                 <h3 className="font-semibold text-black mb-2">Climate</h3>
                 <p className="text-sm text-gray-600">
                   AC control, thermostats, sensors
@@ -218,9 +214,7 @@ export default function DesktopEcosystem() {
               </div>
 
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <span className="text-3xl">🪟</span>
-                </div>
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl mx-auto mb-4"></div>
                 <h3 className="font-semibold text-black mb-2">Curtains & Blinds</h3>
                 <p className="text-sm text-gray-600">
                   Motorized curtains, automated blinds
@@ -228,9 +222,7 @@ export default function DesktopEcosystem() {
               </div>
 
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-red-100 to-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <span className="text-3xl">🔒</span>
-                </div>
+                <div className="w-16 h-16 bg-gradient-to-br from-red-100 to-orange-100 rounded-2xl mx-auto mb-4"></div>
                 <h3 className="font-semibold text-black mb-2">Security</h3>
                 <p className="text-sm text-gray-600">
                   Door locks, sensors, access control
@@ -238,9 +230,7 @@ export default function DesktopEcosystem() {
               </div>
 
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-green-100 to-emerald-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <span className="text-3xl">📹</span>
-                </div>
+                <div className="w-16 h-16 bg-gradient-to-br from-green-100 to-emerald-100 rounded-2xl mx-auto mb-4"></div>
                 <h3 className="font-semibold text-black mb-2">Cameras</h3>
                 <p className="text-sm text-gray-600">
                   Doorbells, security cameras
@@ -248,9 +238,7 @@ export default function DesktopEcosystem() {
               </div>
 
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-gray-100 to-slate-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <span className="text-3xl">🔔</span>
-                </div>
+                <div className="w-16 h-16 bg-gradient-to-br from-gray-100 to-slate-100 rounded-2xl mx-auto mb-4"></div>
                 <h3 className="font-semibold text-black mb-2">Sensors</h3>
                 <p className="text-sm text-gray-600">
                   Motion, door/window, leak detection
@@ -287,40 +275,40 @@ export default function DesktopEcosystem() {
       {/* The Bottom Line */}
       <motion.section
         {...sectionReveal}
-        className="py-32 px-8 bg-gradient-to-b from-white to-gray-100"
+        className="py-32 px-8 bg-gradient-to-b from-white to-gray-50"
       >
         <div className="max-w-4xl mx-auto">
 
-          <div className="bg-black text-white rounded-3xl p-12 md:p-16 text-center">
-            <h2 className="text-3xl md:text-4xl font-semibold mb-8">
+          <div className="bg-white border border-gray-200 rounded-3xl p-12 md:p-16 text-center shadow-xl">
+            <h2 className="text-3xl md:text-4xl font-semibold text-black mb-8">
               Here's The Deal
             </h2>
 
             <div className="space-y-6 text-lg mb-10">
               <p>
-                <strong className="text-white">UniFi</strong> handles your network.
+                <strong className="text-black">UniFi</strong> handles your network.
                 <br />
-                <span className="text-gray-300">Professional. Reliable. Secure.</span>
+                <span className="text-gray-600">Professional. Reliable. Secure.</span>
               </p>
 
               <p>
-                <strong className="text-white">LifeSmart</strong> runs your devices.
+                <strong className="text-black">LifeSmart</strong> runs your devices.
                 <br />
-                <span className="text-gray-300">Open protocols. Industry standard.</span>
+                <span className="text-gray-600">Open protocols. Industry standard.</span>
               </p>
 
               <p>
-                <strong className="text-white">Apple, Google, or Alexa</strong> controls it all.
+                <strong className="text-black">Apple, Google, or Alexa</strong> controls it all.
                 <br />
-                <span className="text-gray-300">Your choice. Your system.</span>
+                <span className="text-gray-600">Your choice. Your system.</span>
               </p>
             </div>
 
-            <div className="pt-8 border-t border-gray-700">
-              <p className="text-xl text-gray-300">
+            <div className="pt-8 border-t border-gray-200">
+              <p className="text-xl text-gray-600">
                 No proprietary lock-in. No hidden dependencies.
                 <br />
-                <span className="text-2xl text-white font-semibold">Just a system that works.</span>
+                <span className="text-2xl text-black font-semibold">Just a system that works.</span>
               </p>
             </div>
 
@@ -328,7 +316,7 @@ export default function DesktopEcosystem() {
               href="/how-it-works"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-block mt-10 px-10 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-gray-100 transition-all shadow-lg"
+              className="inline-block mt-10 px-10 py-4 bg-black text-white rounded-full text-lg font-semibold hover:bg-gray-900 transition-all shadow-lg focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
             >
               See How We Install It
             </motion.a>
