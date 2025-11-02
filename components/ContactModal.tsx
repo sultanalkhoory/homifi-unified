@@ -52,6 +52,15 @@ export default function ContactModal() {
         body: JSON.stringify(data),
       });
 
+      // Try to parse response body
+      let responseData;
+      try {
+        responseData = await response.json();
+      } catch (parseError) {
+        console.error('Failed to parse response:', parseError);
+        throw new Error('Invalid response from server');
+      }
+
       if (response.ok) {
         setStatus('success');
         e.currentTarget.reset();
@@ -61,12 +70,12 @@ export default function ContactModal() {
           closeModal();
         }, 3000);
       } else {
-        const error = await response.json();
-        setErrorMessage(error.error || 'Something went wrong');
+        setErrorMessage(responseData.error || 'Something went wrong');
         setStatus('error');
       }
-    } catch (error) {
-      setErrorMessage('Network error. Please try again.');
+    } catch (error: any) {
+      console.error('Form submission error:', error);
+      setErrorMessage(error.message || 'Network error. Please try again.');
       setStatus('error');
     }
   }

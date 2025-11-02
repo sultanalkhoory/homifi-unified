@@ -10,6 +10,7 @@ export async function POST(request: Request) {
   try {
     // Check if API key is configured
     if (!process.env.RESEND_API_KEY) {
+      console.error('Resend API key not configured');
       return NextResponse.json(
         { error: 'Email service not configured. Please contact support.' },
         { status: 503 }
@@ -19,8 +20,11 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { name, email, phone, property, message } = body;
 
+    console.log('Processing contact form submission for:', email);
+
     // Validate required fields
     if (!name || !email || !message) {
+      console.error('Missing required fields');
       return NextResponse.json(
         { error: 'Please fill in all required fields (Name, Email, and Message).' },
         { status: 400 }
@@ -43,6 +47,7 @@ export async function POST(request: Request) {
     });
 
     // Send confirmation email to customer
+    console.log('Sending customer confirmation email...');
     const customerEmail = await resend.emails.send({
       from: 'HomiFi <hello@homifi.ae>',
       replyTo: 'info@homifi.ae', // Replies go to your real inbox
@@ -57,7 +62,15 @@ export async function POST(request: Request) {
       }),
     });
 
+    if (customerEmail.error) {
+      console.error('Customer email error:', customerEmail.error);
+      throw new Error(`Failed to send customer email: ${customerEmail.error.message}`);
+    }
+
+    console.log('Customer email sent:', customerEmail.data?.id);
+
     // Send notification email to HomiFi team
+    console.log('Sending internal notification email...');
     const internalEmail = await resend.emails.send({
       from: 'HomiFi Notifications <notifications@homifi.ae>',
       replyTo: 'info@homifi.ae', // Set reply-to for internal emails too
@@ -73,25 +86,36 @@ export async function POST(request: Request) {
       }),
     });
 
-    return NextResponse.json({
-      success: true,
-      message: 'Thank you! We\'ll get back to you within 48 hours.',
-      customerEmailId: customerEmail.data?.id,
-      internalEmailId: internalEmail.data?.id,
-    });
+    if (internalEmail.error) {
+      console.error('Internal email error:', internalEmail.error);
+      throw new Error(`Failed to send internal email: ${internalEmail.error.message}`);
+    }
+
+    console.log('Internal email sent:', internalEmail.data?.id);
+    console.log('Contact form submission successful');
+
+    return NextResponse.json(
+      {
+        success: true,
+        message: 'Thank you! We\'ll get back to you within 48 hours.',
+        customerEmailId: customerEmail.data?.id,
+        internalEmailId: internalEmail.data?.id,
+      },
+      { status: 200 }
+    );
 
   } catch (error: any) {
-    console.error('Error sending emails:', error);
-    
+    console.error('Error in contact form API:', error);
+
     // Provide helpful error messages
     let errorMessage = 'Failed to send email. Please try again or contact us directly at info@homifi.ae';
-    
+
     if (error.message?.includes('domain')) {
       errorMessage = 'Email configuration error. Please contact us at info@homifi.ae or call +971 50 554 7744';
     }
-    
+
     return NextResponse.json(
-      { 
+      {
         error: errorMessage,
         details: process.env.NODE_ENV === 'development' ? error.message : undefined
       },
