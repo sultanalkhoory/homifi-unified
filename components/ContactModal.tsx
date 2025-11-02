@@ -126,7 +126,7 @@ export default function ContactModal() {
                         name="name"
                         id="modal-name"
                         required
-                        placeholder="Ahmed Al-Mansoori"
+                        placeholder="Your name"
                         disabled={status === 'loading'}
                         className="w-full px-4 py-3 rounded-xl border border-gray-200
                           focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20
@@ -184,16 +184,16 @@ export default function ContactModal() {
                       disabled={status === 'loading'}
                       className="w-full px-4 py-3 rounded-xl border border-gray-200
                         focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20
-                        outline-none transition-all bg-white
+                        outline-none transition-all bg-white text-gray-900
                         disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      <option value="">Select property type</option>
-                      <option value="Villa">Villa</option>
-                      <option value="Apartment">Apartment</option>
-                      <option value="Penthouse">Penthouse</option>
-                      <option value="Townhouse">Townhouse</option>
-                      <option value="Office">Office</option>
-                      <option value="Other">Other</option>
+                      <option value="" className="text-gray-500">Select property type</option>
+                      <option value="Villa" className="text-gray-900">Villa</option>
+                      <option value="Apartment" className="text-gray-900">Apartment</option>
+                      <option value="Penthouse" className="text-gray-900">Penthouse</option>
+                      <option value="Townhouse" className="text-gray-900">Townhouse</option>
+                      <option value="Office" className="text-gray-900">Office</option>
+                      <option value="Other" className="text-gray-900">Other</option>
                     </select>
                   </div>
 
