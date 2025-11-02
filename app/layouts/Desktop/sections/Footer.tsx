@@ -69,7 +69,7 @@ export default function Footer() {
             
             {/* Quick links */}
             <div>
-              <h3 className="font-medium text-sm mb-4">Quick Links</h3>
+              <h3 className="font-medium text-sm mb-4 text-gray-900">Quick Links</h3>
               <ul className="space-y-2">
                 <li><Link href="#features" className="text-gray-700 text-sm hover:text-black">Features</Link></li>
                 <li><Link href="/how-it-works" className="text-gray-700 text-sm hover:text-black">How it Works</Link></li>
@@ -80,7 +80,7 @@ export default function Footer() {
 
             {/* Contact */}
             <div>
-              <h3 className="font-medium text-sm mb-4">Contact</h3>
+              <h3 className="font-medium text-sm mb-4 text-gray-900">Contact</h3>
               <ul className="space-y-2">
                 <li>
                   <button
