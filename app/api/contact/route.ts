@@ -45,7 +45,7 @@ export async function POST(request: Request) {
     // Send confirmation email to customer
     const customerEmail = await resend.emails.send({
       from: 'HomiFi <hello@homifi.ae>',
-      replyTo: 'info@homifi.ae', // Replies go to your real inbox
+      reply_to: 'info@homifi.ae', // Replies go to your real inbox
       to: email,
       subject: 'Thank you for contacting HomiFi',
       react: CustomerConfirmationEmail({
@@ -60,7 +60,7 @@ export async function POST(request: Request) {
     // Send notification email to HomiFi team
     const internalEmail = await resend.emails.send({
       from: 'HomiFi Notifications <notifications@homifi.ae>',
-      replyTo: 'info@homifi.ae', // Set reply-to for internal emails too
+      reply_to: 'info@homifi.ae', // Set reply-to for internal emails too
       to: 'info@homifi.ae',
       subject: `🔔 New Contact: ${name}`,
       react: InternalNotificationEmail({
