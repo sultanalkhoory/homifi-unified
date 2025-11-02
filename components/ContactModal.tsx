@@ -34,7 +34,10 @@ export default function ContactModal() {
     setStatus('loading');
     setErrorMessage('');
 
-    const formData = new FormData(e.currentTarget);
+    // Store form reference before async operations (React nullifies e.currentTarget)
+    const form = e.currentTarget;
+
+    const formData = new FormData(form);
     const data = {
       name: formData.get('name'),
       email: formData.get('email'),
@@ -63,7 +66,7 @@ export default function ContactModal() {
 
       if (response.ok) {
         setStatus('success');
-        e.currentTarget.reset();
+        form.reset(); // Now using stored form reference
 
         // Close modal after 3 seconds
         setTimeout(() => {
