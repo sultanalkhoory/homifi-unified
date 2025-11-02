@@ -45,13 +45,13 @@ export default function Footer() {
             <div>
               <h3 className="font-medium text-sm mb-4">Quick Links</h3>
               <ul className="space-y-2">
-                <li><Link href="#features" className="text-gray-500 text-sm hover:text-black">Features</Link></li>
-                <li><Link href="/how-it-works" className="text-gray-500 text-sm hover:text-black">How it Works</Link></li>
-                <li><Link href="/ecosystem" className="text-gray-500 text-sm hover:text-black">Ecosystem</Link></li>
-                <li><Link href="/about" className="text-gray-500 text-sm hover:text-black">About Us</Link></li>
+                <li><Link href="#features" className="text-gray-700 text-sm hover:text-black">Features</Link></li>
+                <li><Link href="/how-it-works" className="text-gray-700 text-sm hover:text-black">How it Works</Link></li>
+                <li><Link href="/ecosystem" className="text-gray-700 text-sm hover:text-black">Ecosystem</Link></li>
+                <li><Link href="/about" className="text-gray-700 text-sm hover:text-black">About Us</Link></li>
               </ul>
             </div>
-            
+
             {/* Contact */}
             <div>
               <h3 className="font-medium text-sm mb-4">Contact</h3>
@@ -59,12 +59,12 @@ export default function Footer() {
                 <li>
                   <button
                     onClick={openModal}
-                    className="text-gray-500 text-sm hover:text-black transition-colors"
+                    className="text-gray-700 text-sm hover:text-black transition-colors"
                   >
                     Contact Us
                   </button>
                 </li>
-                <li><a href="mailto:info@homifi.ae" className="text-gray-500 text-sm hover:text-black">info@homifi.ae</a></li>
+                <li><a href="mailto:info@homifi.ae" className="text-gray-700 text-sm hover:text-black">info@homifi.ae</a></li>
               </ul>
             </div>
           </div>
