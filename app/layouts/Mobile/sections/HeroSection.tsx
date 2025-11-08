@@ -119,24 +119,14 @@ export default function HeroSection() {
         Your home, perfectly automated.
       </motion.h1>
 
-      {/* Subheadline - Service Clarity */}
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-        className="text-lg sm:text-xl font-medium text-gray-900 mb-2 text-center max-w-xs"
-      >
-        Professionally installed in Dubai.
-      </motion.p>
-
       {/* Subheading */}
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.15 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
         className="text-sm sm:text-base text-gray-600 mb-12 text-center max-w-xs"
       >
-        Professional smart home installation with complete design and support.
+        Set up by our team in Dubai. Control lighting, climate, and security with simple taps.
       </motion.p>
 
       {/* iPhone + Badges Container */}
