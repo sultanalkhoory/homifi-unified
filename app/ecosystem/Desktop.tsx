@@ -129,7 +129,7 @@ export default function DesktopEcosystem() {
                     {/* Screen */}
                     <div className="relative bg-black rounded-[2.8rem] overflow-hidden" style={{ aspectRatio: '9/19.5' }}>
                       {/* Dynamic Island / Notch */}
-                      <div className="absolute top-[12px] left-1/2 transform -translate-x-1/2 w-[100px] h-[30px] bg-black rounded-full z-10 shadow-lg"></div>
+                      <div className="absolute top-[8px] left-1/2 transform -translate-x-1/2 w-[120px] h-[26px] bg-black rounded-full z-10 shadow-lg"></div>
 
                       <video
                         autoPlay
