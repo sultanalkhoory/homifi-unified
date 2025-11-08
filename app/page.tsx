@@ -23,26 +23,6 @@ function useIsMobile(breakpoint = 1024) {
   return isMobile;
 }
 
-// Loading component with subtle animation
-function LoadingSpinner() {
-  return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-b from-gray-50 to-white">
-      <div className="flex flex-col items-center gap-4">
-        {/* Spinning circle */}
-        <div className="relative w-12 h-12">
-          <div className="absolute inset-0 rounded-full border-3 border-gray-200"></div>
-          <div
-            className="absolute inset-0 rounded-full border-3 border-black border-t-transparent animate-spin"
-            style={{ animationDuration: '0.8s' }}
-          ></div>
-        </div>
-        {/* Optional: Add logo or text */}
-        <p className="text-sm text-gray-500 font-medium">Loading...</p>
-      </div>
-    </div>
-  );
-}
-
 export default function Page() {
   const [mounted, setMounted] = useState(false);
   const isMobile = useIsMobile();
@@ -51,9 +31,9 @@ export default function Page() {
     setMounted(true);
   }, []);
 
-  // Show loading spinner until component mounts
+  // Show nothing until component mounts (no loading spinner)
   if (!mounted) {
-    return <LoadingSpinner />;
+    return null;
   }
 
   return isMobile ? <Mobile /> : <Desktop />;
