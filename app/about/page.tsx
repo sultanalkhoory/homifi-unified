@@ -106,12 +106,12 @@ export default function AboutPage() {
               },
               {
                 title: 'True ownership',
-                desc: 'Your app. Your automations. We install, train you, then you're in control. No calls needed for simple changes.',
+                desc: 'Your app. Your automations. We install, train you, then you\'re in control. No calls needed for simple changes.',
                 accent: 'hover:border-purple-400'
               },
               {
                 title: 'Real support',
-                desc: 'Three months included after install. WhatsApp us, we respond. Need help later? We're still here.',
+                desc: 'Three months included after install. WhatsApp us, we respond. Need help later? We\'re still here.',
                 accent: 'hover:border-indigo-400'
               },
               {
