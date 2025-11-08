@@ -31,15 +31,10 @@ export default function HeroSection() {
               Your home, perfectly automated.
             </h1>
 
-            {/* Subheadline - Service Clarity */}
-            <p className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-medium text-gray-900">
-              Professionally installed in Dubai.
-            </p>
-
             {/* Value Proposition */}
             <div className="space-y-3">
-              <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
-                Professional smart home installation with complete design and support.
+              <p className="text-gray-600 text-base sm:text-lg lg:text-xl leading-relaxed">
+                Set up by our team in Dubai. Control lighting, climate, and security with simple taps.
               </p>
 
               {/* Platform logos */}
