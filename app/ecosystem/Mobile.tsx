@@ -100,7 +100,7 @@ export default function MobileEcosystem() {
       {/* UniFi Network */}
       <motion.section
         {...sectionReveal}
-        className="py-20 px-6 bg-gradient-to-br from-slate-50 to-blue-50"
+        className="py-20 px-6 bg-gradient-to-br from-slate-50/50 to-blue-50/50"
       >
         <div className="max-w-2xl mx-auto">
 
@@ -112,46 +112,71 @@ export default function MobileEcosystem() {
               UniFi Networking
             </h2>
             <p className="text-gray-600">
-              Enterprise-grade infrastructure for your home.
+              Managed from your phone.
             </p>
           </div>
 
-          <div className="bg-white rounded-3xl p-8 shadow-xl space-y-6">
+          <div className="bg-white rounded-3xl p-8 shadow-xl">
 
-            <div>
-              <h3 className="text-lg font-semibold text-black mb-2">
-                Professional WiFi Coverage
-              </h3>
-              <p className="text-gray-600 text-sm">
-                No dead zones. Enterprise-grade access points that cover every corner.
-              </p>
+            {/* iPhone Frame with Video */}
+            <div className="flex justify-center mb-8">
+              <div className="relative">
+                {/* iPhone Frame */}
+                <div className="relative bg-black rounded-[2.5rem] p-2.5 shadow-2xl" style={{ width: '250px' }}>
+                  {/* Notch */}
+                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-black rounded-b-3xl z-10"></div>
+
+                  {/* Screen */}
+                  <div className="relative bg-white rounded-[2rem] overflow-hidden" style={{ aspectRatio: '9/19.5' }}>
+                    <video
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover"
+                      src="/video/unifi-app-demo.mov"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div>
-              <h3 className="text-lg font-semibold text-black mb-2">
-                Built-In Security
-              </h3>
-              <p className="text-gray-600 text-sm">
-                VLANs to isolate IoT devices. Firewall rules. Threat detection.
-              </p>
+            {/* Benefits */}
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-lg font-semibold text-black mb-2">
+                  Professional WiFi Coverage
+                </h3>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  Enterprise-grade access points. No dead zones. Every corner covered.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold text-black mb-2">
+                  Network Security
+                </h3>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  VLANs isolate IoT devices. Built-in firewall. Real-time threat detection.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold text-black mb-2">
+                  Scales Effortlessly
+                </h3>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  Start with one access point. Add more anytime. Grows with your property.
+                </p>
+              </div>
+
+              <div className="pt-6 border-t border-gray-200">
+                <p className="text-gray-600 text-sm text-center">
+                  The same infrastructure used by offices and hotels worldwide.
+                </p>
+              </div>
             </div>
 
-            <div>
-              <h3 className="text-lg font-semibold text-black mb-2">
-                Scales Effortlessly
-              </h3>
-              <p className="text-gray-600 text-sm">
-                Start with one access point. Add more as needed. Grows with your property.
-              </p>
-            </div>
-
-            <div className="pt-6 border-t border-gray-200 text-center">
-              <p className="text-gray-500 text-sm">
-                What offices and hotels use.
-                <br />
-                <span className="text-black font-medium">It works.</span>
-              </p>
-            </div>
           </div>
         </div>
       </motion.section>

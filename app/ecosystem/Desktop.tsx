@@ -102,9 +102,9 @@ export default function DesktopEcosystem() {
       {/* UniFi Network */}
       <motion.section
         {...sectionReveal}
-        className="py-32 px-8 bg-gradient-to-br from-slate-50 to-blue-50"
+        className="py-32 px-8 bg-gradient-to-br from-slate-50/50 to-blue-50/50"
       >
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
 
           <div className="text-center mb-16">
             <div className="inline-block px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-6">
@@ -114,60 +114,72 @@ export default function DesktopEcosystem() {
               UniFi Networking
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              The same network infrastructure used by businesses, hotels, and enterprises worldwide.
+              Enterprise-grade infrastructure. Managed from your phone.
             </p>
           </div>
 
           <div className="bg-white rounded-3xl p-10 md:p-12 shadow-xl">
-            <div className="grid md:grid-cols-2 gap-10">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
 
-              <div className="space-y-6">
+              {/* iPhone Frame with Video */}
+              <div className="flex justify-center lg:justify-start">
+                <div className="relative">
+                  {/* iPhone Frame */}
+                  <div className="relative bg-black rounded-[3rem] p-3 shadow-2xl" style={{ width: '300px' }}>
+                    {/* Notch */}
+                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-40 h-7 bg-black rounded-b-3xl z-10"></div>
+
+                    {/* Screen */}
+                    <div className="relative bg-white rounded-[2.5rem] overflow-hidden" style={{ aspectRatio: '9/19.5' }}>
+                      <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover"
+                        src="/video/unifi-app-demo.mov"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Benefits */}
+              <div className="space-y-8">
                 <div>
-                  <h3 className="text-xl font-semibold text-black mb-2">
+                  <h3 className="text-xl font-semibold text-black mb-3">
                     Professional WiFi Coverage
                   </h3>
-                  <p className="text-gray-600">
-                    No dead zones. No dropouts. Enterprise-grade access points that cover every corner of your property.
+                  <p className="text-gray-600 leading-relaxed">
+                    Enterprise-grade access points. No dead zones. Every corner covered.
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-semibold text-black mb-2">
-                    Built-In Security
+                  <h3 className="text-xl font-semibold text-black mb-3">
+                    Network Security
                   </h3>
-                  <p className="text-gray-600">
-                    VLANs to isolate IoT devices. Firewall rules. Threat detection. Your network is locked down.
+                  <p className="text-gray-600 leading-relaxed">
+                    VLANs isolate IoT devices. Built-in firewall. Real-time threat detection.
                   </p>
                 </div>
-              </div>
 
-              <div className="space-y-6">
                 <div>
-                  <h3 className="text-xl font-semibold text-black mb-2">
+                  <h3 className="text-xl font-semibold text-black mb-3">
                     Scales Effortlessly
                   </h3>
-                  <p className="text-gray-600">
-                    Start with one access point. Add more as needed. The system grows with your property.
+                  <p className="text-gray-600 leading-relaxed">
+                    Start with one access point. Add more anytime. Grows with your property.
                   </p>
                 </div>
 
-                <div>
-                  <h3 className="text-xl font-semibold text-black mb-2">
-                    Not Locked In
-                  </h3>
+                <div className="pt-6 border-t border-gray-200">
                   <p className="text-gray-600">
-                    Any UniFi-certified technician can manage your network. We're not the only ones who can help.
+                    The same infrastructure used by offices and hotels worldwide.
                   </p>
                 </div>
               </div>
-            </div>
 
-            <div className="mt-10 pt-8 border-t border-gray-200 text-center">
-              <p className="text-gray-500">
-                This is what offices and hotels use for a reason.
-                <br />
-                <span className="text-black font-medium">It works.</span>
-              </p>
             </div>
           </div>
         </div>
