@@ -125,12 +125,12 @@ export default function DesktopEcosystem() {
               <div className="flex justify-center lg:justify-start">
                 <div className="relative">
                   {/* iPhone Frame */}
-                  <div className="relative bg-black rounded-[3rem] p-3 shadow-2xl" style={{ width: '300px' }}>
-                    {/* Notch */}
-                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-40 h-7 bg-black rounded-b-3xl z-10"></div>
-
+                  <div className="relative bg-black rounded-[3rem] p-[3px] shadow-[0_20px_60px_rgba(0,0,0,0.3)]" style={{ width: '300px' }}>
                     {/* Screen */}
-                    <div className="relative bg-white rounded-[2.5rem] overflow-hidden" style={{ aspectRatio: '9/19.5' }}>
+                    <div className="relative bg-black rounded-[2.8rem] overflow-hidden" style={{ aspectRatio: '9/19.5' }}>
+                      {/* Dynamic Island / Notch */}
+                      <div className="absolute top-[12px] left-1/2 transform -translate-x-1/2 w-[100px] h-[30px] bg-black rounded-full z-10 shadow-lg"></div>
+
                       <video
                         autoPlay
                         loop

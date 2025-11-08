@@ -122,12 +122,12 @@ export default function MobileEcosystem() {
             <div className="flex justify-center mb-8">
               <div className="relative">
                 {/* iPhone Frame */}
-                <div className="relative bg-black rounded-[2.5rem] p-2.5 shadow-2xl" style={{ width: '250px' }}>
-                  {/* Notch */}
-                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-black rounded-b-3xl z-10"></div>
-
+                <div className="relative bg-black rounded-[2.5rem] p-[3px] shadow-[0_15px_50px_rgba(0,0,0,0.3)]" style={{ width: '250px' }}>
                   {/* Screen */}
-                  <div className="relative bg-white rounded-[2rem] overflow-hidden" style={{ aspectRatio: '9/19.5' }}>
+                  <div className="relative bg-black rounded-[2.3rem] overflow-hidden" style={{ aspectRatio: '9/19.5' }}>
+                    {/* Dynamic Island / Notch */}
+                    <div className="absolute top-[10px] left-1/2 transform -translate-x-1/2 w-[85px] h-[25px] bg-black rounded-full z-10 shadow-lg"></div>
+
                     <video
                       autoPlay
                       loop
