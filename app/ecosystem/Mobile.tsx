@@ -126,7 +126,7 @@ export default function MobileEcosystem() {
                   {/* Screen */}
                   <div className="relative bg-black rounded-[2.3rem] overflow-hidden" style={{ aspectRatio: '9/19.5' }}>
                     {/* Dynamic Island / Notch */}
-                    <div className="absolute top-[10px] left-1/2 transform -translate-x-1/2 w-[85px] h-[25px] bg-black rounded-full z-10 shadow-lg"></div>
+                    <div className="absolute top-[6px] left-1/2 transform -translate-x-1/2 w-[100px] h-[22px] bg-black rounded-full z-10 shadow-lg"></div>
 
                     <video
                       autoPlay
