@@ -1,26 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
-import DesktopHeader from '@/app/layouts/Desktop/sections/Header';
-import MobileHeader from '@/app/layouts/Mobile/sections/Header';
-import DesktopFooter from '@/app/layouts/Desktop/sections/Footer';
-import MobileFooter from '@/app/layouts/Mobile/sections/Footer';
+import Header from '@/app/layouts/Desktop/sections/Header';
+import Footer from '@/app/layouts/Desktop/sections/Footer';
 import { useContactModal } from '@/contexts/ContactModalContext';
 
 export default function AboutPage() {
   const { openModal } = useContactModal();
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  const Header = isMobile ? MobileHeader : DesktopHeader;
-  const Footer = isMobile ? MobileFooter : DesktopFooter;
 
   return (
     <main className="bg-white overflow-hidden">
