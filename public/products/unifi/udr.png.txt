@@ -1,3 +1,0 @@
-Placeholder for UniFi Dream Router (UDR) product image
-Download from: https://store.ui.com (search for UDR)
-Required: PNG with white/transparent background

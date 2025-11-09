@@ -132,8 +132,14 @@ export default function DesktopEcosystem() {
                     viewport={{ once: true }}
                     className="absolute left-0 top-12 w-56 h-56 bg-white rounded-3xl shadow-xl p-6 border border-gray-100"
                   >
-                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl">
-                      <span className="text-gray-400 text-xs text-center font-medium">UDR<br/>Router</span>
+                    <div className="w-full h-full flex items-center justify-center">
+                      <Image
+                        src="/products/unifi/udr.png"
+                        alt="UniFi Dream Router"
+                        width={200}
+                        height={200}
+                        className="object-contain"
+                      />
                     </div>
                   </motion.div>
 
@@ -145,8 +151,14 @@ export default function DesktopEcosystem() {
                     viewport={{ once: true }}
                     className="absolute left-16 top-20 w-56 h-56 bg-white rounded-3xl shadow-2xl p-6 border border-gray-200 z-10"
                   >
-                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl">
-                      <span className="text-slate-400 text-xs text-center font-medium">UniFi<br/>Switch</span>
+                    <div className="w-full h-full flex items-center justify-center">
+                      <Image
+                        src="/products/unifi/switch.png"
+                        alt="UniFi Switch"
+                        width={200}
+                        height={200}
+                        className="object-contain"
+                      />
                     </div>
                   </motion.div>
 
@@ -158,8 +170,14 @@ export default function DesktopEcosystem() {
                     viewport={{ once: true }}
                     className="absolute right-0 top-28 w-56 h-56 bg-white rounded-3xl shadow-2xl p-6 border border-blue-100 z-20"
                   >
-                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl">
-                      <span className="text-blue-500 text-xs text-center font-medium">U7 Pro<br/>Access Point</span>
+                    <div className="w-full h-full flex items-center justify-center">
+                      <Image
+                        src="/products/unifi/u7-pro.png"
+                        alt="U7 Pro Access Point"
+                        width={200}
+                        height={200}
+                        className="object-contain"
+                      />
                     </div>
                   </motion.div>
                 </div>
@@ -233,9 +251,13 @@ export default function DesktopEcosystem() {
               {/* Nature 7 Pro */}
               <div className="group">
                 <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-3xl p-8 mb-4 h-64 flex items-center justify-center border border-yellow-100 group-hover:shadow-lg transition-shadow">
-                  <div className="w-full h-full flex items-center justify-center bg-white/60 rounded-2xl">
-                    <span className="text-orange-400 text-xs text-center font-medium">Nature 7 Pro<br/>Product Image</span>
-                  </div>
+                  <Image
+                    src="/products/lifesmart/nature-7-pro.png"
+                    alt="LifeSmart Nature 7 Pro"
+                    width={220}
+                    height={220}
+                    className="object-contain"
+                  />
                 </div>
                 <h3 className="font-semibold text-black mb-2 text-center">Nature 7 Pro</h3>
                 <p className="text-sm text-gray-600 text-center">
@@ -246,9 +268,13 @@ export default function DesktopEcosystem() {
               {/* Nature Mini Pro */}
               <div className="group">
                 <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl p-8 mb-4 h-64 flex items-center justify-center border border-blue-100 group-hover:shadow-lg transition-shadow">
-                  <div className="w-full h-full flex items-center justify-center bg-white/60 rounded-2xl">
-                    <span className="text-blue-400 text-xs text-center font-medium">Nature Mini Pro<br/>Product Image</span>
-                  </div>
+                  <Image
+                    src="/products/lifesmart/nature-mini-pro.png"
+                    alt="LifeSmart Nature Mini Pro Thermostat"
+                    width={220}
+                    height={220}
+                    className="object-contain"
+                  />
                 </div>
                 <h3 className="font-semibold text-black mb-2 text-center">Nature Mini Pro</h3>
                 <p className="text-sm text-gray-600 text-center">
@@ -259,9 +285,13 @@ export default function DesktopEcosystem() {
               {/* Nature Switch */}
               <div className="group">
                 <div className="bg-gradient-to-br from-gray-50 to-slate-50 rounded-3xl p-8 mb-4 h-64 flex items-center justify-center border border-gray-100 group-hover:shadow-lg transition-shadow">
-                  <div className="w-full h-full flex items-center justify-center bg-white/60 rounded-2xl">
-                    <span className="text-gray-400 text-xs text-center font-medium">Nature Switch<br/>Product Image</span>
-                  </div>
+                  <Image
+                    src="/products/lifesmart/nature-switch.png"
+                    alt="LifeSmart Nature Switch"
+                    width={220}
+                    height={220}
+                    className="object-contain"
+                  />
                 </div>
                 <h3 className="font-semibold text-black mb-2 text-center">Nature Switch</h3>
                 <p className="text-sm text-gray-600 text-center">

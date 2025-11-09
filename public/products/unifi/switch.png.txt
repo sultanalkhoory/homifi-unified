@@ -1,3 +1,0 @@
-Placeholder for UniFi Switch product image
-Download from: https://store.ui.com (search for USW-Lite-8-PoE or similar)
-Required: PNG with white/transparent background

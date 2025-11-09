@@ -129,8 +129,14 @@ export default function MobileEcosystem() {
                   viewport={{ once: true }}
                   className="absolute left-4 top-8 w-36 h-36 bg-white rounded-2xl shadow-lg p-4 border border-gray-100 rotate-[-6deg]"
                 >
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl">
-                    <span className="text-gray-400 text-[9px] text-center font-medium">UDR</span>
+                  <div className="w-full h-full flex items-center justify-center">
+                    <Image
+                      src="/products/unifi/udr.png"
+                      alt="UniFi Dream Router"
+                      width={100}
+                      height={100}
+                      className="object-contain"
+                    />
                   </div>
                 </motion.div>
 
@@ -142,8 +148,14 @@ export default function MobileEcosystem() {
                   viewport={{ once: true }}
                   className="absolute left-1/2 -translate-x-1/2 top-14 w-36 h-36 bg-white rounded-2xl shadow-xl p-4 border border-gray-200 z-10"
                 >
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl">
-                    <span className="text-slate-400 text-[9px] text-center font-medium">Switch</span>
+                  <div className="w-full h-full flex items-center justify-center">
+                    <Image
+                      src="/products/unifi/switch.png"
+                      alt="UniFi Switch"
+                      width={100}
+                      height={100}
+                      className="object-contain"
+                    />
                   </div>
                 </motion.div>
 
@@ -155,8 +167,14 @@ export default function MobileEcosystem() {
                   viewport={{ once: true }}
                   className="absolute right-4 top-20 w-36 h-36 bg-white rounded-2xl shadow-2xl p-4 border border-blue-100 z-20 rotate-[6deg]"
                 >
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl">
-                    <span className="text-blue-500 text-[9px] text-center font-medium">U7 Pro</span>
+                  <div className="w-full h-full flex items-center justify-center">
+                    <Image
+                      src="/products/unifi/u7-pro.png"
+                      alt="U7 Pro Access Point"
+                      width={100}
+                      height={100}
+                      className="object-contain"
+                    />
                   </div>
                 </motion.div>
               </div>
@@ -229,9 +247,13 @@ export default function MobileEcosystem() {
               {/* Nature 7 Pro */}
               <div className="group">
                 <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-6 mb-3 h-40 flex items-center justify-center border border-yellow-100">
-                  <div className="w-full h-full flex items-center justify-center bg-white/60 rounded-xl">
-                    <span className="text-orange-400 text-[10px] text-center font-medium">Nature 7 Pro</span>
-                  </div>
+                  <Image
+                    src="/products/lifesmart/nature-7-pro.png"
+                    alt="LifeSmart Nature 7 Pro"
+                    width={140}
+                    height={140}
+                    className="object-contain"
+                  />
                 </div>
                 <h3 className="font-semibold text-black mb-1 text-center text-sm">Nature 7 Pro</h3>
                 <p className="text-xs text-gray-600 text-center">
@@ -242,9 +264,13 @@ export default function MobileEcosystem() {
               {/* Nature Mini Pro */}
               <div className="group">
                 <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-6 mb-3 h-40 flex items-center justify-center border border-blue-100">
-                  <div className="w-full h-full flex items-center justify-center bg-white/60 rounded-xl">
-                    <span className="text-blue-400 text-[10px] text-center font-medium">Nature Mini Pro</span>
-                  </div>
+                  <Image
+                    src="/products/lifesmart/nature-mini-pro.png"
+                    alt="LifeSmart Nature Mini Pro Thermostat"
+                    width={140}
+                    height={140}
+                    className="object-contain"
+                  />
                 </div>
                 <h3 className="font-semibold text-black mb-1 text-center text-sm">Nature Mini Pro</h3>
                 <p className="text-xs text-gray-600 text-center">
@@ -255,9 +281,13 @@ export default function MobileEcosystem() {
               {/* Nature Switch */}
               <div className="group">
                 <div className="bg-gradient-to-br from-gray-50 to-slate-50 rounded-2xl p-6 mb-3 h-40 flex items-center justify-center border border-gray-100">
-                  <div className="w-full h-full flex items-center justify-center bg-white/60 rounded-xl">
-                    <span className="text-gray-400 text-[10px] text-center font-medium">Nature Switch</span>
-                  </div>
+                  <Image
+                    src="/products/lifesmart/nature-switch.png"
+                    alt="LifeSmart Nature Switch"
+                    width={140}
+                    height={140}
+                    className="object-contain"
+                  />
                 </div>
                 <h3 className="font-semibold text-black mb-1 text-center text-sm">Nature Switch</h3>
                 <p className="text-xs text-gray-600 text-center">
