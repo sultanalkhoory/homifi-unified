@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 /**
- * IPhoneFrame Component
- * Wraps children inside an Apple-style iPhone frame
- * Adds subtle parallax scroll movement on mobile.
+ * IPhoneFrame Component - Updated to match UniFi design
+ * Wraps children inside a professional iPhone frame
+ * Responsive sizing with professional shadows
  */
 function IPhoneFrame({ children }: { children: React.ReactNode }) {
   const frameRef = useRef<HTMLDivElement>(null);
@@ -40,31 +40,30 @@ function IPhoneFrame({ children }: { children: React.ReactNode }) {
     <div className="relative" ref={frameRef}>
       <motion.div
         style={isMobile ? { y } : {}}
-        className="relative w-[280px] h-[560px] bg-black rounded-[45px] p-2 shadow-[0_0_0_2px_#1a1a1a,0_0_60px_rgba(0,0,0,0.4)]"
       >
-        <div className="relative w-full h-full bg-white rounded-[37px] overflow-hidden">
-          <div className="absolute inset-0">{children}</div>
+        {/* Desktop Frame - 300px */}
+        <div className="hidden md:block relative bg-black rounded-[3rem] p-[3px] shadow-[0_20px_60px_rgba(0,0,0,0.3)]" style={{ width: '300px' }}>
+          <div className="relative bg-black rounded-[2.8rem] overflow-hidden" style={{ aspectRatio: '9/19.5' }}>
+            {/* Dynamic Island */}
+            <div className="absolute top-[8px] left-1/2 transform -translate-x-1/2 w-[120px] h-[26px] bg-black rounded-full z-10 shadow-lg"></div>
 
-          {/* Subtle screen glare */}
-          <div
-            className="absolute inset-0 pointer-events-none rounded-[37px]"
-            style={{
-              background:
-                'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 25%, transparent 50%, transparent 75%, rgba(255,255,255,0.02) 100%)',
-            }}
-          />
-
-          {/* Dynamic Island */}
-          <div className="absolute top-2 left-1/2 -translate-x-1/2 w-[85px] h-[22px] bg-black rounded-full z-30">
-            <div className="flex items-center justify-center h-full relative">
-              <div className="absolute left-3 w-1.5 h-1.5 bg-gray-900 rounded-full" />
-              <div className="absolute right-3 w-3 h-0.5 bg-gray-900 rounded-full" />
+            {/* Children content */}
+            <div className="absolute inset-0">
+              {children}
             </div>
           </div>
+        </div>
 
-          {/* Static time (Apple-like) */}
-          <div className="absolute top-2 left-4 text-white text-sm font-medium z-30 drop-shadow-sm">
-            9:41
+        {/* Mobile Frame - 250px */}
+        <div className="md:hidden relative bg-black rounded-[2.5rem] p-[3px] shadow-[0_15px_50px_rgba(0,0,0,0.3)]" style={{ width: '250px' }}>
+          <div className="relative bg-black rounded-[2.3rem] overflow-hidden" style={{ aspectRatio: '9/19.5' }}>
+            {/* Dynamic Island */}
+            <div className="absolute top-[6px] left-1/2 transform -translate-x-1/2 w-[100px] h-[22px] bg-black rounded-full z-10 shadow-lg"></div>
+
+            {/* Children content */}
+            <div className="absolute inset-0">
+              {children}
+            </div>
           </div>
         </div>
       </motion.div>

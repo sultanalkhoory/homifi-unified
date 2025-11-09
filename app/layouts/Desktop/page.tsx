@@ -10,7 +10,7 @@ import PerfectPrivacy from '@/app/layouts/Desktop/sections/PerfectPrivacy';
 import PerfectClimate from '@/app/layouts/Desktop/sections/PerfectClimate';
 import PerfectSecurity from '@/components/sharedsections/PerfectSecurity';
 import PerfectHomeKey from '@/components/sharedsections/PerfectHomeKey';
-import PerfectCoverage from '@/components/sharedsections/PerfectCoverage';
+import PerfectWiFi from '@/components/sharedsections/PerfectWiFi';
 import CTAHowItWorks from '@/components/CTAHowItWorks';
 
 export default function Page() {
@@ -77,9 +77,9 @@ export default function Page() {
         <PerfectHomeKey />
       </motion.div>
       
-      {/* Perfect Coverage Section */}
+      {/* Perfect WiFi Section */}
       <motion.div {...sectionAnimation}>
-        <PerfectCoverage />
+        <PerfectWiFi />
       </motion.div>
 
       {/* CTA Section */}
