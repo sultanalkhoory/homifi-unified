@@ -36,7 +36,7 @@ export default function MobileEcosystem() {
             What Makes It Work
           </h1>
 
-          <p className="text-lg text-gray-600 leading-relaxed">
+          <p className="text-lg text-gray-700 leading-relaxed">
             Here's exactly what we use and why.
           </p>
         </motion.div>
@@ -53,7 +53,7 @@ export default function MobileEcosystem() {
             <h2 className="text-3xl sm:text-4xl font-semibold text-black mb-4">
               Control It Your Way
             </h2>
-            <p className="text-gray-600">
+            <p className="text-gray-700">
               Choose your platform. Or use all three.
             </p>
           </div>
@@ -89,7 +89,7 @@ export default function MobileEcosystem() {
             </div>
           </div>
 
-          <p className="text-center text-gray-600 text-sm">
+          <p className="text-center text-gray-700 text-sm">
             Use your iPhone. Ask Google. Tell Alexa.
             <br />
             <span className="text-black font-medium">The system doesn't care.</span>
@@ -111,7 +111,7 @@ export default function MobileEcosystem() {
             <h2 className="text-3xl sm:text-4xl font-semibold text-black mb-4">
               UniFi Networking
             </h2>
-            <p className="text-gray-600">
+            <p className="text-gray-700">
               Managed from your phone.
             </p>
           </div>
@@ -228,7 +228,7 @@ export default function MobileEcosystem() {
             <h2 className="text-3xl sm:text-4xl font-semibold text-black mb-4">
               LifeSmart Hardware
             </h2>
-            <p className="text-gray-600">
+            <p className="text-gray-700">
               Open protocol devices. Not locked to one ecosystem.
             </p>
           </div>
