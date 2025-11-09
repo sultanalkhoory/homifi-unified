@@ -121,67 +121,59 @@ export default function DesktopEcosystem() {
           <div className="bg-white rounded-3xl p-10 md:p-12 shadow-xl">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
 
-              {/* Stacked UniFi Products */}
-              <div className="flex justify-center lg:justify-start">
-                <div className="relative w-full max-w-md h-96">
-                  {/* Product 1 - UDR (Back Left) */}
-                  <motion.div
-                    initial={{ opacity: 0, x: -30, rotate: -10 }}
-                    whileInView={{ opacity: 1, x: 0, rotate: -8 }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    viewport={{ once: true }}
-                    className="absolute left-0 top-12 w-56 h-56 bg-white rounded-3xl shadow-xl p-6 border border-gray-100"
-                  >
-                    <div className="w-full h-full flex items-center justify-center">
-                      <Image
-                        src="/products/unifi/udr.png"
-                        alt="UniFi Dream Router"
-                        width={200}
-                        height={200}
-                        className="object-contain"
-                      />
-                    </div>
-                  </motion.div>
+          {/* Large Floating UniFi Products - Apple Style */}
+          <div className="relative w-full h-[600px] flex items-center justify-center">
+            {/* Product 1 - UDR (Back Left) */}
+            <motion.div
+              initial={{ opacity: 0, x: -50, scale: 0.9 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="absolute left-0 top-20 z-0"
+            >
+              <Image
+                src="/products/unifi/udr.png"
+                alt="UniFi Dream Router"
+                width={320}
+                height={320}
+                className="object-contain drop-shadow-2xl"
+              />
+            </motion.div>
 
-                  {/* Product 2 - Switch (Middle) */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    viewport={{ once: true }}
-                    className="absolute left-16 top-20 w-56 h-56 bg-white rounded-3xl shadow-2xl p-6 border border-gray-200 z-10"
-                  >
-                    <div className="w-full h-full flex items-center justify-center">
-                      <Image
-                        src="/products/unifi/switch.png"
-                        alt="UniFi Switch"
-                        width={200}
-                        height={200}
-                        className="object-contain"
-                      />
-                    </div>
-                  </motion.div>
+            {/* Product 2 - U7 Pro (Center, Largest) */}
+            <motion.div
+              initial={{ opacity: 0, y: 30, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="relative z-10"
+            >
+              <Image
+                src="/products/unifi/u7-pro.png"
+                alt="U7 Pro Access Point"
+                width={400}
+                height={400}
+                className="object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)]"
+              />
+            </motion.div>
 
-                  {/* Product 3 - U7 Pro (Front Right) */}
-                  <motion.div
-                    initial={{ opacity: 0, x: 30, rotate: 10 }}
-                    whileInView={{ opacity: 1, x: 0, rotate: 8 }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
-                    viewport={{ once: true }}
-                    className="absolute right-0 top-28 w-56 h-56 bg-white rounded-3xl shadow-2xl p-6 border border-blue-100 z-20"
-                  >
-                    <div className="w-full h-full flex items-center justify-center">
-                      <Image
-                        src="/products/unifi/u7-pro.png"
-                        alt="U7 Pro Access Point"
-                        width={200}
-                        height={200}
-                        className="object-contain"
-                      />
-                    </div>
-                  </motion.div>
-                </div>
-              </div>
+            {/* Product 3 - Switch (Back Right) */}
+            <motion.div
+              initial={{ opacity: 0, x: 50, scale: 0.9 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="absolute right-0 top-32 z-0"
+            >
+              <Image
+                src="/products/unifi/switch.png"
+                alt="UniFi Switch"
+                width={320}
+                height={320}
+                className="object-contain drop-shadow-2xl"
+              />
+            </motion.div>
+          </div>
 
               {/* Benefits */}
               <div className="space-y-8">
@@ -245,59 +237,58 @@ export default function DesktopEcosystem() {
 
           <div className="bg-white rounded-3xl p-10 md:p-12 shadow-xl">
 
-            {/* Featured Products */}
-            <div className="grid md:grid-cols-3 gap-8 mb-10">
+            {/* Large Floating LifeSmart Products - Apple Style */}
+            <div className="relative w-full h-[500px] flex items-center justify-center mb-16">
+              {/* Product 1 - Nature 7 Pro (Left) */}
+              <motion.div
+                initial={{ opacity: 0, x: -40, scale: 0.9 }}
+                whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="absolute left-8 top-16 z-0"
+              >
+                <Image
+                  src="/products/lifesmart/nature-7-pro.png"
+                  alt="LifeSmart Nature 7 Pro"
+                  width={280}
+                  height={280}
+                  className="object-contain drop-shadow-2xl"
+                />
+              </motion.div>
 
-              {/* Nature 7 Pro */}
-              <div className="group">
-                <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-3xl p-8 mb-4 h-64 flex items-center justify-center border border-yellow-100 group-hover:shadow-lg transition-shadow">
-                  <Image
-                    src="/products/lifesmart/nature-7-pro.png"
-                    alt="LifeSmart Nature 7 Pro"
-                    width={220}
-                    height={220}
-                    className="object-contain"
-                  />
-                </div>
-                <h3 className="font-semibold text-black mb-2 text-center">Nature 7 Pro</h3>
-                <p className="text-sm text-gray-600 text-center">
-                  Smart control hub for lighting and devices
-                </p>
-              </div>
+              {/* Product 2 - Nature Mini Pro (Center, Slightly Forward) */}
+              <motion.div
+                initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="relative z-10"
+              >
+                <Image
+                  src="/products/lifesmart/nature-mini-pro.png"
+                  alt="LifeSmart Nature Mini Pro Thermostat"
+                  width={320}
+                  height={320}
+                  className="object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)]"
+                />
+              </motion.div>
 
-              {/* Nature Mini Pro */}
-              <div className="group">
-                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl p-8 mb-4 h-64 flex items-center justify-center border border-blue-100 group-hover:shadow-lg transition-shadow">
-                  <Image
-                    src="/products/lifesmart/nature-mini-pro.png"
-                    alt="LifeSmart Nature Mini Pro Thermostat"
-                    width={220}
-                    height={220}
-                    className="object-contain"
-                  />
-                </div>
-                <h3 className="font-semibold text-black mb-2 text-center">Nature Mini Pro</h3>
-                <p className="text-sm text-gray-600 text-center">
-                  Thermostat for precise climate control
-                </p>
-              </div>
-
-              {/* Nature Switch */}
-              <div className="group">
-                <div className="bg-gradient-to-br from-gray-50 to-slate-50 rounded-3xl p-8 mb-4 h-64 flex items-center justify-center border border-gray-100 group-hover:shadow-lg transition-shadow">
-                  <Image
-                    src="/products/lifesmart/nature-switch.png"
-                    alt="LifeSmart Nature Switch"
-                    width={220}
-                    height={220}
-                    className="object-contain"
-                  />
-                </div>
-                <h3 className="font-semibold text-black mb-2 text-center">Nature Switch</h3>
-                <p className="text-sm text-gray-600 text-center">
-                  Smart switches for every room
-                </p>
-              </div>
+              {/* Product 3 - Nature Switch (Right) */}
+              <motion.div
+                initial={{ opacity: 0, x: 40, scale: 0.9 }}
+                whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="absolute right-8 top-20 z-0"
+              >
+                <Image
+                  src="/products/lifesmart/nature-switch.png"
+                  alt="LifeSmart Nature Switch"
+                  width={280}
+                  height={280}
+                  className="object-contain drop-shadow-2xl"
+                />
+              </motion.div>
             </div>
 
             <div className="border-t border-gray-200 pt-8 space-y-4">
