@@ -16,7 +16,7 @@ export default function CookiesPolicy() {
         <div className="prose prose-gray max-w-none space-y-8">
 
           <section>
-            <h2 className="text-2xl font-semibold mb-4">1. What Are Cookies?</h2>
+            <h2 className="text-2xl font-bold mb-4 text-black">1. What Are Cookies?</h2>
             <p className="text-gray-700 leading-relaxed">
               Cookies are small text files that are placed on your computer or mobile device when you visit a website. They are widely used to make websites work more efficiently and provide information to website owners.
             </p>
@@ -26,7 +26,7 @@ export default function CookiesPolicy() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold mb-4">2. How We Use Cookies</h2>
+            <h2 className="text-2xl font-bold mb-4 text-black">2. How We Use Cookies</h2>
             <p className="text-gray-700 leading-relaxed">
               HomiFi uses cookies and similar tracking technologies to enhance your browsing experience, analyze website traffic, and improve our services. We use cookies for the following purposes:
             </p>
@@ -40,9 +40,9 @@ export default function CookiesPolicy() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold mb-4">3. Types of Cookies We Use</h2>
+            <h2 className="text-2xl font-bold mb-4 text-black">3. Types of Cookies We Use</h2>
 
-            <h3 className="text-xl font-medium mb-3 mt-6">3.1 Strictly Necessary Cookies</h3>
+            <h3 className="text-xl font-semibold mb-3 mt-6 text-gray-900">3.1 Strictly Necessary Cookies</h3>
             <p className="text-gray-700 leading-relaxed">
               These cookies are essential for the website to function properly. They enable basic features like page navigation, secure access to certain areas, and form submissions. The website cannot function properly without these cookies.
             </p>
@@ -56,7 +56,7 @@ export default function CookiesPolicy() {
               <p className="text-sm text-gray-600 mt-3"><strong>Duration:</strong> Session or up to 24 hours</p>
             </div>
 
-            <h3 className="text-xl font-medium mb-3 mt-6">3.2 Performance and Analytics Cookies</h3>
+            <h3 className="text-xl font-semibold mb-3 mt-6 text-gray-900">3.2 Performance and Analytics Cookies</h3>
             <p className="text-gray-700 leading-relaxed">
               These cookies collect information about how visitors use our website, such as which pages are visited most often and whether users receive error messages. This helps us improve website performance and user experience.
             </p>
@@ -71,7 +71,7 @@ export default function CookiesPolicy() {
               <p className="text-sm text-gray-600 mt-2"><strong>Data collected:</strong> Pages viewed, time on site, browser type, device type, geographic location, referral source</p>
             </div>
 
-            <h3 className="text-xl font-medium mb-3 mt-6">3.3 Functionality Cookies</h3>
+            <h3 className="text-xl font-semibold mb-3 mt-6 text-gray-900">3.3 Functionality Cookies</h3>
             <p className="text-gray-700 leading-relaxed">
               These cookies allow the website to remember choices you make (such as language preferences or region) and provide enhanced, personalized features.
             </p>
@@ -85,7 +85,7 @@ export default function CookiesPolicy() {
               <p className="text-sm text-gray-600 mt-3"><strong>Duration:</strong> Up to 1 year</p>
             </div>
 
-            <h3 className="text-xl font-medium mb-3 mt-6">3.4 Targeting and Advertising Cookies</h3>
+            <h3 className="text-xl font-semibold mb-3 mt-6 text-gray-900">3.4 Targeting and Advertising Cookies</h3>
             <p className="text-gray-700 leading-relaxed">
               These cookies track your browsing activity across websites to deliver advertisements that are relevant to you and your interests. They also help measure the effectiveness of advertising campaigns.
             </p>
@@ -101,7 +101,7 @@ export default function CookiesPolicy() {
               <p className="text-sm text-gray-600 mt-2"><strong>Data collected:</strong> Browsing behavior, ad interactions, demographic information, interests</p>
             </div>
 
-            <h3 className="text-xl font-medium mb-3 mt-6">3.5 Social Media Cookies</h3>
+            <h3 className="text-xl font-semibold mb-3 mt-6 text-gray-900">3.5 Social Media Cookies</h3>
             <p className="text-gray-700 leading-relaxed">
               These cookies enable social media features and allow you to share content from our website on social platforms. They also track your interaction with social media widgets embedded on our site.
             </p>
@@ -117,7 +117,7 @@ export default function CookiesPolicy() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold mb-4">4. Third-Party Cookies</h2>
+            <h2 className="text-2xl font-bold mb-4 text-black">4. Third-Party Cookies</h2>
             <p className="text-gray-700 leading-relaxed">
               In addition to our own cookies, we use third-party services that may set cookies on your device. These third parties have their own privacy and cookie policies, which we encourage you to review:
             </p>
@@ -130,12 +130,12 @@ export default function CookiesPolicy() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold mb-4">5. How to Control and Delete Cookies</h2>
+            <h2 className="text-2xl font-bold mb-4 text-black">5. How to Control and Delete Cookies</h2>
             <p className="text-gray-700 leading-relaxed">
               You have the right to accept or reject cookies. You can control cookie preferences through:
             </p>
 
-            <h3 className="text-xl font-medium mb-3 mt-6">5.1 Browser Settings</h3>
+            <h3 className="text-xl font-semibold mb-3 mt-6 text-gray-900">5.1 Browser Settings</h3>
             <p className="text-gray-700 leading-relaxed">
               Most web browsers allow you to manage cookies through their settings. You can set your browser to:
             </p>
@@ -155,7 +155,7 @@ export default function CookiesPolicy() {
               <li><strong>Edge:</strong> Settings → Cookies and site permissions</li>
             </ul>
 
-            <h3 className="text-xl font-medium mb-3 mt-6">5.2 Opt-Out Tools</h3>
+            <h3 className="text-xl font-semibold mb-3 mt-6 text-gray-900">5.2 Opt-Out Tools</h3>
             <p className="text-gray-700 leading-relaxed">
               You can opt out of specific tracking services:
             </p>
@@ -166,7 +166,7 @@ export default function CookiesPolicy() {
               <li><strong>Network Advertising Initiative:</strong> <a href="http://optout.networkadvertising.org" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">NAI Opt-Out Tool</a></li>
             </ul>
 
-            <h3 className="text-xl font-medium mb-3 mt-6">5.3 Mobile Device Settings</h3>
+            <h3 className="text-xl font-semibold mb-3 mt-6 text-gray-900">5.3 Mobile Device Settings</h3>
             <p className="text-gray-700 leading-relaxed">
               On mobile devices, you can limit ad tracking:
             </p>
@@ -177,7 +177,7 @@ export default function CookiesPolicy() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold mb-4">6. Impact of Disabling Cookies</h2>
+            <h2 className="text-2xl font-bold mb-4 text-black">6. Impact of Disabling Cookies</h2>
             <p className="text-gray-700 leading-relaxed">
               Please note that disabling cookies may affect your experience on our website:
             </p>
@@ -193,7 +193,7 @@ export default function CookiesPolicy() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold mb-4">7. Cookie Duration</h2>
+            <h2 className="text-2xl font-bold mb-4 text-black">7. Cookie Duration</h2>
             <p className="text-gray-700 leading-relaxed">
               Cookies are stored for different durations:
             </p>
@@ -204,21 +204,21 @@ export default function CookiesPolicy() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold mb-4">8. Do Not Track Signals</h2>
+            <h2 className="text-2xl font-bold mb-4 text-black">8. Do Not Track Signals</h2>
             <p className="text-gray-700 leading-relaxed">
               Some browsers include a "Do Not Track" (DNT) feature that signals to websites that you do not want your online activity tracked. Currently, there is no industry standard for how DNT signals should be handled. Our website does not currently respond to DNT signals, but we comply with your browser's cookie settings.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold mb-4">9. Updates to This Policy</h2>
+            <h2 className="text-2xl font-bold mb-4 text-black">9. Updates to This Policy</h2>
             <p className="text-gray-700 leading-relaxed">
               We may update this Cookies Policy from time to time to reflect changes in technology, legislation, or our business practices. We encourage you to review this policy periodically. The "Last updated" date at the top indicates when the policy was last revised.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold mb-4">10. More Information</h2>
+            <h2 className="text-2xl font-bold mb-4 text-black">10. More Information</h2>
             <p className="text-gray-700 leading-relaxed">
               For more information about how we handle your personal data, please see our <Link href="/privacy" className="text-blue-600 hover:underline">Privacy Policy</Link>.
             </p>
@@ -228,7 +228,7 @@ export default function CookiesPolicy() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold mb-4">11. Contact Us</h2>
+            <h2 className="text-2xl font-bold mb-4 text-black">11. Contact Us</h2>
             <p className="text-gray-700 leading-relaxed">
               If you have questions about our use of cookies, please contact us:
             </p>
