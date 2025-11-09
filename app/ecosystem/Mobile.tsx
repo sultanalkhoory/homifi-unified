@@ -118,56 +118,56 @@ export default function MobileEcosystem() {
 
           <div className="bg-white rounded-3xl p-8 shadow-xl">
 
-            {/* Large Floating UniFi Products - Mobile */}
-            <div className="relative w-full h-[380px] flex items-center justify-center mb-8">
-              {/* Product 1 - U7 Pro (Top Center, Back) */}
+            {/* UniFi Products - Clean Layout */}
+            <div className="flex items-center justify-center gap-3 py-8 mb-8">
+              {/* Product 1 - UDR */}
               <motion.div
-                initial={{ opacity: 0, y: 15, scale: 0.9 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
                 viewport={{ once: true }}
-                className="absolute top-4 z-0"
-              >
-                <Image
-                  src="/products/unifi/u7-pro.png"
-                  alt="U7 Pro Access Point"
-                  width={160}
-                  height={160}
-                  className="object-contain drop-shadow-xl opacity-90"
-                />
-              </motion.div>
-
-              {/* Product 2 - UDR (Bottom Left, Front) */}
-              <motion.div
-                initial={{ opacity: 0, x: -25, y: 15, scale: 0.9 }}
-                whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="absolute left-6 bottom-12 z-10"
               >
                 <Image
                   src="/products/unifi/udr.png"
                   alt="UniFi Dream Router"
-                  width={170}
-                  height={170}
-                  className="object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.25)]"
+                  width={100}
+                  height={100}
+                  quality={100}
+                  className="object-contain"
                 />
               </motion.div>
 
-              {/* Product 3 - U7 Pro Wall (Bottom Right, Front) */}
+              {/* Product 2 - U7 Pro */}
               <motion.div
-                initial={{ opacity: 0, x: 25, y: 15, scale: 0.9 }}
-                whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="absolute right-6 bottom-14 z-10"
+              >
+                <Image
+                  src="/products/unifi/u7-pro.png"
+                  alt="U7 Pro Access Point"
+                  width={100}
+                  height={100}
+                  quality={100}
+                  className="object-contain"
+                />
+              </motion.div>
+
+              {/* Product 3 - U7 Pro Wall */}
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                viewport={{ once: true }}
               >
                 <Image
                   src="/products/unifi/u7-pro-wall.png"
                   alt="U7 Pro Wall Mount"
-                  width={170}
-                  height={170}
-                  className="object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.25)]"
+                  width={100}
+                  height={100}
+                  quality={100}
+                  className="object-contain"
                 />
               </motion.div>
             </div>
@@ -233,56 +233,56 @@ export default function MobileEcosystem() {
 
           <div className="bg-white rounded-3xl p-8 shadow-xl">
 
-            {/* Large Floating LifeSmart Products - Mobile */}
-            <div className="relative w-full h-[350px] flex items-center justify-center mb-12">
-              {/* Product 1 - Nature 7 Pro (Left) */}
+            {/* LifeSmart Products - Clean Layout */}
+            <div className="flex items-center justify-center gap-4 py-8 mb-8">
+              {/* Product 1 - Nature 7 Pro */}
               <motion.div
-                initial={{ opacity: 0, x: -25, scale: 0.9 }}
-                whileInView={{ opacity: 1, x: 0, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
                 viewport={{ once: true }}
-                className="absolute left-0 top-10 z-0"
               >
                 <Image
                   src="/products/lifesmart/nature-7-pro.png"
                   alt="LifeSmart Nature 7 Pro"
-                  width={120}
-                  height={120}
-                  className="object-contain drop-shadow-2xl"
+                  width={110}
+                  height={110}
+                  quality={100}
+                  className="object-contain"
                 />
               </motion.div>
 
-              {/* Product 2 - Nature Mini Pro (Center) */}
+              {/* Product 2 - Nature Mini Pro */}
               <motion.div
-                initial={{ opacity: 0, y: 20, scale: 0.9 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="relative z-10"
               >
                 <Image
                   src="/products/lifesmart/nature-mini-pro.png"
                   alt="LifeSmart Nature Mini Pro Thermostat"
-                  width={160}
-                  height={160}
-                  className="object-contain drop-shadow-[0_20px_20px_rgba(0,0,0,0.25)]"
+                  width={110}
+                  height={110}
+                  quality={100}
+                  className="object-contain"
                 />
               </motion.div>
 
-              {/* Product 3 - Nature Switch (Right) */}
+              {/* Product 3 - Nature Switch */}
               <motion.div
-                initial={{ opacity: 0, x: 25, scale: 0.9 }}
-                whileInView={{ opacity: 1, x: 0, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
                 viewport={{ once: true }}
-                className="absolute right-0 top-14 z-0"
               >
                 <Image
                   src="/products/lifesmart/nature-switch.png"
                   alt="LifeSmart Nature Switch"
-                  width={120}
-                  height={120}
-                  className="object-contain drop-shadow-2xl"
+                  width={110}
+                  height={110}
+                  quality={100}
+                  className="object-contain"
                 />
               </motion.div>
             </div>
