@@ -121,26 +121,47 @@ export default function DesktopEcosystem() {
           <div className="bg-white rounded-3xl p-10 md:p-12 shadow-xl">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
 
-              {/* iPhone Frame with Video */}
+              {/* Stacked UniFi Products */}
               <div className="flex justify-center lg:justify-start">
-                <div className="relative">
-                  {/* iPhone Frame */}
-                  <div className="relative bg-black rounded-[3rem] p-[3px] shadow-[0_20px_60px_rgba(0,0,0,0.3)]" style={{ width: '300px' }}>
-                    {/* Screen */}
-                    <div className="relative bg-black rounded-[2.8rem] overflow-hidden" style={{ aspectRatio: '9/19.5' }}>
-                      {/* Dynamic Island / Notch */}
-                      <div className="absolute top-[8px] left-1/2 transform -translate-x-1/2 w-[120px] h-[26px] bg-black rounded-full z-10 shadow-lg"></div>
-
-                      <video
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="w-full h-full object-cover"
-                        src="/video/unifi-app-demo.mov"
-                      />
+                <div className="relative w-full max-w-md h-96">
+                  {/* Product 1 - UDR (Back Left) */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -30, rotate: -10 }}
+                    whileInView={{ opacity: 1, x: 0, rotate: -8 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    viewport={{ once: true }}
+                    className="absolute left-0 top-12 w-56 h-56 bg-white rounded-3xl shadow-xl p-6 border border-gray-100"
+                  >
+                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl">
+                      <span className="text-gray-400 text-xs text-center font-medium">UDR<br/>Router</span>
                     </div>
-                  </div>
+                  </motion.div>
+
+                  {/* Product 2 - Switch (Middle) */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    viewport={{ once: true }}
+                    className="absolute left-16 top-20 w-56 h-56 bg-white rounded-3xl shadow-2xl p-6 border border-gray-200 z-10"
+                  >
+                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl">
+                      <span className="text-slate-400 text-xs text-center font-medium">UniFi<br/>Switch</span>
+                    </div>
+                  </motion.div>
+
+                  {/* Product 3 - U7 Pro (Front Right) */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 30, rotate: 10 }}
+                    whileInView={{ opacity: 1, x: 0, rotate: 8 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    viewport={{ once: true }}
+                    className="absolute right-0 top-28 w-56 h-56 bg-white rounded-3xl shadow-2xl p-6 border border-blue-100 z-20"
+                  >
+                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl">
+                      <span className="text-blue-500 text-xs text-center font-medium">U7 Pro<br/>Access Point</span>
+                    </div>
+                  </motion.div>
                 </div>
               </div>
 
@@ -206,66 +227,45 @@ export default function DesktopEcosystem() {
 
           <div className="bg-white rounded-3xl p-10 md:p-12 shadow-xl">
 
-            {/* Device Categories */}
+            {/* Featured Products */}
             <div className="grid md:grid-cols-3 gap-8 mb-10">
 
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-yellow-100 to-orange-100 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-3xl">💡</span>
+              {/* Nature 7 Pro */}
+              <div className="group">
+                <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-3xl p-8 mb-4 h-64 flex items-center justify-center border border-yellow-100 group-hover:shadow-lg transition-shadow">
+                  <div className="w-full h-full flex items-center justify-center bg-white/60 rounded-2xl">
+                    <span className="text-orange-400 text-xs text-center font-medium">Nature 7 Pro<br/>Product Image</span>
+                  </div>
                 </div>
-                <h3 className="font-semibold text-black mb-2">Lighting</h3>
-                <p className="text-sm text-gray-600">
-                  Switches, dimmers, smart bulbs
+                <h3 className="font-semibold text-black mb-2 text-center">Nature 7 Pro</h3>
+                <p className="text-sm text-gray-600 text-center">
+                  Smart control hub for lighting and devices
                 </p>
               </div>
 
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-3xl">❄️</span>
+              {/* Nature Mini Pro */}
+              <div className="group">
+                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl p-8 mb-4 h-64 flex items-center justify-center border border-blue-100 group-hover:shadow-lg transition-shadow">
+                  <div className="w-full h-full flex items-center justify-center bg-white/60 rounded-2xl">
+                    <span className="text-blue-400 text-xs text-center font-medium">Nature Mini Pro<br/>Product Image</span>
+                  </div>
                 </div>
-                <h3 className="font-semibold text-black mb-2">Climate</h3>
-                <p className="text-sm text-gray-600">
-                  AC control, thermostats, sensors
+                <h3 className="font-semibold text-black mb-2 text-center">Nature Mini Pro</h3>
+                <p className="text-sm text-gray-600 text-center">
+                  Thermostat for precise climate control
                 </p>
               </div>
 
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-3xl">🪟</span>
+              {/* Nature Switch */}
+              <div className="group">
+                <div className="bg-gradient-to-br from-gray-50 to-slate-50 rounded-3xl p-8 mb-4 h-64 flex items-center justify-center border border-gray-100 group-hover:shadow-lg transition-shadow">
+                  <div className="w-full h-full flex items-center justify-center bg-white/60 rounded-2xl">
+                    <span className="text-gray-400 text-xs text-center font-medium">Nature Switch<br/>Product Image</span>
+                  </div>
                 </div>
-                <h3 className="font-semibold text-black mb-2">Curtains & Blinds</h3>
-                <p className="text-sm text-gray-600">
-                  Motorized curtains, automated blinds
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-red-100 to-orange-100 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-3xl">🔐</span>
-                </div>
-                <h3 className="font-semibold text-black mb-2">Security</h3>
-                <p className="text-sm text-gray-600">
-                  Door locks, sensors, access control
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-green-100 to-emerald-100 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-3xl">📹</span>
-                </div>
-                <h3 className="font-semibold text-black mb-2">Cameras</h3>
-                <p className="text-sm text-gray-600">
-                  Doorbells, security cameras
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-gray-100 to-slate-100 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-3xl">📡</span>
-                </div>
-                <h3 className="font-semibold text-black mb-2">Sensors</h3>
-                <p className="text-sm text-gray-600">
-                  Motion, door/window, leak detection
+                <h3 className="font-semibold text-black mb-2 text-center">Nature Switch</h3>
+                <p className="text-sm text-gray-600 text-center">
+                  Smart switches for every room
                 </p>
               </div>
             </div>
