@@ -36,7 +36,7 @@ export default function DesktopEcosystem() {
             What Makes It Work
           </h1>
 
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed">
             We don't hide behind fancy names. Here's exactly what we use and why.
           </p>
         </motion.div>
@@ -53,7 +53,7 @@ export default function DesktopEcosystem() {
             <h2 className="text-4xl md:text-5xl font-semibold text-black mb-4">
               Control It Your Way
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
               Choose your platform. Or use all three at once. Your call.
             </p>
           </div>
@@ -90,7 +90,7 @@ export default function DesktopEcosystem() {
           </div>
 
           <div className="text-center">
-            <p className="text-gray-600">
+            <p className="text-gray-700">
               Use your iPhone. Ask Google. Tell Alexa. Switch between them. Use all three.
               <br />
               <span className="text-black font-medium">The system doesn't care.</span>
@@ -113,7 +113,7 @@ export default function DesktopEcosystem() {
             <h2 className="text-4xl md:text-5xl font-semibold text-black mb-6">
               UniFi Networking
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-700 max-w-2xl mx-auto">
               Enterprise-grade infrastructure. Managed from your phone.
             </p>
           </div>
@@ -232,7 +232,7 @@ export default function DesktopEcosystem() {
             <h2 className="text-4xl md:text-5xl font-semibold text-black mb-6">
               LifeSmart Hardware
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-700 max-w-2xl mx-auto">
               Open protocol devices that work with everything. Not locked to one ecosystem.
             </p>
           </div>
