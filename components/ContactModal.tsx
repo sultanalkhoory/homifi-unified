@@ -3,55 +3,62 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useContactModal } from '@/contexts/ContactModalContext';
+import * as flags from 'country-flag-icons/react/3x2';
 
 const countryCodes = [
-  { code: '+971', country: 'AE', name: 'UAE', flag: '🇦🇪' },
-  { code: '+966', country: 'SA', name: 'Saudi Arabia', flag: '🇸🇦' },
-  { code: '+965', country: 'KW', name: 'Kuwait', flag: '🇰🇼' },
-  { code: '+974', country: 'QA', name: 'Qatar', flag: '🇶🇦' },
-  { code: '+968', country: 'OM', name: 'Oman', flag: '🇴🇲' },
-  { code: '+973', country: 'BH', name: 'Bahrain', flag: '🇧🇭' },
-  { code: '+20', country: 'EG', name: 'Egypt', flag: '🇪🇬' },
-  { code: '+962', country: 'JO', name: 'Jordan', flag: '🇯🇴' },
-  { code: '+961', country: 'LB', name: 'Lebanon', flag: '🇱🇧' },
-  { code: '+90', country: 'TR', name: 'Turkey', flag: '🇹🇷' },
-  { code: '+98', country: 'IR', name: 'Iran', flag: '🇮🇷' },
-  { code: '+91', country: 'IN', name: 'India', flag: '🇮🇳' },
-  { code: '+92', country: 'PK', name: 'Pakistan', flag: '🇵🇰' },
-  { code: '+880', country: 'BD', name: 'Bangladesh', flag: '🇧🇩' },
-  { code: '+94', country: 'LK', name: 'Sri Lanka', flag: '🇱🇰' },
-  { code: '+977', country: 'NP', name: 'Nepal', flag: '🇳🇵' },
-  { code: '+60', country: 'MY', name: 'Malaysia', flag: '🇲🇾' },
-  { code: '+65', country: 'SG', name: 'Singapore', flag: '🇸🇬' },
-  { code: '+63', country: 'PH', name: 'Philippines', flag: '🇵🇭' },
-  { code: '+66', country: 'TH', name: 'Thailand', flag: '🇹🇭' },
-  { code: '+84', country: 'VN', name: 'Vietnam', flag: '🇻🇳' },
-  { code: '+62', country: 'ID', name: 'Indonesia', flag: '🇮🇩' },
-  { code: '+86', country: 'CN', name: 'China', flag: '🇨🇳' },
-  { code: '+852', country: 'HK', name: 'Hong Kong', flag: '🇭🇰' },
-  { code: '+886', country: 'TW', name: 'Taiwan', flag: '🇹🇼' },
-  { code: '+81', country: 'JP', name: 'Japan', flag: '🇯🇵' },
-  { code: '+82', country: 'KR', name: 'South Korea', flag: '🇰🇷' },
-  { code: '+61', country: 'AU', name: 'Australia', flag: '🇦🇺' },
-  { code: '+64', country: 'NZ', name: 'New Zealand', flag: '🇳🇿' },
-  { code: '+44', country: 'GB', name: 'UK', flag: '🇬🇧' },
-  { code: '+33', country: 'FR', name: 'France', flag: '🇫🇷' },
-  { code: '+49', country: 'DE', name: 'Germany', flag: '🇩🇪' },
-  { code: '+39', country: 'IT', name: 'Italy', flag: '🇮🇹' },
-  { code: '+34', country: 'ES', name: 'Spain', flag: '🇪🇸' },
-  { code: '+31', country: 'NL', name: 'Netherlands', flag: '🇳🇱' },
-  { code: '+41', country: 'CH', name: 'Switzerland', flag: '🇨🇭' },
-  { code: '+46', country: 'SE', name: 'Sweden', flag: '🇸🇪' },
-  { code: '+47', country: 'NO', name: 'Norway', flag: '🇳🇴' },
-  { code: '+45', country: 'DK', name: 'Denmark', flag: '🇩🇰' },
-  { code: '+48', country: 'PL', name: 'Poland', flag: '🇵🇱' },
-  { code: '+7', country: 'RU', name: 'Russia', flag: '🇷🇺' },
-  { code: '+1', country: 'US', name: 'USA', flag: '🇺🇸' },
-  { code: '+1', country: 'CA', name: 'Canada', flag: '🇨🇦' },
-  { code: '+52', country: 'MX', name: 'Mexico', flag: '🇲🇽' },
-  { code: '+55', country: 'BR', name: 'Brazil', flag: '🇧🇷' },
-  { code: '+27', country: 'ZA', name: 'South Africa', flag: '🇿🇦' },
+  { code: '+971', country: 'AE', name: 'UAE' },
+  { code: '+966', country: 'SA', name: 'Saudi Arabia' },
+  { code: '+965', country: 'KW', name: 'Kuwait' },
+  { code: '+974', country: 'QA', name: 'Qatar' },
+  { code: '+968', country: 'OM', name: 'Oman' },
+  { code: '+973', country: 'BH', name: 'Bahrain' },
+  { code: '+20', country: 'EG', name: 'Egypt' },
+  { code: '+962', country: 'JO', name: 'Jordan' },
+  { code: '+961', country: 'LB', name: 'Lebanon' },
+  { code: '+90', country: 'TR', name: 'Turkey' },
+  { code: '+98', country: 'IR', name: 'Iran' },
+  { code: '+91', country: 'IN', name: 'India' },
+  { code: '+92', country: 'PK', name: 'Pakistan' },
+  { code: '+880', country: 'BD', name: 'Bangladesh' },
+  { code: '+94', country: 'LK', name: 'Sri Lanka' },
+  { code: '+977', country: 'NP', name: 'Nepal' },
+  { code: '+60', country: 'MY', name: 'Malaysia' },
+  { code: '+65', country: 'SG', name: 'Singapore' },
+  { code: '+63', country: 'PH', name: 'Philippines' },
+  { code: '+66', country: 'TH', name: 'Thailand' },
+  { code: '+84', country: 'VN', name: 'Vietnam' },
+  { code: '+62', country: 'ID', name: 'Indonesia' },
+  { code: '+86', country: 'CN', name: 'China' },
+  { code: '+852', country: 'HK', name: 'Hong Kong' },
+  { code: '+886', country: 'TW', name: 'Taiwan' },
+  { code: '+81', country: 'JP', name: 'Japan' },
+  { code: '+82', country: 'KR', name: 'South Korea' },
+  { code: '+61', country: 'AU', name: 'Australia' },
+  { code: '+64', country: 'NZ', name: 'New Zealand' },
+  { code: '+44', country: 'GB', name: 'UK' },
+  { code: '+33', country: 'FR', name: 'France' },
+  { code: '+49', country: 'DE', name: 'Germany' },
+  { code: '+39', country: 'IT', name: 'Italy' },
+  { code: '+34', country: 'ES', name: 'Spain' },
+  { code: '+31', country: 'NL', name: 'Netherlands' },
+  { code: '+41', country: 'CH', name: 'Switzerland' },
+  { code: '+46', country: 'SE', name: 'Sweden' },
+  { code: '+47', country: 'NO', name: 'Norway' },
+  { code: '+45', country: 'DK', name: 'Denmark' },
+  { code: '+48', country: 'PL', name: 'Poland' },
+  { code: '+7', country: 'RU', name: 'Russia' },
+  { code: '+1', country: 'US', name: 'USA' },
+  { code: '+1', country: 'CA', name: 'Canada' },
+  { code: '+52', country: 'MX', name: 'Mexico' },
+  { code: '+55', country: 'BR', name: 'Brazil' },
+  { code: '+27', country: 'ZA', name: 'South Africa' },
 ];
+
+// Helper function to get flag component
+const getFlag = (countryCode: string) => {
+  const FlagComponent = (flags as any)[countryCode];
+  return FlagComponent || null;
+};
 
 export default function ContactModal() {
   const { isOpen, closeModal } = useContactModal();
@@ -238,7 +245,11 @@ export default function ContactModal() {
                             outline-none transition-all bg-white text-gray-900
                             disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 min-w-[100px]"
                         >
-                          <span className="text-2xl leading-none" style={{ fontFamily: 'Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, Android Emoji, EmojiOne Color, sans-serif', fontSize: '1.5rem', lineHeight: '1', display: 'inline-block' }}>{countryCodes.find(c => c.code === selectedCountryCode)?.flag}</span>
+                          {(() => {
+                            const country = countryCodes.find(c => c.code === selectedCountryCode);
+                            const Flag = country ? getFlag(country.country) : null;
+                            return Flag ? <Flag className="w-6 h-4" /> : null;
+                          })()}
                           <span className="text-sm font-medium">{selectedCountryCode}</span>
                           <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -258,7 +269,10 @@ export default function ContactModal() {
                                 }}
                                 className="w-full px-4 py-2.5 text-left hover:bg-gray-50 flex items-center gap-3 transition-colors"
                               >
-                                <span className="text-2xl leading-none" style={{ fontFamily: 'Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, Android Emoji, EmojiOne Color, sans-serif', fontSize: '1.5rem', lineHeight: '1', display: 'inline-block' }}>{country.flag}</span>
+                                {(() => {
+                                  const Flag = getFlag(country.country);
+                                  return Flag ? <Flag className="w-6 h-4" /> : null;
+                                })()}
                                 <span className="text-sm text-gray-900 flex-1">{country.name}</span>
                                 <span className="text-sm font-medium text-gray-600">{country.code}</span>
                               </button>
