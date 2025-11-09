@@ -120,54 +120,54 @@ export default function MobileEcosystem() {
 
             {/* Large Floating UniFi Products - Mobile */}
             <div className="relative w-full h-[400px] flex items-center justify-center mb-8">
-              {/* Product 1 - UDR (Left) */}
-              <motion.div
-                initial={{ opacity: 0, x: -30, scale: 0.9 }}
-                whileInView={{ opacity: 1, x: 0, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                viewport={{ once: true }}
-                className="absolute left-0 top-12 z-0"
-              >
-                <Image
-                  src="/products/unifi/udr.png"
-                  alt="UniFi Dream Router"
-                  width={140}
-                  height={140}
-                  className="object-contain drop-shadow-2xl"
-                />
-              </motion.div>
-
-              {/* Product 2 - U7 Pro (Center, Largest) */}
+              {/* Product 1 - U7 Pro (Center, Back) */}
               <motion.div
                 initial={{ opacity: 0, y: 20, scale: 0.9 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
                 viewport={{ once: true }}
-                className="relative z-10"
+                className="relative z-0"
               >
                 <Image
                   src="/products/unifi/u7-pro.png"
                   alt="U7 Pro Access Point"
-                  width={200}
-                  height={200}
-                  className="object-contain drop-shadow-[0_25px_25px_rgba(0,0,0,0.25)]"
+                  width={210}
+                  height={210}
+                  className="object-contain drop-shadow-xl opacity-95"
                 />
               </motion.div>
 
-              {/* Product 3 - Switch (Right) */}
+              {/* Product 2 - UDR (Front Left) */}
+              <motion.div
+                initial={{ opacity: 0, x: -30, scale: 0.9 }}
+                whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="absolute left-2 top-12 z-10"
+              >
+                <Image
+                  src="/products/unifi/udr.png"
+                  alt="UniFi Dream Router"
+                  width={170}
+                  height={170}
+                  className="object-contain drop-shadow-[0_25px_25px_rgba(0,0,0,0.3)]"
+                />
+              </motion.div>
+
+              {/* Product 3 - U7 Pro Wall (Front Right) */}
               <motion.div
                 initial={{ opacity: 0, x: 30, scale: 0.9 }}
                 whileInView={{ opacity: 1, x: 0, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
                 viewport={{ once: true }}
-                className="absolute right-0 top-16 z-0"
+                className="absolute right-2 top-14 z-20"
               >
                 <Image
-                  src="/products/unifi/switch.png"
-                  alt="UniFi Switch"
-                  width={140}
-                  height={140}
-                  className="object-contain drop-shadow-2xl"
+                  src="/products/unifi/u7-pro-wall.png"
+                  alt="U7 Pro Wall Mount"
+                  width={170}
+                  height={170}
+                  className="object-contain drop-shadow-[0_25px_25px_rgba(0,0,0,0.3)]"
                 />
               </motion.div>
             </div>
