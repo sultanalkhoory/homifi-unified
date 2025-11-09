@@ -206,7 +206,7 @@ export default function ContactModal() {
                             outline-none transition-all bg-white text-gray-900
                             disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 min-w-[100px]"
                         >
-                          <span className="text-xl">{countryCodes.find(c => c.code === selectedCountryCode)?.flag}</span>
+                          <span className="text-xl" style={{ fontFamily: 'Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, Android Emoji, sans-serif' }}>{countryCodes.find(c => c.code === selectedCountryCode)?.flag}</span>
                           <span className="text-sm font-medium">{selectedCountryCode}</span>
                           <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -226,7 +226,7 @@ export default function ContactModal() {
                                 }}
                                 className="w-full px-4 py-2.5 text-left hover:bg-gray-50 flex items-center gap-3 transition-colors"
                               >
-                                <span className="text-xl">{country.flag}</span>
+                                <span className="text-xl" style={{ fontFamily: 'Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, Android Emoji, sans-serif' }}>{country.flag}</span>
                                 <span className="text-sm text-gray-900 flex-1">{country.name}</span>
                                 <span className="text-sm font-medium text-gray-600">{country.code}</span>
                               </button>
