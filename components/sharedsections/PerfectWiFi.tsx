@@ -41,6 +41,11 @@ export default function PerfectWiFi() {
               Enterprise-grade network.<br />
               Controlled from your phone.
             </p>
+
+            {/* Description */}
+            <p className="text-gray-600 text-lg">
+              Professional infrastructure that covers every corner with reliable, secure connectivity.
+            </p>
           </motion.div>
 
           {/* RIGHT COLUMN: iPhone Frame with Video */}
