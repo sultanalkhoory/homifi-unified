@@ -118,26 +118,47 @@ export default function MobileEcosystem() {
 
           <div className="bg-white rounded-3xl p-8 shadow-xl">
 
-            {/* iPhone Frame with Video */}
+            {/* Stacked UniFi Products */}
             <div className="flex justify-center mb-8">
-              <div className="relative">
-                {/* iPhone Frame */}
-                <div className="relative bg-black rounded-[2.5rem] p-[3px] shadow-[0_15px_50px_rgba(0,0,0,0.3)]" style={{ width: '250px' }}>
-                  {/* Screen */}
-                  <div className="relative bg-black rounded-[2.3rem] overflow-hidden" style={{ aspectRatio: '9/19.5' }}>
-                    {/* Dynamic Island / Notch */}
-                    <div className="absolute top-[6px] left-1/2 transform -translate-x-1/2 w-[100px] h-[22px] bg-black rounded-full z-10 shadow-lg"></div>
-
-                    <video
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="w-full h-full object-cover"
-                      src="/video/unifi-app-demo.mov"
-                    />
+              <div className="relative w-full h-72">
+                {/* Product 1 - UDR */}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  viewport={{ once: true }}
+                  className="absolute left-4 top-8 w-36 h-36 bg-white rounded-2xl shadow-lg p-4 border border-gray-100 rotate-[-6deg]"
+                >
+                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl">
+                    <span className="text-gray-400 text-[9px] text-center font-medium">UDR</span>
                   </div>
-                </div>
+                </motion.div>
+
+                {/* Product 2 - Switch */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  viewport={{ once: true }}
+                  className="absolute left-1/2 -translate-x-1/2 top-14 w-36 h-36 bg-white rounded-2xl shadow-xl p-4 border border-gray-200 z-10"
+                >
+                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl">
+                    <span className="text-slate-400 text-[9px] text-center font-medium">Switch</span>
+                  </div>
+                </motion.div>
+
+                {/* Product 3 - U7 Pro */}
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  viewport={{ once: true }}
+                  className="absolute right-4 top-20 w-36 h-36 bg-white rounded-2xl shadow-2xl p-4 border border-blue-100 z-20 rotate-[6deg]"
+                >
+                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl">
+                    <span className="text-blue-500 text-[9px] text-center font-medium">U7 Pro</span>
+                  </div>
+                </motion.div>
               </div>
             </div>
 
@@ -202,66 +223,45 @@ export default function MobileEcosystem() {
 
           <div className="bg-white rounded-3xl p-8 shadow-xl">
 
-            {/* Device Categories - 2 columns on mobile */}
-            <div className="grid grid-cols-2 gap-6 mb-8">
+            {/* Featured Products */}
+            <div className="space-y-6 mb-8">
 
-              <div className="text-center">
-                <div className="w-14 h-14 bg-gradient-to-br from-yellow-100 to-orange-100 rounded-2xl mx-auto mb-3 flex items-center justify-center">
-                  <span className="text-2xl">💡</span>
+              {/* Nature 7 Pro */}
+              <div className="group">
+                <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-6 mb-3 h-40 flex items-center justify-center border border-yellow-100">
+                  <div className="w-full h-full flex items-center justify-center bg-white/60 rounded-xl">
+                    <span className="text-orange-400 text-[10px] text-center font-medium">Nature 7 Pro</span>
+                  </div>
                 </div>
-                <h3 className="text-sm font-semibold text-black mb-1">Lighting</h3>
-                <p className="text-xs text-gray-600">
-                  Switches & bulbs
+                <h3 className="font-semibold text-black mb-1 text-center text-sm">Nature 7 Pro</h3>
+                <p className="text-xs text-gray-600 text-center">
+                  Smart control hub for lighting and devices
                 </p>
               </div>
 
-              <div className="text-center">
-                <div className="w-14 h-14 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl mx-auto mb-3 flex items-center justify-center">
-                  <span className="text-2xl">❄️</span>
+              {/* Nature Mini Pro */}
+              <div className="group">
+                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-6 mb-3 h-40 flex items-center justify-center border border-blue-100">
+                  <div className="w-full h-full flex items-center justify-center bg-white/60 rounded-xl">
+                    <span className="text-blue-400 text-[10px] text-center font-medium">Nature Mini Pro</span>
+                  </div>
                 </div>
-                <h3 className="text-sm font-semibold text-black mb-1">Climate</h3>
-                <p className="text-xs text-gray-600">
-                  AC & sensors
+                <h3 className="font-semibold text-black mb-1 text-center text-sm">Nature Mini Pro</h3>
+                <p className="text-xs text-gray-600 text-center">
+                  Thermostat for precise climate control
                 </p>
               </div>
 
-              <div className="text-center">
-                <div className="w-14 h-14 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl mx-auto mb-3 flex items-center justify-center">
-                  <span className="text-2xl">🪟</span>
+              {/* Nature Switch */}
+              <div className="group">
+                <div className="bg-gradient-to-br from-gray-50 to-slate-50 rounded-2xl p-6 mb-3 h-40 flex items-center justify-center border border-gray-100">
+                  <div className="w-full h-full flex items-center justify-center bg-white/60 rounded-xl">
+                    <span className="text-gray-400 text-[10px] text-center font-medium">Nature Switch</span>
+                  </div>
                 </div>
-                <h3 className="text-sm font-semibold text-black mb-1">Curtains</h3>
-                <p className="text-xs text-gray-600">
-                  Motorized blinds
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-14 h-14 bg-gradient-to-br from-red-100 to-orange-100 rounded-2xl mx-auto mb-3 flex items-center justify-center">
-                  <span className="text-2xl">🔐</span>
-                </div>
-                <h3 className="text-sm font-semibold text-black mb-1">Security</h3>
-                <p className="text-xs text-gray-600">
-                  Locks & sensors
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-14 h-14 bg-gradient-to-br from-green-100 to-emerald-100 rounded-2xl mx-auto mb-3 flex items-center justify-center">
-                  <span className="text-2xl">📹</span>
-                </div>
-                <h3 className="text-sm font-semibold text-black mb-1">Cameras</h3>
-                <p className="text-xs text-gray-600">
-                  Doorbells & cams
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-14 h-14 bg-gradient-to-br from-gray-100 to-slate-100 rounded-2xl mx-auto mb-3 flex items-center justify-center">
-                  <span className="text-2xl">📡</span>
-                </div>
-                <h3 className="text-sm font-semibold text-black mb-1">Sensors</h3>
-                <p className="text-xs text-gray-600">
-                  Motion & leak
+                <h3 className="font-semibold text-black mb-1 text-center text-sm">Nature Switch</h3>
+                <p className="text-xs text-gray-600 text-center">
+                  Smart switches for every room
                 </p>
               </div>
             </div>
