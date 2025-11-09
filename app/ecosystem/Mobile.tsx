@@ -120,7 +120,7 @@ export default function MobileEcosystem() {
 
             {/* UniFi Products - Hero Center Style */}
             <div className="flex items-end justify-center gap-4 py-8 mb-8">
-              {/* Product 1 - UDR (Side) */}
+              {/* Product 1 - U7 Pro (Side) */}
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -129,8 +129,8 @@ export default function MobileEcosystem() {
                 className="mb-4"
               >
                 <Image
-                  src="/products/unifi/udr.png"
-                  alt="UniFi Dream Router"
+                  src="/products/unifi/u7-pro.png"
+                  alt="U7 Pro Access Point"
                   width={90}
                   height={90}
                   quality={100}
@@ -138,7 +138,7 @@ export default function MobileEcosystem() {
                 />
               </motion.div>
 
-              {/* Product 2 - U7 Pro (Hero Center - Larger) */}
+              {/* Product 2 - UDR (Hero Center - Larger) */}
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -146,8 +146,8 @@ export default function MobileEcosystem() {
                 viewport={{ once: true }}
               >
                 <Image
-                  src="/products/unifi/u7-pro.png"
-                  alt="U7 Pro Access Point"
+                  src="/products/unifi/udr.png"
+                  alt="UniFi Dream Router"
                   width={120}
                   height={120}
                   quality={100}
