@@ -47,22 +47,6 @@ export default function PerfectWiFi() {
               Professional WiFi that covers every corner. Network security that isolates IoT devices.
               Infrastructure that scales as you grow.
             </p>
-
-            {/* Additional Benefits */}
-            <div className="pt-4 space-y-4 text-gray-600">
-              <p className="flex items-start gap-2">
-                <span className="text-blue-600 font-bold">✓</span>
-                <span>Enterprise-grade access points with seamless roaming</span>
-              </p>
-              <p className="flex items-start gap-2">
-                <span className="text-blue-600 font-bold">✓</span>
-                <span>Built-in firewall and real-time threat detection</span>
-              </p>
-              <p className="flex items-start gap-2">
-                <span className="text-blue-600 font-bold">✓</span>
-                <span>The same infrastructure used by offices worldwide</span>
-              </p>
-            </div>
           </motion.div>
 
           {/* RIGHT COLUMN: iPhone Frame with Video */}

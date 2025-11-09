@@ -183,7 +183,7 @@ export default function DesktopEcosystem() {
                   <h3 className="text-xl font-semibold text-black mb-3">
                     Professional WiFi Coverage
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-gray-700 leading-relaxed">
                     Enterprise-grade access points. No dead zones. Every corner covered.
                   </p>
                 </div>
@@ -192,7 +192,7 @@ export default function DesktopEcosystem() {
                   <h3 className="text-xl font-semibold text-black mb-3">
                     Network Security
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-gray-700 leading-relaxed">
                     VLANs isolate IoT devices. Built-in firewall. Real-time threat detection.
                   </p>
                 </div>
@@ -201,13 +201,13 @@ export default function DesktopEcosystem() {
                   <h3 className="text-xl font-semibold text-black mb-3">
                     Scales Effortlessly
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-gray-700 leading-relaxed">
                     Start with one access point. Add more anytime. Grows with your property.
                   </p>
                 </div>
 
                 <div className="pt-6 border-t border-gray-200">
-                  <p className="text-gray-600">
+                  <p className="text-gray-700">
                     The same infrastructure used by offices and hotels worldwide.
                   </p>
                 </div>
@@ -298,21 +298,21 @@ export default function DesktopEcosystem() {
             <div className="border-t border-gray-200 pt-8 space-y-4">
               <div className="flex items-start gap-3">
                 <span className="text-green-600 text-xl font-bold">✓</span>
-                <p className="text-gray-600">
+                <p className="text-gray-700">
                   <strong className="text-black">Zigbee and Matter protocols.</strong> Industry standards that any integrator can work with.
                 </p>
               </div>
 
               <div className="flex items-start gap-3">
                 <span className="text-green-600 text-xl font-bold">✓</span>
-                <p className="text-gray-600">
+                <p className="text-gray-700">
                   <strong className="text-black">Long battery life.</strong> Sensors that last 1-2 years, not months.
                 </p>
               </div>
 
               <div className="flex items-start gap-3">
                 <span className="text-green-600 text-xl font-bold">✓</span>
-                <p className="text-gray-600">
+                <p className="text-gray-700">
                   <strong className="text-black">Up to 500 devices.</strong> 800-meter range. Blazing fast response times.
                 </p>
               </div>
