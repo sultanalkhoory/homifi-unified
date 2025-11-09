@@ -330,19 +330,19 @@ export default function MobileEcosystem() {
             </h2>
 
             <div className="space-y-5 text-base mb-8">
-              <p>
+              <p className="text-black">
                 <strong className="text-black">UniFi</strong> handles your network.
                 <br />
                 <span className="text-black text-sm">Professional. Reliable. Secure.</span>
               </p>
 
-              <p>
+              <p className="text-black">
                 <strong className="text-black">LifeSmart</strong> runs your devices.
                 <br />
                 <span className="text-black text-sm">Open protocols. Industry standard.</span>
               </p>
 
-              <p>
+              <p className="text-black">
                 <strong className="text-black">Apple, Google, or Alexa</strong> controls it.
                 <br />
                 <span className="text-black text-sm">Your choice. Your system.</span>

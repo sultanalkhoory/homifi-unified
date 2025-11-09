@@ -334,19 +334,19 @@ export default function DesktopEcosystem() {
             </h2>
 
             <div className="space-y-6 text-lg mb-10">
-              <p>
+              <p className="text-black">
                 <strong className="text-black">UniFi</strong> handles your network.
                 <br />
                 <span className="text-black">Professional. Reliable. Secure.</span>
               </p>
 
-              <p>
+              <p className="text-black">
                 <strong className="text-black">LifeSmart</strong> runs your devices.
                 <br />
                 <span className="text-black">Open protocols. Industry standard.</span>
               </p>
 
-              <p>
+              <p className="text-black">
                 <strong className="text-black">Apple, Google, or Alexa</strong> controls it all.
                 <br />
                 <span className="text-black">Your choice. Your system.</span>
