@@ -38,14 +38,8 @@ export default function PerfectWiFi() {
 
             {/* Subheading */}
             <p className="text-xl md:text-2xl text-gray-700 leading-relaxed">
-              Enterprise-grade infrastructure.<br />
-              Managed from your phone.
-            </p>
-
-            {/* Description */}
-            <p className="text-gray-600 text-lg">
-              Professional WiFi that covers every corner. Network security that isolates IoT devices.
-              Infrastructure that scales as you grow.
+              Enterprise-grade network.<br />
+              Controlled from your phone.
             </p>
           </motion.div>
 
