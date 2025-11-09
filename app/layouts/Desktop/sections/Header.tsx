@@ -13,6 +13,7 @@ import { useContactModal } from "@/contexts/ContactModalContext";
 export default function Header() {
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
   const firstMenuItemRef = useRef<HTMLAnchorElement>(null);
   const { openModal } = useContactModal();
 
@@ -35,10 +36,14 @@ export default function Header() {
     }
   }, [open]);
 
-  // Close menu when clicking outside
+  // Close menu when clicking outside (excluding the menu button)
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+      const target = e.target as Node;
+      const isOutsideMenu = menuRef.current && !menuRef.current.contains(target);
+      const isNotButton = menuButtonRef.current && !menuButtonRef.current.contains(target);
+
+      if (isOutsideMenu && isNotButton) {
         setOpen(false);
       }
     };
@@ -97,10 +102,11 @@ export default function Header() {
           </button>
           
           {/* Mobile Menu Button - Sequential animation */}
-          <button 
-            aria-label="Menu" 
+          <button
+            ref={menuButtonRef}
+            aria-label="Menu"
             onClick={() => setOpen((v) => !v)}
-            className="md:hidden ml-auto inline-flex items-center justify-center 
+            className="md:hidden ml-auto inline-flex items-center justify-center
               rounded-full w-10 h-10 bg-black
               hover:bg-gray-900 active:scale-95
               transition-all duration-200"
