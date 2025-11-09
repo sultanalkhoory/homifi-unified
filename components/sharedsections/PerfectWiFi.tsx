@@ -29,7 +29,7 @@ export default function PerfectWiFi() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-100px" }}
-            className="md:col-span-5 space-y-6"
+            className="md:col-span-5 space-y-6 text-center"
           >
             {/* Section Heading */}
             <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-black">
@@ -40,11 +40,6 @@ export default function PerfectWiFi() {
             <p className="text-xl md:text-2xl text-gray-700 leading-relaxed">
               Enterprise-grade network.<br />
               Controlled from your phone.
-            </p>
-
-            {/* Description */}
-            <p className="text-gray-600 text-lg">
-              Professional infrastructure that covers every corner with reliable, secure connectivity.
             </p>
           </motion.div>
 
