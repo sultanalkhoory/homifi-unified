@@ -45,7 +45,7 @@ function IPhoneFrame({ children }: { children: React.ReactNode }) {
         <div className="hidden md:block relative bg-black rounded-[3rem] p-[3px] shadow-[0_20px_60px_rgba(0,0,0,0.3)]" style={{ width: '300px' }}>
           <div className="relative bg-black rounded-[2.8rem] overflow-hidden" style={{ aspectRatio: '9/19.5' }}>
             {/* Dynamic Island */}
-            <div className="absolute top-[8px] left-1/2 transform -translate-x-1/2 w-[120px] h-[26px] bg-black rounded-full z-10 shadow-lg"></div>
+            <div className="absolute top-[8px] left-1/2 transform -translate-x-1/2 w-[120px] h-[26px] bg-black rounded-full z-30 shadow-lg"></div>
 
             {/* Children content */}
             <div className="absolute inset-0">
@@ -58,7 +58,7 @@ function IPhoneFrame({ children }: { children: React.ReactNode }) {
         <div className="md:hidden relative bg-black rounded-[2.5rem] p-[3px] shadow-[0_15px_50px_rgba(0,0,0,0.3)]" style={{ width: '250px' }}>
           <div className="relative bg-black rounded-[2.3rem] overflow-hidden" style={{ aspectRatio: '9/19.5' }}>
             {/* Dynamic Island */}
-            <div className="absolute top-[6px] left-1/2 transform -translate-x-1/2 w-[100px] h-[22px] bg-black rounded-full z-10 shadow-lg"></div>
+            <div className="absolute top-[6px] left-1/2 transform -translate-x-1/2 w-[100px] h-[22px] bg-black rounded-full z-30 shadow-lg"></div>
 
             {/* Children content */}
             <div className="absolute inset-0">

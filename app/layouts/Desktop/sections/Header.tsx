@@ -161,13 +161,13 @@ export default function Header() {
           {open && (
             <motion.div
               ref={menuRef}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.2 }}
+              initial={{ opacity: 0, y: -10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.95 }}
+              transition={{ duration: 0.2, ease: [0.4, 0.0, 0.2, 1] }}
               className="md:hidden mt-2"
             >
-              <div className="frosted rounded-2xl p-4 shadow-xl">
+              <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-4 shadow-xl border border-gray-100">
                 <nav className="flex flex-col gap-3">
                   <a
                     ref={firstMenuItemRef}
