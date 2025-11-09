@@ -121,26 +121,27 @@ export default function DesktopEcosystem() {
           <div className="bg-white rounded-3xl p-10 md:p-12 shadow-xl">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
 
-          {/* UniFi Products - Clean Horizontal Layout */}
-          <div className="flex items-center justify-center gap-6 py-12">
-            {/* Product 1 - UDR */}
+          {/* UniFi Products - Hero Center Style */}
+          <div className="flex items-end justify-center gap-8 py-12">
+            {/* Product 1 - UDR (Side) */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
+              className="mb-8"
             >
               <Image
                 src="/products/unifi/udr.png"
                 alt="UniFi Dream Router"
-                width={200}
-                height={200}
+                width={180}
+                height={180}
                 quality={100}
                 className="object-contain"
               />
             </motion.div>
 
-            {/* Product 2 - U7 Pro */}
+            {/* Product 2 - U7 Pro (Hero Center - Larger) */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -150,25 +151,26 @@ export default function DesktopEcosystem() {
               <Image
                 src="/products/unifi/u7-pro.png"
                 alt="U7 Pro Access Point"
-                width={200}
-                height={200}
+                width={240}
+                height={240}
                 quality={100}
                 className="object-contain"
               />
             </motion.div>
 
-            {/* Product 3 - U7 Pro Wall */}
+            {/* Product 3 - U7 Pro Wall (Side) */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
+              className="mb-8"
             >
               <Image
                 src="/products/unifi/u7-pro-wall.png"
                 alt="U7 Pro Wall Mount"
-                width={200}
-                height={200}
+                width={180}
+                height={180}
                 quality={100}
                 className="object-contain"
               />
@@ -237,26 +239,27 @@ export default function DesktopEcosystem() {
 
           <div className="bg-white rounded-3xl p-10 md:p-12 shadow-xl">
 
-            {/* LifeSmart Products - Clean Horizontal Layout */}
-            <div className="flex items-center justify-center gap-8 py-12 mb-12">
-              {/* Product 1 - Nature 7 Pro */}
+            {/* LifeSmart Products - Hero Center Style */}
+            <div className="flex items-end justify-center gap-8 py-12 mb-12">
+              {/* Product 1 - Nature Mini Pro (Side) */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
                 viewport={{ once: true }}
+                className="mb-8"
               >
                 <Image
-                  src="/products/lifesmart/nature-7-pro.png"
-                  alt="LifeSmart Nature 7 Pro"
-                  width={220}
-                  height={220}
+                  src="/products/lifesmart/nature-mini-pro.png"
+                  alt="LifeSmart Nature Mini Pro Thermostat"
+                  width={200}
+                  height={200}
                   quality={100}
                   className="object-contain"
                 />
               </motion.div>
 
-              {/* Product 2 - Nature Mini Pro */}
+              {/* Product 2 - Nature 7 Pro (Hero Center - Larger) */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -264,27 +267,28 @@ export default function DesktopEcosystem() {
                 viewport={{ once: true }}
               >
                 <Image
-                  src="/products/lifesmart/nature-mini-pro.png"
-                  alt="LifeSmart Nature Mini Pro Thermostat"
-                  width={220}
-                  height={220}
+                  src="/products/lifesmart/nature-7-pro.png"
+                  alt="LifeSmart Nature 7 Pro"
+                  width={260}
+                  height={260}
                   quality={100}
                   className="object-contain"
                 />
               </motion.div>
 
-              {/* Product 3 - Nature Switch */}
+              {/* Product 3 - Nature Switch (Side) */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
                 viewport={{ once: true }}
+                className="mb-8"
               >
                 <Image
                   src="/products/lifesmart/nature-switch.png"
                   alt="LifeSmart Nature Switch"
-                  width={220}
-                  height={220}
+                  width={200}
+                  height={200}
                   quality={100}
                   className="object-contain"
                 />
