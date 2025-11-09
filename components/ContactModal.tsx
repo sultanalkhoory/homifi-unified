@@ -4,10 +4,29 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useContactModal } from '@/contexts/ContactModalContext';
 
+const countryCodes = [
+  { code: '+971', country: 'AE', name: 'UAE', flag: '🇦🇪' },
+  { code: '+1', country: 'US', name: 'USA', flag: '🇺🇸' },
+  { code: '+44', country: 'GB', name: 'UK', flag: '🇬🇧' },
+  { code: '+966', country: 'SA', name: 'Saudi Arabia', flag: '🇸🇦' },
+  { code: '+965', country: 'KW', name: 'Kuwait', flag: '🇰🇼' },
+  { code: '+974', country: 'QA', name: 'Qatar', flag: '🇶🇦' },
+  { code: '+968', country: 'OM', name: 'Oman', flag: '🇴🇲' },
+  { code: '+973', country: 'BH', name: 'Bahrain', flag: '🇧🇭' },
+  { code: '+20', country: 'EG', name: 'Egypt', flag: '🇪🇬' },
+  { code: '+962', country: 'JO', name: 'Jordan', flag: '🇯🇴' },
+  { code: '+961', country: 'LB', name: 'Lebanon', flag: '🇱🇧' },
+  { code: '+91', country: 'IN', name: 'India', flag: '🇮🇳' },
+  { code: '+92', country: 'PK', name: 'Pakistan', flag: '🇵🇰' },
+  { code: '+86', country: 'CN', name: 'China', flag: '🇨🇳' },
+];
+
 export default function ContactModal() {
   const { isOpen, closeModal } = useContactModal();
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const [selectedCountryCode, setSelectedCountryCode] = useState('+971');
+  const [showCountryDropdown, setShowCountryDropdown] = useState(false);
 
   // Reset status when modal closes
   useEffect(() => {
@@ -38,10 +57,13 @@ export default function ContactModal() {
     const form = e.currentTarget;
 
     const formData = new FormData(form);
+    const phoneNumber = formData.get('phoneNumber') as string;
+    const fullPhone = phoneNumber ? `${selectedCountryCode}${phoneNumber}` : '';
+
     const data = {
       name: formData.get('name'),
       email: formData.get('email'),
-      phone: formData.get('phone'),
+      phone: fullPhone,
       property: formData.get('property'),
       message: formData.get('message'),
     };
@@ -167,22 +189,66 @@ export default function ContactModal() {
                     </div>
                   </div>
 
-                  {/* Phone */}
+                  {/* Phone with Country Code */}
                   <div>
                     <label htmlFor="modal-phone" className="block text-sm font-medium text-gray-700 mb-2">
-                      Phone <span className="text-gray-400 font-normal">(optional)</span>
+                      Phone Number
                     </label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      id="modal-phone"
-                      placeholder="+971 50 123 4567"
-                      disabled={status === 'loading'}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200
-                        focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20
-                        outline-none transition-all text-gray-900 placeholder:text-gray-400
-                        disabled:opacity-50 disabled:cursor-not-allowed"
-                    />
+                    <div className="flex gap-2">
+                      {/* Country Code Selector */}
+                      <div className="relative">
+                        <button
+                          type="button"
+                          onClick={() => setShowCountryDropdown(!showCountryDropdown)}
+                          disabled={status === 'loading'}
+                          className="h-full px-3 py-3 rounded-xl border border-gray-200
+                            hover:border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20
+                            outline-none transition-all bg-white text-gray-900
+                            disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 min-w-[100px]"
+                        >
+                          <span className="text-xl">{countryCodes.find(c => c.code === selectedCountryCode)?.flag}</span>
+                          <span className="text-sm font-medium">{selectedCountryCode}</span>
+                          <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </button>
+
+                        {/* Dropdown */}
+                        {showCountryDropdown && (
+                          <div className="absolute top-full left-0 mt-1 w-64 bg-white border border-gray-200 rounded-xl shadow-lg z-10 max-h-60 overflow-y-auto">
+                            {countryCodes.map((country) => (
+                              <button
+                                key={country.code}
+                                type="button"
+                                onClick={() => {
+                                  setSelectedCountryCode(country.code);
+                                  setShowCountryDropdown(false);
+                                }}
+                                className="w-full px-4 py-2.5 text-left hover:bg-gray-50 flex items-center gap-3 transition-colors"
+                              >
+                                <span className="text-xl">{country.flag}</span>
+                                <span className="text-sm text-gray-900 flex-1">{country.name}</span>
+                                <span className="text-sm font-medium text-gray-600">{country.code}</span>
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Phone Number Input */}
+                      <input
+                        type="tel"
+                        name="phoneNumber"
+                        id="modal-phone"
+                        required
+                        placeholder="50 123 4567"
+                        disabled={status === 'loading'}
+                        className="flex-1 px-4 py-3 rounded-xl border border-gray-200
+                          focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20
+                          outline-none transition-all text-gray-900 placeholder:text-gray-400
+                          disabled:opacity-50 disabled:cursor-not-allowed"
+                      />
+                    </div>
                   </div>
 
                   {/* Property Type */}
@@ -209,16 +275,15 @@ export default function ContactModal() {
                     </select>
                   </div>
 
-                  {/* Message */}
+                  {/* Message - Now Optional */}
                   <div>
                     <label htmlFor="modal-message" className="block text-sm font-medium text-gray-700 mb-2">
-                      Tell us about your project
+                      Tell us about your project <span className="text-gray-400 font-normal">(optional)</span>
                     </label>
                     <textarea
                       name="message"
                       id="modal-message"
                       rows={4}
-                      required
                       placeholder="I'm interested in smart lighting, climate control, and security for my 4-bedroom villa..."
                       disabled={status === 'loading'}
                       className="w-full px-4 py-3 rounded-xl border border-gray-200
