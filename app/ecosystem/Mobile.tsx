@@ -180,7 +180,7 @@ export default function MobileEcosystem() {
                 <h3 className="text-lg font-semibold text-black mb-2">
                   Professional WiFi Coverage
                 </h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
+                <p className="text-gray-700 text-sm leading-relaxed">
                   Enterprise-grade access points. No dead zones. Every corner covered.
                 </p>
               </div>
@@ -189,7 +189,7 @@ export default function MobileEcosystem() {
                 <h3 className="text-lg font-semibold text-black mb-2">
                   Network Security
                 </h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
+                <p className="text-gray-700 text-sm leading-relaxed">
                   VLANs isolate IoT devices. Built-in firewall. Real-time threat detection.
                 </p>
               </div>
@@ -198,13 +198,13 @@ export default function MobileEcosystem() {
                 <h3 className="text-lg font-semibold text-black mb-2">
                   Scales Effortlessly
                 </h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
+                <p className="text-gray-700 text-sm leading-relaxed">
                   Start with one access point. Add more anytime. Grows with your property.
                 </p>
               </div>
 
               <div className="pt-6 border-t border-gray-200">
-                <p className="text-gray-600 text-sm text-center">
+                <p className="text-gray-700 text-sm text-center">
                   The same infrastructure used by offices and hotels worldwide.
                 </p>
               </div>
@@ -294,21 +294,21 @@ export default function MobileEcosystem() {
             <div className="border-t border-gray-200 pt-6 space-y-3 text-sm">
               <div className="flex items-start gap-2">
                 <span className="text-green-600 font-bold">✓</span>
-                <p className="text-gray-600">
+                <p className="text-gray-700">
                   <strong className="text-black">Zigbee & Matter.</strong> Industry standards.
                 </p>
               </div>
 
               <div className="flex items-start gap-2">
                 <span className="text-green-600 font-bold">✓</span>
-                <p className="text-gray-600">
+                <p className="text-gray-700">
                   <strong className="text-black">Long battery life.</strong> 1-2 years.
                 </p>
               </div>
 
               <div className="flex items-start gap-2">
                 <span className="text-green-600 font-bold">✓</span>
-                <p className="text-gray-600">
+                <p className="text-gray-700">
                   <strong className="text-black">Up to 500 devices.</strong> 800m range.
                 </p>
               </div>
