@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useContactModal } from "@/contexts/ContactModalContext";
+import { usePathname } from "next/navigation";
 
 /**
  * Header Component with sequential menu animation
@@ -16,6 +17,7 @@ export default function Header() {
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const firstMenuItemRef = useRef<HTMLAnchorElement>(null);
   const { openModal } = useContactModal();
+  const pathname = usePathname();
 
   // Handle Escape key to close menu
   useEffect(() => {
@@ -74,16 +76,36 @@ export default function Header() {
           
           {/* Desktop Navigation Links */}
           <nav className="mx-auto hidden md:flex items-center gap-8 text-sm text-gray-600">
-            <a href="/#features" className="hover:text-black transition-colors duration-200">
+            <a
+              href="/#features"
+              className={`hover:text-black transition-colors duration-200 ${
+                pathname === '/' ? 'text-black font-medium' : ''
+              }`}
+            >
               Features
             </a>
-            <Link href="/how-it-works" className="hover:text-black transition-colors duration-200">
+            <Link
+              href="/how-it-works"
+              className={`hover:text-black transition-colors duration-200 ${
+                pathname === '/how-it-works' ? 'text-black font-medium' : ''
+              }`}
+            >
               How It Works
             </Link>
-            <Link href="/ecosystem" className="hover:text-black transition-colors duration-200">
+            <Link
+              href="/ecosystem"
+              className={`hover:text-black transition-colors duration-200 ${
+                pathname === '/ecosystem' ? 'text-black font-medium' : ''
+              }`}
+            >
               Ecosystem
             </Link>
-            <Link href="/about" className="hover:text-black transition-colors duration-200">
+            <Link
+              href="/about"
+              className={`hover:text-black transition-colors duration-200 ${
+                pathname === '/about' ? 'text-black font-medium' : ''
+              }`}
+            >
               About Us
             </Link>
           </nav>
@@ -173,28 +195,36 @@ export default function Header() {
                     ref={firstMenuItemRef}
                     href="/#features"
                     onClick={() => setOpen(false)}
-                    className="px-4 py-3 rounded-xl hover:bg-white/50 transition-colors text-gray-700 font-medium focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
+                    className={`px-4 py-3 rounded-xl hover:bg-white/50 transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 ${
+                      pathname === '/' ? 'text-black bg-white/50' : 'text-gray-700'
+                    }`}
                   >
                     Features
                   </a>
                   <Link
                     href="/how-it-works"
                     onClick={() => setOpen(false)}
-                    className="px-4 py-3 rounded-xl hover:bg-white/50 transition-colors text-gray-700 font-medium focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
+                    className={`px-4 py-3 rounded-xl hover:bg-white/50 transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 ${
+                      pathname === '/how-it-works' ? 'text-black bg-white/50' : 'text-gray-700'
+                    }`}
                   >
                     How It Works
                   </Link>
                   <Link
                     href="/ecosystem"
                     onClick={() => setOpen(false)}
-                    className="px-4 py-3 rounded-xl hover:bg-white/50 transition-colors text-gray-700 font-medium focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
+                    className={`px-4 py-3 rounded-xl hover:bg-white/50 transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 ${
+                      pathname === '/ecosystem' ? 'text-black bg-white/50' : 'text-gray-700'
+                    }`}
                   >
                     Ecosystem
                   </Link>
                   <Link
                     href="/about"
                     onClick={() => setOpen(false)}
-                    className="px-4 py-3 rounded-xl hover:bg-white/50 transition-colors text-gray-700 font-medium focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
+                    className={`px-4 py-3 rounded-xl hover:bg-white/50 transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 ${
+                      pathname === '/about' ? 'text-black bg-white/50' : 'text-gray-700'
+                    }`}
                   >
                     About Us
                   </Link>
