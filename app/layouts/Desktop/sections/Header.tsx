@@ -195,8 +195,8 @@ export default function Header() {
                     ref={firstMenuItemRef}
                     href="/#features"
                     onClick={() => setOpen(false)}
-                    className={`px-4 py-3 rounded-xl hover:bg-white/50 transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 ${
-                      pathname === '/' ? 'text-black bg-white/50' : 'text-gray-700'
+                    className={`px-4 py-3 rounded-xl transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 ${
+                      pathname === '/' ? 'text-black bg-white shadow-sm' : 'text-gray-700 hover:bg-white/50'
                     }`}
                   >
                     Features
@@ -204,8 +204,8 @@ export default function Header() {
                   <Link
                     href="/how-it-works"
                     onClick={() => setOpen(false)}
-                    className={`px-4 py-3 rounded-xl hover:bg-white/50 transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 ${
-                      pathname === '/how-it-works' ? 'text-black bg-white/50' : 'text-gray-700'
+                    className={`px-4 py-3 rounded-xl transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 ${
+                      pathname === '/how-it-works' ? 'text-black bg-white shadow-sm' : 'text-gray-700 hover:bg-white/50'
                     }`}
                   >
                     How It Works
@@ -213,8 +213,8 @@ export default function Header() {
                   <Link
                     href="/ecosystem"
                     onClick={() => setOpen(false)}
-                    className={`px-4 py-3 rounded-xl hover:bg-white/50 transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 ${
-                      pathname === '/ecosystem' ? 'text-black bg-white/50' : 'text-gray-700'
+                    className={`px-4 py-3 rounded-xl transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 ${
+                      pathname === '/ecosystem' ? 'text-black bg-white shadow-sm' : 'text-gray-700 hover:bg-white/50'
                     }`}
                   >
                     Ecosystem
@@ -222,8 +222,8 @@ export default function Header() {
                   <Link
                     href="/about"
                     onClick={() => setOpen(false)}
-                    className={`px-4 py-3 rounded-xl hover:bg-white/50 transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 ${
-                      pathname === '/about' ? 'text-black bg-white/50' : 'text-gray-700'
+                    className={`px-4 py-3 rounded-xl transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 ${
+                      pathname === '/about' ? 'text-black bg-white shadow-sm' : 'text-gray-700 hover:bg-white/50'
                     }`}
                   >
                     About Us
