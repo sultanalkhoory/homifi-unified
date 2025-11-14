@@ -15,7 +15,10 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const firstMenuItemRef = useRef<HTMLAnchorElement>(null);
+  const featuresMenuItemRef = useRef<HTMLAnchorElement>(null);
+  const howItWorksMenuItemRef = useRef<HTMLAnchorElement>(null);
+  const ecosystemMenuItemRef = useRef<HTMLAnchorElement>(null);
+  const aboutMenuItemRef = useRef<HTMLAnchorElement>(null);
   const { openModal } = useContactModal();
   const pathname = usePathname();
 
@@ -31,12 +34,24 @@ export default function Header() {
     return () => document.removeEventListener('keydown', handleEscape);
   }, [open]);
 
-  // Focus first menu item when menu opens
+  // Focus active menu item when menu opens
   useEffect(() => {
-    if (open && firstMenuItemRef.current) {
-      firstMenuItemRef.current.focus();
+    if (open) {
+      // Focus the menu item corresponding to the current page
+      if (pathname === '/' && featuresMenuItemRef.current) {
+        featuresMenuItemRef.current.focus();
+      } else if (pathname === '/how-it-works' && howItWorksMenuItemRef.current) {
+        howItWorksMenuItemRef.current.focus();
+      } else if (pathname === '/ecosystem' && ecosystemMenuItemRef.current) {
+        ecosystemMenuItemRef.current.focus();
+      } else if (pathname === '/about' && aboutMenuItemRef.current) {
+        aboutMenuItemRef.current.focus();
+      } else if (featuresMenuItemRef.current) {
+        // Default to features if no match
+        featuresMenuItemRef.current.focus();
+      }
     }
-  }, [open]);
+  }, [open, pathname]);
 
   // Close menu when clicking outside (excluding the menu button)
   useEffect(() => {
@@ -192,7 +207,7 @@ export default function Header() {
               <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-4 shadow-xl border border-gray-100">
                 <nav className="flex flex-col gap-3">
                   <a
-                    ref={firstMenuItemRef}
+                    ref={featuresMenuItemRef}
                     href="/#features"
                     onClick={() => setOpen(false)}
                     className={`px-4 py-3 rounded-xl transition-colors font-medium focus:outline-none ${
@@ -203,7 +218,8 @@ export default function Header() {
                   >
                     Features
                   </a>
-                  <Link
+                  <a
+                    ref={howItWorksMenuItemRef}
                     href="/how-it-works"
                     onClick={() => setOpen(false)}
                     className={`px-4 py-3 rounded-xl transition-colors font-medium focus:outline-none ${
@@ -213,8 +229,9 @@ export default function Header() {
                     }`}
                   >
                     How It Works
-                  </Link>
-                  <Link
+                  </a>
+                  <a
+                    ref={ecosystemMenuItemRef}
                     href="/ecosystem"
                     onClick={() => setOpen(false)}
                     className={`px-4 py-3 rounded-xl transition-colors font-medium focus:outline-none ${
@@ -224,8 +241,9 @@ export default function Header() {
                     }`}
                   >
                     Ecosystem
-                  </Link>
-                  <Link
+                  </a>
+                  <a
+                    ref={aboutMenuItemRef}
                     href="/about"
                     onClick={() => setOpen(false)}
                     className={`px-4 py-3 rounded-xl transition-colors font-medium focus:outline-none ${
@@ -235,7 +253,7 @@ export default function Header() {
                     }`}
                   >
                     About Us
-                  </Link>
+                  </a>
 
                   {/* Separator */}
                   <div className="h-px bg-gray-200 my-2" />
