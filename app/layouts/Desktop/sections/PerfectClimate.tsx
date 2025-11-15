@@ -230,10 +230,16 @@ export default function PerfectClimate() {
               <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900">
                 Perfect Climate
               </h2>
-              
+
+              {/* Subheading */}
+              <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
+                Always comfortable.<br />
+                Exactly as you want it.
+              </p>
+
               {/* Description */}
               <p className="text-gray-600 text-lg">
-                The perfect temperature, automatically. Always comfortable, exactly as you want it.
+                The perfect temperature, automatically. Set schedules or let it adapt to your routine.
               </p>
               
               {/* ===== CONTROL CENTER CARD ===== */}
