@@ -106,12 +106,12 @@ export default function StepCustomize({
       icon: <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />,
       actionType: 'slider'
     },
-    { 
-      id: 'tv', 
+    {
+      id: 'tv',
       name: 'Apple TV', // Apple integration showcase
       icon: <path strokeLinecap="round" strokeLinejoin="round" d="M6 20.25h12m-7.5-3v3m3-3v3m-10.125-3h17.25c.621 0 1.125-.504 1.125-1.125V4.875c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125z" />,
       actionType: 'buttons',
-      options: ['On', 'Off']
+      options: ['Off', 'On'] // Off first so TV starts off by default
     },
     { 
       id: 'curtains', 
