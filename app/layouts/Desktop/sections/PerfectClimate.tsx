@@ -227,7 +227,7 @@ export default function PerfectClimate() {
               className="md:col-span-5 space-y-6"
             >
               {/* Section Heading */}
-              <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-black">
+              <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900">
                 Perfect Climate
               </h2>
               

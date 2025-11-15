@@ -91,12 +91,12 @@ export default function PerfectLight() {
             className="md:col-span-5 space-y-6"
           >
             {/* Section Heading */}
-            <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-black">
+            <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900">
               Perfect Light
             </h2>
-            
+
             {/* Subheading */}
-            <p className="text-xl md:text-2xl text-gray-700 leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
               Every room, every moment.<br />
               Exactly as you want it.
             </p>
