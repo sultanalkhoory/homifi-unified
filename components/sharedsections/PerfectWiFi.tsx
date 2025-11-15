@@ -32,12 +32,12 @@ export default function PerfectWiFi() {
             className="md:col-span-5 space-y-6 text-center"
           >
             {/* Section Heading */}
-            <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-black">
+            <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900">
               Perfect WiFi
             </h2>
 
             {/* Subheading */}
-            <p className="text-xl md:text-2xl text-gray-700 leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
               Enterprise-grade network.<br />
               Controlled from your phone.
             </p>

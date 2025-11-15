@@ -63,7 +63,7 @@ export default function BenefitsSection() {
           viewport={{ once: true, margin: "-100px" }}
           className="text-center mb-8 md:mb-16 lg:mb-20"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold tracking-tight text-black mb-3 md:mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold tracking-tight text-gray-900 mb-3 md:mb-4">
             Smart home, simplified.
           </h2>
           <p className="text-base md:text-xl text-gray-600 max-w-3xl mx-auto">
@@ -93,7 +93,7 @@ export default function BenefitsSection() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-base md:text-xl font-semibold text-black mb-2 md:mb-3 leading-snug">
+                <h3 className="text-base md:text-xl font-semibold text-gray-900 mb-2 md:mb-3 leading-snug">
                   {benefit.title}
                 </h3>
 
