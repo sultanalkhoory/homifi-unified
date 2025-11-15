@@ -91,12 +91,12 @@ export default function PerfectSecurity() {
           viewport={{ once: true, margin: "-100px" }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-black mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 mb-6">
             Perfect Security
           </h2>
-          
+
           <p className="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-            Instant notifications when someone's at your door. Unlock remotely or dismiss — 
+            Instant notifications when someone's at your door. Unlock remotely or dismiss —
             all from your Apple TV, iPhone, or iPad.
           </p>
         </motion.div>

@@ -26,10 +26,10 @@ export default function LightsSection() {
         {/* Copy */}
         <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }}>
           <div className="text-sm uppercase tracking-wider text-blue-600 font-medium mb-3">Perfect Light</div>
-          <h2 className="text-4xl md:text-5xl font-thin text-gray-900 mb-4 leading-tight">
+          <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4 leading-tight">
             Every room.<br />Every moment.
           </h2>
-          <p className="text-lg text-gray-600 font-light mb-8">Exactly as you want it.</p>
+          <p className="text-lg md:text-xl text-gray-600 mb-8">Exactly as you want it.</p>
         </motion.div>
 
         {/* iPhone */}

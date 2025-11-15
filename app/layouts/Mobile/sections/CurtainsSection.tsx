@@ -169,10 +169,10 @@ export default function CurtainsSection() {
         {/* Copy */}
         <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="order-1 md:order-2">
           <div className="text-sm uppercase tracking-wider text-blue-600 mb-3">Perfect Privacy</div>
-          <h2 className="text-4xl md:text-5xl font-thin text-gray-900 mb-4 leading-tight">
+          <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4 leading-tight">
             Comfort <br /> and control.
           </h2>
-          <p className="text-lg text-gray-600 font-light mb-8">Exactly when you need it.</p>
+          <p className="text-lg md:text-xl text-gray-600 mb-8">Exactly when you need it.</p>
         </motion.div>
       </div>
     </section>

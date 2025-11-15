@@ -64,10 +64,10 @@ export default function PerfectHomeKey() {
           viewport={{ once: true, margin: "-100px" }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-black mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 mb-6">
             Perfect Entry
           </h2>
-          
+
           <p className="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
             Unlock your home with just a tap. Your iPhone or Apple Watch becomes your key.
           </p>
