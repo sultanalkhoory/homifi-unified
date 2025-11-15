@@ -14,7 +14,7 @@ export default function StepCustomize({
   const [buildStep, setBuildStep] = useState(1);
   const [sceneName, setSceneName] = useState('');
   const [selectedDevices, setSelectedDevices] = useState<string[]>([]);
-  const [deviceSettings, setDeviceSettings] = useState<{[key: string]: any}>({});
+  const [deviceSettings, setDeviceSettings] = useState<{[key: string]: any}>({ tv: 'off' }); // Start with TV explicitly off
   const [displayName, setDisplayName] = useState('');
   const [showCursor, setShowCursor] = useState(false);
   const [targetLights, setTargetLights] = useState<number | null>(null);
@@ -92,7 +92,7 @@ export default function StepCustomize({
     setBuildStep(1);
     setSceneName('');
     setSelectedDevices([]);
-    setDeviceSettings({});
+    setDeviceSettings({ tv: 'off' }); // Reset with TV explicitly off
     setDisplayName('');
     setTargetLights(null);
     setDemoKey(prev => prev + 1); // Increment key to restart useEffect
