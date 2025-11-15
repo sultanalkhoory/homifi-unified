@@ -27,11 +27,30 @@ export const metadata: Metadata = {
     apple: '/apple-icon.png',
   },
 
-  // Social media preview
+  // Social media preview (WhatsApp, Facebook, LinkedIn, etc.)
   openGraph: {
     title: "HomiFi – Apple-style Smart Home",
     description: "Professional installation. Voice control. Apple HomeKey. No programming required.",
-    images: ['/homifi-icon.png'],
+    url: 'https://homifi.ae',
+    siteName: 'HomiFi',
+    images: [
+      {
+        url: '/homifi-logo.png',
+        width: 2881,
+        height: 767,
+        alt: 'HomiFi - Apple-style Smart Home Automation',
+      }
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+
+  // Twitter/X preview
+  twitter: {
+    card: 'summary_large_image',
+    title: "HomiFi – Apple-style Smart Home",
+    description: "Professional installation. Voice control. Apple HomeKey. No programming required.",
+    images: ['/homifi-logo.png'],
   },
 
   // SEO keywords
