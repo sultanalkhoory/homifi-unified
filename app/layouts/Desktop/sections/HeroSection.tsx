@@ -27,7 +27,7 @@ export default function HeroSection() {
             className="md:col-span-4 space-y-6"
           >
             {/* Main Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-black leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 leading-tight">
               Your home, perfectly automated.
             </h1>
 

@@ -153,10 +153,10 @@ export default function PerfectPrivacy() {
   };
 
   return (
-    <section 
-      ref={containerRef} 
-      id="perfect-privacy" 
-      className="py-20 md:py-28 bg-white"
+    <section
+      ref={containerRef}
+      id="perfect-privacy"
+      className="pt-8 pb-20 md:py-28 bg-white"
     >
       <div className="mx-auto max-w-6xl px-4">
         <div className="grid md:grid-cols-12 gap-12 items-center">
@@ -169,7 +169,7 @@ export default function PerfectPrivacy() {
             viewport={{ once: true, margin: "-100px" }}
             className="md:col-span-5 space-y-6 order-1 md:order-2"
           >
-            <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-black">
+            <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900">
               Perfect Privacy
             </h2>
             
