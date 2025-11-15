@@ -29,7 +29,7 @@ export default function PerfectWiFi() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-100px" }}
-            className="md:col-span-5 space-y-6"
+            className="md:col-span-5 space-y-6 text-center"
           >
             {/* Section Heading */}
             <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900">
